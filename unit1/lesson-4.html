@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ครั้งที่ 4 กระบวนการพัฒนาเว็บ · Web Dev</title>
+<meta name="description" content="หน่วยที่ 1 ครั้งที่ 4 กระบวนการพัฒนาเว็บไซต์ (Web Development Life Cycle) 7 ขั้น Sitemap Wireframe Mockup และบทบาทของทีมพัฒนาเว็บ">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec4899'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem('wd-theme'));if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid"></div><div class="floaters"></div></div>
+<header class="topbar">
+  <nav class="pill" aria-label="เมนูหลัก">
+    <a href="../index.html">Web Dev</a>
+    <a href="index.html">หน่วยที่ 1</a>
+    <a href="lesson-4.html" aria-current="page">ครั้งที่ 4</a>
+  </nav>
+  <button class="theme-btn" type="button">auto</button>
+</header>
+
+<main>
+<div class="wrap">
+  <section class="lesson-hero">
+    <div class="crumbs"><a href="../index.html">Web Dev</a> / <a href="index.html">หน่วยที่ 1</a> / ครั้งที่ 4</div>
+    <div class="meta"><span class="chip hot">ครั้งที่ 4 / 5</span><span class="chip">5 ชั่วโมง</span><span class="chip">ทฤษฎี 1 · ปฏิบัติ 4</span></div>
+    <h1>กระบวนการ<span class="grad-text">พัฒนาเว็บไซต์</span></h1>
+    <p class="lead">มืออาชีพไม่ได้เริ่มจากการเขียนโค้ด แต่เริ่มจาก “คิด” และ “วางแผน” ครั้งนี้จะเรียนวงจรการพัฒนาเว็บไซต์ (Web Development Life Cycle) 7 ขั้น ซึ่งเป็นแผนที่ของวิชานี้ทั้งเทอม — หน่วยที่ 2 ถึง 7 ก็คือการลงลึกทีละขั้นนั่นเอง</p>
+  </section>
+
+  <div class="lesson-grid">
+    <aside class="toc">
+      <span class="toc-title">ในบทนี้</span>
+      <nav>
+        <a href="#goal">จุดประสงค์</a>
+        <a href="#why">ทำไมต้องมีกระบวนการ</a>
+        <a href="#cycle">วงจร 7 ขั้น</a>
+        <a href="#detail">ลงลึกแต่ละขั้น</a>
+        <a href="#wf">Sitemap → Website</a>
+        <a href="#team">ทีมพัฒนาเว็บ</a>
+        <a href="#case">กรณีศึกษา</a>
+        <a href="#lab">ใบงาน 1.4</a>
+        <a href="#quiz">แบบทดสอบ</a>
+        <a href="#sum">สรุป</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+      <section class="sec" id="goal">
+        <div class="sec-head"><span class="sec-num">01</span><div><h2>จุดประสงค์การเรียนรู้</h2><p>หลังเรียนครั้งนี้ ผู้เรียนสามารถ…</p></div></div>
+        <ol class="objectives">
+          <li>เรียงลำดับขั้นตอนของกระบวนการพัฒนาเว็บไซต์ 7 ขั้นได้ถูกต้อง</li>
+          <li>อธิบายกิจกรรมและผลลัพธ์ (เอกสาร/ชิ้นงาน) ของแต่ละขั้นได้</li>
+          <li>บอกความแตกต่างระหว่าง Sitemap, Wireframe, Mockup และเว็บไซต์จริงได้</li>
+          <li>อธิบายบทบาทหน้าที่ของสมาชิกในทีมพัฒนาเว็บไซต์ได้</li>
+          <li>วางแผนโครงการเว็บไซต์ร่วมกับผู้อื่นอย่างเป็นระบบ รับผิดชอบงานที่ได้รับมอบหมาย</li>
+        </ol>
+      </section>
+
+      <section class="sec" id="why">
+        <div class="sec-head"><span class="sec-num">02</span><div><h2>ทำไมต้องมีกระบวนการ?</h2><p>ลองนึกภาพการสร้างบ้านโดยไม่มีแบบแปลน</p></div></div>
+        <div class="vs">
+          <div class="mini c-pink"><span class="ic-wrap"><i data-i="alert"></i></span><h4>ทำเลยไม่วางแผน 😵</h4><ul class="clean"><li>ทำไปแก้ไป ผู้ใช้บอก “ไม่ใช่แบบนี้”</li><li>เมนูไม่ครบ ต้องรื้อโครงสร้างใหม่</li><li>ไม่ได้ทดสอบ ลิงก์เสีย มือถือดูไม่ได้</li><li>เสร็จช้า เกินงบ ทีมทะเลาะกัน</li></ul></div>
+          <div class="mid">VS</div>
+          <div class="mini c-teal"><span class="ic-wrap"><i data-i="check"></i></span><h4>ทำตามกระบวนการ 😎</h4><ul class="clean"><li>รู้เป้าหมายและผู้ใช้ตั้งแต่ต้น</li><li>เห็นแบบก่อนลงมือเขียนโค้ด แก้ง่ายและถูก</li><li>ทดสอบก่อนเปิดใช้จริง</li><li>แบ่งงานชัดเจน ติดตามความคืบหน้าได้</li></ul></div>
+        </div>
+        <div class="callout idea"><i data-i="bulb"></i><p><strong class="t">กฎทอง</strong>ยิ่งพบข้อผิดพลาดช้าเท่าไร ค่าแก้ไขยิ่งแพงขึ้นเท่านั้น — แก้ในกระดาษ (Wireframe) ใช้ 5 นาที แต่แก้หลังเขียนโค้ดเสร็จอาจใช้ 5 วัน</p></div>
+      </section>
+
+      <section class="sec" id="cycle">
+        <div class="sec-head"><span class="sec-num">03</span><div><h2>วงจรการพัฒนาเว็บไซต์ 7 ขั้น</h2><p>Web Development Life Cycle (WDLC) · ทำวนเป็นวงจร ไม่ได้จบแค่ครั้งเดียว</p></div></div>
+        <figure class="anim" id="anim-cycle" data-ms="5200">
+          <div class="anim-title"><i data-i="restart"></i>WDLC ทีละขั้น<span class="chip">8 ขั้น</span></div>
+          <div class="stage auto">
+            <div class="cyc-grid">
+              <div class="cyc">
+                <svg class="wires" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="38" class="cyc-ring"/></svg>
+                <div class="cyc-center"><b>WDLC</b><span>วงจรพัฒนาเว็บไซต์</span></div>
+                <div class="actor c-orange" style="left:50%;top:12%" data-hl="1,8"><span class="ab"><b class="n">1</b></span><span class="lb">วางแผน</span></div>
+                <div class="actor c-pink" style="left:79.7%;top:26.3%" data-hl="2,8"><span class="ab"><b class="n">2</b></span><span class="lb">วิเคราะห์</span></div>
+                <div class="actor c-purple" style="left:87%;top:58.5%" data-hl="3,8"><span class="ab"><b class="n">3</b></span><span class="lb">ออกแบบ</span></div>
+                <div class="actor c-blue" style="left:66.5%;top:84.2%" data-hl="4,8"><span class="ab"><b class="n">4</b></span><span class="lb">พัฒนา</span></div>
+                <div class="actor c-amber" style="left:33.5%;top:84.2%" data-hl="5,8"><span class="ab"><b class="n">5</b></span><span class="lb">ทดสอบ</span></div>
+                <div class="actor c-green" style="left:13%;top:58.5%" data-hl="6,8"><span class="ab"><b class="n">6</b></span><span class="lb">เผยแพร่</span></div>
+                <div class="actor c-teal" style="left:20.3%;top:26.3%" data-hl="7,8"><span class="ab"><b class="n">7</b></span><span class="lb">ดูแลรักษา</span></div>
+              </div>
+              <div class="stack">
+                <div class="cyc-card rise" data-only="0"><h4>▶ กดเล่นเพื่อดูทีละขั้น</h4><p>แต่ละขั้นจะบอก <b>คำถามหลัก · กิจกรรม · ผลลัพธ์</b> และเรียนละเอียดในหน่วยไหนของวิชานี้</p></div>
+                <div class="cyc-card rise" data-only="1" style="--c:var(--orange)"><span class="tag">ขั้นที่ 1 · Planning</span><h4>วางแผน / กำหนดเป้าหมาย</h4><p><b>คำถามหลัก:</b> ทำเว็บนี้ไปทำไม? ใครใช้? มีเวลา งบ คนเท่าไร?</p><p><b>กิจกรรม:</b> ประชุมกับเจ้าของงาน กำหนดวัตถุประสงค์ ขอบเขต แบ่งทีม ทำตารางเวลา</p><p><b>ผลลัพธ์:</b> เอกสารโครงการ · ขอบเขตงาน · Gantt Chart</p><span class="unit">📘 หน่วยที่ 2</span></div>
+                <div class="cyc-card rise" data-only="2" style="--c:var(--pink)"><span class="tag">ขั้นที่ 2 · Analysis</span><h4>วิเคราะห์ความต้องการ</h4><p><b>คำถามหลัก:</b> ผู้ใช้ต้องการอะไร? ต้องมีเนื้อหาและฟังก์ชันอะไรบ้าง?</p><p><b>กิจกรรม:</b> สัมภาษณ์ แบบสอบถาม สังเกต วิเคราะห์เว็บคู่แข่ง รวบรวมเนื้อหา</p><p><b>ผลลัพธ์:</b> รายการความต้องการ (Requirements) · Persona · รายการเนื้อหา</p><span class="unit">📘 หน่วยที่ 2</span></div>
+                <div class="cyc-card rise" data-only="3" style="--c:var(--purple)"><span class="tag">ขั้นที่ 3 · Design</span><h4>ออกแบบ</h4><p><b>คำถามหลัก:</b> เว็บมีกี่หน้า เชื่อมกันอย่างไร หน้าตาเป็นแบบไหน?</p><p><b>กิจกรรม:</b> เขียน Sitemap → ร่าง Wireframe → ทำ Mockup เลือกสี ฟอนต์ ภาพ</p><p><b>ผลลัพธ์:</b> Sitemap · Wireframe · Mockup / Prototype (เช่น Figma)</p><span class="unit">📘 หน่วยที่ 3</span></div>
+                <div class="cyc-card rise" data-only="4" style="--c:var(--blue)"><span class="tag">ขั้นที่ 4 · Development</span><h4>พัฒนา (สร้างเว็บ)</h4><p><b>คำถามหลัก:</b> จะสร้างด้วยอะไร? เขียนโค้ดเอง หรือใช้ CMS?</p><p><b>กิจกรรม:</b> ติดตั้ง Web Server จำลอง เขียน HTML/CSS/JS หรือใช้ WordPress ใส่เนื้อหาจริง</p><p><b>ผลลัพธ์:</b> เว็บไซต์ที่ทำงานได้บนเครื่องจำลอง (localhost)</p><span class="unit">📘 หน่วยที่ 4, 5, 6</span></div>
+                <div class="cyc-card rise" data-only="5" style="--c:var(--amber)"><span class="tag">ขั้นที่ 5 · Testing</span><h4>ทดสอบ</h4><p><b>คำถามหลัก:</b> ใช้งานได้จริงไหม? มีอะไรผิดพลาด?</p><p><b>กิจกรรม:</b> ทดสอบลิงก์ ฟอร์ม การแสดงผลบนมือถือ/หลายเบราว์เซอร์ ความเร็ว สะกดคำ ให้ผู้ใช้จริงทดลอง</p><p><b>ผลลัพธ์:</b> รายงานผลการทดสอบ · รายการแก้ไข (Bug list)</p><span class="unit">📘 หน่วยที่ 7</span></div>
+                <div class="cyc-card rise" data-only="6" style="--c:var(--green)"><span class="tag">ขั้นที่ 6 · Deployment</span><h4>เผยแพร่ (เปิดใช้งานจริง)</h4><p><b>คำถามหลัก:</b> จะเอาเว็บขึ้นอินเทอร์เน็ตอย่างไร?</p><p><b>กิจกรรม:</b> จดโดเมน เช่าโฮสติ้ง อัปโหลดไฟล์ (FTP / Git) ตั้งค่า HTTPS แจ้งผู้ใช้</p><p><b>ผลลัพธ์:</b> เว็บไซต์ออนไลน์ เข้าถึงได้ทั่วโลก 🎉</p><span class="unit">📘 หน่วยที่ 7</span></div>
+                <div class="cyc-card rise" data-only="7" style="--c:var(--teal)"><span class="tag">ขั้นที่ 7 · Maintenance</span><h4>ดูแลรักษา</h4><p><b>คำถามหลัก:</b> เว็บยังทันสมัย ปลอดภัย ใช้งานได้ดีอยู่ไหม?</p><p><b>กิจกรรม:</b> อัปเดตข่าว/เนื้อหา สำรองข้อมูล อัปเดตความปลอดภัย ดูสถิติผู้เข้าชม แก้ปัญหาที่ผู้ใช้แจ้ง</p><p><b>ผลลัพธ์:</b> เว็บไซต์ที่มีชีวิต น่าเชื่อถือ</p><span class="unit">📘 หน่วยที่ 7</span></div>
+                <div class="cyc-card rise" data-only="8" style="--c:var(--pink)"><span class="tag">วนกลับ · Iteration</span><h4>ทำไมเป็น “วงจร”?</h4><p>ข้อมูลจากการดูแลรักษา (สถิติ คำติชม ความต้องการใหม่) กลายเป็นจุดเริ่มต้นของการ <b>วางแผนรอบใหม่</b> เพื่อปรับปรุงเว็บให้ดีขึ้นเรื่อย ๆ</p><p>และในทางปฏิบัติ ขั้นตอนอาจ <b>ย้อนกลับ</b> ได้ เช่น ทดสอบแล้วพบปัญหา → กลับไปแก้ที่ขั้นพัฒนาหรือออกแบบ</p></div>
+              </div>
+            </div>
+          </div>
+          <ol class="anim-steps compact">
+            <li><b>วางแผน</b> — กำหนดเป้าหมาย ขอบเขต เวลา ทีม</li>
+            <li><b>วิเคราะห์</b> — ผู้ใช้คือใคร ต้องการอะไร</li>
+            <li><b>ออกแบบ</b> — Sitemap, Wireframe, Mockup</li>
+            <li><b>พัฒนา</b> — เขียนโค้ด / ใช้ CMS สร้างเว็บจริง</li>
+            <li><b>ทดสอบ</b> — หาข้อผิดพลาดก่อนใช้จริง</li>
+            <li><b>เผยแพร่</b> — โดเมน โฮสติ้ง อัปโหลด</li>
+            <li><b>ดูแลรักษา</b> — อัปเดต สำรอง ป้องกัน</li>
+            <li><b>วนกลับ</b> — ปรับปรุงต่อเนื่องเป็นวงจร</li>
+          </ol>
+        </figure>
+        <div class="callout tip"><i data-i="bulb"></i><p><strong class="t">ท่องจำง่าย ๆ</strong>“<b>วาง–วิ–ออก–พัฒ–ทด–เผย–ดู</b>” หรือภาษาอังกฤษ <b>P-A-D-D-T-D-M</b> (Plan, Analyze, Design, Develop, Test, Deploy, Maintain)</p></div>
+      </section>
+
+      <section class="sec" id="detail">
+        <div class="sec-head"><span class="sec-num">04</span><div><h2>ลงลึกแต่ละขั้น: ทำอะไร ใช้เครื่องมืออะไร</h2><p>เลือกแท็บเพื่อดูรายละเอียด</p></div></div>
+        <div class="tabs">
+          <div role="tablist"><button role="tab" data-tab="d1">1 วางแผน</button><button role="tab" data-tab="d2">2 วิเคราะห์</button><button role="tab" data-tab="d3">3 ออกแบบ</button><button role="tab" data-tab="d4">4 พัฒนา</button><button role="tab" data-tab="d5">5 ทดสอบ</button><button role="tab" data-tab="d6">6 เผยแพร่</button><button role="tab" data-tab="d7">7 ดูแลรักษา</button></div>
+          <div class="tab-panel panel" data-panel="d1"><h3><i data-i="target"></i>ขั้นที่ 1 วางแผน (Planning)</h3>
+            <div class="g2"><div><h4>สิ่งที่ต้องกำหนด</h4><ul class="clean"><li><b>วัตถุประสงค์</b> ของเว็บไซต์ (ควรวัดผลได้ เช่น “ให้ผู้ปกครองดูข่าวแผนกได้ภายใน 2 คลิก”)</li><li><b>ขอบเขต</b> ทำอะไร / ไม่ทำอะไร</li><li><b>ทีมงาน</b> และหน้าที่ของแต่ละคน</li><li><b>ระยะเวลา</b> และ <b>งบประมาณ</b> (โดเมน โฮสติ้ง)</li></ul></div>
+            <div><h4>เครื่องมือ</h4><ul class="clean"><li>Gantt Chart (Google Sheets / Excel)</li><li>Trello / Notion สำหรับติดตามงาน</li><li>เอกสารโครงการ</li></ul></div></div></div>
+          <div class="tab-panel panel" data-panel="d2"><h3><i data-i="users"></i>ขั้นที่ 2 วิเคราะห์ (Analysis)</h3>
+            <div class="g2"><div><h4>สิ่งที่ต้องวิเคราะห์</h4><ul class="clean"><li><b>กลุ่มผู้ใช้</b> อายุ อุปกรณ์ที่ใช้ ความชำนาญ</li><li><b>ความต้องการ</b> ผู้ใช้อยากหา/อยากทำอะไรในเว็บ</li><li><b>เนื้อหา</b> ที่ต้องมี และใครเป็นผู้จัดเตรียม</li><li><b>เว็บคู่แข่ง/ตัวอย่าง</b> จุดเด่น จุดด้อย</li></ul></div>
+            <div><h4>เครื่องมือ</h4><ul class="clean"><li>แบบสอบถาม Google Forms</li><li>การสัมภาษณ์ / การสังเกต</li><li>Persona (ตัวแทนผู้ใช้สมมติ)</li></ul></div></div></div>
+          <div class="tab-panel panel" data-panel="d3"><h3><i data-i="palette"></i>ขั้นที่ 3 ออกแบบ (Design)</h3>
+            <div class="g2"><div><h4>สิ่งที่ต้องออกแบบ</h4><ul class="clean"><li><b>Sitemap</b> โครงสร้างหน้าทั้งหมด (ครั้งที่ 3)</li><li><b>Wireframe</b> โครงร่างตำแหน่งองค์ประกอบ ขาว–เทา</li><li><b>Mockup</b> ภาพเสมือนจริง มีสี ฟอนต์ รูปภาพ</li><li><b>Prototype</b> Mockup ที่คลิกเชื่อมหน้าได้ ใช้ทดลองกับผู้ใช้</li></ul></div>
+            <div><h4>เครื่องมือ</h4><ul class="clean"><li>กระดาษ + ดินสอ (เร็วที่สุด!)</li><li>Figma, Canva, draw.io</li><li>Coolors (เลือกชุดสี), Google Fonts</li></ul></div></div></div>
+          <div class="tab-panel panel" data-panel="d4"><h3><i data-i="code"></i>ขั้นที่ 4 พัฒนา (Development)</h3>
+            <div class="g2"><div><h4>สิ่งที่ต้องทำ</h4><ul class="clean"><li>เตรียมสภาพแวดล้อม: Web Server จำลอง (XAMPP)</li><li>สร้างเว็บด้วย <b>ภาษา</b> (HTML/CSS/JS) หรือ <b>โปรแกรมสำเร็จรูป</b> (WordPress)</li><li>ใส่เนื้อหาจริง ย่อขนาดรูปภาพ</li><li>บันทึกเวอร์ชัน (Git) สำรองไฟล์สม่ำเสมอ</li></ul></div>
+            <div><h4>เครื่องมือ</h4><ul class="clean"><li>VS Code + Live Server</li><li>XAMPP (Apache, MySQL, PHP)</li><li>WordPress, Git/GitHub</li></ul></div></div></div>
+          <div class="tab-panel panel" data-panel="d5"><h3><i data-i="bug"></i>ขั้นที่ 5 ทดสอบ (Testing)</h3>
+            <div class="g2"><div><h4>สิ่งที่ต้องทดสอบ</h4><ul class="clean"><li><b>ฟังก์ชัน</b> ลิงก์ทุกอันไปถูกหน้า ฟอร์มส่งได้</li><li><b>การแสดงผล</b> คอม แท็บเล็ต มือถือ / Chrome, Edge, Safari</li><li><b>ความเร็ว</b> โหลดภายใน 3 วินาที</li><li><b>เนื้อหา</b> สะกดคำ ข้อมูลถูกต้อง</li><li><b>ผู้ใช้จริง</b> (Usability Test) ใช้งานง่ายไหม</li></ul></div>
+            <div><h4>เครื่องมือ</h4><ul class="clean"><li>DevTools → Device Toolbar (จำลองมือถือ)</li><li>PageSpeed Insights / Lighthouse</li><li>แบบฟอร์มบันทึกผลทดสอบ</li></ul></div></div></div>
+          <div class="tab-panel panel" data-panel="d6"><h3><i data-i="rocket"></i>ขั้นที่ 6 เผยแพร่ (Deployment)</h3>
+            <div class="g2"><div><h4>สิ่งที่ต้องทำ</h4><ul class="clean"><li>จด <b>โดเมนเนม</b> และเช่า <b>โฮสติ้ง</b></li><li><b>อัปโหลด</b> ไฟล์ขึ้นเซิร์ฟเวอร์ ย้ายฐานข้อมูล (ถ้ามี)</li><li>ติดตั้งใบรับรอง <b>HTTPS</b></li><li>ทดสอบซ้ำบนเซิร์ฟเวอร์จริง ประชาสัมพันธ์</li></ul></div>
+            <div><h4>เครื่องมือ</h4><ul class="clean"><li>FileZilla (FTP)</li><li>GitHub Pages / Netlify (เว็บ Static ฟรี)</li><li>cPanel ของผู้ให้บริการโฮสติ้ง</li></ul></div></div></div>
+          <div class="tab-panel panel" data-panel="d7"><h3><i data-i="wrench"></i>ขั้นที่ 7 ดูแลรักษา (Maintenance)</h3>
+            <div class="g2"><div><h4>สิ่งที่ต้องทำ</h4><ul class="clean"><li>อัปเดตเนื้อหา ข่าว สม่ำเสมอ</li><li><b>สำรองข้อมูล (Backup)</b> เป็นประจำ</li><li>อัปเดตระบบ/ปลั๊กอินเพื่อ <b>ความปลอดภัย</b></li><li>ต่ออายุโดเมนและโฮสติ้ง</li><li>ดูสถิติผู้เข้าชม แล้ววางแผนปรับปรุง</li></ul></div>
+            <div><h4>เครื่องมือ</h4><ul class="clean"><li>Google Analytics / Search Console</li><li>ปลั๊กอินสำรองข้อมูล</li><li>ช่องทางรับแจ้งปัญหาจากผู้ใช้</li></ul></div></div></div>
+        </div>
+      </section>
+
+      <section class="sec" id="wf">
+        <div class="sec-head"><span class="sec-num">05</span><div><h2>จาก Sitemap → Wireframe → Mockup → Website</h2><p>ดูหน้าเว็บหน้าเดียว “โต” ขึ้นทีละขั้นในกระบวนการออกแบบและพัฒนา</p></div></div>
+        <figure class="anim" id="anim-wf" data-ms="4800">
+          <div class="anim-title"><i data-i="pencil"></i>หน้าเว็บโตขึ้นทีละขั้น<span class="chip">4 ขั้น</span></div>
+          <div class="stage wf-stage">
+            <svg class="smap static wf-map" viewBox="0 0 520 190" data-only="1" aria-hidden="true">
+              <path class="draw" d="M260 46V70M65 70H455M65 70V92M195 70V92M325 70V92M455 70V92"/>
+              <g class="nd"><rect x="215" y="10" width="90" height="36" rx="10"/><text x="260" y="33">หน้าแรก</text></g>
+              <g class="nd"><rect x="20" y="92" width="90" height="36" rx="10"/><text x="65" y="115">เกี่ยวกับแผนก</text></g>
+              <g class="nd"><rect x="150" y="92" width="90" height="36" rx="10"/><text x="195" y="115">หลักสูตร</text></g>
+              <g class="nd"><rect x="280" y="92" width="90" height="36" rx="10"/><text x="325" y="115">ผลงานนักเรียน</text></g>
+              <g class="nd"><rect x="410" y="92" width="90" height="36" rx="10"/><text x="455" y="115">ติดต่อ</text></g>
+              <text x="260" y="168" class="cap">📍 เราจะออกแบบ “หน้าแรก” กัน</text>
+            </svg>
+            <div class="wf-frame keep" data-in="2">
+              <div class="w w-head"><span class="w-logo"></span><span class="w-txt">IT Department</span><span class="w-nav"><i></i><i></i><i></i><i></i></span></div>
+              <div class="w w-hero"><span class="w-img"></span><span class="w-txt big">เรียน IT สร้างอนาคต</span><span class="w-btn">สมัครเรียน</span></div>
+              <div class="w w-card c1"><span class="w-img"></span><span class="w-txt">หลักสูตร</span></div>
+              <div class="w w-card c2"><span class="w-img"></span><span class="w-txt">ผลงาน</span></div>
+              <div class="w w-card c3"><span class="w-img"></span><span class="w-txt">ข่าว</span></div>
+              <div class="w w-foot"><span class="w-txt">© 2026 แผนกเทคโนโลยีสารสนเทศ</span></div>
+              <span class="wf-cursor" aria-hidden="true">👆</span>
+              <span class="wf-live">● LIVE</span>
+            </div>
+            <div class="bubble pop" style="left:14%;top:12%" data-only="1">1 · Sitemap</div>
+            <div class="bubble pop" style="left:12%;top:12%" data-only="2">2 · Wireframe</div>
+            <div class="bubble pop" style="left:12%;top:12%" data-only="3">3 · Mockup</div>
+            <div class="bubble ok pop" style="left:12%;top:12%" data-only="4">4 · Website</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>Sitemap</b> — แผนผังรวมว่าเว็บมีกี่หน้า เชื่อมกันอย่างไร (ยังไม่สนหน้าตา) แล้วเลือกหน้าที่จะออกแบบ</li>
+            <li><b>Wireframe</b> — โครงร่างขาว–เทา บอกแค่ <u>ตำแหน่งและขนาด</u> ของส่วนประกอบ กล่องที่มีกากบาท = รูปภาพ · ทำเร็ว แก้ง่าย ใช้คุยกับลูกค้าว่า “จัดวางแบบนี้โอเคไหม”</li>
+            <li><b>Mockup</b> — ใส่ <u>สี ฟอนต์ รูปภาพ ข้อความจริง</u> ดูเหมือนเว็บจริง 100% แต่เป็นแค่ “ภาพ” ยังคลิกใช้งานไม่ได้ (ทำใน Figma)</li>
+            <li><b>Website</b> — นักพัฒนาเขียนโค้ดตาม Mockup ได้เว็บที่ <u>ใช้งานได้จริง</u> คลิกปุ่มได้ มีการตอบสนอง และนำขึ้นอินเทอร์เน็ต</li>
+          </ol>
+        </figure>
+      </section>
+
+      <section class="sec" id="team">
+        <div class="sec-head"><span class="sec-num">06</span><div><h2>ทีมพัฒนาเว็บไซต์</h2><p>โครงการจริงแบ่งหน้าที่กัน · ในโครงงานของวิชานี้ แต่ละกลุ่มจะสวมบทบาทเหล่านี้</p></div></div>
+        <div class="g4">
+          <div class="mini"><span class="ic-wrap"><i data-i="flag"></i></span><h4>Project Manager</h4><p>วางแผน แบ่งงาน ติดตามเวลา ประสานกับลูกค้า</p></div>
+          <div class="mini c-pink"><span class="ic-wrap"><i data-i="palette"></i></span><h4>UX/UI Designer</h4><p>วิเคราะห์ผู้ใช้ ออกแบบ Wireframe, Mockup</p></div>
+          <div class="mini c-purple"><span class="ic-wrap"><i data-i="code"></i></span><h4>Frontend Developer</h4><p>เขียน HTML, CSS, JS ให้ตรงกับ Mockup</p></div>
+          <div class="mini c-blue"><span class="ic-wrap"><i data-i="server"></i></span><h4>Backend Developer</h4><p>เขียนโปรแกรมฝั่งเซิร์ฟเวอร์และฐานข้อมูล</p></div>
+          <div class="mini c-teal"><span class="ic-wrap"><i data-i="pencil"></i></span><h4>Content Creator</h4><p>เขียนเนื้อหา ถ่ายภาพ ทำกราฟิก</p></div>
+          <div class="mini"><span class="ic-wrap"><i data-i="bug"></i></span><h4>Tester (QA)</h4><p>ทดสอบหาข้อผิดพลาด รายงานให้ทีมแก้</p></div>
+          <div class="mini c-pink"><span class="ic-wrap"><i data-i="shield"></i></span><h4>Web Admin</h4><p>ดูแลเซิร์ฟเวอร์ สำรองข้อมูล ความปลอดภัย</p></div>
+          <div class="mini c-purple"><span class="ic-wrap"><i data-i="search"></i></span><h4>SEO / Marketing</h4><p>ทำให้ค้นเจอใน Google และมีผู้เข้าชม</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="case">
+        <div class="sec-head"><span class="sec-num">07</span><div><h2>กรณีศึกษา: เว็บไซต์แผนกวิชาเทคโนโลยีสารสนเทศ</h2><p>ตัวอย่างการเดินตาม 7 ขั้นจริง ใช้เป็นแนวทางทำใบงาน 1.4</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>ขั้น</th><th>สิ่งที่ทำ</th><th>ผลลัพธ์</th></tr></thead>
+            <tbody>
+              <tr><td>1 วางแผน</td><td>หัวหน้าแผนกต้องการเว็บประชาสัมพันธ์แผนกและผลงานนักเรียน มีเวลา 12 สัปดาห์ ทีม 4 คน</td><td>วัตถุประสงค์ 3 ข้อ · Gantt Chart</td></tr>
+              <tr><td>2 วิเคราะห์</td><td>สอบถามนักเรียน ม.3 ผู้ปกครอง ครู 30 คน พบว่าอยากรู้ “เรียนอะไร จบแล้วทำงานอะไร” และดูผ่านมือถือเป็นหลัก</td><td>Persona 2 แบบ · รายการเนื้อหา</td></tr>
+              <tr><td>3 ออกแบบ</td><td>Sitemap 5 หน้า · Wireframe บนกระดาษ · Mockup ใน Figma โทนสีของวิทยาลัย</td><td>Sitemap · Wireframe · Mockup</td></tr>
+              <tr><td>4 พัฒนา</td><td>หน้าแรก/เกี่ยวกับ เขียนด้วย HTML+CSS · ส่วนข่าวใช้ WordPress ให้ครูอัปเดตเองได้</td><td>เว็บไซต์บน localhost</td></tr>
+              <tr><td>5 ทดสอบ</td><td>ให้เพื่อนต่างห้อง 10 คนลองใช้บนมือถือ พบเมนูกดยาก ลิงก์เสีย 2 จุด แก้ไขแล้ว</td><td>รายงานผลทดสอบ</td></tr>
+              <tr><td>6 เผยแพร่</td><td>ขอซับโดเมนจากวิทยาลัย อัปโหลดผ่าน FTP ติดตั้ง HTTPS</td><td>เว็บออนไลน์</td></tr>
+              <tr><td>7 ดูแลรักษา</td><td>นักเรียนรุ่นถัดไปรับช่วงอัปเดตผลงานทุกเดือน สำรองข้อมูลทุกสัปดาห์</td><td>เว็บทันสมัยตลอดปี</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="lab">
+        <div class="sec-head"><span class="sec-num">08</span><div><h2>ใบงาน 1.4 วางแผนโครงการเว็บไซต์ (งานกลุ่ม 3–4 คน)</h2><p>เลือกหัวข้อเว็บที่ใช้ในงานอาชีพจริง → จะเป็น “โครงงาน” ที่พัฒนาต่อจนเผยแพร่ในหน่วยที่ 7</p></div></div>
+        <div class="panel worksheet planner" data-plan="u1l4">
+          <div class="ws-head"><h3><i data-i="clipboard"></i>แบบฟอร์มวางแผนโครงการ</h3><span class="chip c-teal">บันทึกอัตโนมัติในเครื่องนี้</span></div>
+          <p class="muted" style="font-size:15px">ตัวอย่างหัวข้อ: เว็บร้านค้าชุมชน · เว็บแนะนำแหล่งท่องเที่ยวในจังหวัด · เว็บแผนกวิชา · เว็บรับซ่อมคอมพิวเตอร์ · เว็บชมรมในวิทยาลัย</p>
+          <div class="form-grid">
+            <label>ชื่อโครงการเว็บไซต์<input type="text" data-field="name" placeholder="เช่น เว็บไซต์ร้านกาแฟชุมชนบ้านเรา"></label>
+            <label>สมาชิกและบทบาท<textarea data-field="team" rows="3" placeholder="1. ……… — Project Manager&#10;2. ……… — UX/UI Designer"></textarea></label>
+            <label>ขั้นที่ 1 · วัตถุประสงค์ (อย่างน้อย 2 ข้อ)<textarea data-field="goal" rows="3"></textarea></label>
+            <label>ขั้นที่ 2 · กลุ่มผู้ใช้ และสิ่งที่เขาต้องการ<textarea data-field="user" rows="3"></textarea></label>
+            <label>ขั้นที่ 3 · รายชื่อหน้า (Sitemap คร่าว ๆ)<textarea data-field="pages" rows="3" placeholder="หน้าแรก › เกี่ยวกับเรา › เมนู/สินค้า › รีวิว › ติดต่อ"></textarea></label>
+            <label>ขั้นที่ 4 · สร้างด้วยอะไร (ภาษา / CMS) · Static หรือ Dynamic<textarea data-field="tech" rows="3"></textarea></label>
+            <label>ขั้นที่ 5 · จะทดสอบอย่างไร กับใคร<textarea data-field="test" rows="3"></textarea></label>
+            <label>ขั้นที่ 6–7 · เผยแพร่ที่ไหน ใครดูแลต่อ<textarea data-field="deploy" rows="3"></textarea></label>
+          </div>
+          <div class="live-tools">
+            <button class="btn primary" type="button" data-print><i data-i="printer"></i>พิมพ์ / บันทึกเป็น PDF</button>
+            <button class="btn" type="button" data-plan-clear><i data-i="x"></i>ล้างแบบฟอร์ม</button>
+          </div>
+          <div class="callout tip"><i data-i="clock"></i><p><strong class="t">แผนเวลาของโครงงาน (ตามแผนการสอน)</strong>สัปดาห์ 6–7 วิเคราะห์ · 8–9 ออกแบบ · 10–15 พัฒนา · 16 ทดสอบ · 17 เผยแพร่ · 18 นำเสนอ</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="quiz">
+        <div class="sec-head"><span class="sec-num">09</span><div><h2>แบบทดสอบท้ายครั้งที่ 4</h2><p>เลือกคำตอบเดียว</p></div></div>
+        <div class="quiz" data-quiz="u1l4">
+          <div class="q" data-a="2"><p class="q-t">ลำดับขั้นตอนการพัฒนาเว็บไซต์ข้อใดถูกต้อง</p><div class="opts"><button>ออกแบบ → วางแผน → พัฒนา → ทดสอบ</button><button>พัฒนา → ออกแบบ → ทดสอบ → เผยแพร่</button><button>วางแผน → วิเคราะห์ → ออกแบบ → พัฒนา</button><button>วิเคราะห์ → พัฒนา → ออกแบบ → เผยแพร่</button></div><p class="q-ex">วาง–วิ–ออก–พัฒ–ทด–เผย–ดู: ต้องรู้เป้าหมายและความต้องการก่อน จึงออกแบบและสร้างได้ตรงใจ</p></div>
+          <div class="q" data-a="1"><p class="q-t">โครงร่างหน้าเว็บสีขาว–เทา ที่แสดงเพียงตำแหน่งขององค์ประกอบ เรียกว่าอะไร</p><div class="opts"><button>Mockup</button><button>Wireframe</button><button>Sitemap</button><button>Prototype</button></div><p class="q-ex">Wireframe เน้นการจัดวาง ไม่สนสีและรายละเอียด · Mockup มีสีและภาพเสมือนจริง</p></div>
+          <div class="q" data-a="3"><p class="q-t">การส่งแบบสอบถามถามนักเรียนว่าต้องการเห็นอะไรในเว็บแผนก อยู่ในขั้นใด</p><div class="opts"><button>ออกแบบ</button><button>ทดสอบ</button><button>ดูแลรักษา</button><button>วิเคราะห์</button></div><p class="q-ex">การเก็บความต้องการของผู้ใช้เป็นงานหลักของขั้นวิเคราะห์ (Analysis)</p></div>
+          <div class="q" data-a="0"><p class="q-t">การสำรองข้อมูลและอัปเดตปลั๊กอินเพื่อความปลอดภัยหลังเว็บเปิดใช้แล้ว อยู่ในขั้นใด</p><div class="opts"><button>ดูแลรักษา</button><button>พัฒนา</button><button>วางแผน</button><button>วิเคราะห์</button></div><p class="q-ex">หลังเผยแพร่ ต้องดูแลรักษา (Maintenance) อย่างต่อเนื่อง</p></div>
+          <div class="q" data-a="2"><p class="q-t">ทำไมกระบวนการพัฒนาเว็บไซต์จึงเรียกว่า “วงจร”</p><div class="opts"><button>เพราะต้องทำทุกขั้นพร้อมกัน</button><button>เพราะเว็บไซต์จะถูกลบเมื่อครบปี</button><button>เพราะข้อมูลจากการดูแลรักษานำไปสู่การวางแผนปรับปรุงรอบใหม่</button><button>เพราะมีขั้นตอนเพียง 3 ขั้น</button></div><p class="q-ex">เว็บที่ดีพัฒนาต่อเนื่อง: ดูแลรักษา → พบความต้องการใหม่ → วางแผนรอบใหม่</p></div>
+          <div class="q" data-a="1"><p class="q-t">ใครในทีมรับผิดชอบเขียน HTML, CSS, JavaScript ให้หน้าเว็บตรงกับ Mockup</p><div class="opts"><button>Backend Developer</button><button>Frontend Developer</button><button>Project Manager</button><button>Web Admin</button></div><p class="q-ex">Frontend Developer สร้างส่วนที่ผู้ใช้มองเห็นในเบราว์เซอร์</p></div>
+          <div class="quiz-foot"><span class="quiz-score"></span><button class="btn sm quiz-reset" type="button">ทำใหม่</button></div>
+        </div>
+      </section>
+
+      <section class="sec" id="sum">
+        <div class="sec-head"><span class="sec-num">10</span><div><h2>สรุปครั้งที่ 4</h2><p>แผนที่ของทั้งรายวิชา</p></div></div>
+        <div class="panel">
+          <ul class="ticks">
+            <li>WDLC 7 ขั้น: <b>วางแผน → วิเคราะห์ → ออกแบบ → พัฒนา → ทดสอบ → เผยแพร่ → ดูแลรักษา</b> และวนกลับ</li>
+            <li>แต่ละขั้นมี <b>ผลลัพธ์</b> ที่จับต้องได้ เช่น เอกสารโครงการ, Requirements, Sitemap/Wireframe/Mockup, เว็บบน localhost, รายงานทดสอบ, เว็บออนไลน์</li>
+            <li>งานออกแบบโตขึ้นทีละชั้น: <b>Sitemap → Wireframe → Mockup → Website</b></li>
+            <li>ทีมเว็บมีหลายบทบาท ต้อง <b>รับผิดชอบ</b> งานของตนและ <b>สื่อสาร</b> กันสม่ำเสมอ</li>
+          </ul>
+          <div class="callout"><i data-i="help"></i><p><strong class="t">เตรียมตัวครั้งหน้า</strong>ครั้งหน้าเราจะเริ่มลงมือ “พัฒนา” จริงครั้งแรก! ติดตั้งโปรแกรม <b>VS Code</b> ไว้ในเครื่อง (ถ้าทำได้) และคิดไว้ว่าจะเขียนแนะนำตัวเองว่าอะไร</p></div>
+          <button class="btn mark-done" type="button" data-lesson="u1l4"></button>
+        </div>
+        <nav class="pager">
+          <a href="lesson-3.html"><small>← ครั้งก่อน</small><strong>ครั้งที่ 3 · โครงสร้างของเว็บไซต์</strong></a>
+          <a class="next" href="lesson-5.html"><small>ครั้งถัดไป →</small><strong>ครั้งที่ 5 · เครื่องมือ &amp; เว็บเพจแรก</strong></a>
+        </nav>
+      </section>
+    </article>
+  </div>
+</div>
+</main>
+<footer class="site-foot">made with <i data-i="heart" class="heart"></i> &amp; <i data-i="coffee" class="cup"></i> by IT RVC · 2026</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

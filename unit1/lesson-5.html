@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ครั้งที่ 5 เว็บเพจแรก · Web Dev</title>
+<meta name="description" content="หน่วยที่ 1 ครั้งที่ 5 เครื่องมือพัฒนาเว็บ จากโค้ดสู่หน้าจอ โครงสร้างเอกสาร HTML และลงมือสร้างเว็บเพจแรก พร้อมแบบทดสอบหลังเรียนหน่วยที่ 1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec4899'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem('wd-theme'));if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid"></div><div class="floaters"></div></div>
+<header class="topbar">
+  <nav class="pill" aria-label="เมนูหลัก">
+    <a href="../index.html">Web Dev</a>
+    <a href="index.html">หน่วยที่ 1</a>
+    <a href="lesson-5.html" aria-current="page">ครั้งที่ 5</a>
+  </nav>
+  <button class="theme-btn" type="button">auto</button>
+</header>
+
+<main>
+<div class="wrap">
+  <section class="lesson-hero">
+    <div class="crumbs"><a href="../index.html">Web Dev</a> / <a href="index.html">หน่วยที่ 1</a> / ครั้งที่ 5</div>
+    <div class="meta"><span class="chip hot">ครั้งที่ 5 / 5</span><span class="chip">5 ชั่วโมง</span><span class="chip">ทฤษฎี 1 · ปฏิบัติ 4</span><span class="chip c-pink">มีแบบทดสอบหลังเรียนหน่วย</span></div>
+    <h1>เครื่องมือ &amp; <span class="grad-text">เว็บเพจแรก</span>ของฉัน</h1>
+    <p class="lead">ถึงเวลาลงมือจริง! ครั้งนี้รู้จักเครื่องมือของนักพัฒนาเว็บ ดูว่าโค้ดที่เราพิมพ์กลายเป็นหน้าเว็บได้อย่างไร เข้าใจโครงสร้างไฟล์ HTML ทีละบรรทัด แล้วสร้างเว็บเพจแนะนำตัวเองเป็นชิ้นงานแรกของวิชา</p>
+  </section>
+
+  <div class="lesson-grid">
+    <aside class="toc">
+      <span class="toc-title">ในบทนี้</span>
+      <nav>
+        <a href="#goal">จุดประสงค์</a>
+        <a href="#tools">เครื่องมือนักพัฒนาเว็บ</a>
+        <a href="#render">จากโค้ดสู่หน้าจอ</a>
+        <a href="#setup">เตรียมเครื่อง &amp; โฟลเดอร์</a>
+        <a href="#tag">กายวิภาคของแท็ก</a>
+        <a href="#skeleton">โครงสร้างไฟล์ HTML</a>
+        <a href="#basic">แท็กพื้นฐาน</a>
+        <a href="#try">ลองเขียนสด</a>
+        <a href="#lab">ใบงาน 1.5</a>
+        <a href="#quiz">แบบทดสอบ</a>
+        <a href="#posttest">ทดสอบหลังเรียนหน่วย</a>
+        <a href="#sum">สรุปหน่วยที่ 1</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+      <section class="sec" id="goal">
+        <div class="sec-head"><span class="sec-num">01</span><div><h2>จุดประสงค์การเรียนรู้</h2><p>หลังเรียนครั้งนี้ ผู้เรียนสามารถ…</p></div></div>
+        <ol class="objectives">
+          <li>บอกเครื่องมือที่ใช้ในการพัฒนาเว็บไซต์และหน้าที่ของแต่ละเครื่องมือได้</li>
+          <li>อธิบายขั้นตอนที่เบราว์เซอร์เปลี่ยนโค้ด HTML เป็นหน้าเว็บได้</li>
+          <li>ระบุส่วนประกอบของแท็ก HTML (แท็กเปิด แอตทริบิวต์ เนื้อหา แท็กปิด) ได้</li>
+          <li>เขียนโครงสร้างเอกสาร HTML ที่ถูกต้องและแสดงภาษาไทยได้</li>
+          <li>สร้างเว็บเพจแนะนำตนเองด้วยแท็กพื้นฐาน ตั้งชื่อไฟล์และโฟลเดอร์ถูกหลัก</li>
+        </ol>
+      </section>
+
+      <section class="sec" id="tools">
+        <div class="sec-head"><span class="sec-num">02</span><div><h2>เครื่องมือของนักพัฒนาเว็บ</h2><p>กล่องเครื่องมือที่ใช้ตลอดทั้งรายวิชา (ส่วนใหญ่ฟรี!)</p></div></div>
+        <div class="g4">
+          <div class="mini c-blue"><span class="ic-wrap"><i data-i="code"></i></span><h4>Text / Code Editor</h4><p><b>VS Code</b> (แนะนำ), Notepad++ — พิมพ์โค้ด มีสีแยกคำสั่ง เติมโค้ดอัตโนมัติ</p></div>
+          <div class="mini c-pink"><span class="ic-wrap"><i data-i="globe"></i></span><h4>Web Browser</h4><p>Chrome, Edge, Firefox — เปิดดูผลลัพธ์ และทดสอบหลายเบราว์เซอร์</p></div>
+          <div class="mini c-purple"><span class="ic-wrap"><i data-i="search"></i></span><h4>DevTools</h4><p>กด <kbd>F12</kbd> ในเบราว์เซอร์ — ส่องโค้ด ดู Network แก้ CSS สด จำลองมือถือ</p></div>
+          <div class="mini c-teal"><span class="ic-wrap"><i data-i="server"></i></span><h4>Web Server จำลอง</h4><p><b>Live Server</b> (ส่วนขยาย VS Code), <b>XAMPP</b> — ทำให้เครื่องเราเป็นเซิร์ฟเวอร์ (หน่วยที่ 4)</p></div>
+          <div class="mini"><span class="ic-wrap"><i data-i="palette"></i></span><h4>ออกแบบ / กราฟิก</h4><p>Figma, Canva, Photopea — ทำ Wireframe, Mockup, ตกแต่งรูป</p></div>
+          <div class="mini c-pink"><span class="ic-wrap"><i data-i="box"></i></span><h4>CMS</h4><p>WordPress, Google Sites — สร้างเว็บแบบไม่ต้องเขียนโค้ดทั้งหมด (หน่วยที่ 6)</p></div>
+          <div class="mini c-purple"><span class="ic-wrap"><i data-i="upload"></i></span><h4>อัปโหลด</h4><p>FileZilla (FTP), Git + GitHub Pages — นำเว็บขึ้นเซิร์ฟเวอร์จริง (หน่วยที่ 7)</p></div>
+          <div class="mini c-teal"><span class="ic-wrap"><i data-i="bulb"></i></span><h4>ผู้ช่วย AI</h4><p>ช่วยอธิบายโค้ดและหาข้อผิดพลาด — ใช้เพื่อ “เรียนรู้” ต้องเข้าใจและตรวจสอบโค้ดเองเสมอ</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="render">
+        <div class="sec-head"><span class="sec-num">03</span><div><h2>จากโค้ดสู่หน้าจอ</h2><p>เกิดอะไรขึ้นระหว่างที่เราพิมพ์ <code>&lt;h1&gt;</code> จนเห็นตัวหนังสือใหญ่บนจอ</p></div></div>
+        <figure class="anim" id="anim-render" data-ms="4000">
+          <div class="anim-title"><i data-i="monitor"></i>เส้นทางของโค้ด HTML<span class="chip">6 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="10" y1="48" x2="31" y2="48" data-in="2" data-hl="2,6"/>
+              <line x1="31" y1="48" x2="52" y2="48" data-in="3" data-hl="3,6"/>
+              <line x1="52" y1="48" x2="72" y2="18" data-in="4" data-hl="4,6"/>
+              <line x1="72" y1="18" x2="80" y2="66" data-in="5" data-hl="5,6"/>
+            </svg>
+            <div class="actor c-blue" style="left:10%;top:48%" data-hl="1,6"><span class="ab"><i data-i="code"></i></span><span class="lb">VS Code</span><span class="sub">Text Editor</span></div>
+            <div class="bubble dark mono pop" style="left:15%;top:15%" data-only="1">&lt;h1&gt;สวัสดี&lt;/h1&gt;</div>
+            <div class="actor c-orange pop" style="left:31%;top:48%" data-in="2" data-hl="2"><span class="ab"><i data-i="file"></i></span><span class="lb">index.html</span><span class="sub">ไฟล์ข้อความ</span></div>
+            <div class="flyer" style="--x1:10%;--y1:48%;--x2:31%;--y2:48%;--c:var(--blue)" data-only="2">Ctrl + S</div>
+            <div class="bubble pop" style="left:31%;top:80%" data-only="2">💾 บันทึกเป็น .html · เข้ารหัส UTF-8</div>
+            <div class="actor c-purple lg" style="left:52%;top:48%" data-hl="3,4,5"><span class="ab"><i data-i="globe"></i></span><span class="lb">Web Browser</span><span class="sub">Rendering Engine</span></div>
+            <div class="flyer" style="--x1:31%;--y1:48%;--x2:52%;--y2:48%;--c:var(--orange)" data-only="3">เปิดไฟล์</div>
+            <div class="bubble pop" style="left:52%;top:82%" data-only="3">ดับเบิลคลิกไฟล์ · หรือ Open with Live Server</div>
+            <div class="actor c-teal pop" style="left:72%;top:18%" data-in="4" data-hl="4"><span class="ab"><i data-i="tree"></i></span><span class="lb">DOM Tree</span></div>
+            <div class="flyer" style="--x1:52%;--y1:48%;--x2:72%;--y2:18%;--c:var(--purple)" data-only="4">Parse (อ่านโค้ด)</div>
+            <pre class="bubble dark mono pop dom-tree" style="left:90%;top:30%" data-in="4">html
+ ├ head
+ │ └ title
+ └ body
+   └ h1</pre>
+            <div class="minipage pop" style="left:80%;top:70%" data-in="5"><i class="mp-bar"></i><b class="mp-h1">สวัสดี</b><i class="mp-l"></i><i class="mp-l s"></i></div>
+            <div class="flyer" style="--x1:72%;--y1:18%;--x2:80%;--y2:66%;--c:var(--teal)" data-only="5">Render (วาด)</div>
+            <div class="bubble ok pop" style="left:36%;top:88%" data-only="6">🔁 แก้โค้ด → Save → Refresh (Live Server รีเฟรชให้อัตโนมัติ)</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>เขียนโค้ด</b> ใน Text Editor เช่น VS Code — โค้ด HTML เป็นแค่ “ข้อความธรรมดา” ไม่ต้องใช้โปรแกรมพิเศษ</li>
+            <li><b>บันทึกไฟล์</b> ด้วยนามสกุล <code>.html</code> และการเข้ารหัส <b>UTF-8</b> (เพื่อให้ภาษาไทยไม่เพี้ยน) · กด <kbd>Ctrl</kbd>+<kbd>S</kbd> บ่อย ๆ!</li>
+            <li><b>เปิดไฟล์ด้วยเบราว์เซอร์</b> ดับเบิลคลิก (ที่อยู่จะเป็น <code>file:///...</code>) หรือใช้ Live Server (ที่อยู่เป็น <code>http://127.0.0.1:5500</code> เหมือนเว็บจริง)</li>
+            <li><b>Parse</b> เบราว์เซอร์อ่านโค้ดทีละแท็ก แล้วสร้างโครงสร้างแบบต้นไม้เรียกว่า <b>DOM</b> (Document Object Model) — แท็กซ้อนกันจึงกลายเป็น “กิ่ง”</li>
+            <li><b>Render</b> เบราว์เซอร์นำ DOM + CSS มาคำนวณตำแหน่งและขนาด แล้ว “วาด” ลงบนหน้าจอ</li>
+            <li><b>วนซ้ำ</b> นักพัฒนาแก้โค้ด → บันทึก → รีเฟรช ซ้ำไปเรื่อย ๆ จนได้หน้าเว็บที่ต้องการ</li>
+          </ol>
+        </figure>
+      </section>
+
+      <section class="sec" id="setup">
+        <div class="sec-head"><span class="sec-num">04</span><div><h2>เตรียมเครื่อง &amp; โฟลเดอร์งาน</h2><p>ทำครั้งเดียว ใช้ได้ทั้งเทอม</p></div></div>
+        <div class="g2">
+          <div class="panel" style="margin:0">
+            <h3><i data-i="download"></i>ติดตั้ง VS Code + Live Server</h3>
+            <ol class="clean">
+              <li>ดาวน์โหลด VS Code จาก <code>code.visualstudio.com</code> แล้วติดตั้ง (ติ๊ก “Add to PATH” และ “Open with Code”)</li>
+              <li>เปิด VS Code → แถบซ้ายกดไอคอน <b>Extensions</b> (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>)</li>
+              <li>ค้นหา <b>Live Server</b> (ผู้พัฒนา Ritwick Dey) → Install</li>
+              <li>(แนะนำ) ติดตั้ง <b>Thai Language Pack</b> ถ้าต้องการเมนูภาษาไทย</li>
+              <li><b>File → Open Folder</b> เลือกโฟลเดอร์งาน → คลิกขวาไฟล์ <code>index.html</code> → <b>Open with Live Server</b></li>
+            </ol>
+          </div>
+          <div class="panel" style="margin:0">
+            <h3><i data-i="folder"></i>โครงสร้างโฟลเดอร์ที่ดี</h3>
+<pre class="code" style="margin-bottom:12px">📁 <span class="t-str">6701-somchai</span>/        <span class="t-com">← รหัส-ชื่อ</span>
+ ├─ 📄 <span class="t-tag">index.html</span>       <span class="t-com">← หน้าแรก (ชื่อบังคับ)</span>
+ ├─ 📄 <span class="t-tag">about.html</span>
+ ├─ 📁 css/
+ │   └─ 📄 style.css
+ └─ 📁 images/
+     └─ 🖼️ profile.jpg</pre>
+            <h4>กฎการตั้งชื่อไฟล์เว็บ</h4>
+            <ul class="clean">
+              <li>ใช้ <b>ภาษาอังกฤษตัวพิมพ์เล็ก</b> ตัวเลข <code>-</code> หรือ <code>_</code></li>
+              <li><b>ห้ามเว้นวรรค</b> ห้ามภาษาไทย ห้ามอักขระพิเศษ ✗ <code>หน้า แรก.html</code> ✓ <code>contact-us.html</code></li>
+              <li>หน้าแรกชื่อ <code>index.html</code> เสมอ (เซิร์ฟเวอร์เปิดให้อัตโนมัติ)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout tip"><i data-i="zap"></i><p><strong class="t">คีย์ลัด VS Code ที่ใช้บ่อย</strong><kbd>!</kbd> + <kbd>Tab</kbd> สร้างโครง HTML ทันที (Emmet) · <kbd>Ctrl</kbd>+<kbd>S</kbd> บันทึก · <kbd>Ctrl</kbd>+<kbd>/</kbd> ใส่/เอาคอมเมนต์ · <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> จัดย่อหน้าโค้ด · <kbd>Alt</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd> ย้ายบรรทัด</p></div>
+      </section>
+
+      <section class="sec" id="tag">
+        <div class="sec-head"><span class="sec-num">05</span><div><h2>กายวิภาคของแท็ก HTML</h2><p>หนึ่งบรรทัดนี้มีชิ้นส่วนอะไรบ้าง?</p></div></div>
+        <figure class="anim" id="anim-tag" data-ms="3800">
+          <div class="anim-title"><i data-i="code"></i>ผ่าแท็ก &lt;a&gt; ทีละชิ้น<span class="chip">7 ขั้น</span></div>
+          <div class="stage auto">
+            <div class="url-big tag-big" data-sync>
+              <span data-part="1,7" style="--c:var(--pink)">&lt;</span><span data-part="1,2,7" style="--c:var(--pink)">a</span><span data-part="1,3,7" style="--c:var(--orange)">&nbsp;href</span><span data-part="1,4,7" style="--c:var(--teal)">="https://www.example.ac.th"</span><span data-part="1,3,7" style="--c:var(--orange)">&nbsp;target</span><span data-part="1,4,7" style="--c:var(--teal)">="_blank"</span><span data-part="1,7" style="--c:var(--pink)">&gt;</span><span data-part="5,7" style="--c:var(--purple)">ไปเว็บวิทยาลัย</span><span data-part="6,7" style="--c:var(--pink)">&lt;/a&gt;</span>
+            </div>
+            <div class="stack" style="margin-top:18px">
+              <div class="mini rise" data-only="0"><h4>▶ กดเล่นเพื่อผ่าแท็ก</h4><p>แท็ก <code>&lt;a&gt;</code> (anchor) ใช้สร้างลิงก์ — เป็นหัวใจของคำว่า HyperText</p></div>
+              <div class="mini rise" data-only="1"><h4 style="color:var(--pink)">① แท็กเปิด (Opening tag)</h4><p>เริ่มด้วย <code>&lt;</code> ปิดด้วย <code>&gt;</code> บอกเบราว์เซอร์ว่า “ตั้งแต่ตรงนี้คือลิงก์” ข้างในแท็กเปิดใส่แอตทริบิวต์ได้</p></div>
+              <div class="mini rise" data-only="2"><h4 style="color:var(--pink)">② ชื่อแท็ก (Element name)</h4><p>บอกว่าเป็นองค์ประกอบชนิดไหน เช่น <code>a</code> = ลิงก์, <code>p</code> = ย่อหน้า, <code>img</code> = รูปภาพ · ควรเขียน <b>ตัวพิมพ์เล็ก</b></p></div>
+              <div class="mini rise" data-only="3"><h4 style="color:var(--orange)">③ ชื่อแอตทริบิวต์ (Attribute)</h4><p>“คุณสมบัติเพิ่มเติม” ของแท็ก อยู่ในแท็กเปิดเท่านั้น คั่นด้วยเว้นวรรค · <code>href</code> = ลิงก์ไปที่ไหน · <code>target</code> = เปิดที่ไหน</p></div>
+              <div class="mini rise" data-only="4"><h4 style="color:var(--teal)">④ ค่าของแอตทริบิวต์ (Value)</h4><p>อยู่หลังเครื่องหมาย <code>=</code> และอยู่ใน <b>เครื่องหมายคำพูด</b> <code>"…"</code> เสมอ · <code>_blank</code> = เปิดในแท็บใหม่</p></div>
+              <div class="mini rise" data-only="5"><h4 style="color:var(--purple)">⑤ เนื้อหา (Content)</h4><p>ข้อความที่ผู้ใช้มองเห็นบนหน้าเว็บ และคลิกได้ — อาจเป็นแท็กอื่นซ้อนอยู่ข้างในก็ได้ (เช่น รูปภาพ)</p></div>
+              <div class="mini rise" data-only="6"><h4 style="color:var(--pink)">⑥ แท็กปิด (Closing tag)</h4><p>เหมือนแท็กเปิดแต่มี <code>/</code> นำหน้าชื่อ บอกว่า “ลิงก์จบตรงนี้” · ลืมปิดแท็ก = ข้อผิดพลาดที่พบบ่อยที่สุดของมือใหม่!</p></div>
+              <div class="mini rise" data-only="7"><h4>🧩 ทั้งหมดรวมกัน = 1 Element</h4><p><b>แท็กเปิด + เนื้อหา + แท็กปิด</b> เรียกว่า <b>อิลิเมนต์ (Element)</b> · บางแท็กไม่มีเนื้อหาและไม่มีแท็กปิด เรียกว่า <b>Empty element</b> เช่น <code>&lt;img&gt;</code> <code>&lt;br&gt;</code> <code>&lt;hr&gt;</code> <code>&lt;meta&gt;</code></p></div>
+            </div>
+          </div>
+          <ol class="anim-steps compact">
+            <li>แท็กเปิด <code>&lt;a …&gt;</code></li>
+            <li>ชื่อแท็ก <code>a</code></li>
+            <li>ชื่อแอตทริบิวต์ <code>href</code>, <code>target</code></li>
+            <li>ค่าแอตทริบิวต์ในเครื่องหมายคำพูด</li>
+            <li>เนื้อหาที่แสดงบนหน้าเว็บ</li>
+            <li>แท็กปิด <code>&lt;/a&gt;</code></li>
+            <li>ทั้งหมด = 1 Element</li>
+          </ol>
+        </figure>
+        <div class="g2">
+          <div class="mini c-teal"><h4>✓ ซ้อนแท็กถูกต้อง (เปิดก่อน ปิดทีหลัง)</h4><pre class="code" style="margin:0"><span class="t-tag">&lt;p&gt;</span>ผมชอบ <span class="t-tag">&lt;b&gt;</span>HTML<span class="t-tag">&lt;/b&gt;</span><span class="t-tag">&lt;/p&gt;</span></pre></div>
+          <div class="mini c-pink"><h4>✗ ซ้อนแท็กผิด (ไขว้กัน)</h4><pre class="code" style="margin:0"><span class="t-tag">&lt;p&gt;</span>ผมชอบ <span class="t-tag">&lt;b&gt;</span>HTML<span class="t-tag">&lt;/p&gt;</span><span class="t-tag">&lt;/b&gt;</span></pre></div>
+        </div>
+      </section>
+
+      <section class="sec" id="skeleton">
+        <div class="sec-head"><span class="sec-num">06</span><div><h2>โครงสร้างไฟล์ HTML ทีละบรรทัด</h2><p>ทุกหน้าเว็บเริ่มจากโครงนี้ · ดูโค้ดถูกพิมพ์ทีละส่วน พร้อมผลในเบราว์เซอร์</p></div></div>
+        <figure class="anim" id="anim-skel" data-ms="4200">
+          <div class="anim-title"><i data-i="file"></i>สร้างโครง HTML5<span class="chip">8 ขั้น</span></div>
+          <div class="stage auto">
+            <div class="g2" style="gap:14px;align-items:start">
+              <div class="msg skel">
+                <div class="msg-h">index.html</div>
+                <div class="ln" data-in="1" data-hl="1"><span class="t-kw">&lt;!DOCTYPE html&gt;</span></div>
+                <div class="ln" data-in="2" data-hl="2"><span class="t-tag">&lt;html</span> <span class="t-attr">lang</span>=<span class="t-val">"th"</span><span class="t-tag">&gt;</span></div>
+                <div class="ln i1" data-in="3" data-hl="3"><span class="t-tag">&lt;head&gt;</span></div>
+                <div class="ln i2" data-in="4" data-hl="4"><span class="t-tag">&lt;meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-tag">&gt;</span></div>
+                <div class="ln i2" data-in="5" data-hl="5"><span class="t-tag">&lt;meta</span> <span class="t-attr">name</span>=<span class="t-val">"viewport"</span> <span class="t-attr">content</span>=<span class="t-val">"width=device-width, initial-scale=1.0"</span><span class="t-tag">&gt;</span></div>
+                <div class="ln i2" data-in="6" data-hl="6"><span class="t-tag">&lt;title&gt;</span>แนะนำตัว<span class="t-tag">&lt;/title&gt;</span></div>
+                <div class="ln i1" data-in="3" data-hl="3"><span class="t-tag">&lt;/head&gt;</span></div>
+                <div class="ln i1" data-in="7" data-hl="7"><span class="t-tag">&lt;body&gt;</span></div>
+                <div class="ln i2" data-in="8" data-hl="8"><span class="t-tag">&lt;h1&gt;</span>สวัสดีครับ ผมชื่อเว็บ<span class="t-tag">&lt;/h1&gt;</span></div>
+                <div class="ln i2" data-in="8" data-hl="8"><span class="t-tag">&lt;p&gt;</span>นักเรียนสาขาเทคโนโลยีสารสนเทศ<span class="t-tag">&lt;/p&gt;</span></div>
+                <div class="ln i1" data-in="7" data-hl="7"><span class="t-tag">&lt;/body&gt;</span></div>
+                <div class="ln" data-in="2" data-hl="2"><span class="t-tag">&lt;/html&gt;</span></div>
+              </div>
+              <div>
+                <div class="trio-preview" style="min-height:190px">
+                  <div class="browser-bar"><i></i><i></i><i></i><span class="addr"><span data-in="6">แนะนำตัว</span></span></div>
+                  <div class="skel-body">
+                    <div class="pop" data-only="0-7" style="color:#9ca3af;font:13px var(--mono)">(หน้าว่าง — ยังไม่มีเนื้อหาใน body)</div>
+                    <h1 class="pop" data-in="8">สวัสดีครับ ผมชื่อเว็บ</h1>
+                    <p class="pop" data-in="8">นักเรียนสาขาเทคโนโลยีสารสนเทศ</p>
+                  </div>
+                </div>
+                <div class="stack" style="margin-top:12px">
+                  <div class="mini rise" data-only="0"><p>▶ กดเล่นเพื่อพิมพ์โครง HTML ทีละส่วน</p></div>
+                  <div class="mini rise" data-only="1"><p><b>DOCTYPE</b> บอกเบราว์เซอร์ว่านี่คือเอกสาร <b>HTML5</b> ต้องอยู่บรรทัดแรกเสมอ (ไม่ใช่แท็ก ไม่ต้องปิด)</p></div>
+                  <div class="mini rise" data-only="2"><p><b>&lt;html&gt;</b> แท็กราก (Root) ครอบทุกอย่าง · <code>lang="th"</code> บอกว่าเนื้อหาเป็นภาษาไทย ช่วยโปรแกรมอ่านหน้าจอและ Google</p></div>
+                  <div class="mini rise" data-only="3"><p><b>&lt;head&gt;</b> ส่วน “ข้อมูลเกี่ยวกับหน้าเว็บ” <u>ไม่แสดง</u> บนหน้าเว็บ เช่น การเข้ารหัส ชื่อแท็บ ลิงก์ไฟล์ CSS</p></div>
+                  <div class="mini rise" data-only="4"><p><b>meta charset UTF-8</b> ให้แสดงภาษาไทยถูกต้อง · ถ้าไม่มี อาจเห็นภาษาต่างดาวแบบ <code>à¸ªà¸§à¸±à¸ª</code> 😱</p></div>
+                  <div class="mini rise" data-only="5"><p><b>meta viewport</b> ให้หน้าเว็บปรับขนาดพอดีจอมือถือ ไม่ย่อจนตัวเล็ก (พื้นฐานของ Responsive)</p></div>
+                  <div class="mini rise" data-only="6"><p><b>&lt;title&gt;</b> ชื่อที่แสดงบน <b>แท็บเบราว์เซอร์</b> (ดูที่แถบด้านบน ↑) และเป็นหัวข้อในผลค้นหา Google</p></div>
+                  <div class="mini rise" data-only="7"><p><b>&lt;body&gt;</b> ส่วน “เนื้อหา” ทุกอย่างที่ผู้ใช้เห็นบนหน้าเว็บต้องอยู่ในนี้</p></div>
+                  <div class="mini rise" data-only="8"><p><b>&lt;h1&gt; &lt;p&gt;</b> เนื้อหาจริงปรากฏแล้ว! สังเกตการย่อหน้าโค้ด (Indent) ตามระดับการซ้อน ทำให้อ่านง่าย</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="anim-steps compact">
+            <li><code>&lt;!DOCTYPE html&gt;</code> ประกาศ HTML5</li>
+            <li><code>&lt;html lang="th"&gt;</code> แท็กราก</li>
+            <li><code>&lt;head&gt;</code> ข้อมูลของหน้า (ไม่แสดง)</li>
+            <li><code>&lt;meta charset&gt;</code> รองรับภาษาไทย</li>
+            <li><code>&lt;meta viewport&gt;</code> รองรับมือถือ</li>
+            <li><code>&lt;title&gt;</code> ชื่อแท็บ</li>
+            <li><code>&lt;body&gt;</code> ส่วนแสดงผล</li>
+            <li>ใส่เนื้อหา <code>&lt;h1&gt;</code> <code>&lt;p&gt;</code></li>
+          </ol>
+        </figure>
+      </section>
+
+      <section class="sec" id="basic">
+        <div class="sec-head"><span class="sec-num">07</span><div><h2>แท็กพื้นฐานสำหรับเว็บเพจแรก</h2><p>ใช้แค่นี้ก็สร้างหน้าแนะนำตัวได้แล้ว (เรียนครบทุกแท็กในหน่วยที่ 5)</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>แท็ก</th><th>ความหมาย</th><th>ตัวอย่าง</th></tr></thead>
+            <tbody>
+              <tr><td><code>&lt;h1&gt;</code> … <code>&lt;h6&gt;</code></td><td>หัวข้อ ระดับ 1 (ใหญ่สุด) ถึง 6 · ควรมี h1 หน้าละ 1 อัน</td><td><code>&lt;h1&gt;ชื่อเรื่อง&lt;/h1&gt;</code></td></tr>
+              <tr><td><code>&lt;p&gt;</code></td><td>ย่อหน้า (Paragraph)</td><td><code>&lt;p&gt;ข้อความ&lt;/p&gt;</code></td></tr>
+              <tr><td><code>&lt;b&gt;</code> / <code>&lt;strong&gt;</code></td><td>ตัวหนา / เน้นความสำคัญ</td><td><code>&lt;strong&gt;สำคัญ&lt;/strong&gt;</code></td></tr>
+              <tr><td><code>&lt;i&gt;</code> / <code>&lt;em&gt;</code></td><td>ตัวเอียง / เน้นน้ำเสียง</td><td><code>&lt;em&gt;Web Developer&lt;/em&gt;</code></td></tr>
+              <tr><td><code>&lt;br&gt;</code></td><td>ขึ้นบรรทัดใหม่ (Empty element)</td><td><code>บรรทัด 1&lt;br&gt;บรรทัด 2</code></td></tr>
+              <tr><td><code>&lt;hr&gt;</code></td><td>เส้นคั่นแนวนอน</td><td><code>&lt;hr&gt;</code></td></tr>
+              <tr><td><code>&lt;ul&gt;</code> <code>&lt;ol&gt;</code> <code>&lt;li&gt;</code></td><td>รายการแบบสัญลักษณ์ / แบบตัวเลข / รายการย่อย</td><td><code>&lt;ul&gt;&lt;li&gt;เกม&lt;/li&gt;&lt;/ul&gt;</code></td></tr>
+              <tr><td><code>&lt;a&gt;</code></td><td>ลิงก์ · <code>href</code> = ปลายทาง</td><td><code>&lt;a href="about.html"&gt;เกี่ยวกับ&lt;/a&gt;</code></td></tr>
+              <tr><td><code>&lt;img&gt;</code></td><td>รูปภาพ · <code>src</code> = ที่อยู่ไฟล์ · <code>alt</code> = คำอธิบายรูป</td><td><code>&lt;img src="images/me.jpg" alt="รูปฉัน"&gt;</code></td></tr>
+              <tr><td><code>&lt;!-- --&gt;</code></td><td>คอมเมนต์ (หมายเหตุ ไม่แสดงผล)</td><td><code>&lt;!-- ส่วนงานอดิเรก --&gt;</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="try">
+        <div class="sec-head"><span class="sec-num">08</span><div><h2>ลองเขียนสด! (Live Editor)</h2><p>แก้โค้ดด้านซ้าย หน้าเว็บด้านขวาเปลี่ยนทันที · ลองเปลี่ยนเป็นข้อมูลของตัวเองได้เลย</p></div></div>
+        <div class="live">
+          <textarea spellcheck="false" aria-label="โค้ด HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="th"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;แนะนำตัว - เว็บ ดีเวลอปเปอร์&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;สวัสดีครับ ผมชื่อ เว็บ ดีเวลอปเปอร์&lt;/h1&gt;
+  &lt;p&gt;ผมเป็นนักเรียน &lt;b&gt;ปวช. สาขาเทคโนโลยีสารสนเทศ&lt;/b&gt;&lt;/p&gt;
+  &lt;hr&gt;
+
+  &lt;!-- งานอดิเรก --&gt;
+  &lt;h2&gt;งานอดิเรก&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;เขียนเว็บไซต์&lt;/li&gt;
+    &lt;li&gt;เล่นเกม&lt;/li&gt;
+    &lt;li&gt;ฟังเพลง&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;h2&gt;เป้าหมาย&lt;/h2&gt;
+  &lt;p&gt;อยากเป็น &lt;i&gt;Web Developer&lt;/i&gt; ที่สร้างเว็บให้คนในชุมชนได้ใช้&lt;/p&gt;
+
+  &lt;p&gt;ติดต่อ: &lt;a href="https://www.example.ac.th" target="_blank"&gt;เว็บวิทยาลัย&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+          <div class="preview">
+            <div class="browser-bar"><i></i><i></i><i></i><span class="addr">index.html</span></div>
+            <iframe title="ผลลัพธ์" sandbox="allow-scripts allow-popups"></iframe>
+          </div>
+        </div>
+        <div class="live-tools">
+          <button class="btn sm" type="button" data-insert="  &lt;h2&gt;วิชาที่ชอบ&lt;/h2&gt;\n  &lt;ol&gt;\n    &lt;li&gt;การสร้างเว็บไซต์&lt;/li&gt;\n    &lt;li&gt;คณิตศาสตร์&lt;/li&gt;\n  &lt;/ol&gt;">+ รายการตัวเลข</button>
+          <button class="btn sm" type="button" data-insert="  &lt;img src=&quot;https://placehold.co/300x200?text=My+Photo&quot; alt=&quot;รูปของฉัน&quot; width=&quot;300&quot;&gt;">+ รูปภาพ</button>
+          <button class="btn sm" type="button" data-insert="  &lt;p&gt;บรรทัดที่ 1&lt;br&gt;บรรทัดที่ 2&lt;/p&gt;">+ ขึ้นบรรทัดใหม่</button>
+          <button class="btn sm" type="button" data-insert="  &lt;p&gt;&lt;strong&gt;คำคม:&lt;/strong&gt; &lt;em&gt;ทำวันนี้ให้ดีที่สุด&lt;/em&gt;&lt;/p&gt;">+ ตัวหนา/เอียง</button>
+          <button class="btn sm" type="button" data-act="reset"><i data-i="restart"></i>เริ่มใหม่</button>
+          <button class="btn sm primary" type="button" data-act="download"><i data-i="download"></i>ดาวน์โหลด index.html</button>
+        </div>
+        <div class="callout warn"><i data-i="alert"></i><p><strong class="t">ลองทำให้ผิดดูบ้าง</strong>ลบ <code>&lt;/b&gt;</code> ออก แล้วดูว่าตัวหนาลามไปถึงไหน · ลบบรรทัด <code>meta charset</code> แล้วดาวน์โหลดไฟล์ไปเปิด — การเห็นข้อผิดพลาดเองช่วยให้จำได้นานกว่า!</p></div>
+      </section>
+
+      <section class="sec" id="lab">
+        <div class="sec-head"><span class="sec-num">09</span><div><h2>ใบงาน 1.5 เว็บเพจแนะนำตัวเอง (ชิ้นงานแรก)</h2><p>ปฏิบัติ 4 ชั่วโมง · งานเดี่ยว · 20 คะแนน</p></div></div>
+        <div class="panel worksheet">
+          <div class="ws-head"><h3><i data-i="clipboard"></i>ขั้นตอนการปฏิบัติ</h3><span class="ws-progress"></span></div>
+          <ul class="checklist" data-key="u1l5">
+            <li><label><input type="checkbox"><span>สร้างโฟลเดอร์ชื่อ <code>รหัสนักเรียน-ชื่ออังกฤษ</code> เช่น <code>6701-somchai</code> และโฟลเดอร์ย่อย <code>images</code></span></label></li>
+            <li><label><input type="checkbox"><span>เปิดโฟลเดอร์ใน VS Code สร้างไฟล์ <code>index.html</code> พิมพ์ <kbd>!</kbd> + <kbd>Tab</kbd> แล้วเปลี่ยน <code>lang="en"</code> เป็น <code>lang="th"</code></span></label></li>
+            <li><label><input type="checkbox"><span>ตั้ง <code>&lt;title&gt;</code> เป็น “แนะนำตัว - ชื่อของตนเอง”</span></label></li>
+            <li><label><input type="checkbox"><span>ใส่เนื้อหา: <code>&lt;h1&gt;</code> ชื่อ-นามสกุล · <code>&lt;p&gt;</code> แนะนำตัว 2 ย่อหน้า · <code>&lt;img&gt;</code> รูปตนเอง (หรือรูปการ์ตูน) พร้อม <code>alt</code></span></label></li>
+            <li><label><input type="checkbox"><span>ใส่หัวข้อย่อย <code>&lt;h2&gt;</code> อย่างน้อย 3 หัวข้อ เช่น งานอดิเรก (<code>&lt;ul&gt;</code>) · วิชาที่ชอบ (<code>&lt;ol&gt;</code>) · เป้าหมายในอนาคต · คั่นด้วย <code>&lt;hr&gt;</code></span></label></li>
+            <li><label><input type="checkbox"><span>ใส่ลิงก์ <code>&lt;a&gt;</code> อย่างน้อย 2 ลิงก์ (เว็บวิทยาลัย, เว็บที่ชอบ) ให้เปิดในแท็บใหม่</span></label></li>
+            <li><label><input type="checkbox"><span>เปิดด้วย <b>Live Server</b> ตรวจว่าภาษาไทยแสดงถูก รูปขึ้น ลิงก์ใช้ได้ · กด <kbd>F12</kbd> → Toggle device toolbar ดูบนมือถือ</span></label></li>
+            <li><label><input type="checkbox"><span>บีบอัดโฟลเดอร์เป็น <code>.zip</code> ส่งตามช่องทางที่ครูกำหนด + แคปหน้าจอผลลัพธ์</span></label></li>
+          </ul>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>เกณฑ์การประเมิน (Rubric)</th><th>ดีมาก</th><th>พอใช้</th><th>ปรับปรุง</th></tr></thead>
+              <tbody>
+                <tr><td>โครงสร้าง HTML ครบถูกต้อง (DOCTYPE, html lang, head, meta, title, body) — 5 คะแนน</td><td>ครบทุกส่วน (5)</td><td>ขาด 1–2 ส่วน (3)</td><td>ขาดมากกว่า 2 (1)</td></tr>
+                <tr><td>ใช้แท็กตามที่กำหนดครบ (h1, h2, p, ul/ol, img+alt, a, hr) — 6 คะแนน</td><td>ครบ ซ้อนถูก (6)</td><td>ขาด 1–2 (4)</td><td>ขาดมาก (2)</td></tr>
+                <tr><td>เนื้อหาเหมาะสม สะกดถูก ภาษาไทยแสดงผลถูก — 4 คะแนน</td><td>(4)</td><td>(2–3)</td><td>(1)</td></tr>
+                <tr><td>ตั้งชื่อไฟล์/โฟลเดอร์ถูกหลัก — 2 คะแนน</td><td>(2)</td><td>(1)</td><td>(0)</td></tr>
+                <tr><td>ส่งตรงเวลา ความรับผิดชอบ ความรอบคอบ — 3 คะแนน</td><td>(3)</td><td>(2)</td><td>(1)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout idea"><i data-i="star"></i><p><strong class="t">ท้าทาย (คะแนนพิเศษ)</strong>สร้างหน้าที่ 2 <code>hobby.html</code> แล้วทำลิงก์ไป–กลับระหว่าง 2 หน้า → นี่คือ “เว็บไซต์” แรกของคุณ (ไม่ใช่แค่เว็บเพจ)!</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="quiz">
+        <div class="sec-head"><span class="sec-num">10</span><div><h2>แบบทดสอบท้ายครั้งที่ 5</h2><p>เลือกคำตอบเดียว</p></div></div>
+        <div class="quiz" data-quiz="u1l5">
+          <div class="q" data-a="1"><p class="q-t">ส่วนใดของเอกสาร HTML ที่เนื้อหา “ไม่แสดง” บนหน้าเว็บ</p><div class="opts"><button>&lt;body&gt;</button><button>&lt;head&gt;</button><button>&lt;h1&gt;</button><button>&lt;p&gt;</button></div><p class="q-ex">&lt;head&gt; เก็บข้อมูลเกี่ยวกับหน้าเว็บ เช่น charset, title, ลิงก์ CSS ซึ่งไม่แสดงในพื้นที่หน้าเว็บ</p></div>
+          <div class="q" data-a="3"><p class="q-t">หน้าเว็บแสดงภาษาไทยเป็นตัวอักษรแปลก ๆ น่าจะลืมใส่ข้อใด</p><div class="opts"><button>&lt;title&gt;</button><button>&lt;!DOCTYPE html&gt;</button><button>&lt;meta name="viewport"&gt;</button><button>&lt;meta charset="UTF-8"&gt;</button></div><p class="q-ex">charset UTF-8 กำหนดการเข้ารหัสอักขระที่รองรับภาษาไทย</p></div>
+          <div class="q" data-a="0"><p class="q-t">ใน <code>&lt;img src="me.jpg" alt="รูปฉัน"&gt;</code> คำว่า <code>src</code> คืออะไร</p><div class="opts"><button>แอตทริบิวต์</button><button>ชื่อแท็ก</button><button>แท็กปิด</button><button>เนื้อหา</button></div><p class="q-ex">src เป็นแอตทริบิวต์ (คุณสมบัติ) บอกที่อยู่ไฟล์รูป ส่วน img เป็นชื่อแท็ก</p></div>
+          <div class="q" data-a="2"><p class="q-t">ชื่อไฟล์ใดถูกหลักการตั้งชื่อไฟล์เว็บมากที่สุด</p><div class="opts"><button>หน้าแรก.html</button><button>My Profile.html</button><button>my-profile.html</button><button>My*Profile.HTML</button></div><p class="q-ex">ใช้ภาษาอังกฤษตัวพิมพ์เล็ก ไม่เว้นวรรค ใช้ - หรือ _ แทน</p></div>
+          <div class="q" data-a="1"><p class="q-t">ขั้นตอนที่เบราว์เซอร์อ่านโค้ด HTML แล้วสร้างโครงสร้างแบบต้นไม้ เรียกว่าอะไร</p><div class="opts"><button>Render</button><button>Parse → DOM</button><button>Upload</button><button>DNS Lookup</button></div><p class="q-ex">เบราว์เซอร์ Parse โค้ดสร้าง DOM Tree ก่อน แล้วจึง Render วาดลงหน้าจอ</p></div>
+          <div class="quiz-foot"><span class="quiz-score"></span><button class="btn sm quiz-reset" type="button">ทำใหม่</button></div>
+        </div>
+      </section>
+
+      <section class="sec" id="posttest">
+        <div class="sec-head"><span class="sec-num">11</span><div><h2>แบบทดสอบหลังเรียน หน่วยที่ 1</h2><p>12 ข้อ ครอบคลุมทั้ง 5 ครั้ง · เกณฑ์ผ่าน 60% (8 ข้อขึ้นไป)</p></div></div>
+        <div class="quiz" data-quiz="u1-post">
+          <div class="q" data-a="2"><p class="q-t">“เครือข่ายของเครือข่าย” หมายถึงข้อใด</p><div class="opts"><button>เวิลด์ไวด์เว็บ</button><button>เว็บเบราว์เซอร์</button><button>อินเทอร์เน็ต</button><button>เครือข่าย LAN</button></div><p class="q-ex">อินเทอร์เน็ตเกิดจากการเชื่อมเครือข่ายจำนวนมากทั่วโลกเข้าด้วยกัน</p></div>
+          <div class="q" data-a="0"><p class="q-t">ผู้คิดค้น World Wide Web คือใคร</p><div class="opts"><button>Tim Berners-Lee</button><button>Bill Gates</button><button>Steve Jobs</button><button>Mark Zuckerberg</button></div><p class="q-ex">Tim Berners-Lee ที่ CERN เสนอแนวคิด WWW ในปี 2532 (1989) พร้อม HTML, HTTP, URL</p></div>
+          <div class="q" data-a="3"><p class="q-t">ใน URL <code>https://www.example.ac.th/news.php?id=5</code> ส่วน <code>?id=5</code> คืออะไร</p><div class="opts"><button>Path</button><button>Fragment</button><button>Domain</button><button>Query string</button></div><p class="q-ex">ส่วนที่ขึ้นต้นด้วย ? ใช้ส่งข้อมูลไปให้เซิร์ฟเวอร์ เรียกว่า Query string</p></div>
+          <div class="q" data-a="1"><p class="q-t">ระบบใดทำหน้าที่แปลง www.example.ac.th เป็น 203.0.113.10</p><div class="opts"><button>HTTP</button><button>DNS</button><button>HTML</button><button>FTP</button></div><p class="q-ex">DNS = สมุดรายชื่อของอินเทอร์เน็ต</p></div>
+          <div class="q" data-a="2"><p class="q-t">เมื่อเบราว์เซอร์ได้รับ HTML แล้ว ทำไมยังส่ง Request เพิ่มอีกหลายครั้ง</p><div class="opts"><button>เพราะ HTML เสียหาย</button><button>เพราะต้องถาม DNS ใหม่ทุกครั้ง</button><button>เพื่อขอไฟล์ประกอบ เช่น CSS, JS, รูปภาพ ที่ HTML อ้างถึง</button><button>เพื่อส่งรหัสผ่าน</button></div><p class="q-ex">HTML อ้างถึงไฟล์อื่น เบราว์เซอร์จึงต้องขอไฟล์เหล่านั้นเพิ่มก่อนแสดงผลสมบูรณ์</p></div>
+          <div class="q" data-a="0"><p class="q-t">Status code กลุ่ม 4xx หมายถึงอะไร</p><div class="opts"><button>ข้อผิดพลาดฝั่งผู้ขอ (Client)</button><button>สำเร็จ</button><button>ย้ายที่อยู่</button><button>ข้อผิดพลาดฝั่งเซิร์ฟเวอร์</button></div><p class="q-ex">4xx เช่น 404 Not Found, 403 Forbidden เป็นปัญหาจากคำขอ</p></div>
+          <div class="q" data-a="3"><p class="q-t">ข้อใดจับคู่ภาษากับหน้าที่ได้ถูกต้อง</p><div class="opts"><button>HTML – การโต้ตอบ</button><button>CSS – โครงสร้าง</button><button>JavaScript – หน้าตา</button><button>CSS – การนำเสนอ/หน้าตา</button></div><p class="q-ex">HTML = โครงสร้าง · CSS = หน้าตา · JavaScript = การโต้ตอบ</p></div>
+          <div class="q" data-a="1"><p class="q-t">เว็บร้านค้าออนไลน์ที่แสดงสินค้าในตะกร้าของแต่ละคนต่างกัน เป็นเว็บประเภทใด</p><div class="opts"><button>Static</button><button>Dynamic</button><button>Linear</button><button>Web 1.0</button></div><p class="q-ex">Dynamic สร้างหน้าเว็บจากฐานข้อมูลตามผู้ใช้แต่ละคน</p></div>
+          <div class="q" data-a="2"><p class="q-t">บทเรียนออนไลน์ที่ต้องเรียนหน้า 1 → 2 → 3 ตามลำดับ เหมาะกับโครงสร้างเว็บแบบใด</p><div class="opts"><button>ลำดับชั้น</button><button>เครือข่าย</button><button>เชิงเส้น</button><button>ไม่มีโครงสร้าง</button></div><p class="q-ex">โครงสร้างเชิงเส้น (Linear) เรียงหน้าตามลำดับ</p></div>
+          <div class="q" data-a="0"><p class="q-t">ขั้นตอนใดในกระบวนการพัฒนาเว็บไซต์ที่ทำ Wireframe และ Mockup</p><div class="opts"><button>ออกแบบ</button><button>วิเคราะห์</button><button>ทดสอบ</button><button>เผยแพร่</button></div><p class="q-ex">ขั้นออกแบบ (Design): Sitemap → Wireframe → Mockup</p></div>
+          <div class="q" data-a="3"><p class="q-t">ข้อใดคือลำดับที่ถูกต้องของโค้ด HTML</p><div class="opts"><button>&lt;html&gt; → &lt;!DOCTYPE html&gt; → &lt;body&gt; → &lt;head&gt;</button><button>&lt;head&gt; → &lt;html&gt; → &lt;body&gt;</button><button>&lt;!DOCTYPE html&gt; → &lt;body&gt; → &lt;head&gt;</button><button>&lt;!DOCTYPE html&gt; → &lt;html&gt; → &lt;head&gt; → &lt;body&gt;</button></div><p class="q-ex">DOCTYPE อยู่บรรทัดแรก ตามด้วย html ซึ่งครอบ head และ body ตามลำดับ</p></div>
+          <div class="q" data-a="1"><p class="q-t">ข้อใดเป็นการซ้อนแท็กที่ถูกต้อง</p><div class="opts"><button>&lt;p&gt;&lt;b&gt;ข้อความ&lt;/p&gt;&lt;/b&gt;</button><button>&lt;p&gt;&lt;b&gt;ข้อความ&lt;/b&gt;&lt;/p&gt;</button><button>&lt;b&gt;&lt;p&gt;ข้อความ&lt;/b&gt;&lt;/p&gt;</button><button>&lt;p&gt;ข้อความ&lt;b&gt;&lt;/p&gt;</button></div><p class="q-ex">แท็กที่เปิดทีหลังต้องปิดก่อน (เปิด p → เปิด b → ปิด b → ปิด p)</p></div>
+          <div class="quiz-foot"><span class="quiz-score"></span><button class="btn sm quiz-reset" type="button">ทำใหม่</button></div>
+        </div>
+      </section>
+
+      <section class="sec" id="sum">
+        <div class="sec-head"><span class="sec-num">12</span><div><h2>สรุปหน่วยที่ 1</h2><p>จากสายเคเบิลใต้น้ำ สู่เว็บเพจแรกของเรา</p></div></div>
+        <div class="panel">
+          <ul class="ticks">
+            <li><b>ครั้งที่ 1</b> อินเทอร์เน็ต = เครือข่าย, WWW = บริการเอกสารบนเครือข่าย, URL มี 8 ส่วน</li>
+            <li><b>ครั้งที่ 2</b> Client–Server: DNS → TCP/TLS → HTTP Request → Response → Render · Status Code · HTTPS</li>
+            <li><b>ครั้งที่ 3</b> HTML/CSS/JS · Frontend/Backend/Database · Static/Dynamic · โครงสร้างเว็บ 4 แบบ · ส่วนประกอบหน้าเว็บ</li>
+            <li><b>ครั้งที่ 4</b> วงจรพัฒนาเว็บ 7 ขั้น · Sitemap → Wireframe → Mockup → Website · ทีมพัฒนาเว็บ</li>
+            <li><b>ครั้งที่ 5</b> เครื่องมือ · โค้ด → DOM → Render · กายวิภาคแท็ก · โครง HTML5 · เว็บเพจแรก</li>
+          </ul>
+          <div class="callout tip"><i data-i="rocket"></i><p><strong class="t">หน่วยถัดไป</strong><b>หน่วยที่ 2 การวิเคราะห์ความต้องการผู้ใช้</b> — นำแผนโครงการจากใบงาน 1.4 ไปสำรวจผู้ใช้จริง สร้าง Persona และ Sitemap ของโครงงาน</p></div>
+          <button class="btn mark-done" type="button" data-lesson="u1l5"></button>
+        </div>
+        <nav class="pager">
+          <a href="lesson-4.html"><small>← ครั้งก่อน</small><strong>ครั้งที่ 4 · กระบวนการพัฒนาเว็บ</strong></a>
+          <a class="next" href="index.html"><small>กลับ →</small><strong>ภาพรวมหน่วยที่ 1</strong></a>
+        </nav>
+      </section>
+    </article>
+  </div>
+</div>
+</main>
+<footer class="site-foot">made with <i data-i="heart" class="heart"></i> &amp; <i data-i="coffee" class="cup"></i> by IT RVC · 2026</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

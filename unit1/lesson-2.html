@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ครั้งที่ 2 เว็บทำงานอย่างไร · Web Dev</title>
+<meta name="description" content="หน่วยที่ 1 ครั้งที่ 2 การทำงานของเว็บ Client-Server, DNS, HTTP Request/Response, Status Code และ HTTPS แบบแอนิเมชัน">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec4899'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem('wd-theme'));if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid"></div><div class="floaters"></div></div>
+<header class="topbar">
+  <nav class="pill" aria-label="เมนูหลัก">
+    <a href="../index.html">Web Dev</a>
+    <a href="index.html">หน่วยที่ 1</a>
+    <a href="lesson-2.html" aria-current="page">ครั้งที่ 2</a>
+  </nav>
+  <button class="theme-btn" type="button">auto</button>
+</header>
+
+<main>
+<div class="wrap">
+  <section class="lesson-hero">
+    <div class="crumbs"><a href="../index.html">Web Dev</a> / <a href="index.html">หน่วยที่ 1</a> / ครั้งที่ 2</div>
+    <div class="meta"><span class="chip hot">ครั้งที่ 2 / 5</span><span class="chip">5 ชั่วโมง</span><span class="chip">ทฤษฎี 1 · ปฏิบัติ 4</span></div>
+    <h1>เว็บ<span class="grad-text">ทำงานอย่างไร?</span></h1>
+    <p class="lead">ตั้งแต่นิ้วกด <kbd>Enter</kbd> จนหน้าเว็บโผล่ขึ้นมา ใช้เวลาไม่ถึง 1 วินาที แต่เบื้องหลังมีการคุยกันหลายรอบระหว่างเครื่องหลายเครื่อง ครั้งนี้เราจะ “สโลว์โมชัน” ดูทีละขั้น</p>
+  </section>
+
+  <div class="lesson-grid">
+    <aside class="toc">
+      <span class="toc-title">ในบทนี้</span>
+      <nav>
+        <a href="#goal">จุดประสงค์</a>
+        <a href="#cs">Client–Server</a>
+        <a href="#dns">IP &amp; DNS</a>
+        <a href="#enter">กด Enter แล้วเกิดอะไรขึ้น</a>
+        <a href="#http">HTTP Request/Response</a>
+        <a href="#status">Status Code</a>
+        <a href="#https">HTTP vs HTTPS</a>
+        <a href="#lab">ใบงาน 1.2</a>
+        <a href="#quiz">แบบทดสอบ</a>
+        <a href="#sum">สรุป</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+      <section class="sec" id="goal">
+        <div class="sec-head"><span class="sec-num">01</span><div><h2>จุดประสงค์การเรียนรู้</h2><p>หลังเรียนครั้งนี้ ผู้เรียนสามารถ…</p></div></div>
+        <ol class="objectives">
+          <li>อธิบายรูปแบบการทำงานแบบ Client–Server ได้</li>
+          <li>อธิบายหน้าที่ของ IP Address และระบบ DNS ได้</li>
+          <li>เรียงลำดับขั้นตอนการทำงานของเว็บ ตั้งแต่พิมพ์ URL จนแสดงผลได้</li>
+          <li>อ่านส่วนประกอบของ HTTP Request/Response และความหมายของ Status Code ได้</li>
+          <li>บอกความแตกต่างระหว่าง HTTP และ HTTPS และเหตุผลที่ควรใช้ HTTPS ได้</li>
+          <li>ใช้ DevTools และคำสั่ง nslookup / ping ตรวจสอบการทำงานของเว็บได้</li>
+        </ol>
+      </section>
+
+      <section class="sec" id="cs">
+        <div class="sec-head"><span class="sec-num">02</span><div><h2>Client–Server: ผู้ขอ กับ ผู้ให้บริการ</h2><p>เว็บทั้งโลกทำงานด้วยรูปแบบ “ขอ → ตอบ”</p></div></div>
+        <div class="g2">
+          <div class="mini c-blue"><span class="ic-wrap"><i data-i="laptop"></i></span><h4>Client (ไคลเอนต์) = ผู้ขอ</h4><p>อุปกรณ์และโปรแกรมฝั่งผู้ใช้ ได้แก่ คอมพิวเตอร์ มือถือ + <b>เว็บเบราว์เซอร์</b> ทำหน้าที่ <b>ส่งคำขอ (Request)</b> และ <b>แสดงผล</b> หน้าเว็บที่ได้รับ</p></div>
+          <div class="mini c-teal"><span class="ic-wrap"><i data-i="server"></i></span><h4>Server (เซิร์ฟเวอร์) = ผู้ให้บริการ</h4><p>คอมพิวเตอร์ที่เปิดตลอด 24 ชม. ติดตั้ง <b>โปรแกรมเว็บเซิร์ฟเวอร์</b> (Apache, Nginx) เก็บไฟล์เว็บไซต์ ทำหน้าที่ <b>รับคำขอ ประมวลผล และส่งคำตอบ (Response)</b></p></div>
+        </div>
+        <h3 style="margin-top:22px">เปรียบเทียบกับการสั่งอาหารในร้าน 🍜</h3>
+        <div class="analogy">
+          <div class="pair"><div class="a">🧑</div><div class="eq">ลูกค้า =</div><b>Client / Browser</b><small>คนที่อยากได้อาหาร</small></div>
+          <div class="pair"><div class="a">📋</div><div class="eq">สั่งเมนู “ก๋วยเตี๋ยว 1” =</div><b>HTTP Request</b><small>GET /noodle.html</small></div>
+          <div class="pair"><div class="a">🧑‍🍳</div><div class="eq">ครัว =</div><b>Web Server</b><small>รับออเดอร์ ทำอาหาร</small></div>
+          <div class="pair"><div class="a">🥫</div><div class="eq">ตู้วัตถุดิบ =</div><b>Database</b><small>ที่เก็บข้อมูล</small></div>
+          <div class="pair"><div class="a">🍜</div><div class="eq">อาหารที่เสิร์ฟ =</div><b>HTTP Response</b><small>200 OK + HTML</small></div>
+          <div class="pair"><div class="a">🙅</div><div class="eq">“เมนูนี้หมดครับ” =</div><b>404 Not Found</b><small>ไม่มีไฟล์ที่ขอ</small></div>
+        </div>
+      </section>
+
+      <section class="sec" id="dns">
+        <div class="sec-head"><span class="sec-num">03</span><div><h2>IP Address &amp; DNS: สมุดโทรศัพท์ของอินเทอร์เน็ต</h2><p>คนจำชื่อ — คอมพิวเตอร์จำตัวเลข</p></div></div>
+        <div class="panel">
+          <p>คอมพิวเตอร์ทุกเครื่องบนอินเทอร์เน็ตต้องมี <b>IP Address</b> เช่น <code>203.0.113.10</code> (IPv4 มี 4 ชุด ชุดละ 0–255) แต่คนจำตัวเลขยาก จึงมี <b>DNS (Domain Name System)</b> ทำหน้าที่ <b>แปลงชื่อโดเมนเป็น IP Address</b> เหมือน “สมุดรายชื่อ” ในโทรศัพท์ที่เรากดชื่อ “แม่” แล้วเครื่องโทรออกเป็นเบอร์ให้เอง</p>
+          <p style="margin:0">DNS ไม่ได้มีเครื่องเดียว แต่เป็น <b>ระบบลำดับชั้น</b> ทั่วโลก ดูแอนิเมชันว่าการถามหา IP เดินทางอย่างไร 👇</p>
+        </div>
+        <figure class="anim" id="anim-dns" data-ms="4000">
+          <div class="anim-title"><i data-i="book"></i>DNS ค้นหา IP ของ www.example.ac.th<span class="chip">5 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="9" y1="50" x2="33" y2="50" data-hl="1,5"/>
+              <line x1="33" y1="50" x2="62" y2="16" data-hl="2"/>
+              <line x1="33" y1="50" x2="88" y2="50" data-hl="3"/>
+              <line x1="33" y1="50" x2="62" y2="84" data-hl="4"/>
+            </svg>
+            <div class="actor c-blue" style="left:9%;top:50%" data-hl="1,5"><span class="ab"><i data-i="laptop"></i></span><span class="lb">Browser</span><span class="sub">ของเรา</span></div>
+            <div class="actor c-teal lg" style="left:33%;top:50%" data-hl="1-5"><span class="ab"><i data-i="book"></i></span><span class="lb">DNS Resolver</span><span class="sub">ของ ISP / วิทยาลัย</span></div>
+            <div class="actor c-purple" style="left:62%;top:16%" data-hl="2"><span class="ab"><i data-i="globe"></i></span><span class="lb">Root Server “.”</span><span class="sub">รู้จักทุก TLD</span></div>
+            <div class="actor c-pink" style="left:88%;top:50%" data-hl="3"><span class="ab"><i data-i="server"></i></span><span class="lb">TLD Server “.th”</span><span class="sub">ดูแลโดเมน .th</span></div>
+            <div class="actor c-orange" style="left:62%;top:84%" data-hl="4"><span class="ab"><i data-i="server"></i></span><span class="lb">Name Server</span><span class="sub">ของ example.ac.th</span></div>
+
+            <div class="flyer" style="--x1:9%;--y1:50%;--x2:33%;--y2:50%;--c:var(--blue)" data-only="1">www.example.ac.th = ?</div>
+            <div class="flyer" style="--x1:33%;--y1:50%;--x2:62%;--y2:16%;--c:var(--teal);--dur:3s" data-only="2">รู้จัก .th ไหม?</div>
+            <div class="flyer" style="--x1:62%;--y1:16%;--x2:33%;--y2:50%;--c:var(--purple);--dur:3s;--delay:1.5s" data-only="2">ไปถาม .th</div>
+            <div class="flyer" style="--x1:33%;--y1:50%;--x2:88%;--y2:50%;--c:var(--teal);--dur:3s" data-only="3">example.ac.th ?</div>
+            <div class="flyer" style="--x1:88%;--y1:50%;--x2:33%;--y2:50%;--c:var(--pink);--dur:3s;--delay:1.5s" data-only="3">ไปถาม ns.example</div>
+            <div class="flyer" style="--x1:33%;--y1:50%;--x2:62%;--y2:84%;--c:var(--teal);--dur:3s" data-only="4">www = ?</div>
+            <div class="flyer" style="--x1:62%;--y1:84%;--x2:33%;--y2:50%;--c:var(--green);--dur:3s;--delay:1.5s" data-only="4">203.0.113.10</div>
+            <div class="flyer" style="--x1:33%;--y1:50%;--x2:9%;--y2:50%;--c:var(--green)" data-only="5">203.0.113.10 ✓</div>
+            <div class="bubble pop" style="left:33%;top:83%" data-only="5">💾 จำไว้ใน Cache (ตามค่า TTL)</div>
+            <div class="bubble pop" style="left:12%;top:20%" data-only="1">ถาม Resolver ก่อนเสมอ</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>Browser ถาม DNS Resolver</b> (ปกติเป็นของ ISP หรือวิทยาลัย) ว่า “www.example.ac.th มี IP อะไร?” ถ้า Resolver เคยจำไว้ จะตอบได้ทันทีโดยไม่ต้องไปขั้นต่อไป</li>
+            <li><b>ถาม Root Server</b> (เครื่องรากของระบบ มีกระจายทั่วโลก) Root ไม่รู้คำตอบตรง ๆ แต่บอกว่า “ไปถามเครื่องที่ดูแล <code>.th</code> สิ”</li>
+            <li><b>ถาม TLD Server ของ .th</b> ตอบว่า “โดเมน <code>example.ac.th</code> มี Name Server อยู่ที่เครื่องนี้ ไปถามเขา”</li>
+            <li><b>ถาม Authoritative Name Server</b> ของ example.ac.th ซึ่งเป็นเจ้าของข้อมูลตัวจริง → ตอบว่า <code>www</code> = <code>203.0.113.10</code></li>
+            <li><b>Resolver ส่ง IP กลับให้ Browser</b> และ <b>จำไว้ใน Cache</b> ชั่วระยะเวลาหนึ่ง (TTL) ครั้งหน้าที่มีคนถามชื่อเดิมจะตอบได้เร็วมาก</li>
+          </ol>
+        </figure>
+        <div class="callout tip"><i data-i="bulb"></i><p><strong class="t">ลองเองได้!</strong>เปิด Command Prompt แล้วพิมพ์ <code>nslookup www.google.com</code> จะเห็น IP ที่ DNS ตอบกลับมา (ทำในใบงาน 1.2)</p></div>
+      </section>
+
+      <section class="sec" id="enter">
+        <div class="sec-head"><span class="sec-num">04</span><div><h2>กด Enter แล้วเกิดอะไรขึ้น? (ไฮไลต์ของบทนี้)</h2><p>ดูการเดินทางของข้อมูลแบบสโลว์โมชัน 10 ขั้น · กดหมายเลขขั้นเพื่อดูซ้ำได้</p></div></div>
+        <figure class="anim" id="anim-enter" data-ms="4300">
+          <div class="anim-title"><i data-i="zap"></i>จากพิมพ์ URL → จนเห็นหน้าเว็บ<span class="chip">10 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="12" y1="52" x2="50" y2="15" data-in="3" data-hl="3,4"/>
+              <line x1="12" y1="52" x2="86" y2="52" data-in="5" data-hl="5,6,8,9"/>
+              <line x1="86" y1="52" x2="86" y2="86" data-in="7" data-hl="7"/>
+            </svg>
+            <div class="actor c-blue lg" style="left:12%;top:52%" data-hl="1,2,10"><span class="ab"><i data-i="laptop"></i></span><span class="lb">Browser</span><span class="sub">Client</span></div>
+            <div class="actor c-teal pop" style="left:50%;top:15%" data-in="3" data-hl="3,4"><span class="ab"><i data-i="book"></i></span><span class="lb">DNS Server</span></div>
+            <div class="actor c-green lg pulse" style="left:86%;top:52%" data-hl="6,7,8"><span class="ab"><i data-i="server"></i></span><span class="lb">Web Server</span><span class="sub">203.0.113.10</span></div>
+            <div class="actor c-amber sm pop" style="left:86%;top:87%" data-in="7"><span class="ab"><i data-i="database"></i></span><span class="lb">Database</span></div>
+
+            <div class="bubble mono pop" style="left:14%;top:18%" data-only="1">⌨️ www.example.ac.th ⏎</div>
+            <div class="bubble bad pop" style="left:14%;top:84%" data-only="2">🔍 Cache: ไม่เคยเข้า → ไม่รู้ IP</div>
+            <div class="flyer" style="--x1:12%;--y1:52%;--x2:50%;--y2:15%;--c:var(--blue)" data-only="3">IP ของ www.example.ac.th ?</div>
+            <div class="flyer" style="--x1:50%;--y1:15%;--x2:12%;--y2:52%;--c:var(--teal)" data-only="4">203.0.113.10</div>
+            <div class="bubble ok pop" style="left:14%;top:84%" data-in="4" data-only="4-9">IP: 203.0.113.10 ✓</div>
+
+            <div class="flyer" style="--x1:12%;--y1:52%;--x2:86%;--y2:52%;--c:var(--purple);--dur:2.6s" data-only="5">SYN →</div>
+            <div class="flyer" style="--x1:86%;--y1:52%;--x2:12%;--y2:52%;--c:var(--purple);--dur:2.6s;--delay:1.3s" data-only="5">← SYN-ACK</div>
+            <div class="bubble pop" style="left:49%;top:70%" data-only="5">🤝 TCP 3-way handshake + 🔒 TLS ตกลงกุญแจ</div>
+
+            <div class="flyer" style="--x1:12%;--y1:52%;--x2:86%;--y2:52%;--c:var(--pink)" data-only="6">GET /index.html</div>
+            <div class="bubble pop" style="left:64%;top:33%" data-only="7">⚙️ หาไฟล์ · รันโปรแกรม · ดึงข้อมูล</div>
+            <div class="flyer" style="--x1:86%;--y1:52%;--x2:86%;--y2:87%;--c:var(--amber);--dur:2s" data-only="7">SELECT ข่าว</div>
+            <div class="flyer" style="--x1:86%;--y1:87%;--x2:86%;--y2:52%;--c:var(--amber);--dur:2s;--delay:1s" data-only="7">ข้อมูล</div>
+            <div class="flyer" style="--x1:86%;--y1:52%;--x2:12%;--y2:52%;--c:var(--green)" data-only="8">200 OK + HTML</div>
+
+            <div class="flyer" style="--x1:86%;--y1:52%;--x2:12%;--y2:52%;--c:var(--blue);--dur:2.4s" data-only="9">style.css</div>
+            <div class="flyer" style="--x1:86%;--y1:52%;--x2:12%;--y2:52%;--c:var(--amber);--dur:2.4s;--delay:.8s" data-only="9">app.js</div>
+            <div class="flyer" style="--x1:86%;--y1:52%;--x2:12%;--y2:52%;--c:var(--pink);--dur:2.4s;--delay:1.6s" data-only="9">logo.png</div>
+            <div class="bubble pop" style="left:49%;top:70%" data-only="9">HTML บอกว่าต้องใช้ไฟล์อื่นอีก → ขอเพิ่มทีละไฟล์</div>
+
+            <div class="minipage pop" style="left:17%;top:21%" data-only="10"><i class="mp-bar"></i><i class="mp-hero"></i><i class="mp-l"></i><i class="mp-l s"></i></div>
+            <div class="bubble ok pop" style="left:52%;top:72%" data-only="10">🎉 แสดงผลเสร็จ! ทั้งหมดนี้ใช้เวลาไม่ถึง 1 วินาที</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>ผู้ใช้พิมพ์ URL</b> <code>www.example.ac.th</code> ลงในแถบที่อยู่ของเบราว์เซอร์แล้วกด Enter</li>
+            <li><b>ตรวจ Cache</b> เบราว์เซอร์ดูก่อนว่าเคยรู้ IP ของชื่อนี้หรือยัง (เคยเข้าเมื่อเร็ว ๆ นี้ไหม) — ครั้งนี้ยังไม่เคย</li>
+            <li><b>ถาม DNS</b> “www.example.ac.th มี IP อะไร?” (กระบวนการแบบละเอียดดูในหัวข้อที่ 3)</li>
+            <li><b>DNS ตอบ IP</b> <code>203.0.113.10</code> ตอนนี้เบราว์เซอร์รู้แล้วว่าต้องไปหาเครื่องไหน</li>
+            <li><b>สร้างการเชื่อมต่อ</b> ด้วย TCP (จับมือ 3 ครั้ง: SYN → SYN-ACK → ACK) เพื่อให้แน่ใจว่าคุยกันได้ และถ้าเป็น HTTPS จะทำ <b>TLS Handshake</b> ตกลงกุญแจเข้ารหัสด้วย</li>
+            <li><b>ส่ง HTTP Request</b> “ขอไฟล์ <code>/index.html</code> หน่อย” พร้อมข้อมูลประกอบ (Header)</li>
+            <li><b>Server ประมวลผล</b> ถ้าเป็นไฟล์ธรรมดาก็หยิบส่งเลย ถ้าเป็นเว็บแบบไดนามิกจะรันโปรแกรม (เช่น PHP) และดึงข้อมูลจาก <b>ฐานข้อมูล</b> มาสร้างหน้าเว็บ</li>
+            <li><b>ส่ง HTTP Response</b> กลับมาพร้อมรหัสสถานะ <code>200 OK</code> และเนื้อหา HTML</li>
+            <li><b>ขอไฟล์ประกอบเพิ่ม</b> เบราว์เซอร์อ่าน HTML แล้วพบว่าต้องใช้ CSS, JavaScript, รูปภาพ จึงส่ง Request เพิ่มทีละไฟล์ (หน้าเว็บหนึ่งหน้าอาจมีหลายสิบ Request!)</li>
+            <li><b>แสดงผล (Render)</b> เบราว์เซอร์นำ HTML + CSS + JS มาประกอบกัน วาดเป็นหน้าเว็บที่เราเห็นบนจอ</li>
+          </ol>
+        </figure>
+        <div class="callout warn"><i data-i="alert"></i><p><strong class="t">ทำไมต้องรู้เรื่องนี้?</strong>เวลาเว็บ “ไม่ขึ้น” นักพัฒนาต้องไล่ได้ว่าพังที่ขั้นไหน — DNS หาไม่เจอ (ชื่อผิด/โดเมนหมดอายุ)? เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ (เซิร์ฟเวอร์ล่ม)? ได้ 404 (ไฟล์ไม่มี)? หรือ 500 (โปรแกรมฝั่งเซิร์ฟเวอร์ผิด)?</p></div>
+      </section>
+
+      <section class="sec" id="http">
+        <div class="sec-head"><span class="sec-num">05</span><div><h2>HTTP Request &amp; Response</h2><p>“จดหมาย” ที่เบราว์เซอร์กับเซิร์ฟเวอร์ส่งหากัน หน้าตาเป็นแบบนี้จริง ๆ</p></div></div>
+        <figure class="anim" id="anim-msg" data-ms="4200">
+          <div class="anim-title"><i data-i="mail"></i>เปิดซองจดหมาย HTTP<span class="chip">6 ขั้น</span></div>
+          <div class="stage auto">
+            <div class="g2" style="gap:12px">
+              <div class="msg">
+                <div class="msg-h">📤 HTTP Request (Browser → Server)</div>
+                <div class="ln" data-in="1" data-hl="1"><span class="t-kw">GET</span> <span class="t-val">/index.html</span> HTTP/1.1</div>
+                <div class="ln" data-in="2" data-hl="2"><span class="t-prop">Host:</span> www.example.ac.th</div>
+                <div class="ln" data-in="2" data-hl="2"><span class="t-prop">User-Agent:</span> Mozilla/5.0 (Windows) Chrome</div>
+                <div class="ln" data-in="2" data-hl="2"><span class="t-prop">Accept:</span> text/html</div>
+                <div class="ln" data-in="2" data-hl="2"><span class="t-prop">Accept-Language:</span> th,en</div>
+                <div class="ln" data-in="3" data-hl="3"><span class="t-com">(บรรทัดว่าง · GET ไม่มี Body)</span></div>
+              </div>
+              <div class="msg">
+                <div class="msg-h">📥 HTTP Response (Server → Browser)</div>
+                <div class="ln" data-in="4" data-hl="4">HTTP/1.1 <span class="t-str">200 OK</span></div>
+                <div class="ln" data-in="5" data-hl="5"><span class="t-prop">Server:</span> Apache/2.4</div>
+                <div class="ln" data-in="5" data-hl="5"><span class="t-prop">Content-Type:</span> text/html; charset=UTF-8</div>
+                <div class="ln" data-in="5" data-hl="5"><span class="t-prop">Content-Length:</span> 1532</div>
+                <div class="ln" data-in="6" data-hl="6"><span class="t-tag">&lt;!DOCTYPE html&gt;</span></div>
+                <div class="ln" data-in="6" data-hl="6"><span class="t-tag">&lt;html</span> <span class="t-attr">lang</span>=<span class="t-val">"th"</span><span class="t-tag">&gt;</span> …</div>
+              </div>
+            </div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>Request Line</b> = <b>Method</b> (ต้องการทำอะไร: <code>GET</code> ขอดูข้อมูล) + <b>Path</b> (ไฟล์ไหน) + <b>เวอร์ชัน HTTP</b></li>
+            <li><b>Request Headers</b> ข้อมูลประกอบคำขอ: ขอจากเว็บไหน (Host) ใช้เบราว์เซอร์อะไร (User-Agent) รับข้อมูลชนิดใด (Accept) ภาษาที่ต้องการ</li>
+            <li><b>Body</b> เนื้อหาที่ส่งไปด้วย — <code>GET</code> ไม่มี Body แต่ถ้าเป็น <code>POST</code> (ส่งฟอร์ม/ล็อกอิน) ข้อมูลฟอร์มจะอยู่ตรงนี้</li>
+            <li><b>Status Line</b> เซิร์ฟเวอร์ตอบพร้อม <b>รหัสสถานะ</b> <code>200 OK</code> = สำเร็จ</li>
+            <li><b>Response Headers</b> บอกข้อมูลของคำตอบ: ใช้ซอฟต์แวร์อะไร ชนิดไฟล์ (text/html) การเข้ารหัสอักษร (UTF-8 เพื่อแสดงภาษาไทย) และขนาด</li>
+            <li><b>Response Body</b> ตัวเนื้อหาจริง คือโค้ด HTML ที่เบราว์เซอร์จะนำไปแสดงผล</li>
+          </ol>
+        </figure>
+
+        <h3>HTTP Method ที่ใช้บ่อย</h3>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Method</th><th>ความหมาย</th><th>ตัวอย่างในชีวิตจริง</th></tr></thead>
+            <tbody>
+              <tr><td><code>GET</code></td><td>ขอดู/ดึงข้อมูล (ข้อมูลอาจอยู่ใน URL)</td><td>เปิดหน้าข่าว, ค้นหาใน Google</td></tr>
+              <tr><td><code>POST</code></td><td>ส่งข้อมูลใหม่ไปให้เซิร์ฟเวอร์ (อยู่ใน Body)</td><td>ล็อกอิน, สมัครสมาชิก, ส่งฟอร์ม</td></tr>
+              <tr><td><code>PUT</code> / <code>PATCH</code></td><td>แก้ไขข้อมูลที่มีอยู่</td><td>แก้ไขโปรไฟล์</td></tr>
+              <tr><td><code>DELETE</code></td><td>ลบข้อมูล</td><td>ลบโพสต์, ลบสินค้าจากตะกร้า</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="status">
+        <div class="sec-head"><span class="sec-num">06</span><div><h2>HTTP Status Code: เซิร์ฟเวอร์ตอบว่าอะไร?</h2><p>ตัวเลข 3 หลัก หลักแรกบอกกลุ่ม · แตะการ์ดเพื่อพลิก</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>กลุ่ม</th><th>ความหมาย</th><th>จำง่าย ๆ</th></tr></thead>
+            <tbody>
+              <tr><td><code>1xx</code></td><td>Informational — ข้อมูลระหว่างทำงาน</td><td>“รับทราบ กำลังดำเนินการ”</td></tr>
+              <tr><td><code>2xx</code></td><td>Success — สำเร็จ</td><td>“ได้เลย นี่ครับ” ✅</td></tr>
+              <tr><td><code>3xx</code></td><td>Redirection — ย้ายที่/ให้ไปที่อื่น</td><td>“ร้านย้ายไปซอยข้าง ๆ” ↪️</td></tr>
+              <tr><td><code>4xx</code></td><td>Client Error — ฝั่งผู้ขอผิด</td><td>“คุณขอผิดเอง” 🙅</td></tr>
+              <tr><td><code>5xx</code></td><td>Server Error — ฝั่งเซิร์ฟเวอร์ผิดพลาด</td><td>“ครัวไฟไหม้” 🔥</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="flips">
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--green)">200</span><small>OK</small></div><div class="flip-b"><p><b>สำเร็จ</b> ได้ข้อมูลตามที่ขอ — เป็นรหัสที่เกิดบ่อยที่สุด</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--blue)">301</span><small>Moved Permanently</small></div><div class="flip-b"><p><b>ย้ายถาวร</b> เช่น เปลี่ยนโดเมนใหม่ หรือบังคับจาก http ไป https เบราว์เซอร์จะพาไปที่อยู่ใหม่อัตโนมัติ</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--blue)">304</span><small>Not Modified</small></div><div class="flip-b"><p><b>ไม่มีการเปลี่ยนแปลง</b> ใช้ไฟล์ใน Cache ของเบราว์เซอร์ได้เลย ไม่ต้องโหลดใหม่ → เว็บเร็วขึ้น</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--amber)">401</span><small>Unauthorized</small></div><div class="flip-b"><p><b>ต้องยืนยันตัวตน</b> ยังไม่ได้ล็อกอิน หรือรหัสผ่านไม่ถูกต้อง</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--amber)">403</span><small>Forbidden</small></div><div class="flip-b"><p><b>ไม่มีสิทธิ์</b> เซิร์ฟเวอร์รู้ว่าคุณเป็นใคร แต่ไม่อนุญาตให้เข้าถึง เช่น โฟลเดอร์ที่ถูกปิดไว้</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--red)">404</span><small>Not Found</small></div><div class="flip-b"><p><b>ไม่พบไฟล์</b> พิมพ์ URL ผิด ลิงก์เสีย หรือไฟล์ถูกลบไปแล้ว — นักพัฒนาต้องทดสอบลิงก์ให้ครบ!</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--red)">500</span><small>Internal Server Error</small></div><div class="flip-b"><p><b>เซิร์ฟเวอร์ผิดพลาด</b> มักเกิดจากโค้ดฝั่งเซิร์ฟเวอร์ (เช่น PHP) มีบั๊ก หรือเชื่อมฐานข้อมูลไม่ได้</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--red)">503</span><small>Service Unavailable</small></div><div class="flip-b"><p><b>ให้บริการไม่ได้ชั่วคราว</b> เซิร์ฟเวอร์ปิดปรับปรุง หรือมีคนเข้าพร้อมกันมากเกินไป (เช่น วันประกาศผลสอบ)</p></div></div></button>
+        </div>
+      </section>
+
+      <section class="sec" id="https">
+        <div class="sec-head"><span class="sec-num">07</span><div><h2>HTTP vs HTTPS: ทำไมต้องมีกุญแจ 🔒</h2><p>ดูว่าแฮกเกอร์ที่ดักฟัง Wi-Fi สาธารณะเห็นอะไรบ้าง</p></div></div>
+        <figure class="anim" id="anim-https" data-ms="4200">
+          <div class="anim-title"><i data-i="lock"></i>ส่งรหัสผ่านแบบ HTTP กับ HTTPS<span class="chip">5 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="10" y1="42" x2="90" y2="42" data-hl="1,4"/>
+              <line x1="50" y1="80" x2="50" y2="42" class="dash"/>
+            </svg>
+            <div class="actor c-blue" style="left:10%;top:42%"><span class="ab"><i data-i="laptop"></i></span><span class="lb">ผู้ใช้</span><span class="sub">กรอกรหัสผ่าน</span></div>
+            <div class="actor c-red" style="left:50%;top:82%" data-hl="1,4"><span class="ab"><i data-i="spy"></i></span><span class="lb">ผู้ไม่หวังดี</span><span class="sub">ดักฟัง Wi-Fi สาธารณะ</span></div>
+            <div class="actor c-green" style="left:90%;top:42%" data-hl="2,5"><span class="ab"><i data-i="server"></i></span><span class="lb">Web Server</span></div>
+
+            <div class="bubble bad pop" style="left:30%;top:14%" data-only="1">http:// ⚠️ ไม่เข้ารหัส</div>
+            <div class="flyer" style="--x1:10%;--y1:42%;--x2:90%;--y2:42%;--c:var(--red);--dur:2.8s" data-only="1">user=nong&amp;pass=1234</div>
+            <div class="bubble bad pop" style="left:73%;top:80%" data-only="1">👀 อ่านออกหมด: pass=1234</div>
+
+            <div class="flyer" style="--x1:90%;--y1:42%;--x2:10%;--y2:42%;--c:var(--teal);--dur:2.8s" data-only="2">📜 ใบรับรอง (Certificate)</div>
+            <div class="bubble wrap pop" style="left:30%;top:14%" data-only="2">เบราว์เซอร์ตรวจว่าเป็น “เว็บตัวจริง” ไม่ใช่เว็บปลอม</div>
+            <div class="flyer" style="--x1:10%;--y1:42%;--x2:90%;--y2:42%;--c:var(--purple);--dur:2.8s" data-only="3">🔑 ตกลงกุญแจลับ</div>
+            <div class="flyer" style="--x1:90%;--y1:42%;--x2:10%;--y2:42%;--c:var(--purple);--dur:2.8s;--delay:1.4s" data-only="3">🔑 OK</div>
+            <div class="bubble wrap pop" style="left:30%;top:14%" data-only="3">สองฝ่ายมีกุญแจลับที่คนอื่นไม่รู้</div>
+
+            <div class="bubble ok pop" style="left:30%;top:14%" data-only="4-5">https:// 🔒 เข้ารหัสแล้ว</div>
+            <div class="flyer" style="--x1:10%;--y1:42%;--x2:90%;--y2:42%;--c:var(--green);--dur:2.8s" data-only="4">x9#Kq!@7zP%2a…</div>
+            <div class="bubble pop" style="left:73%;top:80%" data-only="4">🤯 อ่านไม่ออก: x9#Kq!@7z…</div>
+            <div class="bubble ok pop" style="left:88%;top:14%" data-only="5">🔓 ถอดรหัส: pass=1234 ✓</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>HTTP</b> ส่งข้อมูลเป็น “ข้อความธรรมดา” ใครดักจับได้ระหว่างทาง (เช่น Wi-Fi ร้านกาแฟ) ก็อ่านรหัสผ่านได้ทันที</li>
+            <li><b>HTTPS ขั้นที่ 1</b> เซิร์ฟเวอร์ส่ง <b>ใบรับรองดิจิทัล (SSL/TLS Certificate)</b> มาให้ เบราว์เซอร์ตรวจว่าออกโดยหน่วยงานที่เชื่อถือได้ และตรงกับชื่อเว็บ</li>
+            <li><b>HTTPS ขั้นที่ 2</b> ทั้งสองฝ่ายตกลง <b>กุญแจลับ</b> สำหรับเข้ารหัส (TLS Handshake)</li>
+            <li><b>ส่งข้อมูลแบบเข้ารหัส</b> ผู้ดักฟังเห็นแต่ตัวอักษรมั่ว ๆ อ่านไม่ออก</li>
+            <li><b>เซิร์ฟเวอร์ถอดรหัส</b> ด้วยกุญแจลับ ได้ข้อมูลจริงอย่างปลอดภัย → เว็บที่มีการล็อกอินหรือรับข้อมูลส่วนตัว <u>ต้องใช้ HTTPS เสมอ</u></li>
+          </ol>
+        </figure>
+        <div class="vs">
+          <div class="mini c-pink"><h4>HTTP</h4><ul class="clean"><li>พอร์ต 80</li><li>ไม่เข้ารหัส อ่านได้ระหว่างทาง</li><li>เบราว์เซอร์ขึ้นเตือน “ไม่ปลอดภัย”</li><li>อันดับใน Google ต่ำกว่า</li></ul></div>
+          <div class="mid">VS</div>
+          <div class="mini c-teal"><h4>HTTPS</h4><ul class="clean"><li>พอร์ต 443</li><li>เข้ารหัสด้วย TLS + มีใบรับรอง</li><li>มีรูปกุญแจ 🔒 ที่แถบที่อยู่</li><li>มาตรฐานของเว็บทุกวันนี้ (มีใบรับรองฟรี เช่น Let's Encrypt)</li></ul></div>
+        </div>
+      </section>
+
+      <section class="sec" id="lab">
+        <div class="sec-head"><span class="sec-num">08</span><div><h2>ใบงาน 1.2 สืบหลังบ้านเว็บด้วย DevTools &amp; Command Prompt</h2><p>ปฏิบัติ 4 ชั่วโมง · งานคู่ · เห็นของจริงทุกขั้นที่เรียนมา</p></div></div>
+        <div class="panel worksheet">
+          <div class="ws-head"><h3><i data-i="clipboard"></i>ขั้นตอนการปฏิบัติ</h3><span class="ws-progress"></span></div>
+          <ul class="checklist" data-key="u1l2">
+            <li><label><input type="checkbox"><span><b>ตอนที่ 1 ดู Request จริง</b> — เปิด Chrome กด <kbd>F12</kbd> → แท็บ <b>Network</b> → เปิดเว็บไซต์ที่ครูกำหนด แล้วกด <kbd>Ctrl</kbd>+<kbd>F5</kbd> (โหลดใหม่ทั้งหมด)</span></label></li>
+            <li><label><input type="checkbox"><span>บันทึก: จำนวน Request ทั้งหมด · ขนาดที่โหลด (transferred) · เวลาโหลดเสร็จ (Finish / Load) · ประเภทไฟล์ที่พบ (Doc, CSS, JS, Img, Font)</span></label></li>
+            <li><label><input type="checkbox"><span>คลิก Request แรก (ชนิด Doc) → แท็บ <b>Headers</b> จด: Request URL · Request Method · Status Code · Remote Address (IP) · Content-Type · Server</span></label></li>
+            <li><label><input type="checkbox"><span><b>ตอนที่ 2 ทำให้เกิด 404</b> — เติมท้าย URL ด้วยชื่อไฟล์ที่ไม่มีจริง เช่น <code>/abcxyz.html</code> แล้วดู Status Code ใน Network</span></label></li>
+            <li><label><input type="checkbox"><span><b>ตอนที่ 3 Command Prompt</b> — กด <kbd>Win</kbd>+<kbd>R</kbd> พิมพ์ <code>cmd</code> แล้วรันคำสั่ง <code>nslookup</code>, <code>ping</code>, <code>tracert</code> กับโดเมนที่กำหนด จด IP, เวลา (ms) และจำนวน hop</span></label></li>
+            <li><label><input type="checkbox"><span>เปรียบเทียบ IP จาก <code>nslookup</code> กับ Remote Address ใน DevTools ตรงกันหรือไม่ เพราะอะไร</span></label></li>
+            <li><label><input type="checkbox"><span><b>ตอนที่ 4 สรุปด้วยภาพ</b> — วาดแผนภาพ 10 ขั้น “กด Enter แล้วเกิดอะไรขึ้น” ด้วยคำพูดของตนเอง ระบุว่าแต่ละขั้นเห็นหลักฐานได้จากเครื่องมือไหน</span></label></li>
+          </ul>
+          <div class="code-head"><i></i><i></i><i></i>Command Prompt — ตัวอย่างผลลัพธ์</div>
+<pre class="code"><span class="t-com">C:\&gt;</span> nslookup www.example.ac.th
+Server:  dns.isp.net.th
+Address:  192.0.2.53
+
+Non-authoritative answer:
+Name:    www.example.ac.th
+Address:  <span class="t-str">203.0.113.10</span>     <span class="t-com">← IP ที่ DNS ตอบกลับ</span>
+
+<span class="t-com">C:\&gt;</span> ping www.example.ac.th
+Reply from 203.0.113.10: bytes=32 time=<span class="t-num">12ms</span> TTL=56   <span class="t-com">← ใช้เวลาเดินทางไป-กลับ 12 มิลลิวินาที</span></pre>
+          <div class="callout warn"><i data-i="alert"></i><p><strong class="t">หมายเหตุ</strong>บางเว็บไซต์/เครือข่ายปิดการตอบ <code>ping</code> ไว้เพื่อความปลอดภัย ถ้าขึ้น “Request timed out” ไม่ได้แปลว่าเว็บล่มเสมอไป</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="quiz">
+        <div class="sec-head"><span class="sec-num">09</span><div><h2>แบบทดสอบท้ายครั้งที่ 2</h2><p>เลือกคำตอบเดียว</p></div></div>
+        <div class="quiz" data-quiz="u1l2">
+          <div class="q" data-a="1"><p class="q-t">หน้าที่หลักของ DNS คือข้อใด</p><div class="opts"><button>เข้ารหัสข้อมูลให้ปลอดภัย</button><button>แปลงชื่อโดเมนเป็น IP Address</button><button>เก็บไฟล์เว็บไซต์</button><button>แสดงผลหน้าเว็บ</button></div><p class="q-ex">DNS = สมุดรายชื่อของอินเทอร์เน็ต แปลงชื่อที่คนจำง่ายเป็นเลข IP ที่คอมพิวเตอร์ใช้</p></div>
+          <div class="q" data-a="2"><p class="q-t">เรียงลำดับให้ถูก: (ก) ส่ง HTTP Request (ข) ถาม DNS หา IP (ค) Render หน้าเว็บ (ง) ได้ Response 200 OK</p><div class="opts"><button>ก → ข → ง → ค</button><button>ข → ก → ค → ง</button><button>ข → ก → ง → ค</button><button>ก → ง → ข → ค</button></div><p class="q-ex">ต้องรู้ IP ก่อน (DNS) → จึงส่ง Request ไปหาเซิร์ฟเวอร์ได้ → ได้ Response → เบราว์เซอร์จึงวาดหน้าเว็บ</p></div>
+          <div class="q" data-a="3"><p class="q-t">นักเรียนพิมพ์ชื่อไฟล์ใน URL ผิด เซิร์ฟเวอร์จะตอบรหัสสถานะใด</p><div class="opts"><button>200</button><button>301</button><button>500</button><button>404</button></div><p class="q-ex">404 Not Found = ไม่พบไฟล์ที่ขอ เป็นความผิดพลาดฝั่งผู้ขอ (4xx)</p></div>
+          <div class="q" data-a="0"><p class="q-t">การกรอกฟอร์มสมัครสมาชิกแล้วกดส่ง ควรใช้ HTTP Method ใด</p><div class="opts"><button>POST</button><button>GET</button><button>DELETE</button><button>HEAD</button></div><p class="q-ex">POST ใช้ส่งข้อมูลใหม่ไปยังเซิร์ฟเวอร์ ข้อมูลอยู่ใน Body ไม่แสดงใน URL</p></div>
+          <div class="q" data-a="2"><p class="q-t">ข้อใดเป็นจุดเด่นของ HTTPS เมื่อเทียบกับ HTTP</p><div class="opts"><button>โหลดรูปได้คมชัดกว่า</button><button>ไม่ต้องใช้ DNS</button><button>เข้ารหัสข้อมูลและยืนยันตัวตนของเว็บไซต์ด้วยใบรับรอง</button><button>ใช้พอร์ต 80</button></div><p class="q-ex">HTTPS ใช้ TLS เข้ารหัสข้อมูล และมีใบรับรองยืนยันว่าเป็นเว็บจริง ใช้พอร์ต 443</p></div>
+          <div class="q" data-a="1"><p class="q-t">รหัสสถานะ 500 Internal Server Error บอกอะไรกับนักพัฒนา</p><div class="opts"><button>ผู้ใช้พิมพ์ URL ผิด</button><button>โปรแกรมหรือระบบฝั่งเซิร์ฟเวอร์ทำงานผิดพลาด</button><button>หน้าเว็บย้ายไปที่อยู่ใหม่</button><button>ผู้ใช้ยังไม่ได้ล็อกอิน</button></div><p class="q-ex">5xx = ฝั่งเซิร์ฟเวอร์ผิด เช่น โค้ด PHP มีบั๊ก หรือเชื่อมฐานข้อมูลไม่ได้</p></div>
+          <div class="quiz-foot"><span class="quiz-score"></span><button class="btn sm quiz-reset" type="button">ทำใหม่</button></div>
+        </div>
+      </section>
+
+      <section class="sec" id="sum">
+        <div class="sec-head"><span class="sec-num">10</span><div><h2>สรุปครั้งที่ 2</h2><p>ภาพใหญ่ในประโยคเดียว: “ถามที่อยู่ → เคาะประตู → ขอของ → ได้ของ → ประกอบร่าง”</p></div></div>
+        <div class="panel">
+          <ul class="ticks">
+            <li>เว็บทำงานแบบ <b>Client–Server</b>: เบราว์เซอร์ส่ง Request → เซิร์ฟเวอร์ส่ง Response</li>
+            <li><b>DNS</b> แปลงชื่อโดเมน → IP โดยถามต่อเป็นทอด ๆ Root → TLD → Name Server และจำไว้ใน Cache</li>
+            <li>ลำดับหลัก: <b>DNS → TCP/TLS → HTTP Request → ประมวลผล → HTTP Response → โหลดไฟล์ประกอบ → Render</b></li>
+            <li>ข้อความ HTTP มี Start line + Headers + Body · Method หลัก: GET, POST, PUT, DELETE</li>
+            <li>Status Code: 2xx สำเร็จ · 3xx ย้ายที่ · 4xx ผู้ขอผิด · 5xx เซิร์ฟเวอร์ผิด</li>
+            <li><b>HTTPS</b> = HTTP + การเข้ารหัส TLS + ใบรับรอง → ต้องใช้กับทุกเว็บ</li>
+          </ul>
+          <div class="callout"><i data-i="help"></i><p><strong class="t">คำถามชวนคิดสำหรับครั้งหน้า</strong>Response ที่ส่งกลับมามี HTML, CSS, JS — สามอย่างนี้ทำหน้าที่ต่างกันอย่างไร? และทำไมบางเว็บแสดงข้อมูลไม่เหมือนกันในแต่ละคน (เช่น หน้าผลการเรียน)?</p></div>
+          <button class="btn mark-done" type="button" data-lesson="u1l2"></button>
+        </div>
+        <nav class="pager">
+          <a href="lesson-1.html"><small>← ครั้งก่อน</small><strong>ครั้งที่ 1 · อินเทอร์เน็ต &amp; เว็บ</strong></a>
+          <a class="next" href="lesson-3.html"><small>ครั้งถัดไป →</small><strong>ครั้งที่ 3 · โครงสร้างของเว็บไซต์</strong></a>
+        </nav>
+      </section>
+    </article>
+  </div>
+</div>
+</main>
+<footer class="site-foot">made with <i data-i="heart" class="heart"></i> &amp; <i data-i="coffee" class="cup"></i> by IT RVC · 2026</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

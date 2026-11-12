@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ครั้งที่ 1 อินเทอร์เน็ตและเว็บ · Web Dev</title>
+<meta name="description" content="หน่วยที่ 1 ครั้งที่ 1 อินเทอร์เน็ต เวิลด์ไวด์เว็บ คำศัพท์พื้นฐาน ประเภทเว็บไซต์ และส่วนประกอบของ URL">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec4899'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem('wd-theme'));if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid"></div><div class="floaters"></div></div>
+<header class="topbar">
+  <nav class="pill" aria-label="เมนูหลัก">
+    <a href="../index.html">Web Dev</a>
+    <a href="index.html">หน่วยที่ 1</a>
+    <a href="lesson-1.html" aria-current="page">ครั้งที่ 1</a>
+  </nav>
+  <button class="theme-btn" type="button">auto</button>
+</header>
+
+<main>
+<div class="wrap">
+  <section class="lesson-hero">
+    <div class="crumbs"><a href="../index.html">Web Dev</a> / <a href="index.html">หน่วยที่ 1</a> / ครั้งที่ 1</div>
+    <div class="meta"><span class="chip hot">ครั้งที่ 1 / 5</span><span class="chip">5 ชั่วโมง</span><span class="chip">ทฤษฎี 1 · ปฏิบัติ 4</span></div>
+    <h1>อินเทอร์เน็ต &amp; <span class="grad-text">เวิลด์ไวด์เว็บ</span></h1>
+    <p class="lead">เราใช้เว็บทุกวัน แต่รู้ไหมว่า “อินเทอร์เน็ต” กับ “เว็บ” ไม่ใช่สิ่งเดียวกัน! ครั้งนี้จะดูว่าเครือข่ายคอมพิวเตอร์ทั้งโลกต่อกันได้อย่างไร คำศัพท์ที่นักพัฒนาเว็บต้องรู้ และผ่า URL ออกมาดูทีละชิ้น</p>
+  </section>
+
+  <div class="lesson-grid">
+    <aside class="toc">
+      <span class="toc-title">ในบทนี้</span>
+      <nav>
+        <a href="#goal">จุดประสงค์</a>
+        <a href="#internet">อินเทอร์เน็ตคืออะไร</a>
+        <a href="#history">ประวัติย่อ</a>
+        <a href="#www">อินเทอร์เน็ต vs เว็บ</a>
+        <a href="#terms">คำศัพท์ต้องรู้</a>
+        <a href="#url">ผ่า URL</a>
+        <a href="#types">ประเภทเว็บไซต์</a>
+        <a href="#era">ยุคของเว็บ</a>
+        <a href="#lab">ใบงาน 1.1</a>
+        <a href="#quiz">แบบทดสอบ</a>
+        <a href="#sum">สรุป</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+      <!-- 1 -->
+      <section class="sec" id="goal">
+        <div class="sec-head"><span class="sec-num">01</span><div><h2>จุดประสงค์การเรียนรู้</h2><p>หลังเรียนครั้งนี้ ผู้เรียนสามารถ…</p></div></div>
+        <ol class="objectives">
+          <li>อธิบายความหมายและการทำงานพื้นฐานของเครือข่ายอินเทอร์เน็ตได้</li>
+          <li>บอกความแตกต่างระหว่างอินเทอร์เน็ต (Internet) กับเวิลด์ไวด์เว็บ (WWW) ได้</li>
+          <li>อธิบายคำศัพท์พื้นฐาน เช่น เว็บเพจ เว็บไซต์ โฮมเพจ เบราว์เซอร์ เว็บเซิร์ฟเวอร์ โดเมนเนม ได้</li>
+          <li>แยกส่วนประกอบของ URL และบอกหน้าที่ของแต่ละส่วนได้</li>
+          <li>จำแนกประเภทของเว็บไซต์ตามวัตถุประสงค์การใช้งานได้</li>
+        </ol>
+        <div class="callout idea"><i data-i="bulb"></i><div><p><strong class="t">อุ่นเครื่องก่อนเรียน (5 นาที)</strong>ให้นักเรียนเขียนลงกระดาษว่า “เช้านี้ใช้อินเทอร์เน็ตทำอะไรไปแล้วบ้าง?” แล้วลองแยกดูว่าอันไหนเป็น “เว็บ” อันไหน “ไม่ใช่เว็บ” — เฉลยอยู่ในหัวข้อที่ 4</p></div></div>
+      </section>
+
+      <!-- 2 -->
+      <section class="sec" id="internet">
+        <div class="sec-head"><span class="sec-num">02</span><div><h2>อินเทอร์เน็ตคืออะไร?</h2><p>ดูแอนิเมชันว่าคอมพิวเตอร์ 1 เครื่อง กลายเป็นเครือข่ายทั้งโลกได้อย่างไร</p></div></div>
+        <div class="panel">
+          <p><b>อินเทอร์เน็ต (Internet)</b> ย่อมาจาก <i>Inter-connected Network</i> คือ <b>เครือข่ายคอมพิวเตอร์ขนาดใหญ่ที่สุดในโลก</b> เกิดจากการนำเครือข่ายเล็ก ๆ จำนวนมหาศาลมาเชื่อมต่อกัน จึงมักเรียกว่า <b>“เครือข่ายของเครือข่าย” (Network of Networks)</b> ทุกเครื่องคุยกันได้เพราะใช้ “ภาษากลาง” เดียวกันชื่อว่า <b>TCP/IP</b> และทุกเครื่องมีเลขประจำตัวเรียกว่า <b>IP Address</b> (เช่น <code>203.0.113.10</code>)</p>
+        </div>
+
+        <figure class="anim" id="anim-net" data-ms="4200">
+          <div class="anim-title"><i data-i="globe"></i>จากคอมพิวเตอร์ 1 เครื่อง สู่อินเทอร์เน็ตทั้งโลก<span class="chip">5 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="7" y1="22" x2="20" y2="42" data-in="2" data-hl="2"/>
+              <line x1="7" y1="62" x2="20" y2="42" data-in="2" data-hl="2"/>
+              <line x1="20" y1="42" x2="44" y2="42" data-in="3" data-hl="3"/>
+              <line x1="42" y1="14" x2="44" y2="42" data-in="3"/>
+              <line x1="42" y1="70" x2="44" y2="42" data-in="3"/>
+              <line x1="44" y1="42" x2="70" y2="42" data-in="4" data-hl="4"/>
+              <line x1="70" y1="42" x2="92" y2="16" data-in="4" data-hl="4"/>
+              <line x1="70" y1="42" x2="92" y2="66" data-in="4"/>
+            </svg>
+            <div class="zone" style="left:1%;top:4%;width:27%;height:76%" data-in="2">LAN · วิทยาลัย</div>
+
+            <div class="actor c-blue pop" style="left:7%;top:22%" data-in="1"><span class="ab"><i data-i="monitor"></i></span><span class="lb">PC 1</span></div>
+            <div class="bubble wrap pop" style="left:19%;top:56%" data-only="1">ทำงานได้แค่ในเครื่องตัวเอง<br>ส่งไฟล์ต้องใช้แฟลชไดรฟ์ 😅</div>
+            <div class="actor c-blue pop" style="left:7%;top:62%" data-in="2"><span class="ab"><i data-i="monitor"></i></span><span class="lb">PC 2</span></div>
+            <div class="actor c-teal pop" style="left:20%;top:42%" data-in="2" data-hl="2"><span class="ab"><i data-i="switch"></i></span><span class="lb">Switch</span></div>
+            <div class="flyer" style="--x1:7%;--y1:22%;--x2:7%;--y2:62%;--c:var(--teal)" data-only="2">แชร์ไฟล์</div>
+
+            <div class="actor c-teal pop" style="left:42%;top:14%" data-in="3"><span class="ab"><i data-i="home"></i></span><span class="lb">บ้าน (Wi-Fi)</span></div>
+            <div class="actor c-orange pop" style="left:44%;top:42%" data-in="3" data-hl="3"><span class="ab"><i data-i="router"></i></span><span class="lb">ISP</span><span class="sub">ผู้ให้บริการอินเทอร์เน็ต</span></div>
+            <div class="actor c-pink pop" style="left:42%;top:72%" data-in="3"><span class="ab"><i data-i="phone"></i></span><span class="lb">มือถือ 4G/5G</span></div>
+            <div class="flyer" style="--x1:20%;--y1:42%;--x2:44%;--y2:42%;--c:var(--orange)" data-only="3">ข้อมูล</div>
+
+            <div class="actor c-purple lg pop" style="left:70%;top:42%" data-in="4" data-hl="4,5"><span class="ab"><i data-i="globe"></i></span><span class="lb">INTERNET</span><span class="sub">เครือข่ายของเครือข่าย</span></div>
+            <div class="actor c-green pop" style="left:92%;top:16%" data-in="4"><span class="ab"><i data-i="server"></i></span><span class="lb">Server</span><span class="sub">ต่างประเทศ</span></div>
+            <div class="actor c-orange pop" style="left:92%;top:66%" data-in="4"><span class="ab"><i data-i="router"></i></span><span class="lb">ISP อื่น ๆ</span><span class="sub">ทั่วโลก</span></div>
+            <div class="bubble pop" style="left:64%;top:13%" data-only="4">🌊 สายเคเบิลใต้น้ำ · 🛰️ ดาวเทียม</div>
+            <div class="flyer" style="--x1:44%;--y1:42%;--x2:92%;--y2:16%;--c:var(--purple);--dur:2.4s" data-only="4">TCP/IP</div>
+
+            <div class="svc-row rise" data-in="5"><span class="bubble svc-lead"><b>บริการบนอินเทอร์เน็ต →</b></span><span class="bubble svc-www">🌐 WWW (เว็บ)</span><span class="bubble">📧 E-mail</span><span class="bubble">🎬 Video</span><span class="bubble">💬 Chat/VoIP</span><span class="bubble">🎮 Game</span></div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>คอมพิวเตอร์เครื่องเดียว</b> ทำงานได้เฉพาะในเครื่องตัวเอง ถ้าจะส่งไฟล์ให้เพื่อนต้องใช้แฟลชไดรฟ์</li>
+            <li><b>เครือข่ายท้องถิ่น (LAN)</b> ต่อคอมพิวเตอร์หลายเครื่องเข้ากับอุปกรณ์ <b>Switch</b> ในห้องเรียน/วิทยาลัย ส่งไฟล์ แชร์ปริ้นเตอร์ได้ แต่ยังอยู่แค่ในอาคาร</li>
+            <li><b>ISP (Internet Service Provider)</b> คือบริษัทผู้ให้บริการอินเทอร์เน็ต (เน็ตบ้าน/มือถือ) ทำหน้าที่เชื่อม LAN ของวิทยาลัย บ้าน และมือถือเข้ากับโลกภายนอก</li>
+            <li><b>อินเทอร์เน็ต</b> ISP ทั่วโลกเชื่อมกันผ่านสายใยแก้วนำแสง สายเคเบิลใต้น้ำ และดาวเทียม ทุกเครื่องคุยกันด้วยภาษากลาง <b>TCP/IP</b> → กลายเป็น “เครือข่ายของเครือข่าย”</li>
+            <li><b>บริการบนอินเทอร์เน็ต</b> เมื่อมี “ถนน” แล้ว ก็มีบริการมากมายวิ่งบนถนนนี้ — <b>WWW (เว็บ)</b> เป็นเพียง <u>หนึ่งในบริการ</u> เท่านั้น</li>
+          </ol>
+        </figure>
+
+        <div class="analogy">
+          <div class="pair"><div class="a">🛣️</div><div class="eq">อินเทอร์เน็ต =</div><b>ระบบถนน</b><small>เส้นทางเชื่อมทุกที่เข้าด้วยกัน</small></div>
+          <div class="pair"><div class="a">🚚</div><div class="eq">บริการ (WWW, Email) =</div><b>รถที่วิ่งบนถนน</b><small>รถส่งของ รถเมล์ รถพยาบาล</small></div>
+          <div class="pair"><div class="a">🏠</div><div class="eq">IP Address =</div><b>บ้านเลขที่</b><small>ทุกเครื่องต้องมีเลขไม่ซ้ำกัน</small></div>
+          <div class="pair"><div class="a">🚦</div><div class="eq">TCP/IP =</div><b>กฎจราจร</b><small>ทุกคันต้องใช้กฎเดียวกัน</small></div>
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section class="sec" id="history">
+        <div class="sec-head"><span class="sec-num">03</span><div><h2>ประวัติย่อ: จาก ARPANET ถึงเว็บบนมือถือ</h2><p>จำปีไม่ต้องเป๊ะ แต่ให้เข้าใจลำดับเหตุการณ์</p></div></div>
+        <div class="panel">
+          <ol class="timeline">
+            <li><span class="yr">พ.ศ. 2512 (1969) · ARPANET</span><p>กระทรวงกลาโหมสหรัฐฯ เชื่อมคอมพิวเตอร์ 4 มหาวิทยาลัยเข้าด้วยกัน — จุดเริ่มต้นของอินเทอร์เน็ต</p></li>
+            <li><span class="yr">พ.ศ. 2526 (1983) · TCP/IP</span><p>เครือข่ายเปลี่ยนมาใช้โปรโตคอล TCP/IP ซึ่งยังเป็นภาษากลางของอินเทอร์เน็ตมาจนถึงทุกวันนี้</p></li>
+            <li><span class="yr">พ.ศ. 2532 (1989) · กำเนิดแนวคิด WWW</span><p><b>Tim Berners-Lee</b> นักวิทยาศาสตร์ที่ CERN เสนอระบบเอกสารที่เชื่อมโยงกันด้วยลิงก์ ประกอบด้วย 3 สิ่งที่เรายังใช้อยู่: <b>HTML · HTTP · URL</b></p></li>
+            <li><span class="yr">พ.ศ. 2534 (1991) · เว็บไซต์แรกของโลก</span><p>info.cern.ch ออนไลน์ เป็นหน้าเว็บตัวอักษรล้วน อธิบายว่า WWW คืออะไร</p></li>
+            <li><span class="yr">พ.ศ. 2535 (1992) · ประเทศไทยเชื่อมอินเทอร์เน็ต</span><p>มหาวิทยาลัยในไทยเริ่มเชื่อมต่ออินเทอร์เน็ตแบบถาวรกับต่างประเทศ (ความเร็วเพียงประมาณ 9.6 kbps)</p></li>
+            <li><span class="yr">พ.ศ. 2536 (1993) · เบราว์เซอร์ Mosaic</span><p>แสดงรูปภาพร่วมกับข้อความได้ ทำให้เว็บใช้ง่ายและได้รับความนิยมอย่างรวดเร็ว</p></li>
+            <li><span class="yr">พ.ศ. 2547–2550 · ยุคโซเชียลและสมาร์ตโฟน</span><p>Facebook, YouTube เกิดขึ้น และ iPhone ทำให้คนท่องเว็บบนมือถือ → เว็บต้องรองรับทุกขนาดหน้าจอ</p></li>
+            <li><span class="yr">ปัจจุบัน · Cloud &amp; AI</span><p>เว็บกลายเป็น “แอปพลิเคชัน” เต็มรูปแบบ ทำงานบนคลาวด์ เชื่อมกับ AI และใช้งานได้ทุกอุปกรณ์</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 4 -->
+      <section class="sec" id="www">
+        <div class="sec-head"><span class="sec-num">04</span><div><h2>อินเทอร์เน็ต ≠ เว็บ</h2><p>คำที่คนทั่วไปใช้แทนกัน แต่ความจริงคนละอย่าง</p></div></div>
+        <div class="vs">
+          <div class="mini c-blue"><span class="ic-wrap"><i data-i="globe"></i></span><h4>Internet (อินเทอร์เน็ต)</h4>
+            <ul class="clean"><li>คือ <b>โครงสร้างพื้นฐาน</b> — สาย อุปกรณ์ เครือข่าย</li><li>เกิดก่อน (พ.ศ. 2512)</li><li>เปรียบเหมือน <b>ถนน</b></li><li>มีหลายบริการ: Email, Video Call, Game, File Transfer (FTP), WWW</li></ul></div>
+          <div class="mid">VS</div>
+          <div class="mini c-pink"><span class="ic-wrap"><i data-i="file"></i></span><h4>WWW (เวิลด์ไวด์เว็บ)</h4>
+            <ul class="clean"><li>คือ <b>บริการหนึ่ง</b> บนอินเทอร์เน็ต</li><li>เกิดทีหลัง (พ.ศ. 2532)</li><li>เปรียบเหมือน <b>รถส่งเอกสาร</b> ที่วิ่งบนถนน</li><li>เป็นเอกสาร (เว็บเพจ) ที่เชื่อมโยงกันด้วย <b>ไฮเปอร์ลิงก์</b> เปิดดูด้วย <b>เว็บเบราว์เซอร์</b> ผ่านโปรโตคอล <b>HTTP</b></li></ul></div>
+        </div>
+        <div class="callout tip"><i data-i="check"></i><div><p><strong class="t">เฉลยกิจกรรมอุ่นเครื่อง</strong>ดู YouTube ผ่าน Chrome / อ่านข่าวในเว็บ / ค้นหา Google = ใช้ <b>เว็บ</b> · ส่งอีเมลผ่านแอป Mail, เล่นเกมออนไลน์, วิดีโอคอลใน LINE = ใช้ <b>อินเทอร์เน็ต</b> แต่ไม่ใช่เว็บ (เป็นบริการอื่น)</p></div></div>
+      </section>
+
+      <!-- 5 -->
+      <section class="sec" id="terms">
+        <div class="sec-head"><span class="sec-num">05</span><div><h2>คำศัพท์ที่ต้องรู้</h2><p>แตะการ์ดเพื่อพลิกดูความหมาย · ลองทายก่อนพลิก!</p></div></div>
+        <div class="flips">
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Web Page</span><small>เว็บเพจ</small></div><div class="flip-b"><p><b>เว็บเพจ</b> คือ “หน้าเอกสาร 1 หน้า” บนเว็บ เขียนด้วยภาษา HTML เช่น หน้า “ติดต่อเรา” 1 หน้า = 1 เว็บเพจ</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Website</span><small>เว็บไซต์</small></div><div class="flip-b"><p><b>เว็บไซต์</b> คือ “กลุ่มของเว็บเพจหลายหน้า” ที่เชื่อมโยงกันและอยู่ภายใต้โดเมนเดียวกัน เหมือนหนังสือ 1 เล่มที่มีหลายหน้า</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Home Page</span><small>โฮมเพจ</small></div><div class="flip-b"><p><b>โฮมเพจ</b> คือ “หน้าแรก” ของเว็บไซต์ เปรียบเหมือนปกหนังสือ มักชื่อไฟล์ <code>index.html</code></p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Browser</span><small>เว็บเบราว์เซอร์</small></div><div class="flip-b"><p><b>เว็บเบราว์เซอร์</b> คือ โปรแกรมฝั่งผู้ใช้ที่ใช้ขอและแสดงผลเว็บเพจ เช่น Chrome, Edge, Firefox, Safari</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Web Server</span><small>เว็บเซิร์ฟเวอร์</small></div><div class="flip-b"><p><b>เว็บเซิร์ฟเวอร์</b> คือ เครื่อง/โปรแกรมที่เก็บไฟล์เว็บไซต์และ “ให้บริการ” ส่งหน้าเว็บให้ผู้ที่ร้องขอ เช่น Apache, Nginx</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">URL</span><small>ที่อยู่ของทรัพยากรบนเว็บ</small></div><div class="flip-b"><p><b>URL</b> (Uniform Resource Locator) คือ “ที่อยู่เต็ม” ของไฟล์บนเว็บ เช่น <code>https://www.example.ac.th/about.html</code></p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Domain</span><small>ชื่อโดเมน</small></div><div class="flip-b"><p><b>โดเมนเนม</b> คือ “ชื่อที่จำง่าย” แทนเลข IP เช่น <code>google.com</code> แทน <code>142.250.x.x</code> ต้องจดทะเบียนและต่ออายุทุกปี</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Hosting</span><small>เว็บโฮสติ้ง</small></div><div class="flip-b"><p><b>เว็บโฮสติ้ง</b> คือ บริการ “เช่าพื้นที่” บนเว็บเซิร์ฟเวอร์ที่เปิด 24 ชม. เพื่อวางไฟล์เว็บไซต์ให้คนทั่วโลกเข้าถึง</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">IP Address</span><small>หมายเลขไอพี</small></div><div class="flip-b"><p><b>IP Address</b> คือ “บ้านเลขที่” ของอุปกรณ์บนเครือข่าย เช่น IPv4 <code>203.0.113.10</code> หรือ IPv6 ที่ยาวกว่ามาก</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Hyperlink</span><small>ไฮเปอร์ลิงก์</small></div><div class="flip-b"><p><b>ไฮเปอร์ลิงก์</b> คือ ข้อความหรือรูปที่คลิกแล้วพาไปยังหน้าอื่น — หัวใจของคำว่า “Web” (ใยแมงมุมที่เชื่อมกัน)</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">HTML</span><small>ภาษาของเว็บเพจ</small></div><div class="flip-b"><p><b>HTML</b> (HyperText Markup Language) คือ ภาษามาร์กอัปที่ใช้กำหนดโครงสร้างเนื้อหาของเว็บเพจ ด้วย “แท็ก” เช่น <code>&lt;h1&gt;</code></p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">HTTP</span><small>โปรโตคอลของเว็บ</small></div><div class="flip-b"><p><b>HTTP</b> (HyperText Transfer Protocol) คือ “ภาษาที่เบราว์เซอร์กับเซิร์ฟเวอร์ใช้คุยกัน” · <b>HTTPS</b> = แบบเข้ารหัสปลอดภัย</p></div></div></button>
+        </div>
+      </section>
+
+      <!-- 6 -->
+      <section class="sec" id="url">
+        <div class="sec-head"><span class="sec-num">06</span><div><h2>ผ่า URL ทีละส่วน</h2><p>ที่อยู่เว็บหนึ่งบรรทัด มีข้อมูลซ่อนอยู่ถึง 8 ส่วน</p></div></div>
+
+        <figure class="anim" id="anim-url" data-ms="4300">
+          <div class="anim-title"><i data-i="link"></i>ส่วนประกอบของ URL<span class="chip">9 ขั้น</span></div>
+          <div class="stage auto">
+            <div class="url-big" data-sync>
+              <span data-part="1,9" style="--c:var(--blue)">https://</span><span data-part="2,9" style="--c:var(--teal)">www.</span><span data-part="3,9" style="--c:var(--pink)">example</span><span data-part="4,9" style="--c:var(--purple)">.ac.th</span><span data-part="5,9" style="--c:var(--amber)">:443</span><span data-part="6,9" style="--c:var(--orange)">/it/web/lesson.html</span><span data-part="7,9" style="--c:var(--green)">?unit=1&amp;page=2</span><span data-part="8,9" style="--c:var(--red)">#quiz</span>
+            </div>
+            <div class="stack" style="margin-top:18px">
+              <div class="mini rise" data-only="0"><h4>▶ กดเล่นเพื่อเริ่มผ่า URL</h4><p>แต่ละขั้นจะไฮไลต์ 1 ส่วน พร้อมคำอธิบาย</p></div>
+              <div class="mini rise" data-only="1"><h4 style="color:var(--blue)">① Protocol (โปรโตคอล / Scheme)</h4><p>บอก “วิธีการสื่อสาร” ระหว่างเบราว์เซอร์กับเซิร์ฟเวอร์ · <code>http://</code> = แบบธรรมดา · <code>https://</code> = แบบเข้ารหัสปลอดภัย (S = Secure) มีรูปกุญแจ 🔒 ที่แถบที่อยู่ · โปรโตคอลอื่น เช่น <code>ftp://</code> <code>mailto:</code></p></div>
+              <div class="mini rise" data-only="2"><h4 style="color:var(--teal)">② Subdomain (ซับโดเมน)</h4><p>ชื่อย่อยที่อยู่หน้าโดเมนหลัก <code>www</code> หมายถึงบริการเว็บ แต่จะตั้งเป็นอย่างอื่นก็ได้ เช่น <code>mail.example.ac.th</code>, <code>reg.example.ac.th</code> (ระบบทะเบียน) เพื่อแยกบริการ</p></div>
+              <div class="mini rise" data-only="3"><h4 style="color:var(--pink)">③ Domain name (ชื่อโดเมน)</h4><p>ชื่อหลักของเว็บไซต์ที่ <b>จดทะเบียน</b> ไว้ ไม่ซ้ำกับใครในโลก เป็นชื่อที่จำง่ายแทนเลข IP · ควรสั้น จำง่าย สื่อถึงองค์กร</p></div>
+              <div class="mini rise" data-only="4"><h4 style="color:var(--purple)">④ Top-Level Domain (TLD / นามสกุลโดเมน)</h4><p>บอก “ประเภทหรือประเทศ” · <code>.ac.th</code> = สถาบันการศึกษาในไทย · <code>.co.th</code> = บริษัท · <code>.go.th</code> = หน่วยงานรัฐ · <code>.com</code> = การค้า · <code>.org</code> = องค์กร · <code>.th</code> = ประเทศไทย</p></div>
+              <div class="mini rise" data-only="5"><h4 style="color:var(--amber)">⑤ Port (พอร์ต)</h4><p>“ช่องประตู” ของบริการบนเซิร์ฟเวอร์ · HTTP ใช้พอร์ต <b>80</b> · HTTPS ใช้พอร์ต <b>443</b> ถ้าใช้ค่าเริ่มต้นไม่ต้องพิมพ์ (เบราว์เซอร์รู้เอง) แต่ตอนพัฒนาเว็บบนเครื่องตัวเองจะเห็นบ่อย เช่น <code>localhost:5500</code></p></div>
+              <div class="mini rise" data-only="6"><h4 style="color:var(--orange)">⑥ Path (พาธ)</h4><p>ตำแหน่ง <b>โฟลเดอร์และไฟล์</b> บนเซิร์ฟเวอร์ เหมือนที่อยู่ไฟล์ในเครื่อง → โฟลเดอร์ <code>it</code> › โฟลเดอร์ <code>web</code> › ไฟล์ <code>lesson.html</code> · ถ้าไม่ระบุไฟล์ เซิร์ฟเวอร์จะส่ง <code>index.html</code> ให้</p></div>
+              <div class="mini rise" data-only="7"><h4 style="color:var(--green)">⑦ Query string (คิวรีสตริง)</h4><p>ขึ้นต้นด้วย <code>?</code> ใช้ “ส่งข้อมูลเพิ่มเติม” ไปให้เซิร์ฟเวอร์ ในรูป <code>ชื่อ=ค่า</code> คั่นหลายค่าด้วย <code>&amp;</code> → <code>unit=1</code> และ <code>page=2</code> · เห็นบ่อยตอนค้นหา เช่น <code>?q=html</code></p></div>
+              <div class="mini rise" data-only="8"><h4 style="color:var(--red)">⑧ Fragment (แฟรกเมนต์ / Anchor)</h4><p>ขึ้นต้นด้วย <code>#</code> ใช้ “กระโดดไปยังส่วนหนึ่งของหน้า” ที่มี id ตรงกัน เช่น <code>#quiz</code> · ส่วนนี้ <b>ไม่ถูกส่งไปที่เซิร์ฟเวอร์</b> เบราว์เซอร์ใช้เอง</p></div>
+              <div class="mini rise" data-only="9"><h4>🧩 รวมกันแล้วทำงานอย่างไร?</h4><p>ส่วน ①–⑤ ใช้ <b>หาเครื่องเซิร์ฟเวอร์และวิธีคุย</b> · ส่วน ⑥–⑦ บอกเซิร์ฟเวอร์ว่า <b>ต้องการอะไร</b> · ส่วน ⑧ เบราว์เซอร์ใช้ <b>เลื่อนไปยังตำแหน่ง</b> ในหน้า</p></div>
+            </div>
+          </div>
+          <ol class="anim-steps compact">
+            <li>Protocol — วิธีสื่อสาร (http / https)</li>
+            <li>Subdomain — ชื่อย่อยของบริการ (www)</li>
+            <li>Domain name — ชื่อเว็บไซต์ที่จดทะเบียน</li>
+            <li>TLD — ประเภท/ประเทศของโดเมน</li>
+            <li>Port — ช่องประตูบริการ (80 / 443)</li>
+            <li>Path — โฟลเดอร์และไฟล์บนเซิร์ฟเวอร์</li>
+            <li>Query string — ข้อมูลที่ส่งไปเพิ่ม</li>
+            <li>Fragment — จุดกระโดดในหน้า</li>
+            <li>สรุป: ส่วนไหนใช้ทำอะไร</li>
+          </ol>
+        </figure>
+
+        <div class="panel url-play">
+          <h3><i data-i="search"></i>ทดลองผ่า URL เอง</h3>
+          <p class="muted" style="font-size:15px">พิมพ์หรือวาง URL ใดก็ได้ ระบบจะแยกส่วนให้ทันที · หรือกดตัวอย่าง:</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
+            <button class="btn sm" type="button" data-try="https://www.google.com/search?q=html+คืออะไร&hl=th">Google ค้นหา</button>
+            <button class="btn sm" type="button" data-try="https://www.youtube.com/watch?v=abc123&t=60s">YouTube</button>
+            <button class="btn sm" type="button" data-try="http://localhost:5500/index.html#contact">localhost</button>
+            <button class="btn sm" type="button" data-try="https://reg.example.ac.th/student/grade.php?id=6701&term=1">ระบบทะเบียน</button>
+          </div>
+          <input type="text" value="https://www.example.ac.th:443/it/web/lesson.html?unit=1&page=2#quiz" aria-label="URL">
+          <div class="url-out"></div>
+        </div>
+
+        <h3>ชนิดของโดเมนที่พบบ่อย</h3>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>โดเมน</th><th>ใช้สำหรับ</th><th>โดเมนไทย</th><th>ใช้สำหรับ</th></tr></thead>
+            <tbody>
+              <tr><td><code>.com</code></td><td>ธุรกิจการค้า (ใช้มากที่สุด)</td><td><code>.ac.th</code></td><td>สถาบันการศึกษา</td></tr>
+              <tr><td><code>.org</code></td><td>องค์กรไม่แสวงหากำไร</td><td><code>.co.th</code></td><td>บริษัท/นิติบุคคล</td></tr>
+              <tr><td><code>.net</code></td><td>ผู้ให้บริการเครือข่าย</td><td><code>.go.th</code></td><td>หน่วยงานรัฐบาล</td></tr>
+              <tr><td><code>.edu</code></td><td>สถาบันการศึกษา (สหรัฐฯ)</td><td><code>.or.th</code></td><td>องค์กร/มูลนิธิ</td></tr>
+              <tr><td><code>.gov</code></td><td>รัฐบาล (สหรัฐฯ)</td><td><code>.in.th</code></td><td>บุคคลหรือหน่วยงานทั่วไป</td></tr>
+              <tr><td><code>.info</code> <code>.app</code> <code>.dev</code></td><td>ทั่วไป/แอป/นักพัฒนา</td><td><code>.th</code> · <code>.ไทย</code></td><td>โดเมนประเทศไทย</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="sec" id="types">
+        <div class="sec-head"><span class="sec-num">07</span><div><h2>ประเภทของเว็บไซต์</h2><p>แบ่งตามวัตถุประสงค์การใช้งาน — ก่อนสร้างเว็บต้องรู้ก่อนว่าเว็บเราอยู่ประเภทไหน</p></div></div>
+        <div class="g3">
+          <div class="mini"><span class="ic-wrap"><i data-i="building"></i></span><h4>องค์กร / สถานศึกษา</h4><p>ให้ข้อมูลหน่วยงาน ข่าวประชาสัมพันธ์ ติดต่อ เช่น เว็บวิทยาลัย เว็บบริษัท</p></div>
+          <div class="mini c-pink"><span class="ic-wrap"><i data-i="cart"></i></span><h4>พาณิชย์อิเล็กทรอนิกส์ (E-Commerce)</h4><p>ซื้อขายสินค้าออนไลน์ มีตะกร้าและระบบชำระเงิน เช่น Shopee, Lazada</p></div>
+          <div class="mini c-purple"><span class="ic-wrap"><i data-i="file"></i></span><h4>ข่าว / สารสนเทศ</h4><p>นำเสนอข่าวและบทความที่อัปเดตบ่อย เช่น เว็บข่าว เว็บพยากรณ์อากาศ</p></div>
+          <div class="mini c-teal"><span class="ic-wrap"><i data-i="users"></i></span><h4>เครือข่ายสังคม (Social)</h4><p>ผู้ใช้สร้างเนื้อหาและสื่อสารกัน เช่น Facebook, X, TikTok</p></div>
+          <div class="mini c-blue"><span class="ic-wrap"><i data-i="search"></i></span><h4>ค้นหา / ท่า (Portal)</h4><p>รวบรวมลิงก์และข้อมูลจำนวนมาก เป็นประตูไปยังเว็บอื่น เช่น Google</p></div>
+          <div class="mini"><span class="ic-wrap"><i data-i="cap"></i></span><h4>การศึกษา (E-Learning)</h4><p>บทเรียนออนไลน์ แบบทดสอบ ห้องเรียนเสมือน เช่น Google Classroom, เว็บนี้!</p></div>
+          <div class="mini c-pink"><span class="ic-wrap"><i data-i="star"></i></span><h4>ส่วนตัว / ผลงาน (Blog, Portfolio)</h4><p>แนะนำตัว แสดงผลงาน เขียนบทความ — งานที่นักเรียนจะได้ทำในวิชานี้</p></div>
+          <div class="mini c-purple"><span class="ic-wrap"><i data-i="video"></i></span><h4>บันเทิง</h4><p>วิดีโอ เพลง เกม เช่น YouTube, Netflix, Spotify</p></div>
+          <div class="mini c-teal"><span class="ic-wrap"><i data-i="cog"></i></span><h4>เว็บแอปพลิเคชัน / บริการ</h4><p>ใช้งานเหมือนโปรแกรม เช่น ระบบทะเบียน ระบบจองห้อง Google Docs</p></div>
+        </div>
+      </section>
+
+      <!-- 8 -->
+      <section class="sec" id="era">
+        <div class="sec-head"><span class="sec-num">08</span><div><h2>ยุคของเว็บ: Web 1.0 → 2.0 → 3.0</h2><p>เว็บเปลี่ยนจาก “อ่านอย่างเดียว” เป็น “มีส่วนร่วม” และ “ฉลาดขึ้น”</p></div></div>
+        <div class="tabs">
+          <div role="tablist"><button role="tab" data-tab="w1">Web 1.0</button><button role="tab" data-tab="w2">Web 2.0</button><button role="tab" data-tab="w3">Web 3.0</button></div>
+          <div class="tab-panel panel" data-panel="w1"><h3><i data-i="eye"></i>Web 1.0 — Read only (ประมาณ 2534–2547)</h3><p>เจ้าของเว็บเขียน ผู้ใช้ได้แค่ <b>อ่าน</b> หน้าเว็บส่วนใหญ่เป็น <b>Static</b> (หน้าตาตายตัว) ข้อความ + รูปภาพ อัปเดตไม่บ่อย</p><p class="muted">ตัวอย่าง: เว็บไซต์ประชาสัมพันธ์บริษัทยุคแรก, เว็บไดเรกทอรี</p></div>
+          <div class="tab-panel panel" data-panel="w2"><h3><i data-i="chat"></i>Web 2.0 — Read &amp; Write (ประมาณ 2547–ปัจจุบัน)</h3><p>ผู้ใช้ <b>สร้างเนื้อหาเอง</b> ได้ (User-Generated Content) คอมเมนต์ แชร์ อัปโหลด เว็บเป็นแบบ <b>Dynamic</b> และรองรับมือถือ</p><p class="muted">ตัวอย่าง: Facebook, YouTube, Wikipedia, Blog</p></div>
+          <div class="tab-panel panel" data-panel="w3"><h3><i data-i="bulb"></i>Web 3.0 — Read, Write &amp; Own / Intelligent</h3><p>เว็บที่ <b>เข้าใจความหมายของข้อมูล</b> (Semantic Web) ใช้ AI แนะนำเนื้อหาให้แต่ละคน และแนวคิดเครือข่ายแบบกระจายศูนย์ที่ผู้ใช้เป็นเจ้าของข้อมูล</p><p class="muted">ตัวอย่าง: ผู้ช่วย AI, ระบบแนะนำสินค้า/วิดีโออัตโนมัติ</p></div>
+        </div>
+      </section>
+
+      <!-- 9 -->
+      <section class="sec" id="lab">
+        <div class="sec-head"><span class="sec-num">09</span><div><h2>ใบงาน 1.1 สำรวจเว็บไซต์และแยกส่วน URL</h2><p>ปฏิบัติ 4 ชั่วโมง · งานเดี่ยว · ส่งเป็นไฟล์เอกสารหรือกระดาษ</p></div></div>
+        <div class="panel worksheet">
+          <div class="ws-head"><h3><i data-i="clipboard"></i>ขั้นตอนการปฏิบัติ</h3><span class="ws-progress"></span></div>
+          <ul class="checklist" data-key="u1l1">
+            <li><label><input type="checkbox"><span><b>ตอนที่ 1 สำรวจเว็บไซต์ 5 ประเภท</b> — เลือกเว็บไซต์จริง 5 เว็บ จาก 5 ประเภทที่ต่างกัน (หัวข้อที่ 7)</span></label></li>
+            <li><label><input type="checkbox"><span>บันทึกลงตาราง: ชื่อเว็บ · URL · ประเภท · กลุ่มเป้าหมาย (ใครใช้) · จุดเด่น 2 ข้อ · สิ่งที่ควรปรับปรุง 1 ข้อ</span></label></li>
+            <li><label><input type="checkbox"><span><b>ตอนที่ 2 ผ่า URL</b> — คัดลอก URL จากแถบที่อยู่ของเว็บที่มี <code>?</code> อย่างน้อย 3 อัน (เช่น หน้าค้นหา Google, วิดีโอ YouTube) แล้วแยกส่วนประกอบทั้ง 8 ส่วนด้วยตัวเอง</span></label></li>
+            <li><label><input type="checkbox"><span>นำ URL ไปตรวจคำตอบกับ “ทดลองผ่า URL เอง” ในหัวข้อที่ 6 แล้วแก้ไขส่วนที่ผิด</span></label></li>
+            <li><label><input type="checkbox"><span><b>ตอนที่ 3 แอบดูเบื้องหลัง</b> — เปิดเว็บไซต์ใดก็ได้ กด <kbd>Ctrl</kbd> + <kbd>U</kbd> (View Page Source) สังเกตว่าหน้าเว็บสวย ๆ จริง ๆ แล้วคือ “ข้อความ” ภาษา HTML · จดแท็กที่เห็นบ่อย 5 แท็ก</span></label></li>
+            <li><label><input type="checkbox"><span>ตอบคำถามท้ายใบงาน: “อินเทอร์เน็ตกับเว็บต่างกันอย่างไร ยกตัวอย่างบริการที่ใช้อินเทอร์เน็ตแต่ไม่ใช่เว็บ 2 อย่าง”</span></label></li>
+          </ul>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>เกณฑ์การให้คะแนน (10 คะแนน)</th><th>คะแนน</th></tr></thead>
+              <tbody>
+                <tr><td>ตอนที่ 1 ครบ 5 ประเภท ข้อมูลถูกต้อง วิเคราะห์จุดเด่น/จุดปรับปรุงสมเหตุสมผล</td><td class="c">4</td></tr>
+                <tr><td>ตอนที่ 2 แยกส่วน URL ถูกต้องครบถ้วน</td><td class="c">3</td></tr>
+                <tr><td>ตอนที่ 3 + คำถามท้ายใบงาน</td><td class="c">2</td></tr>
+                <tr><td>ความเรียบร้อย ส่งตรงเวลา (กิจนิสัย)</td><td class="c">1</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10 -->
+      <section class="sec" id="quiz">
+        <div class="sec-head"><span class="sec-num">10</span><div><h2>แบบทดสอบท้ายครั้งที่ 1</h2><p>เลือกคำตอบเดียว ระบบจะเฉลยและอธิบายทันที</p></div></div>
+        <div class="quiz" data-quiz="u1l1">
+          <div class="q" data-a="2"><p class="q-t">ข้อใดอธิบายความสัมพันธ์ระหว่างอินเทอร์เน็ตกับ WWW ได้ถูกต้องที่สุด</p><div class="opts"><button>อินเทอร์เน็ตกับ WWW คือสิ่งเดียวกัน</button><button>WWW เกิดก่อนอินเทอร์เน็ต</button><button>WWW เป็นบริการหนึ่งที่ทำงานบนอินเทอร์เน็ต</button><button>อินเทอร์เน็ตเป็นบริการหนึ่งของ WWW</button></div><p class="q-ex">อินเทอร์เน็ตคือโครงสร้างเครือข่าย (ถนน) ส่วน WWW คือบริการเอกสารเว็บที่วิ่งบนเครือข่ายนั้น และเกิดทีหลัง (2532)</p></div>
+          <div class="q" data-a="1"><p class="q-t">“กลุ่มของเว็บเพจหลายหน้าที่เชื่อมโยงกันภายใต้โดเมนเดียวกัน” คือข้อใด</p><div class="opts"><button>Home Page</button><button>Website</button><button>Web Browser</button><button>Web Server</button></div><p class="q-ex">เว็บเพจ = 1 หน้า · เว็บไซต์ = หลายหน้ารวมกัน · โฮมเพจ = หน้าแรกของเว็บไซต์</p></div>
+          <div class="q" data-a="3"><p class="q-t">ใน URL <code>https://shop.example.co.th/products/list.html?cat=shirt#top</code> ส่วนใดคือ Path</p><div class="opts"><button>shop</button><button>.co.th</button><button>?cat=shirt</button><button>/products/list.html</button></div><p class="q-ex">Path คือตำแหน่งโฟลเดอร์/ไฟล์บนเซิร์ฟเวอร์ ต่อจากชื่อโดเมน · shop = subdomain · ?cat=shirt = query string</p></div>
+          <div class="q" data-a="0"><p class="q-t">เว็บไซต์ของวิทยาลัยเทคนิคในประเทศไทย ควรใช้โดเมนลงท้ายด้วยข้อใด</p><div class="opts"><button>.ac.th</button><button>.co.th</button><button>.go.th</button><button>.or.th</button></div><p class="q-ex">.ac.th (academic) สำหรับสถาบันการศึกษาในไทย · .co.th บริษัท · .go.th หน่วยงานรัฐ · .or.th องค์กร</p></div>
+          <div class="q" data-a="2"><p class="q-t">ส่วนใดของ URL ที่ “ไม่ถูกส่งไป” ยังเว็บเซิร์ฟเวอร์</p><div class="opts"><button>Path</button><button>Query string</button><button>Fragment (#...)</button><button>Domain name</button></div><p class="q-ex">Fragment (#) ใช้ภายในเบราว์เซอร์เพื่อเลื่อนไปยังตำแหน่งในหน้า จึงไม่ส่งไปที่เซิร์ฟเวอร์</p></div>
+          <div class="q" data-a="1"><p class="q-t">ผู้ใช้สามารถโพสต์ คอมเมนต์ และแชร์เนื้อหาได้เอง เป็นลักษณะเด่นของเว็บยุคใด</p><div class="opts"><button>Web 1.0</button><button>Web 2.0</button><button>ARPANET</button><button>Static Web</button></div><p class="q-ex">Web 2.0 คือยุคที่ผู้ใช้มีส่วนร่วมสร้างเนื้อหา (Read &amp; Write) เช่น Facebook, YouTube</p></div>
+          <div class="quiz-foot"><span class="quiz-score"></span><button class="btn sm quiz-reset" type="button">ทำใหม่</button></div>
+        </div>
+      </section>
+
+      <!-- 11 -->
+      <section class="sec" id="sum">
+        <div class="sec-head"><span class="sec-num">11</span><div><h2>สรุปครั้งที่ 1</h2><p>จำ 5 ข้อนี้ไว้ ใช้ต่อในครั้งหน้า</p></div></div>
+        <div class="panel">
+          <ul class="ticks">
+            <li><b>อินเทอร์เน็ต</b> = เครือข่ายของเครือข่าย เชื่อมด้วย ISP ทั่วโลก คุยกันด้วย TCP/IP และระบุเครื่องด้วย IP Address</li>
+            <li><b>WWW</b> = บริการเอกสารที่เชื่อมด้วยไฮเปอร์ลิงก์ เป็นแค่หนึ่งในบริการบนอินเทอร์เน็ต สร้างจาก HTML + HTTP + URL</li>
+            <li><b>เว็บเพจ</b> 1 หน้า → หลายหน้ารวมเป็น <b>เว็บไซต์</b> → หน้าแรกคือ <b>โฮมเพจ</b> · ดูด้วย <b>เบราว์เซอร์</b> · เก็บไว้ที่ <b>เว็บเซิร์ฟเวอร์</b></li>
+            <li><b>URL</b> = Protocol + Subdomain + Domain + TLD + Port + Path + Query + Fragment</li>
+            <li>เว็บไซต์มีหลาย <b>ประเภท</b> ตามวัตถุประสงค์ ต้องรู้ประเภทก่อนจึงจะออกแบบได้ตรงใจผู้ใช้</li>
+          </ul>
+          <div class="callout"><i data-i="help"></i><p><strong class="t">คำถามชวนคิดสำหรับครั้งหน้า</strong>เราพิมพ์แค่ <code>www.google.com</code> แต่คอมพิวเตอร์รู้ได้อย่างไรว่าต้องไปหาเครื่องไหน ในเมื่อคอมพิวเตอร์รู้จักแต่ “ตัวเลข IP”? 🤔</p></div>
+          <button class="btn mark-done" type="button" data-lesson="u1l1"></button>
+        </div>
+        <nav class="pager">
+          <a class="next" href="lesson-2.html"><small>ครั้งถัดไป →</small><strong>ครั้งที่ 2 · เว็บทำงานอย่างไร</strong></a>
+        </nav>
+      </section>
+    </article>
+  </div>
+</div>
+</main>
+<footer class="site-foot">made with <i data-i="heart" class="heart"></i> &amp; <i data-i="coffee" class="cup"></i> by IT RVC · 2026</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
