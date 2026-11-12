@@ -536,6 +536,144 @@
     });
   });
 
+  /* ---------- Personal variables (domain / server IP / user) ---------- */
+  const VARS_KEY = 'wd-vars';
+  const vars = store.get(VARS_KEY, {});
+  const varEls = [...document.querySelectorAll('[data-v]')];
+  varEls.forEach(el => { if (!el.dataset.def) el.dataset.def = el.textContent; });
+  const paintVars = () => varEls.forEach(el => { el.textContent = vars[el.dataset.v] || el.dataset.def; });
+  document.querySelectorAll('input[data-var]').forEach(inp => {
+    if (vars[inp.dataset.var]) inp.value = vars[inp.dataset.var];
+    inp.addEventListener('input', () => {
+      const v = inp.value.trim().replace(/[<>"'`\s]/g, '');
+      if (v) vars[inp.dataset.var] = v; else delete vars[inp.dataset.var];
+      store.set(VARS_KEY, vars); paintVars();
+    });
+  });
+  paintVars();
+
+  /* ---------- Copy buttons on code blocks ---------- */
+  document.querySelectorAll('pre.code').forEach(pre => {
+    const wrap = document.createElement('div');
+    wrap.className = 'code-wrap';
+    pre.parentNode.insertBefore(wrap, pre);
+    wrap.appendChild(pre);
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'copy-btn'; b.textContent = 'copy';
+    b.setAttribute('aria-label', 'คัดลอกโค้ด');
+    b.addEventListener('click', () => {
+      const text = pre.innerText.replace(/ /g, ' ');
+      const done = () => { b.textContent = 'copied ✓'; setTimeout(() => { b.textContent = 'copy'; }, 1400); };
+      const fallback = () => {
+        const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) { b.textContent = 'กด Ctrl+C'; }
+        ta.remove();
+      };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+    });
+    wrap.appendChild(b);
+  });
+
+  /* ---------- Contrast checker (WCAG) ---------- */
+  const lum = hex => {
+    const c = hex.replace('#', '').match(/\w\w/g).map(x => parseInt(x, 16) / 255)
+      .map(v => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)));
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  };
+  document.querySelectorAll('.contrast').forEach(box => {
+    const fg = box.querySelector('[data-c="fg"]'), bg = box.querySelector('[data-c="bg"]');
+    const prev = box.querySelector('.c-prev'), out = box.querySelector('.c-res');
+    const run = () => {
+      const a = lum(fg.value), b = lum(bg.value);
+      const r = (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+      prev.style.color = fg.value; prev.style.background = bg.value;
+      const tag = (ok, t) => `<span class="chip ${ok ? 'c-teal' : 'c-pink'}">${ok ? '✓' : '✗'} ${t}</span>`;
+      out.innerHTML = `<b class="c-ratio">${r.toFixed(2)} : 1</b> ${tag(r >= 4.5, 'AA ข้อความปกติ (≥4.5)')} ${tag(r >= 3, 'AA ตัวใหญ่ (≥3)')} ${tag(r >= 7, 'AAA (≥7)')}`;
+    };
+    fg.addEventListener('input', run); bg.addEventListener('input', run);
+    box.querySelectorAll('[data-fg]').forEach(p => p.addEventListener('click', () => { fg.value = p.dataset.fg; bg.value = p.dataset.bg; run(); }));
+    run();
+  });
+
+  /* ---------- CSS specificity calculator ---------- */
+  const specificity = sel => {
+    let s = sel.replace(/"[^"]*"|'[^']*'/g, '').replace(/:(not|is|has|where)\(/g, '(');
+    const a = (s.match(/#[\w-]+/g) || []).length;
+    const b = (s.match(/\.[\w-]+/g) || []).length + (s.match(/\[[^\]]*\]/g) || []).length + (s.match(/(^|[^:]):(?!:)[\w-]+/g) || []).length;
+    const pe = (s.match(/::[\w-]+/g) || []).length;
+    s = s.replace(/#[\w-]+|\.[\w-]+|\[[^\]]*\]|::?[\w-]+/g, ' ');
+    const c = (s.match(/(^|[\s>+~(,])[a-zA-Z][\w-]*/g) || []).length + pe;
+    return [a, b, c];
+  };
+  document.querySelectorAll('.speclab').forEach(lab => {
+    const ins = [...lab.querySelectorAll('input')];
+    const outs = [...lab.querySelectorAll('.spec-out')];
+    const verdict = lab.querySelector('.spec-verdict');
+    const run = () => {
+      const sc = ins.map(i => specificity(i.value.trim()));
+      sc.forEach((v, k) => { outs[k].innerHTML = `<span>ID <b>${v[0]}</b></span><span>Class <b>${v[1]}</b></span><span>Tag <b>${v[2]}</b></span><code>(${v.join(', ')})</code>`; });
+      if (verdict && sc.length === 2) {
+        const cmp = sc[0][0] - sc[1][0] || sc[0][1] - sc[1][1] || sc[0][2] - sc[1][2];
+        verdict.textContent = cmp > 0 ? '🏆 Selector A ชนะ — สีของ A ถูกใช้' : cmp < 0 ? '🏆 Selector B ชนะ — สีของ B ถูกใช้' : '🤝 เท่ากัน — ตัวที่เขียนทีหลังในไฟล์ชนะ';
+        lab.dataset.win = cmp > 0 ? 'a' : cmp < 0 ? 'b' : 'tie';
+      }
+    };
+    ins.forEach(i => i.addEventListener('input', run));
+    lab.querySelectorAll('[data-a]').forEach(p => p.addEventListener('click', () => { ins[0].value = p.dataset.a; ins[1].value = p.dataset.b; run(); }));
+    run();
+  });
+
+  /* ---------- Flexbox playground ---------- */
+  document.querySelectorAll('.flexlab').forEach(lab => {
+    const demo = lab.querySelector('.flex-demo'), code = lab.querySelector('.flex-code');
+    const state = {};
+    const paint = () => {
+      Object.entries(state).forEach(([k, v]) => { demo.style.setProperty(k, v); });
+      code.textContent = '.container {\n  display: flex;\n' + Object.entries(state).map(([k, v]) => `  ${k}: ${v};`).join('\n') + '\n}';
+    };
+    lab.querySelectorAll('[data-prop]').forEach(g => {
+      const btns = [...g.querySelectorAll('button')];
+      btns.forEach(b => {
+        b.type = 'button';
+        b.addEventListener('click', () => { btns.forEach(x => x.classList.toggle('on', x === b)); state[g.dataset.prop] = b.dataset.val; paint(); });
+      });
+      const def = btns.find(b => b.classList.contains('on')) || btns[0];
+      state[g.dataset.prop] = def.dataset.val; def.classList.add('on');
+    });
+    paint();
+  });
+
+  /* ---------- Responsive width lab ---------- */
+  document.querySelectorAll('.resp-lab').forEach(lab => {
+    const range = lab.querySelector('input[type="range"]'), frame = lab.querySelector('.resp-frame'), out = lab.querySelector('.resp-out');
+    const fit = () => { const max = Math.max(320, Math.floor(lab.clientWidth - 4)); range.max = max; if (+range.value > max) range.value = max; run(); };
+    const run = () => {
+      const w = +range.value; frame.style.width = w + 'px';
+      const dev = w < 480 ? '📱 มือถือ (1 คอลัมน์)' : w < 720 ? '📟 แท็บเล็ต (2 คอลัมน์)' : '🖥️ เดสก์ท็อป (3 คอลัมน์ + sidebar)';
+      const mq = w < 480 ? 'ใช้ CSS พื้นฐาน (mobile-first)' : w < 720 ? '@media (min-width: 480px) ทำงาน' : '@media (min-width: 720px) ทำงาน';
+      out.innerHTML = `<b>${w}px</b> · ${dev} · <code>${mq}</code>`;
+    };
+    range.addEventListener('input', run);
+    window.addEventListener('resize', fit);
+    fit();
+  });
+
+  /* ---------- Mobile menu demo (JS DOM event) ---------- */
+  document.querySelectorAll('[data-menu-demo]').forEach(box => {
+    const btn = box.querySelector('.mm-btn'), log = box.querySelector('.mm-log');
+    let n = 0;
+    btn.addEventListener('click', () => {
+      const open = box.classList.toggle('open');
+      n++;
+      if (log) log.textContent = `#${n} click → classList.toggle('open') → ${open ? 'เปิดเมนู' : 'ปิดเมนู'}`;
+    });
+  });
+
+  /* ---------- Keep current nav item visible in the pill ---------- */
+  const pill = document.querySelector('.pill'), cur = pill && pill.querySelector('[aria-current]');
+  if (pill && cur && pill.scrollWidth > pill.clientWidth) pill.scrollLeft = cur.offsetLeft - (pill.clientWidth - cur.offsetWidth) / 2;
+
   /* ---------- Print button ---------- */
   document.querySelectorAll('[data-print]').forEach(b => b.addEventListener('click', () => window.print()));
 })();

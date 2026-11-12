@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 2 วิเคราะห์ผู้ใช้และออกแบบ UI · Web Dev</title>
+<meta name="description" content="วันที่ 2 การวิเคราะห์ความต้องการผู้ใช้ Persona Requirements Card sorting Sitemap หลัก UX/UI การจัดวางองค์ประกอบ สี ตัวอักษร Wireframe Mockup และ Responsive">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec4899'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem('wd-theme'));if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid"></div><div class="floaters"></div></div>
+<header class="topbar">
+  <nav class="pill" aria-label="เมนูหลัก">
+    <a href="../index.html">Web Dev</a>
+    <a href="day-1.html">Day 1</a>
+    <a href="day-2.html" aria-current="page">Day 2</a>
+    <a href="day-3.html">Day 3</a>
+    <a href="day-4.html">Day 4</a>
+    <a href="day-5.html">Day 5</a>
+  </nav>
+  <button class="theme-btn" type="button">auto</button>
+</header>
+
+<main>
+<div class="wrap">
+  <section class="lesson-hero">
+    <div class="crumbs"><a href="../index.html">Web Dev</a> / Day 2</div>
+    <div class="meta"><span class="chip hot">DAY 2 / 5</span><span class="chip">หน่วยที่ 2 + 3</span><span class="chip">09:00–16:30</span><span class="chip c-purple">5 แอนิเมชัน + เครื่องมือวัดคอนทราสต์</span></div>
+    <h1>วิเคราะห์ผู้ใช้ &amp; <span class="grad-text">ออกแบบ UI</span> ให้คนใช้ง่ายจริง</h1>
+    <p class="lead">เว็บสวยแต่ไม่มีใครใช้ = ล้มเหลว วันนี้เราเริ่มจาก “คน” — หาว่าใครจะใช้เว็บ เขาต้องการอะไร จัดระเบียบเนื้อหาให้ตรงกับความคิดของเขา แล้วค่อยออกแบบหน้าตาด้วยหลัก UX/UI ที่พิสูจน์แล้ว: ลำดับสายตา กริด ช่องว่าง สี ตัวอักษรไทย และ Responsive จบวันด้วย Wireframe + Mockup ของโครงงานใน Figma</p>
+  </section>
+
+  <div class="lesson-grid">
+    <aside class="toc">
+      <span class="toc-title">DAY 2</span>
+      <nav>
+        <a href="#plan">ตารางเรียน</a>
+        <a href="#goal">เป้าหมาย &amp; กลุ่มผู้ใช้</a>
+        <a href="#research">เก็บความต้องการ</a>
+        <a href="#flow">จากข้อมูลสู่ Requirements</a>
+        <a href="#persona">Persona &amp; Journey</a>
+        <a href="#req">Requirements &amp; MoSCoW</a>
+        <a href="#ia">จัดหมวดเนื้อหา (IA)</a>
+        <a href="#ux">หลัก UX</a>
+        <a href="#eye">ลำดับสายตา</a>
+        <a href="#layout">Layout &amp; Grid</a>
+        <a href="#resp">Responsive</a>
+        <a href="#color">สี</a>
+        <a href="#type">ตัวอักษร</a>
+        <a href="#media">ภาพ &amp; ไอคอน</a>
+        <a href="#a11y">Accessibility</a>
+        <a href="#wf">Wireframe → Mockup</a>
+        <a href="#lab">ใบงาน Day 2</a>
+        <a href="#quiz">แบบทดสอบ</a>
+        <a href="#sum">สรุป</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+      <section class="sec" id="plan">
+        <div class="sec-head"><span class="sec-num">00</span><div><h2>ตารางเรียน &amp; เป้าหมายวันที่ 2</h2><p>หน่วยที่ 2–3 (เทียบเท่าสัปดาห์ที่ 4–7)</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl sched">
+            <thead><tr><th>เวลา</th><th>หัวข้อ</th><th>รูปแบบ</th></tr></thead>
+            <tbody>
+              <tr><td>09:00–09:30</td><td>ทบทวน Day 1 · เป้าหมาย SMART · กลุ่มผู้ใช้</td><td><span class="k lec">บรรยาย</span></td></tr>
+              <tr><td>09:30–10:30</td><td>เก็บความต้องการ: สัมภาษณ์ แบบสอบถาม คู่แข่ง · ทำแบบสอบถามจริง</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>10:30–11:15</td><td>Persona · User Journey · Requirements (MoSCoW)</td><td><span class="k lab">งานกลุ่ม</span></td></tr>
+              <tr><td>11:15–12:00</td><td>Information Architecture · Card sorting · Sitemap</td><td><span class="k demo">แอนิเมชัน</span> <span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr class="brk"><td colspan="3">12:00–13:00 พักกลางวัน</td></tr>
+              <tr><td>13:00–13:45</td><td>หลัก UX · กฎทางจิตวิทยา · ลำดับสายตา F/Z</td><td><span class="k lec">บรรยาย</span> <span class="k demo">แอนิเมชัน</span></td></tr>
+              <tr><td>13:45–14:30</td><td>Layout · Grid · Spacing · Gestalt · Responsive</td><td><span class="k demo">สาธิต</span></td></tr>
+              <tr><td>14:30–15:00</td><td>สี (คอนทราสต์ WCAG) · ตัวอักษรไทย · ภาพ/ไอคอน · Accessibility</td><td><span class="k lab">เครื่องมือ</span></td></tr>
+              <tr><td>15:00–16:15</td><td>Wireframe → Mockup → Prototype ใน Figma</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>16:15–16:30</td><td>นำเสนอ Sitemap/Mockup ทีมละ 2 นาที · แบบทดสอบ</td><td><span class="k quiz">ทดสอบ</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ol class="objectives">
+          <li>กำหนดเป้าหมายเว็บไซต์แบบ SMART และระบุกลุ่มผู้ใช้ได้</li>
+          <li>เลือกวิธีเก็บความต้องการ และสร้าง Persona, User Journey, Requirements (MoSCoW) ได้</li>
+          <li>จัดหมวดหมู่เนื้อหาด้วย Card sorting และเขียน Sitemap ได้</li>
+          <li>ประยุกต์หลัก UX, ลำดับสายตา, Grid, สี, ตัวอักษร และ Accessibility ในการออกแบบได้</li>
+          <li>สร้าง Wireframe และ Mockup ที่รองรับมือถือ (Responsive) ด้วย Figma ได้</li>
+        </ol>
+      </section>
+
+      <div class="part-label">ภาคเช้า · วิเคราะห์ความต้องการผู้ใช้ (หน่วยที่ 2)</div>
+
+      <section class="sec" id="goal">
+        <div class="sec-head"><span class="sec-num">01</span><div><h2>เป้าหมายเว็บไซต์ &amp; กลุ่มผู้ใช้</h2><p>ตอบให้ได้ก่อนวาดอะไรทั้งนั้น: “ทำไปเพื่ออะไร” และ “ทำให้ใคร”</p></div></div>
+        <div class="g2">
+          <div class="panel" style="margin:0">
+            <h3><i data-i="target"></i>เป้าหมายแบบ SMART</h3>
+            <ul class="clean">
+              <li><b>S</b>pecific ชัดเจน — “ให้ ม.3 รู้จักสาขา IT” ไม่ใช่ “ทำเว็บให้ดี”</li>
+              <li><b>M</b>easurable วัดได้ — “มีผู้กดปุ่มสมัคร 50 คน/เดือน”</li>
+              <li><b>A</b>chievable ทำได้จริงในเวลา/ทรัพยากรที่มี</li>
+              <li><b>R</b>elevant สอดคล้องกับงานขององค์กร</li>
+              <li><b>T</b>ime-bound มีกำหนดเวลา — “ภายในเดือนมีนาคม”</li>
+            </ul>
+          </div>
+          <div class="panel" style="margin:0">
+            <h3><i data-i="users"></i>วิเคราะห์กลุ่มผู้ใช้</h3>
+            <ul class="clean">
+              <li><b>ใคร:</b> อายุ อาชีพ ความรู้ด้านเทคโนโลยี</li>
+              <li><b>ใช้อุปกรณ์อะไร:</b> มือถือ/คอม · เน็ตเร็วแค่ไหน</li>
+              <li><b>มาเพื่ออะไร:</b> หาข้อมูล ซื้อของ ติดต่อ สมัคร</li>
+              <li><b>ปัญหา/ความกังวล:</b> อะไรทำให้เขาออกจากเว็บ</li>
+              <li><b>กลุ่มหลัก vs กลุ่มรอง:</b> ออกแบบเพื่อกลุ่มหลักก่อน</li>
+            </ul>
+          </div>
+        </div>
+        <div class="nug tech"><p>เว็บไซต์ในไทยส่วนใหญ่มีผู้เข้าชมจาก <b>มือถือมากกว่าคอมพิวเตอร์</b> — ถ้ายังไม่มีข้อมูลจริง ให้สมมติว่าผู้ใช้หลักใช้มือถือไว้ก่อน แล้วยืนยันภายหลังด้วยสถิติ (Google Analytics, Day 5)</p></div>
+      </section>
+
+      <section class="sec" id="research">
+        <div class="sec-head"><span class="sec-num">02</span><div><h2>วิธีเก็บความต้องการ (User Research)</h2><p>“อย่าเดา — ไปถาม ไปดู ไปวัด”</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>วิธี</th><th>ได้ข้อมูลแบบไหน</th><th>จุดแข็ง</th><th>ข้อควรระวัง</th></tr></thead>
+            <tbody>
+              <tr><td><b>สัมภาษณ์</b> (Interview)</td><td>เชิงลึก “ทำไม”</td><td>เข้าใจเหตุผล ความรู้สึก</td><td>ใช้เวลา ห้ามถามชี้นำ</td></tr>
+              <tr><td><b>แบบสอบถาม</b> (Google Forms)</td><td>เชิงปริมาณ “กี่คน”</td><td>ได้คนจำนวนมาก วิเคราะห์เป็นกราฟ</td><td>คำถามต้องชัด ไม่ยาวเกิน 5 นาที</td></tr>
+              <tr><td><b>สังเกต</b> (Observation)</td><td>พฤติกรรมจริง</td><td>เห็นสิ่งที่ผู้ใช้ไม่ได้พูด</td><td>ผู้ถูกสังเกตอาจทำตัวไม่เป็นธรรมชาติ</td></tr>
+              <tr><td><b>วิเคราะห์คู่แข่ง</b> (Competitive analysis)</td><td>สิ่งที่ตลาดมีอยู่แล้ว</td><td>เร็ว เห็นตัวอย่างดี/ไม่ดี</td><td>อย่าลอกแบบ ให้หาโอกาสที่ต่าง</td></tr>
+              <tr><td><b>ข้อมูลเดิม/สถิติ</b></td><td>สิ่งที่เกิดขึ้นจริง</td><td>แม่นยำ</td><td>ต้องมีเว็บเดิมหรือข้อมูลอยู่แล้ว</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="g2">
+          <div class="mini c-pink"><h4>✗ คำถามที่ไม่ดี</h4><ul class="clean"><li>“คุณชอบเว็บสวย ๆ ใช่ไหม?” (ชี้นำ ตอบใช่แน่นอน)</li><li>“จะใช้ฟีเจอร์แชตไหม?” (คนเดาอนาคตไม่เก่ง)</li><li>“คิดว่าเว็บควรมีสีอะไร?” (ผู้ใช้ไม่ใช่นักออกแบบ)</li></ul></div>
+          <div class="mini c-teal"><h4>✓ คำถามที่ดี</h4><ul class="clean"><li>“ครั้งล่าสุดที่หาข้อมูลเรื่องเรียนต่อ ทำอย่างไร?” (เล่าจากประสบการณ์)</li><li>“ตอนนั้นติดขัดตรงไหน?”</li><li>“ถ้ามีเวลา 1 นาทีในเว็บนี้ อยากรู้อะไรเป็นอย่างแรก?”</li></ul></div>
+        </div>
+        <div class="nugs">
+          <div class="nug fun"><p>งานวิจัยของ Jakob Nielsen พบว่า <b>ทดสอบกับผู้ใช้แค่ 5 คน</b> ก็พบปัญหาการใช้งานได้ราว 85% — ไม่ต้องรอคนเป็นร้อยก็เริ่มปรับปรุงได้</p></div>
+          <div class="nug tech"><p>ใน Google Forms ใช้คำถามแบบ <b>สเกล 1–5</b> สำหรับความพึงพอใจ และ <b>ช่องเลือกหลายข้อ</b> สำหรับ “อยากเห็นอะไรในเว็บ” แล้วดูแท็บ “คำตอบ” จะได้กราฟสรุปทันที</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="flow">
+        <div class="sec-head"><span class="sec-num">03</span><div><h2>จากข้อมูลดิบ → Requirements</h2><p>เส้นทางของงานวิเคราะห์ ทีละชิ้นงาน</p></div></div>
+        <figure class="anim" id="anim-rp" data-ms="4000">
+          <div class="anim-title"><i data-i="users"></i>Research → Persona → Journey → Requirements<span class="chip">6 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <polyline points="12,28 50,28 88,28 88,72 50,72 12,72" class="dash"/>
+            </svg>
+            <div class="actor c-blue" style="left:12%;top:28%" data-hl="1"><span class="ab"><i data-i="users"></i></span><span class="lb">ผู้ใช้จริง</span></div>
+            <div class="actor c-teal pop" style="left:50%;top:28%" data-in="2" data-hl="2"><span class="ab"><i data-i="clipboard"></i></span><span class="lb">เก็บข้อมูล</span></div>
+            <div class="actor c-amber pop" style="left:88%;top:28%" data-in="3" data-hl="3"><span class="ab"><i data-i="bulb"></i></span><span class="lb">Insight</span></div>
+            <div class="actor c-pink pop" style="left:88%;top:72%" data-in="4" data-hl="4"><span class="ab"><i data-i="user"></i></span><span class="lb">Persona</span></div>
+            <div class="actor c-purple pop" style="left:50%;top:72%" data-in="5" data-hl="5"><span class="ab"><i data-i="map"></i></span><span class="lb">User Journey</span></div>
+            <div class="actor c-green pop" style="left:12%;top:72%" data-in="6" data-hl="6"><span class="ab"><i data-i="list"></i></span><span class="lb">Requirements</span></div>
+            <div class="flyer" style="--x1:12%;--y1:28%;--x2:50%;--y2:28%;--c:var(--teal)" data-only="2">สัมภาษณ์ 5 · แบบสอบถาม 30</div>
+            <div class="flyer" style="--x1:50%;--y1:28%;--x2:88%;--y2:28%;--c:var(--amber)" data-only="3">สรุปผล</div>
+            <div class="flyer" style="--x1:88%;--y1:28%;--x2:88%;--y2:72%;--c:var(--pink)" data-only="4">สร้างตัวแทน</div>
+            <div class="flyer" style="--x1:88%;--y1:72%;--x2:50%;--y2:72%;--c:var(--purple)" data-only="5">เส้นทางการใช้</div>
+            <div class="flyer" style="--x1:50%;--y1:72%;--x2:12%;--y2:72%;--c:var(--green)" data-only="6">สิ่งที่ต้องมี</div>
+            <div class="bubble wrap pop" style="left:50%;top:50%" data-only="1">👥 นักเรียน ม.3 · ผู้ปกครอง · ครูแนะแนว</div>
+            <div class="bubble wrap pop" style="left:50%;top:50%" data-only="2">🎤 “ตอนเลือกที่เรียนต่อ หาข้อมูลจากไหน?”</div>
+            <div class="bubble wrap pop" style="left:50%;top:50%" data-only="3">💡 80% ใช้มือถือ · อยากรู้ “จบแล้วทำงานอะไร” มากที่สุด</div>
+            <div class="bubble wrap pop" style="left:50%;top:50%" data-only="4">🙋‍♀️ “น้องมายด์” ม.3 อายุ 15 ใช้ TikTok ทุกวัน ลังเลระหว่าง ม.4 กับ ปวช.</div>
+            <div class="bubble wrap pop" style="left:50%;top:50%" data-only="5">🗺️ เห็นคลิป → เข้าเว็บ → ดูผลงานรุ่นพี่ → ดูค่าเทอม → กดสมัคร</div>
+            <div class="bubble wrap pop" style="left:50%;top:50%" data-only="6">✅ Must: หน้าอาชีพ/ผลงาน · ปุ่มสมัครเห็นชัด · โหลดเร็วบนมือถือ</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>ระบุผู้ใช้จริง</b> ทั้งกลุ่มหลักและกลุ่มรอง</li>
+            <li><b>เก็บข้อมูล</b> ด้วยหลายวิธีผสมกัน (เชิงลึก + เชิงปริมาณ)</li>
+            <li><b>สรุป Insight</b> — ข้อค้นพบสำคัญที่มีหลักฐาน ไม่ใช่ความคิดเห็นของทีม</li>
+            <li><b>สร้าง Persona</b> — ตัวแทนผู้ใช้สมมติที่สร้างจากข้อมูลจริง ใช้ตัดสินใจในทีม (“น้องมายด์จะเข้าใจไหม?”)</li>
+            <li><b>วาด User Journey</b> — ขั้นตอนที่ผู้ใช้ทำตั้งแต่รู้จักจนบรรลุเป้าหมาย พร้อมจุดที่ติดขัด</li>
+            <li><b>เขียน Requirements</b> — รายการสิ่งที่เว็บ “ต้องมี/ควรมี” เรียงตามความสำคัญ</li>
+          </ol>
+        </figure>
+      </section>
+
+      <section class="sec" id="persona">
+        <div class="sec-head"><span class="sec-num">04</span><div><h2>Persona &amp; User Journey</h2><p>ตัวอย่างจากโครงงาน “เว็บแผนกวิชาเทคโนโลยีสารสนเทศ”</p></div></div>
+        <div class="g2">
+          <div class="panel" style="margin:0">
+            <h3><i data-i="user"></i>Persona: น้องมายด์ (15 ปี)</h3>
+            <ul class="clean">
+              <li><b>สถานะ:</b> นักเรียน ม.3 ชอบเล่นเกมและตัดต่อคลิป</li>
+              <li><b>อุปกรณ์:</b> มือถือ Android จอ 6.5" เน็ตมือถือ</li>
+              <li><b>เป้าหมาย:</b> อยากรู้ว่าเรียน IT แล้วทำงานอะไรได้ เงินเดือนเท่าไร</li>
+              <li><b>ความกังวล:</b> กลัวเรียนไม่ไหว · พ่อแม่อยากให้เรียนสายสามัญ</li>
+              <li><b>พฤติกรรม:</b> ไม่อ่านข้อความยาว ชอบดูภาพ/คลิปสั้น</li>
+              <li><b>คำพูดติดปาก:</b> “ขอดูผลงานรุ่นพี่หน่อย”</li>
+            </ul>
+          </div>
+          <div class="panel" style="margin:0">
+            <h3><i data-i="map"></i>User Journey</h3>
+            <div class="tbl-wrap" style="margin:0"><table class="tbl" style="min-width:0">
+              <thead><tr><th>ขั้น</th><th>ทำอะไร</th><th>โอกาสของเว็บ</th></tr></thead>
+              <tbody>
+                <tr><td>รู้จัก</td><td>เห็นคลิปใน TikTok</td><td>ลิงก์ตรงไปหน้าผลงาน</td></tr>
+                <tr><td>สำรวจ</td><td>ดูผลงานรุ่นพี่</td><td>แกลเลอรีภาพ/วิดีโอ</td></tr>
+                <tr><td>เปรียบเทียบ</td><td>ดูค่าเทอม อาชีพ</td><td>ตารางเทียบชัดเจน</td></tr>
+                <tr><td>ตัดสินใจ</td><td>ปรึกษาผู้ปกครอง</td><td>ปุ่มแชร์ไป LINE</td></tr>
+                <tr><td>ลงมือ</td><td>สมัครเรียน</td><td>ปุ่ม CTA เห็นทุกหน้า</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+        </div>
+        <div class="nug oops"><p>Persona ที่ “แต่งเอาเอง” โดยไม่มีข้อมูลรองรับ = ความคิดของทีมที่สวมหน้ากากผู้ใช้ ทุกข้อใน Persona ควรอ้างอิงได้ว่ามาจากการสัมภาษณ์/แบบสอบถามข้อไหน</p></div>
+      </section>
+
+      <section class="sec" id="req">
+        <div class="sec-head"><span class="sec-num">05</span><div><h2>Requirements &amp; การจัดลำดับแบบ MoSCoW</h2><p>เวลาจำกัด 5 วัน — ต้องรู้ว่าอะไร “ต้องมี” อะไร “ไว้ทีหลัง”</p></div></div>
+        <div class="g2">
+          <div class="mini c-blue"><h4>Functional — เว็บต้อง “ทำอะไรได้”</h4><ul class="clean"><li>แสดงหลักสูตรและค่าเทอม</li><li>ฟอร์มสอบถามข้อมูล</li><li>แกลเลอรีผลงาน</li></ul></div>
+          <div class="mini c-purple"><h4>Non-functional — “ทำได้ดีแค่ไหน”</h4><ul class="clean"><li>โหลดเสร็จภายใน 3 วินาทีบน 4G</li><li>แสดงผลดีบนจอ 360px ขึ้นไป</li><li>ใช้ HTTPS · คอนทราสต์ผ่าน WCAG AA</li></ul></div>
+        </div>
+        <div class="tbl-wrap" style="margin-top:16px">
+          <table class="tbl">
+            <thead><tr><th>ระดับ</th><th>ความหมาย</th><th>ตัวอย่าง</th></tr></thead>
+            <tbody>
+              <tr class="hl"><td><b>M</b>ust have</td><td>ไม่มี = เว็บล้มเหลว</td><td>หน้าหลักสูตร · ปุ่มสมัคร · Responsive · HTTPS</td></tr>
+              <tr><td><b>S</b>hould have</td><td>สำคัญ แต่ไม่มีก็ยังใช้ได้</td><td>แกลเลอรีผลงาน · ฟอร์มติดต่อ</td></tr>
+              <tr><td><b>C</b>ould have</td><td>มีก็ดี ถ้าเวลาเหลือ</td><td>โหมดมืด · แอนิเมชัน</td></tr>
+              <tr><td><b>W</b>on't have (this time)</td><td>ไม่ทำในรอบนี้ (จดไว้รอบหน้า)</td><td>ระบบสมัครออนไลน์พร้อมชำระเงิน</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="nug tech"><p>เขียน Requirement ในรูป <b>User Story</b>: “ในฐานะ <i>[ผู้ใช้]</i> ฉันต้องการ <i>[ทำสิ่งนี้]</i> เพื่อ <i>[ประโยชน์]</i>” เช่น “ในฐานะผู้ปกครอง ฉันต้องการเห็นค่าใช้จ่ายทั้งหมด เพื่อวางแผนการเงิน” — ทำให้ทีมไม่ลืมว่าทำเพื่อใคร</p></div>
+      </section>
+
+      <section class="sec" id="ia">
+        <div class="sec-head"><span class="sec-num">06</span><div><h2>จัดหมวดเนื้อหา: Information Architecture</h2><p>Card sorting — ให้ผู้ใช้เป็นคนจัดกลุ่ม แล้วกลุ่มจะกลายเป็นเมนู</p></div></div>
+        <figure class="anim" id="anim-cs" data-ms="4500">
+          <div class="anim-title"><i data-i="sitemap"></i>Card Sorting → เมนู → Sitemap<span class="chip">3 ขั้น</span></div>
+          <div class="stage cs-stage">
+            <div class="cs-nav pop" data-in="3"><b>IT Dept.</b><span>เกี่ยวกับเรา</span><span>หลักสูตร</span><span>ผลงาน &amp; ข่าว</span><span>ติดต่อ</span></div>
+            <span class="cs-head pop" style="left:14%;top:28%;background:#f97316" data-in="3">เกี่ยวกับเรา</span>
+            <span class="cs-head pop" style="left:38%;top:28%;background:#ec4899" data-in="3">หลักสูตร</span>
+            <span class="cs-head pop" style="left:62%;top:28%;background:#a855f7" data-in="3">ผลงาน &amp; ข่าว</span>
+            <span class="cs-head pop" style="left:86%;top:28%;background:#0d9488" data-in="3">ติดต่อ</span>
+            <span class="cs cg1" style="--x0:20%;--y0:30%;--r:-6deg;--x1:14%;--y1:44%">ประวัติแผนก</span>
+            <span class="cs cg1" style="--x0:70%;--y0:82%;--r:4deg;--x1:14%;--y1:60%">วิสัยทัศน์</span>
+            <span class="cs cg1" style="--x0:45%;--y0:62%;--r:-3deg;--x1:14%;--y1:76%">บุคลากร</span>
+            <span class="cs cg2" style="--x0:82%;--y0:36%;--r:5deg;--x1:38%;--y1:44%">ปวช.</span>
+            <span class="cs cg2" style="--x0:12%;--y0:76%;--r:-4deg;--x1:38%;--y1:60%">ปวส.</span>
+            <span class="cs cg2" style="--x0:58%;--y0:42%;--r:3deg;--x1:38%;--y1:76%">ค่าเทอม/ทุน</span>
+            <span class="cs cg3" style="--x0:33%;--y0:88%;--r:2deg;--x1:62%;--y1:44%">ข่าวประชาสัมพันธ์</span>
+            <span class="cs cg3" style="--x0:88%;--y0:62%;--r:-5deg;--x1:62%;--y1:60%">ผลงานนักเรียน</span>
+            <span class="cs cg3" style="--x0:27%;--y0:50%;--r:6deg;--x1:62%;--y1:76%">กิจกรรม</span>
+            <span class="cs cg4" style="--x0:64%;--y0:24%;--r:-2deg;--x1:86%;--y1:44%">แผนที่</span>
+            <span class="cs cg4" style="--x0:50%;--y0:86%;--r:5deg;--x1:86%;--y1:60%">เบอร์โทร</span>
+            <span class="cs cg4" style="--x0:8%;--y0:42%;--r:-3deg;--x1:86%;--y1:76%">Facebook</span>
+          </div>
+          <ol class="anim-steps">
+            <li><b>Content inventory</b> — รวบรวมเนื้อหาทั้งหมดที่ต้องมีเขียนลงบัตร 1 เรื่อง/1 ใบ (ยังกระจัดกระจาย)</li>
+            <li><b>Card sorting</b> — ให้ผู้ใช้จริงจัดบัตรที่ “คิดว่าอยู่ด้วยกัน” เป็นกลุ่ม (แบบเปิด: ให้ผู้ใช้ตั้งชื่อกลุ่มเอง)</li>
+            <li><b>ตั้งชื่อกลุ่ม → เมนูหลัก</b> ใช้คำที่ผู้ใช้เข้าใจ (ไม่ใช่ศัพท์ภายในองค์กร) แล้วนำไปเขียน Sitemap</li>
+          </ol>
+        </figure>
+        <div class="nugs">
+          <div class="nug tech"><p><b>ชื่อเมนูที่ดี</b> สั้น (1–3 คำ) เป็นคำที่ผู้ใช้ใช้เอง และ “คาดเดาได้ว่ากดแล้วเจออะไร” — “ติดต่อเรา” ดีกว่า “ช่องทางการสื่อสารองค์กร”</p></div>
+          <div class="nug pro"><p>ทำ Card sorting ออนไลน์ได้ด้วย <b>FigJam</b> หรือ <b>Miro</b> (ลากบัตรได้) · เขียน Sitemap ด้วย <b>draw.io</b> (ฟรี) หรือ FigJam</p></div>
+        </div>
+      </section>
+
+      <div class="part-label">ภาคบ่าย · ออกแบบส่วนติดต่อผู้ใช้ (หน่วยที่ 3)</div>
+
+      <section class="sec" id="ux">
+        <div class="sec-head"><span class="sec-num">07</span><div><h2>หลัก UX: ทำไมบางเว็บ “ใช้ง่าย”</h2><p>UX (User Experience) = ประสบการณ์ทั้งหมด · UI (User Interface) = สิ่งที่มองเห็นและกดได้</p></div></div>
+        <div class="g2">
+          <div class="mini c-blue"><span class="ic-wrap"><i data-i="star"></i></span><h4>Jakob's Law — ทำให้คุ้นเคย</h4><p>ผู้ใช้ใช้เวลาส่วนใหญ่กับ “เว็บอื่น” จึงคาดหวังให้เว็บเราทำงานเหมือนกัน: โลโก้ซ้ายบนกดกลับหน้าแรก · เมนูอยู่บน · ตะกร้า/ค้นหาขวาบน</p></div>
+          <div class="mini c-pink"><span class="ic-wrap"><i data-i="hand"></i></span><h4>Fitts's Law — ปุ่มใหญ่ใกล้มือ</h4><p>เป้าหมายยิ่งใหญ่และใกล้ ยิ่งกดได้เร็ว · ปุ่มบนมือถือควรสูง <b>อย่างน้อย 44–48px</b> และมีระยะห่างกัน · ปุ่มสำคัญไว้ในระยะนิ้วโป้ง</p></div>
+          <div class="mini c-purple"><span class="ic-wrap"><i data-i="list"></i></span><h4>Hick's Law — ตัวเลือกน้อย ตัดสินใจเร็ว</h4><p>ยิ่งมีตัวเลือกมาก ยิ่งใช้เวลาตัดสินใจนาน · เมนูหลัก <b>5–7 รายการ</b> · ปุ่ม CTA หลักหน้าละ 1 ปุ่ม</p></div>
+          <div class="mini c-teal"><span class="ic-wrap"><i data-i="bulb"></i></span><h4>Miller's Law — จัดกลุ่มข้อมูล</h4><p>คนจำข้อมูลระยะสั้นได้ราว <b>7±2 ชิ้น</b> · แบ่งข้อมูลยาวเป็นกลุ่ม เช่น เบอร์โทร 081-234-5678 อ่านง่ายกว่า 0812345678</p></div>
+        </div>
+        <h3 style="margin-top:22px">10 หลักการใช้งาน (Nielsen's Heuristics) แบบย่อ</h3>
+        <div class="cheat">
+          <div><code>1 บอกสถานะเสมอ</code><span>กำลังโหลด · ส่งแล้ว · อยู่หน้าไหน</span></div>
+          <div><code>2 ใช้ภาษาผู้ใช้</code><span>ไม่ใช้ศัพท์เทคนิค/ภายใน</span></div>
+          <div><code>3 ย้อนกลับ/ยกเลิกได้</code><span>ปุ่มยกเลิก · Undo</span></div>
+          <div><code>4 สม่ำเสมอ</code><span>ปุ่มเหมือนกันทำงานเหมือนกันทุกหน้า</span></div>
+          <div><code>5 ป้องกันความผิดพลาด</code><span>บังคับรูปแบบ ถามยืนยันก่อนลบ</span></div>
+          <div><code>6 ให้เห็น ไม่ต้องจำ</code><span>แสดงตัวเลือก ไม่บังคับให้จำ</span></div>
+          <div><code>7 ยืดหยุ่น</code><span>มือใหม่ใช้ได้ มือโปรมีทางลัด</span></div>
+          <div><code>8 เรียบง่าย</code><span>ตัดสิ่งไม่จำเป็นออก</span></div>
+          <div><code>9 ข้อความ error ช่วยแก้</code><span>“อีเมลขาด @” ดีกว่า “ข้อมูลผิด”</span></div>
+          <div><code>10 มีความช่วยเหลือ</code><span>FAQ · คำแนะนำสั้น ๆ</span></div>
+        </div>
+        <div class="nug fun"><p><b>Aesthetic-Usability Effect:</b> คนมักรู้สึกว่าเว็บที่สวย “ใช้ง่ายกว่า” แม้จะใช้ยากเท่ากัน — ความสวยจึงไม่ใช่เรื่องรอง แต่ห้ามสวยจนบดบังการใช้งาน</p></div>
+      </section>
+
+      <section class="sec" id="eye">
+        <div class="sec-head"><span class="sec-num">08</span><div><h2>ลำดับสายตา: รูปแบบ Z, F และ Visual Hierarchy</h2><p>คนไม่ได้อ่านเว็บทุกตัวอักษร — “กวาดตา” ตามรูปแบบที่คาดเดาได้</p></div></div>
+        <figure class="anim" id="anim-eye" data-ms="5000">
+          <div class="anim-title"><i data-i="eye"></i>สายตาผู้ใช้เดินทางอย่างไร<span class="chip">3 ขั้น</span></div>
+          <div class="stage">
+            <div class="eye-mock" data-only="1,3">
+              <i style="left:4%;top:5%;width:12%;height:8%;background:#a855f7"></i>
+              <i style="left:60%;top:7%;width:10%;height:4%"></i><i style="left:72%;top:7%;width:10%;height:4%"></i><i style="left:84%;top:7%;width:10%;height:4%"></i>
+              <i style="left:6%;top:22%;width:46%;height:9%;background:#1f1530"></i>
+              <i style="left:6%;top:35%;width:40%;height:3%"></i><i style="left:6%;top:41%;width:34%;height:3%"></i>
+              <i style="left:58%;top:20%;width:36%;height:34%;background:linear-gradient(135deg,#fdba74,#f472b6,#c084fc)"></i>
+              <i style="left:6%;top:64%;width:30%;height:3%"></i><i style="left:6%;top:70%;width:26%;height:3%"></i>
+              <i style="left:66%;top:64%;width:26%;height:10%;background:linear-gradient(90deg,#f97316,#ec4899)"></i>
+              <i style="left:6%;top:84%;width:27%;height:10%"></i><i style="left:36%;top:84%;width:27%;height:10%"></i><i style="left:66%;top:84%;width:27%;height:10%"></i>
+            </div>
+            <div class="eye-mock" data-only="2">
+              <i style="left:0;top:0;width:100%;height:9%;background:#1f1530;border-radius:0"></i>
+              <i style="left:5%;top:14%;width:60%;height:5%;background:#6d28d9"></i>
+              <i style="left:5%;top:22%;width:88%;height:2.5%"></i><i style="left:5%;top:27%;width:84%;height:2.5%"></i><i style="left:5%;top:32%;width:60%;height:2.5%"></i>
+              <i style="left:5%;top:41%;width:44%;height:5%;background:#6d28d9"></i>
+              <i style="left:5%;top:49%;width:88%;height:2.5%"></i><i style="left:5%;top:54%;width:50%;height:2.5%"></i><i style="left:5%;top:59%;width:40%;height:2.5%"></i>
+              <i style="left:5%;top:68%;width:44%;height:5%;background:#6d28d9"></i>
+              <i style="left:5%;top:76%;width:70%;height:2.5%"></i><i style="left:5%;top:81%;width:30%;height:2.5%"></i><i style="left:5%;top:86%;width:55%;height:2.5%"></i>
+            </div>
+            <svg class="eye-svg" data-only="1" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 9 L88 9 L12 67 L79 69"/></svg>
+            <svg class="eye-svg" data-only="2" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M5 16 H92 M5 44 H70 M5 16 V95"/></svg>
+            <span class="eye-dot pop" style="left:36.6%;top:28.9%" data-only="3">1</span>
+            <span class="eye-dot pop" style="left:68.6%;top:66.7%" data-only="3">2</span>
+            <span class="eye-dot pop" style="left:66.6%;top:38.6%" data-only="3">3</span>
+            <span class="eye-dot pop" style="left:24.4%;top:13.9%" data-only="3">4</span>
+          </div>
+          <ol class="anim-steps">
+            <li><b>Z-pattern</b> — หน้าที่มีข้อความน้อย (หน้าแรก, Landing page): ตามองซ้ายบน (โลโก้) → ขวาบน (เมนู) → ทแยงลงซ้าย → ขวาล่าง · <u>วางปุ่ม CTA ที่ปลายตัว Z</u></li>
+            <li><b>F-pattern</b> — หน้าข้อความเยอะ (บทความ ข่าว): อ่านแถวบนเต็ม → แถวถัดมาสั้นลง → ไล่ลงมาตามขอบซ้าย · <u>ขึ้นต้นหัวข้อ/ย่อหน้าด้วยคำสำคัญ</u></li>
+            <li><b>Visual Hierarchy</b> — ใช้ <b>ขนาด สี คอนทราสต์ ตำแหน่ง ช่องว่าง</b> กำหนดว่าตาจะเห็นอะไรก่อน: ① หัวข้อใหญ่ ② ปุ่มสีสด ③ ภาพ ④ โลโก้</li>
+          </ol>
+        </figure>
+        <div class="nugs">
+          <div class="nug tech"><p><b>Squint test (ทดสอบหรี่ตา):</b> หรี่ตามองดีไซน์ของเราจนภาพเบลอ — สิ่งที่ยังเห็นชัดคือสิ่งที่ผู้ใช้จะเห็นก่อน ถ้าไม่ใช่สิ่งสำคัญ แปลว่าลำดับผิด</p></div>
+          <div class="nug deep"><p><b>Above the fold</b> = ส่วนที่เห็นได้ทันทีโดยไม่ต้องเลื่อน ควรบอกให้ได้ภายใน 5 วินาทีว่า “เว็บนี้คืออะไร ทำอะไรได้ ต้องกดตรงไหนต่อ”</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="layout">
+        <div class="sec-head"><span class="sec-num">09</span><div><h2>Layout · Grid · Spacing · Gestalt</h2><p>การจัดวางองค์ประกอบที่ทำให้หน้าเว็บดู “เป็นระเบียบ” อย่างมีเหตุผล</p></div></div>
+        <div class="g2">
+          <div class="panel" style="margin:0">
+            <h3><i data-i="layout"></i>ระบบกริด 12 คอลัมน์</h3>
+            <p>แบ่งความกว้างเป็น 12 ส่วน เพราะ 12 หารได้ด้วย 1, 2, 3, 4, 6 → จัด 2, 3, 4 คอลัมน์ได้ลงตัว (Bootstrap ใช้ระบบนี้)</p>
+            <div class="grid-live" style="grid-template-columns:repeat(12,1fr);gap:4px;padding:8px">
+              <div style="grid-column:span 12;padding:8px">12</div>
+              <div style="grid-column:span 8;padding:8px">8</div><div style="grid-column:span 4;padding:8px">4</div>
+              <div style="grid-column:span 4;padding:8px">4</div><div style="grid-column:span 4;padding:8px">4</div><div style="grid-column:span 4;padding:8px">4</div>
+              <div style="grid-column:span 3;padding:8px">3</div><div style="grid-column:span 3;padding:8px">3</div><div style="grid-column:span 3;padding:8px">3</div><div style="grid-column:span 3;padding:8px">3</div>
+            </div>
+          </div>
+          <div class="panel" style="margin:0">
+            <h3><i data-i="box"></i>ระบบระยะห่าง 8-point</h3>
+            <p>ใช้ระยะห่างเป็นทวีคูณของ 8: <code>4 · 8 · 16 · 24 · 32 · 48 · 64</code> px ทำให้ทุกหน้าดูสม่ำเสมอ ตัดสินใจเร็ว และหารลงตัวกับจอทุกขนาด</p>
+            <p><b>Whitespace</b> (ช่องว่าง) ไม่ใช่ที่ว่างเปล่า แต่ช่วย “แบ่งกลุ่ม” และ “ให้ตาได้พัก” — มือใหม่มักใส่ช่องว่างน้อยเกินไป</p>
+          </div>
+        </div>
+        <h3 style="margin-top:22px">หลัก C.R.A.P. (จาก Gestalt)</h3>
+        <div class="g4">
+          <div class="mini c-orange"><h4>Contrast</h4><p>สิ่งที่ต่างกัน ให้ต่างกันชัด ๆ (ขนาด สี น้ำหนัก) ไม่ใช่ต่างนิดเดียว</p></div>
+          <div class="mini c-pink"><h4>Repetition</h4><p>ใช้สี ฟอนต์ ปุ่ม รูปแบบเดิมซ้ำทั้งเว็บ → ดูเป็นชุดเดียวกัน</p></div>
+          <div class="mini c-purple"><h4>Alignment</h4><p>ทุกองค์ประกอบต้องเรียงตรงกับอะไรสักอย่าง ห้ามวางลอย ๆ</p></div>
+          <div class="mini c-teal"><h4>Proximity</h4><p>สิ่งที่เกี่ยวข้องกันอยู่ใกล้กัน สิ่งที่ไม่เกี่ยวห่างกัน</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="resp">
+        <div class="sec-head"><span class="sec-num">10</span><div><h2>ส่วนประกอบหน้าเว็บ &amp; Responsive Design</h2><p>บล็อกมาตรฐานของหน้าเว็บ และการจัดใหม่เมื่อจอแคบลง</p></div></div>
+        <figure class="anim" id="anim-layout" data-ms="3600">
+          <div class="anim-title"><i data-i="layout"></i>ประกอบหน้าเว็บทีละส่วน → มือถือ<span class="chip">7 ขั้น</span></div>
+          <div class="stage lay-stage">
+            <div class="lay-frame">
+              <div class="lay-bar"><i></i><i></i><i></i></div>
+              <div class="lay-in">
+                <div class="blk b-header pop" data-in="1" data-hl="1">HEADER · โลโก้ + ชื่อเว็บ</div>
+                <div class="blk b-nav pop" data-in="2" data-hl="2">NAV · หน้าแรก | เกี่ยวกับ | ข่าว | ติดต่อ</div>
+                <div class="blk b-hero pop" data-in="3" data-hl="3">HERO · ข้อความหลัก + ปุ่ม CTA</div>
+                <div class="blk b-main pop" data-in="4" data-hl="4">MAIN CONTENT</div>
+                <div class="blk b-side pop" data-in="5" data-hl="5">SIDEBAR</div>
+                <div class="blk b-foot pop" data-in="6" data-hl="6">FOOTER · ที่อยู่ ลิขสิทธิ์</div>
+              </div>
+            </div>
+            <div class="bubble ok pop" style="left:50%;top:94%" data-only="7">📱 จอแคบ → เรียงเป็นคอลัมน์เดียว เมนูกลายเป็น ☰</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>Header</b> โลโก้ + ชื่อเว็บ (กดกลับหน้าแรกได้)</li>
+            <li><b>Navigation</b> เมนูหลัก 5–7 รายการ อยู่ที่เดิมทุกหน้า</li>
+            <li><b>Hero/Banner</b> ข้อความสำคัญที่สุด + ปุ่ม CTA (Call to Action)</li>
+            <li><b>Main content</b> เนื้อหาหลักที่ผู้ใช้ตั้งใจมาหา</li>
+            <li><b>Sidebar</b> ข้อมูลเสริม ลิงก์ด่วน (บนมือถือมักย้ายลงล่าง)</li>
+            <li><b>Footer</b> ติดต่อ แผนที่ โซเชียล ลิขสิทธิ์</li>
+            <li><b>Responsive</b> หน้าเดียวกันปรับการจัดวางตามความกว้างจอ ไม่ต้องทำเว็บมือถือแยก</li>
+          </ol>
+        </figure>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Breakpoint (นิยม)</th><th>อุปกรณ์</th><th>การจัดวางที่มักใช้</th></tr></thead>
+            <tbody>
+              <tr><td><code>&lt; 576px</code></td><td>มือถือแนวตั้ง</td><td>1 คอลัมน์ · เมนู ☰ · ปุ่มเต็มความกว้าง</td></tr>
+              <tr><td><code>≥ 768px</code></td><td>แท็บเล็ต</td><td>2 คอลัมน์</td></tr>
+              <tr><td><code>≥ 992px</code></td><td>แล็ปท็อป</td><td>3 คอลัมน์ + Sidebar · เมนูแนวนอน</td></tr>
+              <tr><td><code>≥ 1200px</code></td><td>จอใหญ่</td><td>จำกัดความกว้างเนื้อหา (max-width) ไม่ให้ยืดเกิน</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="nugs">
+          <div class="nug pro"><p><b>Mobile-first:</b> ออกแบบจอมือถือก่อน (บังคับให้เลือกแต่สิ่งสำคัญ) แล้วค่อยขยายเป็นจอใหญ่ — ง่ายกว่าย่อเว็บใหญ่ลงมา และ Google ใช้เวอร์ชันมือถือในการจัดอันดับ (Mobile-first indexing)</p></div>
+          <div class="nug tech"><p>Breakpoint ที่ดีควรกำหนดจาก “จุดที่ดีไซน์เริ่มพัง” ไม่ใช่ยึดรุ่นมือถือ — ลากขอบเบราว์เซอร์ให้แคบลงเรื่อย ๆ แล้วดูว่าตรงไหนเริ่มอึดอัด (วิธีเขียน CSS เรียนใน Day 4)</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="color">
+        <div class="sec-head"><span class="sec-num">11</span><div><h2>สี: จิตวิทยา · กฎ 60-30-10 · คอนทราสต์</h2><p>สีสร้างอารมณ์และนำสายตา — แต่ต้อง “อ่านออก” ก่อนเสมอ</p></div></div>
+        <div class="g2">
+          <div class="panel" style="margin:0">
+            <h3><i data-i="palette"></i>กฎ 60-30-10</h3>
+            <div style="display:flex;height:46px;border-radius:12px;overflow:hidden;margin-bottom:12px;font:700 12px/46px var(--mono);color:#fff;text-align:center">
+              <div style="flex:60;background:#f5f0fb;color:#6d28d9">60% พื้นหลัก</div><div style="flex:30;background:#6d28d9">30% รอง</div><div style="flex:10;background:#f97316">10%</div>
+            </div>
+            <ul class="clean"><li><b>60%</b> สีหลัก/พื้นหลัง (มักเป็นสีอ่อน)</li><li><b>30%</b> สีรอง (Header, การ์ด, ส่วนสำคัญ)</li><li><b>10%</b> สีเน้น (Accent) ใช้กับ <b>ปุ่ม CTA</b> เท่านั้น → ตาจะพุ่งไปที่ปุ่ม</li></ul>
+          </div>
+          <div class="panel" style="margin:0">
+            <h3><i data-i="bulb"></i>จิตวิทยาสี (ในบริบทไทย)</h3>
+            <ul class="clean">
+              <li>🔵 <b>น้ำเงิน</b> น่าเชื่อถือ มั่นคง — ธนาคาร เทคโนโลยี ราชการ</li>
+              <li>🟢 <b>เขียว</b> ธรรมชาติ สุขภาพ สำเร็จ — เกษตร อาหาร</li>
+              <li>🟠 <b>ส้ม</b> เป็นมิตร กระตุ้น — ปุ่ม CTA ร้านค้า</li>
+              <li>🔴 <b>แดง</b> เร่งด่วน โปรโมชั่น — ระวังใช้มากจะดูเป็นข้อผิดพลาด</li>
+              <li>🟣 <b>ม่วง</b> สร้างสรรค์ หรูหรา · ⚫ <b>ดำ</b> พรีเมียม</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel contrast" style="margin-top:16px">
+          <h3><i data-i="eye"></i>เครื่องมือวัดคอนทราสต์ (มาตรฐาน WCAG)</h3>
+          <div class="c-row">
+            <label>สีตัวอักษร <input type="color" data-c="fg" value="#9ca3af"></label>
+            <label>สีพื้นหลัง <input type="color" data-c="bg" value="#ffffff"></label>
+            <button class="btn sm" type="button" data-fg="#9ca3af" data-bg="#ffffff">เทาอ่อนบนขาว</button>
+            <button class="btn sm" type="button" data-fg="#374151" data-bg="#ffffff">เทาเข้มบนขาว</button>
+            <button class="btn sm" type="button" data-fg="#ffffff" data-bg="#f97316">ขาวบนส้ม</button>
+            <button class="btn sm" type="button" data-fg="#ffffff" data-bg="#c2410c">ขาวบนส้มเข้ม</button>
+            <button class="btn sm" type="button" data-fg="#facc15" data-bg="#ffffff">เหลืองบนขาว</button>
+          </div>
+          <div class="c-prev">สมัครเรียนสาขาเทคโนโลยีสารสนเทศ <small>ข้อความขนาดปกติต้องได้อย่างน้อย 4.5 : 1 จึงอ่านง่ายสำหรับทุกคน รวมถึงผู้สูงอายุและคนที่มองในแดดจ้า</small></div>
+          <div class="c-res"></div>
+        </div>
+        <div class="nugs">
+          <div class="nug tech"><p>หาชุดสีเร็ว ๆ: <b>Coolors</b> (กด Space สุ่มชุดสี) · <b>Adobe Color</b> (วงล้อสี) · <b>Realtime Colors</b> (ดูสีบนหน้าเว็บจริงทันที) · ดึงสีจากโลโก้ด้วย Eyedropper ใน Figma</p></div>
+          <div class="nug deep"><p><b>ความสัมพันธ์ของสี:</b> Monochromatic (สีเดียวหลายระดับ — ปลอดภัย) · Analogous (สีติดกันในวงล้อ — กลมกลืน) · Complementary (สีตรงข้าม — ตัดกันเด่น เหมาะทำปุ่ม) · Triadic (3 สีห่างเท่ากัน — สดใส)</p></div>
+          <div class="nug fun"><p>ผู้ชายราว 1 ใน 12 คนมีภาวะ <b>ตาบอดสีบางส่วน</b> (มักแยกแดง-เขียวไม่ออก) — ห้ามใช้ “สีอย่างเดียว” สื่อความหมาย เช่น ช่องกรอกผิดให้มีไอคอน/ข้อความประกอบด้วย</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="type">
+        <div class="sec-head"><span class="sec-num">12</span><div><h2>ตัวอักษร (Typography) สำหรับเว็บภาษาไทย</h2><p>เว็บคือข้อความเกือบ 90% — ตัวอักษรดี เว็บดีไปครึ่งหนึ่ง</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>ฟอนต์ (Google Fonts ฟรี)</th><th>แบบ</th><th>เหมาะกับ</th></tr></thead>
+            <tbody>
+              <tr><td><b>Sarabun</b></td><td>มีหัว</td><td>เอกสารทางการ ราชการ เนื้อหายาว</td></tr>
+              <tr><td><b>Noto Sans Thai</b> / <b>Noto Sans Thai Looped</b></td><td>ไม่มีหัว / มีหัว</td><td>อ่านง่าย รองรับน้ำหนักครบ ใช้ได้ทุกงาน</td></tr>
+              <tr><td><b>IBM Plex Sans Thai</b></td><td>ไม่มีหัว</td><td>เทคโนโลยี ทันสมัย (เว็บนี้ใช้)</td></tr>
+              <tr><td><b>Prompt</b> · <b>Kanit</b></td><td>ไม่มีหัว</td><td>หัวข้อ แบนเนอร์ ดูแข็งแรง</td></tr>
+              <tr><td><b>Mitr</b> · <b>Chakra Petch</b></td><td>ไม่มีหัว</td><td>หัวข้อเชิงสนุก/เกม/เทค</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="g3">
+          <div class="mini"><h4>ขนาด</h4><p>เนื้อหา <b>16px ขึ้นไป</b> (ภาษาไทยตัวเล็กกว่าอังกฤษเมื่อขนาดเท่ากัน อาจใช้ 17–18px) · หัวข้อ h1 ราว 32–48px</p></div>
+          <div class="mini c-pink"><h4>ระยะบรรทัด</h4><p>ภาษาไทยมีสระ/วรรณยุกต์บนล่าง ต้องใช้ <code>line-height</code> <b>1.6–1.8</b> (มากกว่าภาษาอังกฤษ) ไม่งั้นสระชนกัน</p></div>
+          <div class="mini c-purple"><h4>ความยาวบรรทัด</h4><p>ประมาณ <b>45–75 ตัวอักษร</b> ต่อบรรทัด — ยาวเกินสายตาหลงบรรทัด สั้นเกินอ่านสะดุด</p></div>
+        </div>
+        <div class="nugs">
+          <div class="nug pro"><p>ใช้ฟอนต์ <b>ไม่เกิน 2 ตระกูล</b> ต่อเว็บ (หัวข้อ 1 + เนื้อหา 1) และสร้างลำดับด้วย “น้ำหนัก/ขนาด” แทนการเพิ่มฟอนต์</p></div>
+          <div class="nug fun"><p>ฟอนต์ “TH Sarabun New” เป็นฟอนต์มาตรฐานของหนังสือราชการไทย และ <b>Sarabun</b> ใน Google Fonts คือเวอร์ชันที่ปรับให้ใช้บนเว็บได้ดี</p></div>
+          <div class="nug oops"><p>อย่าจัดข้อความภาษาไทยแบบ <b>justify</b> (เต็มบรรทัด) บนเว็บ — เบราว์เซอร์ตัดคำไทยไม่เก่งเท่าโปรแกรมพิมพ์เอกสาร จะเกิดช่องว่างกว้างผิดปกติ ใช้ชิดซ้ายดีที่สุด</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="media">
+        <div class="sec-head"><span class="sec-num">13</span><div><h2>ภาพ ไอคอน และลิขสิทธิ์</h2><p>ภาพดีช่วยสื่อสาร แต่ภาพผิดลิขสิทธิ์อาจทำให้ถูกฟ้อง</p></div></div>
+        <div class="g3">
+          <div class="mini"><span class="ic-wrap"><i data-i="image"></i></span><h4>แหล่งภาพฟรี</h4><p>Unsplash · Pexels · Pixabay — ใช้เชิงพาณิชย์ได้ (อ่านเงื่อนไขทุกครั้ง) · ภาพถ่ายจริงของงานเราเองดีที่สุด</p></div>
+          <div class="mini c-pink"><span class="ic-wrap"><i data-i="star"></i></span><h4>ไอคอน</h4><p>Lucide · Font Awesome · Material Symbols · Iconify — ใช้ชุดเดียวทั้งเว็บ (ความหนาเส้นเท่ากัน)</p></div>
+          <div class="mini c-purple"><span class="ic-wrap"><i data-i="shield"></i></span><h4>ลิขสิทธิ์</h4><p>ภาพจาก Google Images ไม่ใช่ภาพฟรี! · Creative Commons มีหลายแบบ (บางแบบต้องให้เครดิต/ห้ามใช้เชิงการค้า)</p></div>
+        </div>
+        <div class="nug tech"><p>ภาพเว็บควรกว้างไม่เกินที่แสดงจริง (เช่น 1600px สำหรับภาพเต็มจอ) และบีบอัดก่อนใช้ด้วย <b>Squoosh</b> หรือ TinyPNG — ไฟล์ภาพเป็นสาเหตุอันดับหนึ่งที่ทำให้เว็บช้า (รายละเอียดชนิดไฟล์ภาพ Day 3)</p></div>
+      </section>
+
+      <section class="sec" id="a11y">
+        <div class="sec-head"><span class="sec-num">14</span><div><h2>Accessibility: เว็บสำหรับทุกคน</h2><p>หลัก WCAG — P.O.U.R.</p></div></div>
+        <div class="g4">
+          <div class="mini c-blue"><h4>Perceivable</h4><p>รับรู้ได้: ภาพมี <code>alt</code> · คอนทราสต์พอ · วิดีโอมีคำบรรยาย</p></div>
+          <div class="mini c-pink"><h4>Operable</h4><p>ใช้งานได้: กดได้ด้วยคีย์บอร์ด (Tab) · ปุ่มใหญ่พอ · ไม่มีอะไรกะพริบเร็ว</p></div>
+          <div class="mini c-purple"><h4>Understandable</h4><p>เข้าใจได้: ภาษาง่าย · ระบุ <code>lang="th"</code> · ข้อความ error ชัด</p></div>
+          <div class="mini c-teal"><h4>Robust</h4><p>รองรับหลายเทคโนโลยี: HTML ถูกต้องตามความหมาย ใช้ได้กับโปรแกรมอ่านหน้าจอ</p></div>
+        </div>
+        <div class="nug tech"><p>ทดสอบง่ายที่สุด: <b>ถอดเมาส์</b> แล้วใช้เว็บด้วยปุ่ม <kbd>Tab</kbd> <kbd>Enter</kbd> อย่างเดียว — ถ้ามองไม่เห็นว่าตอนนี้อยู่ที่ปุ่มไหน (ไม่มี focus ring) แปลว่ามีปัญหา</p></div>
+      </section>
+
+      <section class="sec" id="wf">
+        <div class="sec-head"><span class="sec-num">15</span><div><h2>Wireframe → Mockup → Prototype → Website</h2><p>ดูหน้าเว็บหน้าเดียว “โต” ขึ้นทีละขั้นในกระบวนการออกแบบ</p></div></div>
+        <figure class="anim" id="anim-wf" data-ms="4800">
+          <div class="anim-title"><i data-i="pencil"></i>หน้าเว็บโตขึ้นทีละขั้น<span class="chip">4 ขั้น</span></div>
+          <div class="stage wf-stage">
+            <svg class="smap static wf-map" viewBox="0 0 520 190" data-only="1" aria-hidden="true">
+              <path class="draw" d="M260 46V70M65 70H455M65 70V92M195 70V92M325 70V92M455 70V92"/>
+              <g class="nd"><rect x="215" y="10" width="90" height="36" rx="10"/><text x="260" y="33">หน้าแรก</text></g>
+              <g class="nd"><rect x="20" y="92" width="90" height="36" rx="10"/><text x="65" y="115">เกี่ยวกับแผนก</text></g>
+              <g class="nd"><rect x="150" y="92" width="90" height="36" rx="10"/><text x="195" y="115">หลักสูตร</text></g>
+              <g class="nd"><rect x="280" y="92" width="90" height="36" rx="10"/><text x="325" y="115">ผลงานนักเรียน</text></g>
+              <g class="nd"><rect x="410" y="92" width="90" height="36" rx="10"/><text x="455" y="115">ติดต่อ</text></g>
+              <text x="260" y="168" class="cap">📍 เลือก “หน้าแรก” มาออกแบบ</text>
+            </svg>
+            <div class="wf-frame keep" data-in="2">
+              <div class="w w-head"><span class="w-logo"></span><span class="w-txt">IT Department</span><span class="w-nav"><i></i><i></i><i></i><i></i></span></div>
+              <div class="w w-hero"><span class="w-img"></span><span class="w-txt big">เรียน IT สร้างอนาคต</span><span class="w-btn">สมัครเรียน</span></div>
+              <div class="w w-card c1"><span class="w-img"></span><span class="w-txt">หลักสูตร</span></div>
+              <div class="w w-card c2"><span class="w-img"></span><span class="w-txt">ผลงาน</span></div>
+              <div class="w w-card c3"><span class="w-img"></span><span class="w-txt">ข่าว</span></div>
+              <div class="w w-foot"><span class="w-txt">© 2026 แผนกเทคโนโลยีสารสนเทศ</span></div>
+              <span class="wf-cursor" aria-hidden="true">👆</span>
+              <span class="wf-live">● LIVE</span>
+            </div>
+            <div class="bubble pop" style="left:14%;top:12%" data-only="1">1 · Sitemap</div>
+            <div class="bubble pop" style="left:12%;top:12%" data-only="2">2 · Wireframe</div>
+            <div class="bubble pop" style="left:12%;top:12%" data-only="3">3 · Mockup</div>
+            <div class="bubble ok pop" style="left:12%;top:12%" data-only="4">4 · Website</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>Sitemap</b> — โครงสร้างหน้าทั้งหมด (จาก Card sorting) แล้วเลือกหน้าที่จะออกแบบ</li>
+            <li><b>Wireframe (Low-fidelity)</b> — ขาว–เทา บอกแค่ตำแหน่งและขนาด กล่องกากบาท = รูปภาพ · ทำเร็ว แก้ง่าย ใช้คุยว่า “จัดวางแบบนี้โอเคไหม”</li>
+            <li><b>Mockup (High-fidelity)</b> — ใส่สี ฟอนต์ ภาพ ข้อความจริง เหมือนเว็บจริง 100% แต่เป็นภาพนิ่ง · ถ้าเชื่อมลิงก์ให้กดเปลี่ยนหน้าได้ใน Figma = <b>Prototype</b></li>
+            <li><b>Website</b> — เขียนโค้ดตาม Mockup (Day 3–4) ได้เว็บที่ใช้งานได้จริง แล้วขึ้นโดเมนจริง (Day 5)</li>
+          </ol>
+        </figure>
+        <h3>Figma ฉบับเร่งรัด</h3>
+        <div class="cheat">
+          <div><code>F</code><span>สร้าง Frame — เลือก Desktop 1440 และ iPhone/Android 390</span></div>
+          <div><code>R / O / T</code><span>สี่เหลี่ยม / วงกลม / ข้อความ</span></div>
+          <div><code>Shift + A</code><span>Auto layout — จัดเรียงและเว้นระยะอัตโนมัติ (เหมือน Flexbox!)</span></div>
+          <div><code>Ctrl + Alt + K</code><span>สร้าง Component (ปุ่ม การ์ด) แก้ที่เดียวเปลี่ยนทุกที่</span></div>
+          <div><code>Ctrl + D</code><span>ทำสำเนา · <code>Alt</code> ค้างดูระยะห่าง</span></div>
+          <div><code>แท็บ Prototype</code><span>ลากเส้นจากปุ่มไปหน้าอื่น → กด ▶ ทดลองใช้</span></div>
+          <div><code>Dev Mode / Inspect</code><span>ดูค่า CSS (สี ขนาด ระยะ) ไปเขียนโค้ด</span></div>
+          <div><code>Plugins</code><span>Unsplash (ภาพ) · Iconify (ไอคอน) · Contrast (ตรวจสี)</span></div>
+        </div>
+        <div class="nug pro"><p>สร้าง <b>Style guide</b> ไว้หน้าแรกของไฟล์ Figma: สีทั้งหมด (พร้อมรหัส HEX) · ฟอนต์และขนาด h1–h3/body · ปุ่ม 3 สถานะ (ปกติ/ชี้/กด) — วันที่ 4 จะนำค่าพวกนี้ไปทำเป็น <b>CSS Variables</b> ได้ทันที</p></div>
+      </section>
+
+      <section class="sec" id="lab">
+        <div class="sec-head"><span class="sec-num">16</span><div><h2>ใบงาน Day 2 · ออกแบบโครงงาน</h2><p>งานกลุ่ม · ส่งลิงก์ Figma + เอกสาร · 25 คะแนน</p></div></div>
+        <div class="panel worksheet">
+          <div class="ws-head"><h3><i data-i="clipboard"></i>ชิ้นงานที่ต้องส่ง</h3><span class="ws-progress"></span></div>
+          <ul class="checklist" data-key="d2">
+            <li><label><input type="checkbox"><span><b>1. เป้าหมาย SMART</b> 2 ข้อ + กลุ่มผู้ใช้หลัก/รอง</span></label></li>
+            <li><label><input type="checkbox"><span><b>2. Research</b> สัมภาษณ์ ≥ 3 คน หรือแบบสอบถาม ≥ 15 คน + วิเคราะห์เว็บคู่แข่ง 2 เว็บ</span></label></li>
+            <li><label><input type="checkbox"><span><b>3. Persona</b> 1–2 แบบ (อ้างอิงข้อมูลจริง) + <b>User Journey</b> 1 เส้นทาง</span></label></li>
+            <li><label><input type="checkbox"><span><b>4. Requirements</b> แบบ MoSCoW อย่างน้อย 10 ข้อ (Functional + Non-functional)</span></label></li>
+            <li><label><input type="checkbox"><span><b>5. Card sorting + Sitemap</b> (FigJam/draw.io) ลึกไม่เกิน 3 ระดับ</span></label></li>
+            <li><label><input type="checkbox"><span><b>6. Wireframe</b> หน้าแรกทั้งจอมือถือ (390) และเดสก์ท็อป (1440)</span></label></li>
+            <li><label><input type="checkbox"><span><b>7. Style guide</b> สี (ผ่านคอนทราสต์ AA) · ฟอนต์ · ขนาด · ปุ่ม</span></label></li>
+            <li><label><input type="checkbox"><span><b>8. Mockup + Prototype</b> หน้าแรก + 1 หน้าย่อย เชื่อมลิงก์กดได้ ส่งลิงก์ Figma ให้ครู</span></label></li>
+          </ul>
+          <div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th>เกณฑ์</th><th>คะแนน</th></tr></thead>
+            <tbody>
+              <tr><td>การวิเคราะห์มีหลักฐานจากผู้ใช้จริง (ข้อ 1–4)</td><td class="c">8</td></tr>
+              <tr><td>IA/Sitemap สมเหตุสมผล ชื่อเมนูเข้าใจง่าย</td><td class="c">5</td></tr>
+              <tr><td>ประยุกต์หลัก UX/UI (ลำดับสายตา กริด สี ตัวอักษร คอนทราสต์)</td><td class="c">8</td></tr>
+              <tr><td>รองรับมือถือ · ทำงานเป็นทีม · ส่งตรงเวลา</td><td class="c">4</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </section>
+
+      <section class="sec" id="quiz">
+        <div class="sec-head"><span class="sec-num">17</span><div><h2>แบบทดสอบ Day 2</h2><p>10 ข้อ · เฉลยทันที</p></div></div>
+        <div class="quiz" data-quiz="d2">
+          <div class="q" data-a="1"><p class="q-t">เป้าหมายใดเขียนแบบ SMART ได้ดีที่สุด</p><div class="opts"><button>ทำเว็บให้สวยที่สุด</button><button>มีผู้กรอกฟอร์มสอบถามหลักสูตร 30 คนภายในเดือนแรก</button><button>ให้ทุกคนชอบเว็บ</button><button>ใส่ข้อมูลให้ครบ</button></div><p class="q-ex">ชัดเจน วัดได้ และมีกรอบเวลา</p></div>
+          <div class="q" data-a="3"><p class="q-t">คำถามสัมภาษณ์ใดดีที่สุด</p><div class="opts"><button>คุณชอบเว็บสีฟ้าใช่ไหม</button><button>คุณจะใช้แชตบอตไหม</button><button>เว็บควรมีกี่หน้า</button><button>ครั้งล่าสุดที่หาข้อมูลเรียนต่อ คุณทำอย่างไร</button></div><p class="q-ex">ให้เล่าจากประสบการณ์จริง ไม่ชี้นำ ไม่ให้ผู้ใช้เดาอนาคต</p></div>
+          <div class="q" data-a="0"><p class="q-t">“ระบบชำระเงินออนไลน์ ไว้ทำรอบหน้า” อยู่ในระดับใดของ MoSCoW</p><div class="opts"><button>Won't have (this time)</button><button>Must have</button><button>Should have</button><button>Could have</button></div><p class="q-ex">W = ตกลงกันว่าไม่ทำในรอบนี้</p></div>
+          <div class="q" data-a="2"><p class="q-t">Card sorting ใช้เพื่ออะไร</p><div class="opts"><button>เลือกสีเว็บ</button><button>ทดสอบความเร็ว</button><button>ให้ผู้ใช้ช่วยจัดหมวดหมู่เนื้อหาเพื่อสร้างเมนู/Sitemap</button><button>ออกแบบโลโก้</button></div><p class="q-ex">ผลของ Card sorting นำไปตั้งชื่อเมนูและโครงสร้างเว็บ</p></div>
+          <div class="q" data-a="1"><p class="q-t">เมนูหลักมี 15 รายการ ทำให้ผู้ใช้ตัดสินใจช้า ขัดกับกฎข้อใด</p><div class="opts"><button>Fitts's Law</button><button>Hick's Law</button><button>Jakob's Law</button><button>กฎ 60-30-10</button></div><p class="q-ex">Hick's Law: ตัวเลือกยิ่งมากยิ่งตัดสินใจช้า</p></div>
+          <div class="q" data-a="3"><p class="q-t">หน้า Landing page ข้อความน้อย ควรวางปุ่ม CTA ที่ใดตามรูปแบบ Z</p><div class="opts"><button>ซ้ายบน</button><button>กลางบน</button><button>ซ้ายล่าง</button><button>ขวาล่าง (ปลายตัว Z)</button></div><p class="q-ex">สายตาจบที่ขวาล่าง จึงเหมาะวางปุ่มให้กดต่อ</p></div>
+          <div class="q" data-a="2"><p class="q-t">ตามกฎ 60-30-10 สีเน้น 10% ควรใช้กับอะไร</p><div class="opts"><button>พื้นหลังทั้งหน้า</button><button>ข้อความเนื้อหา</button><button>ปุ่ม CTA / สิ่งที่ต้องการให้กด</button><button>Footer</button></div><p class="q-ex">สีเน้นน้อยแต่เด่น → นำสายตาไปที่การกระทำสำคัญ</p></div>
+          <div class="q" data-a="0"><p class="q-t">ข้อความขนาดปกติต้องมีคอนทราสต์อย่างน้อยเท่าไรตาม WCAG AA</p><div class="opts"><button>4.5 : 1</button><button>1.5 : 1</button><button>2 : 1</button><button>10 : 1</button></div><p class="q-ex">AA: 4.5:1 ข้อความปกติ · 3:1 ตัวใหญ่ · AAA: 7:1</p></div>
+          <div class="q" data-a="1"><p class="q-t">ทำไมเว็บภาษาไทยควรใช้ line-height มากกว่าภาษาอังกฤษ</p><div class="opts"><button>เพราะภาษาไทยไม่มีช่องว่าง</button><button>เพราะมีสระและวรรณยุกต์อยู่บนและล่างตัวอักษร</button><button>เพราะฟอนต์ไทยแพงกว่า</button><button>เพราะ Google กำหนด</button></div><p class="q-ex">ต้องเผื่อพื้นที่แนวตั้ง แนะนำ 1.6–1.8</p></div>
+          <div class="q" data-a="3"><p class="q-t">ข้อใดคือความต่างของ Wireframe กับ Mockup</p><div class="opts"><button>Wireframe ใช้โค้ด Mockup ใช้กระดาษ</button><button>เหมือนกันทุกประการ</button><button>Mockup ทำก่อน Wireframe</button><button>Wireframe แสดงตำแหน่งขาว-เทา · Mockup มีสี ฟอนต์ ภาพเหมือนจริง</button></div><p class="q-ex">Low-fidelity → High-fidelity</p></div>
+          <div class="quiz-foot"><span class="quiz-score"></span><button class="btn sm quiz-reset" type="button">ทำใหม่</button></div>
+        </div>
+      </section>
+
+      <section class="sec" id="sum">
+        <div class="sec-head"><span class="sec-num">18</span><div><h2>สรุป Day 2</h2><p>“เข้าใจคน → จัดระเบียบเนื้อหา → ออกแบบให้ตาเดินถูกทาง”</p></div></div>
+        <div class="panel">
+          <ul class="ticks">
+            <li><b>วิเคราะห์:</b> SMART → Research → Insight → Persona → Journey → Requirements (MoSCoW)</li>
+            <li><b>IA:</b> Content inventory → Card sorting → เมนู → Sitemap (ไม่เกิน 3 ระดับ)</li>
+            <li><b>UX:</b> Jakob · Fitts (ปุ่ม ≥ 44px) · Hick (เมนู 5–7) · Miller (7±2) · Nielsen 10 ข้อ</li>
+            <li><b>UI:</b> Z/F pattern · Visual hierarchy · Grid 12 · Spacing 8pt · C.R.A.P.</li>
+            <li><b>สี/ตัวอักษร:</b> 60-30-10 · คอนทราสต์ ≥ 4.5:1 · ฟอนต์ไทย 16px+ · line-height 1.6–1.8 · ≤ 2 ฟอนต์</li>
+            <li><b>ออกแบบ:</b> Sitemap → Wireframe → Mockup → Prototype · Mobile-first</li>
+          </ul>
+          <div class="callout"><i data-i="help"></i><p><strong class="t">เตรียมตัวสำหรับ Day 3</strong>ดาวน์โหลด <b>XAMPP</b> และ <b>VS Code</b> ไว้ล่วงหน้า (ไฟล์ใหญ่) และ Export รูปภาพจาก Mockup ที่จะใช้ในเว็บเก็บไว้ในโฟลเดอร์ <code>images</code></p></div>
+          <button class="btn mark-done" type="button" data-lesson="d2"></button>
+        </div>
+        <nav class="pager">
+          <a href="day-1.html"><small>← วันก่อน</small><strong>Day 1 · เว็บทำงานอย่างไร</strong></a>
+          <a class="next" href="day-3.html"><small>วันถัดไป →</small><strong>Day 3 · Web Server จำลอง &amp; HTML</strong></a>
+        </nav>
+      </section>
+    </article>
+  </div>
+</div>
+</main>
+<footer class="site-foot">made with <i data-i="heart" class="heart"></i> &amp; <i data-i="coffee" class="cup"></i> by IT RVC · 2026</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

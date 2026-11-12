@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 1 เว็บทำงานอย่างไร · Web Dev</title>
+<meta name="description" content="วันที่ 1 หลักการและโครงสร้างการทำงานของเว็บไซต์ อินเทอร์เน็ต URL IP DNS HTTP HTTPS การเรนเดอร์ Static Dynamic และกระบวนการพัฒนาเว็บไซต์ แบบแอนิเมชันทีละขั้น">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec4899'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem('wd-theme'));if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid"></div><div class="floaters"></div></div>
+<header class="topbar">
+  <nav class="pill" aria-label="เมนูหลัก">
+    <a href="../index.html">Web Dev</a>
+    <a href="day-1.html" aria-current="page">Day 1</a>
+    <a href="day-2.html">Day 2</a>
+    <a href="day-3.html">Day 3</a>
+    <a href="day-4.html">Day 4</a>
+    <a href="day-5.html">Day 5</a>
+  </nav>
+  <button class="theme-btn" type="button">auto</button>
+</header>
+
+<main>
+<div class="wrap">
+  <section class="lesson-hero">
+    <div class="crumbs"><a href="../index.html">Web Dev</a> / Day 1</div>
+    <div class="meta"><span class="chip hot">DAY 1 / 5</span><span class="chip">หน่วยที่ 1</span><span class="chip">09:00–16:30</span><span class="chip c-purple">10 แอนิเมชัน</span></div>
+    <h1>เว็บ<span class="grad-text">ทำงานอย่างไร</span> — ผ่าทุกชั้นตั้งแต่สายเคเบิลถึงพิกเซล</h1>
+    <p class="lead">วันแรกเราจะ “สโลว์โมชัน” ทุกสิ่งที่เกิดขึ้นเมื่อเปิดเว็บ: อินเทอร์เน็ตต่อกันยังไง URL มีอะไรซ่อนอยู่ IP กับ DNS ทำงานคู่กันอย่างไร เบราว์เซอร์คุยกับเซิร์ฟเวอร์ด้วย HTTP แบบไหน HTTPS ปลอดภัยเพราะอะไร เบราว์เซอร์วาดหน้าเว็บอย่างไร และมืออาชีพพัฒนาเว็บกันกี่ขั้น — จบวันด้วยการตั้งทีมและวางแผนโครงงานที่จะขึ้นออนไลน์บนโดเมนจริงในวันที่ 5</p>
+    <div data-progress="d1,d2,d3,d4,d5" style="max-width:520px;margin-top:18px">
+      <div style="display:flex;justify-content:space-between;font:600 13px/1 var(--mono);color:var(--muted);margin-bottom:8px"><span>ความก้าวหน้า 5 วัน</span><span class="progress-txt">0/5</span></div>
+      <div class="progress"><span></span></div>
+    </div>
+  </section>
+
+  <div class="lesson-grid">
+    <aside class="toc">
+      <span class="toc-title">DAY 1</span>
+      <nav>
+        <a href="#plan">ตารางเรียน &amp; เป้าหมาย</a>
+        <a href="#internet">อินเทอร์เน็ต</a>
+        <a href="#history">ประวัติย่อ</a>
+        <a href="#www">Internet ≠ Web</a>
+        <a href="#url">ผ่า URL</a>
+        <a href="#ip">IP &amp; Port</a>
+        <a href="#dns">DNS</a>
+        <a href="#enter">กด Enter แล้วเกิดอะไรขึ้น</a>
+        <a href="#http">HTTP</a>
+        <a href="#status">Status Code</a>
+        <a href="#https">HTTPS</a>
+        <a href="#render">เบราว์เซอร์วาดหน้าเว็บ</a>
+        <a href="#trio">HTML · CSS · JS</a>
+        <a href="#stack">หน้าบ้าน/หลังบ้าน</a>
+        <a href="#sd">Static vs Dynamic</a>
+        <a href="#structure">โครงสร้างเว็บไซต์</a>
+        <a href="#wdlc">กระบวนการพัฒนาเว็บ</a>
+        <a href="#lab">ใบงาน Day 1</a>
+        <a href="#quiz">แบบทดสอบ</a>
+        <a href="#sum">สรุป</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+      <!-- ================= PLAN ================= -->
+      <section class="sec" id="plan">
+        <div class="sec-head"><span class="sec-num">00</span><div><h2>ตารางเรียน &amp; เป้าหมายวันที่ 1</h2><p>ครอบคลุมหน่วยที่ 1 (เทียบเท่าสัปดาห์ที่ 1–3 ของแผน 15 สัปดาห์)</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl sched">
+            <thead><tr><th>เวลา</th><th>หัวข้อ</th><th>รูปแบบ</th></tr></thead>
+            <tbody>
+              <tr><td>09:00–09:15</td><td>ปฐมนิเทศ 5 วัน · แบ่งทีมโครงงาน · ตรวจบัญชี server/โดเมน</td><td><span class="k lec">บรรยาย</span></td></tr>
+              <tr><td>09:15–10:00</td><td>อินเทอร์เน็ต ประวัติ Internet vs Web คำศัพท์</td><td><span class="k lec">บรรยาย</span> <span class="k demo">แอนิเมชัน</span></td></tr>
+              <tr><td>10:00–10:45</td><td>ผ่า URL · IP Address · Port · DNS</td><td><span class="k demo">สาธิต</span> <span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>10:45–12:00</td><td>กด Enter แล้วเกิดอะไรขึ้น · HTTP Request/Response · Status Code</td><td><span class="k demo">สาธิต</span> <span class="k lab">DevTools</span></td></tr>
+              <tr class="brk"><td colspan="3">12:00–13:00 พักกลางวัน</td></tr>
+              <tr><td>13:00–13:45</td><td>HTTPS/TLS · เบราว์เซอร์วาดหน้าเว็บ (Rendering pipeline)</td><td><span class="k lec">บรรยาย</span> <span class="k demo">แอนิเมชัน</span></td></tr>
+              <tr><td>13:45–14:45</td><td>HTML/CSS/JS · Frontend/Backend · Static vs Dynamic · โครงสร้างเว็บไซต์</td><td><span class="k demo">สาธิต</span> <span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>14:45–15:45</td><td>วงจรการพัฒนาเว็บไซต์ · บทบาททีม · วางแผนโครงงาน</td><td><span class="k lab">งานกลุ่ม</span></td></tr>
+              <tr><td>15:45–16:30</td><td>ใบงาน Day 1 (คำสั่ง nslookup/curl/tracert) · แบบทดสอบ</td><td><span class="k lab">ปฏิบัติ</span> <span class="k quiz">ทดสอบ</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ol class="objectives">
+          <li>อธิบายการทำงานของอินเทอร์เน็ต ความต่างของ Internet กับ WWW และคำศัพท์พื้นฐานได้</li>
+          <li>แยกส่วนประกอบของ URL, อธิบาย IP Address, Port และระบบ DNS ได้</li>
+          <li>เรียงลำดับเหตุการณ์ตั้งแต่พิมพ์ URL จนเห็นหน้าเว็บ (DNS → TCP/TLS → HTTP → Render) ได้</li>
+          <li>อ่าน HTTP Request/Response, Header และ Status Code ด้วย DevTools และ curl ได้</li>
+          <li>จำแนก HTML/CSS/JS, Frontend/Backend, Static/Dynamic และโครงสร้างเว็บไซต์ได้</li>
+          <li>อธิบายวงจรการพัฒนาเว็บไซต์ 7 ขั้น และวางแผนโครงงานร่วมกับทีมได้</li>
+        </ol>
+      </section>
+
+      <div class="part-label">ภาคเช้า · เครือข่ายและการเดินทางของข้อมูล</div>
+
+      <!-- ================= INTERNET ================= -->
+      <section class="sec" id="internet">
+        <div class="sec-head"><span class="sec-num">01</span><div><h2>อินเทอร์เน็ตคืออะไร?</h2><p>จากคอมพิวเตอร์ 1 เครื่อง → เครือข่ายของเครือข่ายทั้งโลก</p></div></div>
+        <div class="panel">
+          <p><b>อินเทอร์เน็ต (Internet)</b> มาจาก <i>Inter-connected Network</i> คือ <b>เครือข่ายคอมพิวเตอร์ที่ใหญ่ที่สุดในโลก</b> เกิดจากเครือข่ายย่อยนับล้านเชื่อมกัน จึงเรียกว่า <b>“เครือข่ายของเครือข่าย”</b> ทุกเครื่องคุยกันด้วย “ภาษากลาง” ชุดเดียวกันชื่อ <b>TCP/IP</b> และมีเลขประจำตัวเรียกว่า <b>IP Address</b></p>
+          <p style="margin:0">ไม่มีใคร “เป็นเจ้าของ” อินเทอร์เน็ตทั้งหมด — แต่ละเครือข่ายมีเจ้าของของตัวเอง (ISP บริษัท มหาวิทยาลัย) แล้วตกลงเชื่อมต่อกัน</p>
+        </div>
+        <figure class="anim" id="anim-net" data-ms="4200">
+          <div class="anim-title"><i data-i="globe"></i>จากคอมพิวเตอร์ 1 เครื่อง สู่อินเทอร์เน็ตทั้งโลก<span class="chip">5 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="7" y1="22" x2="20" y2="42" data-in="2" data-hl="2"/>
+              <line x1="7" y1="62" x2="20" y2="42" data-in="2" data-hl="2"/>
+              <line x1="20" y1="42" x2="44" y2="42" data-in="3" data-hl="3"/>
+              <line x1="42" y1="14" x2="44" y2="42" data-in="3"/>
+              <line x1="42" y1="70" x2="44" y2="42" data-in="3"/>
+              <line x1="44" y1="42" x2="70" y2="42" data-in="4" data-hl="4"/>
+              <line x1="70" y1="42" x2="92" y2="16" data-in="4" data-hl="4"/>
+              <line x1="70" y1="42" x2="92" y2="66" data-in="4"/>
+            </svg>
+            <div class="zone" style="left:1%;top:4%;width:27%;height:76%" data-in="2">LAN · วิทยาลัย</div>
+            <div class="actor c-blue pop" style="left:7%;top:22%" data-in="1"><span class="ab"><i data-i="monitor"></i></span><span class="lb">PC 1</span></div>
+            <div class="bubble wrap pop" style="left:19%;top:56%" data-only="1">ทำงานได้แค่ในเครื่องตัวเอง<br>ส่งไฟล์ต้องใช้แฟลชไดรฟ์ 😅</div>
+            <div class="actor c-blue pop" style="left:7%;top:62%" data-in="2"><span class="ab"><i data-i="monitor"></i></span><span class="lb">PC 2</span></div>
+            <div class="actor c-teal pop" style="left:20%;top:42%" data-in="2" data-hl="2"><span class="ab"><i data-i="switch"></i></span><span class="lb">Switch</span></div>
+            <div class="flyer" style="--x1:7%;--y1:22%;--x2:7%;--y2:62%;--c:var(--teal)" data-only="2">แชร์ไฟล์</div>
+            <div class="actor c-teal pop" style="left:42%;top:14%" data-in="3"><span class="ab"><i data-i="home"></i></span><span class="lb">บ้าน (Wi-Fi)</span></div>
+            <div class="actor c-orange pop" style="left:44%;top:42%" data-in="3" data-hl="3"><span class="ab"><i data-i="router"></i></span><span class="lb">ISP</span><span class="sub">ผู้ให้บริการอินเทอร์เน็ต</span></div>
+            <div class="actor c-pink pop" style="left:42%;top:72%" data-in="3"><span class="ab"><i data-i="phone"></i></span><span class="lb">มือถือ 4G/5G</span></div>
+            <div class="flyer" style="--x1:20%;--y1:42%;--x2:44%;--y2:42%;--c:var(--orange)" data-only="3">ข้อมูล</div>
+            <div class="actor c-purple lg pop" style="left:70%;top:42%" data-in="4" data-hl="4,5"><span class="ab"><i data-i="globe"></i></span><span class="lb">INTERNET</span><span class="sub">เครือข่ายของเครือข่าย</span></div>
+            <div class="actor c-green pop" style="left:92%;top:16%" data-in="4"><span class="ab"><i data-i="server"></i></span><span class="lb">Server</span><span class="sub">ต่างประเทศ</span></div>
+            <div class="actor c-orange pop" style="left:92%;top:66%" data-in="4"><span class="ab"><i data-i="router"></i></span><span class="lb">ISP อื่น ๆ</span><span class="sub">ทั่วโลก</span></div>
+            <div class="bubble pop" style="left:64%;top:13%" data-only="4">🌊 สายเคเบิลใต้น้ำ · 🛰️ ดาวเทียม</div>
+            <div class="flyer" style="--x1:44%;--y1:42%;--x2:92%;--y2:16%;--c:var(--purple);--dur:2.4s" data-only="4">TCP/IP</div>
+            <div class="svc-row rise" data-in="5"><span class="bubble svc-lead"><b>บริการบนอินเทอร์เน็ต →</b></span><span class="bubble svc-www">🌐 WWW (เว็บ)</span><span class="bubble">📧 E-mail</span><span class="bubble">🎬 Video</span><span class="bubble">💬 Chat/VoIP</span><span class="bubble">🎮 Game</span></div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>คอมพิวเตอร์เครื่องเดียว</b> ทำงานได้เฉพาะในเครื่อง จะส่งไฟล์ต้องใช้แฟลชไดรฟ์</li>
+            <li><b>LAN (Local Area Network)</b> ต่อหลายเครื่องเข้ากับ <b>Switch</b> ในห้อง/อาคาร ส่งไฟล์ แชร์ปริ้นเตอร์ได้ แต่ยังอยู่แค่ในองค์กร</li>
+            <li><b>ISP</b> (Internet Service Provider) เช่น ผู้ให้บริการเน็ตบ้าน/มือถือ เชื่อม LAN ของวิทยาลัย บ้าน และมือถือออกสู่โลกภายนอกผ่าน <b>Router</b></li>
+            <li><b>อินเทอร์เน็ต</b> ISP ทั่วโลกเชื่อมกันด้วยใยแก้วนำแสง สายเคเบิลใต้น้ำ และดาวเทียม ทุกเครื่องคุยด้วย <b>TCP/IP</b> → “เครือข่ายของเครือข่าย”</li>
+            <li><b>บริการบนอินเทอร์เน็ต</b> เมื่อมี “ถนน” แล้วก็มีบริการต่าง ๆ วิ่งบนถนน — <b>WWW เป็นเพียงหนึ่งในบริการ</b></li>
+          </ol>
+        </figure>
+        <div class="analogy">
+          <div class="pair"><div class="a">🛣️</div><div class="eq">อินเทอร์เน็ต =</div><b>ระบบถนน</b><small>เชื่อมทุกที่เข้าด้วยกัน</small></div>
+          <div class="pair"><div class="a">🚚</div><div class="eq">บริการ (WWW, Email) =</div><b>รถที่วิ่งบนถนน</b><small>แต่ละคันทำหน้าที่ต่างกัน</small></div>
+          <div class="pair"><div class="a">🏠</div><div class="eq">IP Address =</div><b>บ้านเลขที่</b><small>ห้ามซ้ำกันบนเครือข่าย</small></div>
+          <div class="pair"><div class="a">🚪</div><div class="eq">Port =</div><b>ประตูของบ้าน</b><small>แต่ละบริการใช้ประตูต่างกัน</small></div>
+          <div class="pair"><div class="a">🚦</div><div class="eq">TCP/IP =</div><b>กฎจราจร</b><small>ทุกคันต้องใช้กฎเดียวกัน</small></div>
+        </div>
+        <div class="nugs">
+          <div class="nug deep"><p><b>ข้อมูลไม่ได้วิ่งเป็นก้อนเดียว</b> แต่ถูกหั่นเป็น <b>แพ็กเก็ต (Packet)</b> เล็ก ๆ แต่ละแพ็กเก็ตอาจไปคนละเส้นทาง แล้ว <b>TCP</b> นำมาเรียงต่อกันใหม่ที่ปลายทาง ถ้าหายระหว่างทางจะขอส่งซ้ำอัตโนมัติ</p></div>
+          <div class="nug fun"><p>ข้อมูลข้ามทวีปเกือบทั้งหมด <b>วิ่งผ่านสายเคเบิลใต้ทะเล</b> ไม่ใช่ดาวเทียม เพราะเร็วกว่าและจุข้อมูลได้มากกว่าหลายเท่า ประเทศไทยมีสถานีขึ้นบกของเคเบิลใต้น้ำทั้งฝั่งอ่าวไทยและอันดามัน</p></div>
+        </div>
+      </section>
+
+      <!-- ================= HISTORY ================= -->
+      <section class="sec" id="history">
+        <div class="sec-head"><span class="sec-num">02</span><div><h2>ประวัติย่อ: จาก ARPANET ถึง AI</h2><p>ไม่ต้องจำปีเป๊ะ แต่ให้เห็นลำดับวิวัฒนาการ</p></div></div>
+        <div class="panel">
+          <ol class="timeline">
+            <li><span class="yr">พ.ศ. 2512 (1969) · ARPANET</span><p>กระทรวงกลาโหมสหรัฐฯ เชื่อมคอมพิวเตอร์ 4 มหาวิทยาลัย — จุดเริ่มต้นของอินเทอร์เน็ต</p></li>
+            <li><span class="yr">พ.ศ. 2526 (1983) · TCP/IP</span><p>เครือข่ายเปลี่ยนมาใช้ TCP/IP ซึ่งยังเป็นภาษากลางจนทุกวันนี้ · ปีถัดมามีระบบ DNS</p></li>
+            <li><span class="yr">พ.ศ. 2532 (1989) · กำเนิด WWW</span><p><b>Tim Berners-Lee</b> ที่ CERN เสนอระบบเอกสารเชื่อมโยงด้วยลิงก์ ประกอบด้วย <b>HTML · HTTP · URL</b></p></li>
+            <li><span class="yr">พ.ศ. 2534 (1991) · เว็บไซต์แรกของโลก</span><p>info.cern.ch — ยังเปิดดูได้จนถึงทุกวันนี้!</p></li>
+            <li><span class="yr">พ.ศ. 2535 (1992) · ประเทศไทยเชื่อมอินเทอร์เน็ต</span><p>มหาวิทยาลัยในไทยเชื่อมต่อแบบถาวรกับต่างประเทศ ความเร็วราว 9.6 kbps</p></li>
+            <li><span class="yr">พ.ศ. 2536–2541 · เบราว์เซอร์และเสิร์ชเอนจิน</span><p>Mosaic แสดงรูปในหน้าเว็บ → Netscape, Internet Explorer → Google (2541)</p></li>
+            <li><span class="yr">พ.ศ. 2547–2550 · Web 2.0 &amp; สมาร์ตโฟน</span><p>Facebook, YouTube, iPhone → ผู้ใช้สร้างเนื้อหาเอง และท่องเว็บบนมือถือ</p></li>
+            <li><span class="yr">พ.ศ. 2557 · HTML5 เป็นมาตรฐาน</span><p>เล่นวิดีโอ/เสียงได้โดยไม่ต้องใช้ Flash · เว็บกลายเป็นแอปพลิเคชัน</p></li>
+            <li><span class="yr">ปัจจุบัน · Cloud, HTTP/3, AI</span><p>เว็บทำงานบนคลาวด์ ใช้ AI ช่วยสร้างและช่วยค้นหา และต้องรองรับทุกอุปกรณ์</p></li>
+          </ol>
+        </div>
+        <div class="nugs">
+          <div class="nug fun"><p>ข้อความแรกที่ส่งผ่าน ARPANET คือคำว่า <b>“LO”</b> — ตั้งใจพิมพ์ “LOGIN” แต่ระบบล่มหลังส่งไปได้ 2 ตัวอักษร 😂</p></div>
+          <div class="nug fun"><p>Tim Berners-Lee <b>ไม่จดสิทธิบัตร WWW</b> และเปิดให้ทุกคนใช้ฟรี เว็บจึงเติบโตเร็วมาก — ถ้าเก็บค่าลิขสิทธิ์ เราอาจไม่มีเว็บแบบทุกวันนี้</p></div>
+        </div>
+      </section>
+
+      <!-- ================= WWW ================= -->
+      <section class="sec" id="www">
+        <div class="sec-head"><span class="sec-num">03</span><div><h2>Internet ≠ Web และคำศัพท์ที่ต้องรู้</h2><p>คำที่คนทั่วไปใช้แทนกัน แต่ความจริงคนละอย่าง</p></div></div>
+        <div class="vs">
+          <div class="mini c-blue"><span class="ic-wrap"><i data-i="globe"></i></span><h4>Internet</h4><ul class="clean"><li><b>โครงสร้างพื้นฐาน</b> สาย อุปกรณ์ เครือข่าย</li><li>เกิดก่อน (2512)</li><li>เหมือน <b>ถนน</b></li><li>มีหลายบริการ: Email (SMTP), FTP, SSH, VoIP, Game, WWW</li></ul></div>
+          <div class="mid">VS</div>
+          <div class="mini c-pink"><span class="ic-wrap"><i data-i="file"></i></span><h4>World Wide Web</h4><ul class="clean"><li><b>บริการหนึ่ง</b> บนอินเทอร์เน็ต</li><li>เกิดทีหลัง (2532)</li><li>เหมือน <b>รถส่งเอกสาร</b></li><li>เอกสาร (เว็บเพจ) เชื่อมกันด้วย <b>ไฮเปอร์ลิงก์</b> ดูด้วย <b>เบราว์เซอร์</b> ผ่าน <b>HTTP</b></li></ul></div>
+        </div>
+        <h3 style="margin-top:26px">คำศัพท์ — แตะการ์ดเพื่อพลิก (ลองทายก่อน!)</h3>
+        <div class="flips">
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Web Page</span><small>เว็บเพจ</small></div><div class="flip-b"><p><b>เว็บเพจ</b> = เอกสาร 1 หน้า เขียนด้วย HTML เช่น หน้า “ติดต่อเรา”</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Website</span><small>เว็บไซต์</small></div><div class="flip-b"><p><b>เว็บไซต์</b> = เว็บเพจหลายหน้าที่เชื่อมกัน ภายใต้โดเมนเดียวกัน</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Home Page</span><small>โฮมเพจ</small></div><div class="flip-b"><p><b>โฮมเพจ</b> = หน้าแรกของเว็บไซต์ มักชื่อไฟล์ <code>index.html</code> หรือ <code>index.php</code></p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Browser</span><small>เว็บเบราว์เซอร์</small></div><div class="flip-b"><p><b>เบราว์เซอร์</b> = โปรแกรมฝั่งผู้ใช้ที่ขอและแสดงผลเว็บ ภายในมี “Rendering Engine” เช่น Blink (Chrome/Edge), Gecko (Firefox), WebKit (Safari)</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Web Server</span><small>เว็บเซิร์ฟเวอร์</small></div><div class="flip-b"><p>มี 2 ความหมาย: <b>เครื่อง</b> ที่เปิด 24 ชม. และ <b>โปรแกรม</b> ที่ให้บริการเว็บบนเครื่องนั้น เช่น Nginx, Apache, LiteSpeed</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Domain</span><small>ชื่อโดเมน</small></div><div class="flip-b"><p><b>โดเมน</b> = ชื่อจำง่ายแทนเลข IP ต้อง <b>จดทะเบียน</b> และ <b>ต่ออายุรายปี</b> กับผู้รับจดทะเบียน (Registrar)</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Hosting</span><small>เว็บโฮสติ้ง</small></div><div class="flip-b"><p><b>โฮสติ้ง</b> = พื้นที่บนเซิร์ฟเวอร์สำหรับวางเว็บ มีแบบ Shared hosting, VPS, Cloud, Dedicated (Day 5)</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Protocol</span><small>โปรโตคอล</small></div><div class="flip-b"><p><b>โปรโตคอล</b> = ข้อตกลงในการสื่อสาร เช่น HTTP (เว็บ), SMTP (อีเมล), FTP/SFTP (ส่งไฟล์), SSH (ควบคุมเซิร์ฟเวอร์)</p></div></div></button>
+        </div>
+      </section>
+
+      <!-- ================= URL ================= -->
+      <section class="sec" id="url">
+        <div class="sec-head"><span class="sec-num">04</span><div><h2>ผ่า URL ทีละส่วน</h2><p>URL (Uniform Resource Locator) หนึ่งบรรทัด มีข้อมูลซ่อนอยู่ 8 ส่วน</p></div></div>
+        <figure class="anim" id="anim-url" data-ms="4300">
+          <div class="anim-title"><i data-i="link"></i>ส่วนประกอบของ URL<span class="chip">9 ขั้น</span></div>
+          <div class="stage auto">
+            <div class="url-big" data-sync>
+              <span data-part="1,9" style="--c:var(--blue)">https://</span><span data-part="2,9" style="--c:var(--teal)">www.</span><span data-part="3,9" style="--c:var(--pink)">example</span><span data-part="4,9" style="--c:var(--purple)">.ac.th</span><span data-part="5,9" style="--c:var(--amber)">:443</span><span data-part="6,9" style="--c:var(--orange)">/it/web/lesson.html</span><span data-part="7,9" style="--c:var(--green)">?unit=1&amp;page=2</span><span data-part="8,9" style="--c:var(--red)">#quiz</span>
+            </div>
+            <div class="stack" style="margin-top:18px">
+              <div class="mini rise" data-only="0"><h4>▶ กดเล่นเพื่อเริ่มผ่า URL</h4><p>แต่ละขั้นไฮไลต์ 1 ส่วนพร้อมคำอธิบาย</p></div>
+              <div class="mini rise" data-only="1"><h4 style="color:var(--blue)">① Protocol / Scheme</h4><p>วิธีสื่อสาร · <code>http://</code> ธรรมดา · <code>https://</code> เข้ารหัส (S = Secure) · อื่น ๆ เช่น <code>ftp://</code> <code>mailto:</code> <code>tel:</code> <code>file:///</code></p></div>
+              <div class="mini rise" data-only="2"><h4 style="color:var(--teal)">② Subdomain</h4><p>ชื่อย่อยหน้าโดเมน ใช้แยกบริการ เช่น <code>www</code> <code>mail</code> <code>reg</code> — ในวันที่ 5 แต่ละคนจะได้ซับโดเมนของตัวเอง เช่น <code>student01.<span class="v" data-v="domain">example.ac.th</span></code></p></div>
+              <div class="mini rise" data-only="3"><h4 style="color:var(--pink)">③ Domain name</h4><p>ชื่อเว็บไซต์ที่ <b>จดทะเบียน</b> ไม่ซ้ำใครในโลก (ตัวพิมพ์เล็ก-ใหญ่ไม่มีผล <code>EXAMPLE</code> = <code>example</code>)</p></div>
+              <div class="mini rise" data-only="4"><h4 style="color:var(--purple)">④ TLD (Top-Level Domain)</h4><p>นามสกุลโดเมน · <code>.th</code> = ccTLD (ประเทศ) · <code>.com</code> <code>.org</code> = gTLD · <code>.ac.th</code> = สถาบันการศึกษาไทย (<code>ac</code> เป็น Second-level)</p></div>
+              <div class="mini rise" data-only="5"><h4 style="color:var(--amber)">⑤ Port</h4><p>“ประตู” ของบริการ · HTTP = <b>80</b> · HTTPS = <b>443</b> ถ้าเป็นค่าเริ่มต้นไม่ต้องพิมพ์ · ตอนพัฒนาจะเห็น <code>localhost:5500</code>, <code>:8080</code></p></div>
+              <div class="mini rise" data-only="6"><h4 style="color:var(--orange)">⑥ Path</h4><p>ตำแหน่งโฟลเดอร์/ไฟล์บนเซิร์ฟเวอร์ · บน Linux <b>ตัวพิมพ์เล็ก-ใหญ่มีผล!</b> <code>About.html</code> ≠ <code>about.html</code> · ถ้าไม่ระบุไฟล์ เซิร์ฟเวอร์ส่ง <code>index.html</code></p></div>
+              <div class="mini rise" data-only="7"><h4 style="color:var(--green)">⑦ Query string</h4><p>ขึ้นต้นด้วย <code>?</code> ส่งข้อมูลให้เซิร์ฟเวอร์แบบ <code>key=value</code> คั่นด้วย <code>&amp;</code> เช่น ค้นหา <code>?q=html</code> หรือรหัสนักเรียน <code>?id=6701</code></p></div>
+              <div class="mini rise" data-only="8"><h4 style="color:var(--red)">⑧ Fragment</h4><p>ขึ้นต้นด้วย <code>#</code> กระโดดไปยังส่วนที่มี <code>id</code> ตรงกัน · <b>ไม่ถูกส่งไปเซิร์ฟเวอร์</b> เบราว์เซอร์ใช้เอง</p></div>
+              <div class="mini rise" data-only="9"><h4>🧩 รวมกันทำงานอย่างไร?</h4><p>①–⑤ ใช้ <b>หาเครื่องและวิธีคุย</b> · ⑥–⑦ บอกเซิร์ฟเวอร์ว่า <b>ต้องการอะไร</b> · ⑧ เบราว์เซอร์ใช้ <b>เลื่อนไปยังตำแหน่ง</b></p></div>
+            </div>
+          </div>
+          <ol class="anim-steps compact">
+            <li>Protocol — วิธีสื่อสาร</li><li>Subdomain — ชื่อย่อยของบริการ</li><li>Domain — ชื่อที่จดทะเบียน</li><li>TLD — นามสกุลโดเมน</li><li>Port — ประตูบริการ</li><li>Path — โฟลเดอร์และไฟล์</li><li>Query — ข้อมูลที่ส่งไป</li><li>Fragment — จุดกระโดดในหน้า</li><li>สรุปการทำงานร่วมกัน</li>
+          </ol>
+        </figure>
+        <div class="panel url-play">
+          <h3><i data-i="search"></i>ทดลองผ่า URL เอง</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
+            <button class="btn sm" type="button" data-try="https://www.google.com/search?q=html+คืออะไร&hl=th">Google ค้นหา</button>
+            <button class="btn sm" type="button" data-try="https://www.youtube.com/watch?v=abc123&t=60s">YouTube</button>
+            <button class="btn sm" type="button" data-try="http://localhost:5500/index.html#contact">localhost</button>
+            <button class="btn sm" type="button" data-try="https://reg.example.ac.th/student/grade.php?id=6701&term=1">ระบบทะเบียน</button>
+          </div>
+          <input type="text" value="https://www.example.ac.th:443/it/web/lesson.html?unit=1&page=2#quiz" aria-label="URL">
+          <div class="url-out"></div>
+        </div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>โดเมนสากล</th><th>ใช้สำหรับ</th><th>โดเมนไทย (.th)</th><th>ใช้สำหรับ</th></tr></thead>
+            <tbody>
+              <tr><td><code>.com</code></td><td>การค้า (นิยมที่สุด)</td><td><code>.ac.th</code></td><td>สถาบันการศึกษา</td></tr>
+              <tr><td><code>.org</code></td><td>องค์กรไม่แสวงกำไร</td><td><code>.co.th</code></td><td>บริษัท/นิติบุคคล (ต้องใช้เอกสาร)</td></tr>
+              <tr><td><code>.net</code></td><td>เครือข่าย/ทั่วไป</td><td><code>.go.th</code></td><td>หน่วยงานรัฐ</td></tr>
+              <tr><td><code>.dev</code> <code>.app</code></td><td>นักพัฒนา/แอป (บังคับ HTTPS)</td><td><code>.or.th</code></td><td>องค์กร/มูลนิธิ</td></tr>
+              <tr><td><code>.io</code> <code>.ai</code></td><td>ccTLD ที่สตาร์ตอัปนิยม</td><td><code>.in.th</code></td><td>บุคคล/ทั่วไป (จดง่ายสุด)</td></tr>
+              <tr><td><code>.edu</code> <code>.gov</code></td><td>การศึกษา/รัฐ (สหรัฐฯ)</td><td><code>.th</code> · <code>.ไทย</code></td><td>โดเมนระดับบนของไทย</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="nugs">
+          <div class="nug deep"><p><b>URL Encoding:</b> URL ส่งได้แค่ตัวอักษรอังกฤษบางชุด ภาษาไทยจึงถูกแปลงเป็นรหัส % เช่น <code>เว็บไซต์</code> → <code>%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C</code> (ลองคัดลอก URL ภาษาไทยจากแถบที่อยู่ไปวางดู) · ช่องว่างกลายเป็น <code>%20</code> หรือ <code>+</code></p></div>
+          <div class="nug deep"><p><b>Punycode:</b> โดเมนภาษาไทย <code>.ไทย</code> จริง ๆ แล้วถูกเก็บในระบบ DNS เป็น <code>xn--o3cw4h</code> และ <code>เว็บ.ไทย</code> = <code>xn--r3cz4e3a.xn--o3cw4h</code></p></div>
+          <div class="nug tech"><p>ตั้งชื่อไฟล์/โฟลเดอร์เว็บ: <b>อังกฤษตัวพิมพ์เล็ก ไม่เว้นวรรค ใช้ <code>-</code></b> เช่น <code>contact-us.html</code> — ใช้ <code>-</code> ดีกว่า <code>_</code> เพราะ Google มองขีดกลางเป็นตัวคั่นคำ (ดีต่อ SEO)</p></div>
+          <div class="nug fun"><p><code>www</code> ไม่ใช่ส่วนบังคับ! เป็นแค่ซับโดเมนที่นิยมตั้งในยุคแรกเพื่อบอกว่า “เครื่องนี้ให้บริการเว็บ” ปัจจุบันหลายเว็บตั้งให้ <code>www</code> redirect ไปโดเมนหลัก (หรือกลับกัน)</p></div>
+        </div>
+      </section>
+
+      <!-- ================= IP ================= -->
+      <section class="sec" id="ip">
+        <div class="sec-head"><span class="sec-num">05</span><div><h2>IP Address &amp; Port</h2><p>“บ้านเลขที่” และ “ประตู” — ต้องเข้าใจก่อนจะตั้งค่าโดเมนและเซิร์ฟเวอร์ของตัวเองในวันที่ 5</p></div></div>
+        <div class="g2">
+          <div class="mini c-blue"><h4>IPv4</h4><p>32 บิต เขียนเป็นเลข 4 ชุด ชุดละ 0–255 เช่น <code>203.0.113.10</code> · มีได้ราว <b>4,300 ล้าน</b> หมายเลข → ไม่พอใช้แล้ว!</p></div>
+          <div class="mini c-purple"><h4>IPv6</h4><p>128 บิต เลขฐาน 16 เช่น <code>2001:db8::1</code> · มีได้ 3.4×10<sup>38</sup> หมายเลข (มากพอให้ทรายทุกเม็ดบนโลกมี IP)</p></div>
+          <div class="mini c-teal"><h4>Public IP vs Private IP</h4><p><b>Public</b> ใช้บนอินเทอร์เน็ต ไม่ซ้ำทั้งโลก (เซิร์ฟเวอร์ของเราต้องมี) · <b>Private</b> ใช้ในวง LAN: <code>192.168.x.x</code> <code>10.x.x.x</code> <code>172.16–31.x.x</code> · Router ใช้ <b>NAT</b> แปลงให้หลายเครื่องใช้ Public IP เดียวกัน</p></div>
+          <div class="mini c-pink"><h4>Localhost</h4><p><code>127.0.0.1</code> (หรือชื่อ <code>localhost</code>) = “เครื่องตัวเอง” ข้อมูลไม่ออกนอกเครื่องเลย — ใช้ตอนพัฒนาเว็บด้วย XAMPP/Live Server (Day 3)</p></div>
+        </div>
+        <h3 style="margin-top:22px">Port ที่นักพัฒนาเว็บต้องรู้</h3>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Port</th><th>บริการ</th><th>ใช้ทำอะไรในวิชานี้</th></tr></thead>
+            <tbody>
+              <tr><td><code>80</code></td><td>HTTP</td><td>เว็บแบบไม่เข้ารหัส (ควร redirect ไป 443)</td></tr>
+              <tr class="hl"><td><code>443</code></td><td>HTTPS</td><td>เว็บแบบเข้ารหัส — มาตรฐานปัจจุบัน</td></tr>
+              <tr class="hl"><td><code>22</code></td><td>SSH / SFTP</td><td>ควบคุมเซิร์ฟเวอร์และอัปโหลดไฟล์อย่างปลอดภัย (Day 5)</td></tr>
+              <tr><td><code>21</code></td><td>FTP</td><td>อัปโหลดไฟล์แบบเก่า ไม่เข้ารหัส (ไม่แนะนำ)</td></tr>
+              <tr><td><code>53</code></td><td>DNS</td><td>ถาม-ตอบชื่อโดเมน</td></tr>
+              <tr><td><code>3306</code></td><td>MySQL/MariaDB</td><td>ฐานข้อมูลของ WordPress (ไม่ควรเปิดสู่อินเทอร์เน็ต)</td></tr>
+              <tr><td><code>8080</code> <code>5500</code> <code>3000</code></td><td>พอร์ตทางเลือก</td><td>เซิร์ฟเวอร์ทดสอบตอนพัฒนา</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="nugs">
+          <div class="nug tech"><p>อยากรู้ IP ของตัวเอง: <b>Private IP</b> พิมพ์ <code>ipconfig</code> (Windows) หรือ <code>ip a</code> (Linux) · <b>Public IP</b> เปิดเว็บ ifconfig.me หรือ <code>curl ifconfig.me</code></p></div>
+          <div class="nug fun"><p>ทำไมเลข IP แต่ละชุดไม่เกิน 255? เพราะแต่ละชุดคือ <b>8 บิต</b> (1 ไบต์) → 2<sup>8</sup> = 256 ค่า (0–255) · IPv4 จึงมี 4 × 8 = 32 บิต</p></div>
+        </div>
+      </section>
+
+      <!-- ================= DNS ================= -->
+      <section class="sec" id="dns">
+        <div class="sec-head"><span class="sec-num">06</span><div><h2>DNS: สมุดโทรศัพท์ของอินเทอร์เน็ต</h2><p>คนจำชื่อ — คอมพิวเตอร์จำตัวเลข · DNS แปลงให้</p></div></div>
+        <figure class="anim" id="anim-dns" data-ms="4000">
+          <div class="anim-title"><i data-i="book"></i>DNS ค้นหา IP ของ www.example.ac.th<span class="chip">5 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="9" y1="50" x2="33" y2="50" data-hl="1,5"/>
+              <line x1="33" y1="50" x2="62" y2="16" data-hl="2"/>
+              <line x1="33" y1="50" x2="88" y2="50" data-hl="3"/>
+              <line x1="33" y1="50" x2="62" y2="84" data-hl="4"/>
+            </svg>
+            <div class="actor c-blue" style="left:9%;top:50%" data-hl="1,5"><span class="ab"><i data-i="laptop"></i></span><span class="lb">Browser</span><span class="sub">ของเรา</span></div>
+            <div class="actor c-teal lg" style="left:33%;top:50%" data-hl="1-5"><span class="ab"><i data-i="book"></i></span><span class="lb">DNS Resolver</span><span class="sub">ของ ISP / 1.1.1.1 / 8.8.8.8</span></div>
+            <div class="actor c-purple" style="left:62%;top:16%" data-hl="2"><span class="ab"><i data-i="globe"></i></span><span class="lb">Root Server “.”</span><span class="sub">รู้จักทุก TLD</span></div>
+            <div class="actor c-pink" style="left:88%;top:50%" data-hl="3"><span class="ab"><i data-i="server"></i></span><span class="lb">TLD Server “.th”</span><span class="sub">ดูแลโดย THNIC</span></div>
+            <div class="actor c-orange" style="left:62%;top:84%" data-hl="4"><span class="ab"><i data-i="server"></i></span><span class="lb">Authoritative NS</span><span class="sub">ของ example.ac.th</span></div>
+            <div class="flyer" style="--x1:9%;--y1:50%;--x2:33%;--y2:50%;--c:var(--blue)" data-only="1">www.example.ac.th = ?</div>
+            <div class="flyer" style="--x1:33%;--y1:50%;--x2:62%;--y2:16%;--c:var(--teal);--dur:3s" data-only="2">รู้จัก .th ไหม?</div>
+            <div class="flyer" style="--x1:62%;--y1:16%;--x2:33%;--y2:50%;--c:var(--purple);--dur:3s;--delay:1.5s" data-only="2">ไปถาม .th</div>
+            <div class="flyer" style="--x1:33%;--y1:50%;--x2:88%;--y2:50%;--c:var(--teal);--dur:3s" data-only="3">example.ac.th ?</div>
+            <div class="flyer" style="--x1:88%;--y1:50%;--x2:33%;--y2:50%;--c:var(--pink);--dur:3s;--delay:1.5s" data-only="3">ไปถาม NS ของเขา</div>
+            <div class="flyer" style="--x1:33%;--y1:50%;--x2:62%;--y2:84%;--c:var(--teal);--dur:3s" data-only="4">www = ?</div>
+            <div class="flyer" style="--x1:62%;--y1:84%;--x2:33%;--y2:50%;--c:var(--green);--dur:3s;--delay:1.5s" data-only="4">A 203.0.113.10</div>
+            <div class="flyer" style="--x1:33%;--y1:50%;--x2:9%;--y2:50%;--c:var(--green)" data-only="5">203.0.113.10 ✓</div>
+            <div class="bubble pop" style="left:33%;top:83%" data-only="5">💾 จำไว้ใน Cache ตาม TTL</div>
+            <div class="bubble pop" style="left:12%;top:20%" data-only="1">ถาม Resolver ก่อนเสมอ</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>Browser ถาม DNS Resolver</b> (ของ ISP, ของวิทยาลัย หรือสาธารณะอย่าง <code>1.1.1.1</code>, <code>8.8.8.8</code>) — ถ้า Resolver จำคำตอบไว้แล้ว ตอบทันที จบตรงนี้</li>
+            <li><b>ถาม Root Server</b> — Root ไม่รู้คำตอบ แต่ชี้ทางว่า “ไปถามเครื่องที่ดูแล <code>.th</code>”</li>
+            <li><b>ถาม TLD Server ของ .th</b> — ตอบว่า “โดเมน <code>example.ac.th</code> ใช้ Name Server เครื่องนี้ ไปถามเขา”</li>
+            <li><b>ถาม Authoritative Name Server</b> ซึ่งเก็บ <b>DNS Record</b> ตัวจริง → ตอบ <b>A record</b>: <code>www</code> = <code>203.0.113.10</code></li>
+            <li><b>Resolver ส่ง IP ให้ Browser</b> และ <b>จำไว้ใน Cache</b> ตามเวลา <b>TTL</b> (Time To Live) ครั้งหน้าตอบได้ในเสี้ยววินาที</li>
+          </ol>
+        </figure>
+        <h3>DNS Record ที่ต้องใช้จริงในวันที่ 5</h3>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>ชนิด</th><th>หน้าที่</th><th>ตัวอย่าง</th></tr></thead>
+            <tbody>
+              <tr class="hl"><td><code>A</code></td><td>ชื่อ → IPv4</td><td><code>@ → 203.0.113.50</code> · <code>student01 → 203.0.113.50</code></td></tr>
+              <tr><td><code>AAAA</code></td><td>ชื่อ → IPv6</td><td><code>@ → 2001:db8::50</code></td></tr>
+              <tr class="hl"><td><code>CNAME</code></td><td>ชื่อเล่น ชี้ไปอีกชื่อหนึ่ง</td><td><code>www → example.ac.th</code></td></tr>
+              <tr><td><code>MX</code></td><td>เซิร์ฟเวอร์รับอีเมลของโดเมน</td><td><code>@ → mail.example.ac.th</code> (priority 10)</td></tr>
+              <tr><td><code>TXT</code></td><td>ข้อความยืนยัน/นโยบาย</td><td>ยืนยัน Google Search Console, SPF อีเมล</td></tr>
+              <tr><td><code>NS</code></td><td>บอกว่าใครดูแล DNS ของโดเมนนี้</td><td><code>ns1.provider.com</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="nugs">
+          <div class="nug fun"><p>ทั้งโลกมี <b>Root Server แค่ 13 ชื่อ</b> (a.root-servers.net ถึง m) แต่แต่ละชื่อมีเครื่องจริงกระจายอยู่ทั่วโลกรวมกว่า 1,000 จุดด้วยเทคนิค <b>Anycast</b> — มีในประเทศไทยด้วย</p></div>
+          <div class="nug pro"><p><b>ไฟล์ hosts</b> คือ “DNS ส่วนตัว” ที่เครื่องอ่านก่อนถาม DNS จริง · Windows: <code>C:\Windows\System32\drivers\etc\hosts</code> · Linux/macOS: <code>/etc/hosts</code> — ใช้ทดสอบโดเมนก่อนย้ายเซิร์ฟเวอร์ได้ เช่นเพิ่มบรรทัด <code>203.0.113.50 student01.example.ac.th</code></p></div>
+          <div class="nug tech"><p>ดู DNS cache ของ Chrome: <code>chrome://net-internals/#dns</code> · ล้าง DNS cache ของ Windows: <code>ipconfig /flushdns</code> — ใช้เมื่อเพิ่งแก้ DNS แล้วเครื่องยังไปที่เก่า</p></div>
+          <div class="nug oops"><p><b>CNAME ใช้กับโดเมนหลัก (@) ไม่ได้</b> ตามมาตรฐาน DNS เพราะชนกับ record อื่น เช่น NS/MX · โดเมนหลักต้องใช้ <code>A</code> record</p></div>
+        </div>
+      </section>
+
+      <!-- ================= ENTER ================= -->
+      <section class="sec" id="enter">
+        <div class="sec-head"><span class="sec-num">07</span><div><h2>กด Enter แล้วเกิดอะไรขึ้น? (หัวใจของ Day 1)</h2><p>สโลว์โมชัน 10 ขั้น · คลิกหมายเลขขั้นเพื่อดูซ้ำ</p></div></div>
+        <figure class="anim" id="anim-enter" data-ms="4300">
+          <div class="anim-title"><i data-i="zap"></i>จากพิมพ์ URL → จนเห็นหน้าเว็บ<span class="chip">10 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="12" y1="52" x2="50" y2="15" data-in="3" data-hl="3,4"/>
+              <line x1="12" y1="52" x2="86" y2="52" data-in="5" data-hl="5,6,8,9"/>
+              <line x1="86" y1="52" x2="86" y2="86" data-in="7" data-hl="7"/>
+            </svg>
+            <div class="actor c-blue lg" style="left:12%;top:52%" data-hl="1,2,10"><span class="ab"><i data-i="laptop"></i></span><span class="lb">Browser</span><span class="sub">Client</span></div>
+            <div class="actor c-teal pop" style="left:50%;top:15%" data-in="3" data-hl="3,4"><span class="ab"><i data-i="book"></i></span><span class="lb">DNS Server</span></div>
+            <div class="actor c-green lg pulse" style="left:86%;top:52%" data-hl="6,7,8"><span class="ab"><i data-i="server"></i></span><span class="lb">Web Server</span><span class="sub">203.0.113.10</span></div>
+            <div class="actor c-amber sm pop" style="left:86%;top:87%" data-in="7"><span class="ab"><i data-i="database"></i></span><span class="lb">Database</span></div>
+            <div class="bubble mono pop" style="left:14%;top:18%" data-only="1">⌨️ www.example.ac.th ⏎</div>
+            <div class="bubble bad pop" style="left:14%;top:84%" data-only="2">🔍 Cache: ไม่เคยเข้า → ไม่รู้ IP</div>
+            <div class="flyer" style="--x1:12%;--y1:52%;--x2:50%;--y2:15%;--c:var(--blue)" data-only="3">IP ของ www.example.ac.th ?</div>
+            <div class="flyer" style="--x1:50%;--y1:15%;--x2:12%;--y2:52%;--c:var(--teal)" data-only="4">203.0.113.10</div>
+            <div class="bubble ok pop" style="left:14%;top:84%" data-only="4-9">IP: 203.0.113.10 ✓</div>
+            <div class="flyer" style="--x1:12%;--y1:52%;--x2:86%;--y2:52%;--c:var(--purple);--dur:2.6s" data-only="5">SYN →</div>
+            <div class="flyer" style="--x1:86%;--y1:52%;--x2:12%;--y2:52%;--c:var(--purple);--dur:2.6s;--delay:1.3s" data-only="5">← SYN-ACK</div>
+            <div class="bubble pop" style="left:49%;top:70%" data-only="5">🤝 TCP 3-way handshake + 🔒 TLS ตกลงกุญแจ</div>
+            <div class="flyer" style="--x1:12%;--y1:52%;--x2:86%;--y2:52%;--c:var(--pink)" data-only="6">GET /index.html</div>
+            <div class="bubble pop" style="left:64%;top:33%" data-only="7">⚙️ หาไฟล์ · รันโปรแกรม · ดึงข้อมูล</div>
+            <div class="flyer" style="--x1:86%;--y1:52%;--x2:86%;--y2:87%;--c:var(--amber);--dur:2s" data-only="7">SELECT ข่าว</div>
+            <div class="flyer" style="--x1:86%;--y1:87%;--x2:86%;--y2:52%;--c:var(--amber);--dur:2s;--delay:1s" data-only="7">ข้อมูล</div>
+            <div class="flyer" style="--x1:86%;--y1:52%;--x2:12%;--y2:52%;--c:var(--green)" data-only="8">200 OK + HTML</div>
+            <div class="flyer" style="--x1:86%;--y1:52%;--x2:12%;--y2:52%;--c:var(--blue);--dur:2.4s" data-only="9">style.css</div>
+            <div class="flyer" style="--x1:86%;--y1:52%;--x2:12%;--y2:52%;--c:var(--amber);--dur:2.4s;--delay:.8s" data-only="9">app.js</div>
+            <div class="flyer" style="--x1:86%;--y1:52%;--x2:12%;--y2:52%;--c:var(--pink);--dur:2.4s;--delay:1.6s" data-only="9">logo.webp</div>
+            <div class="bubble pop" style="left:49%;top:70%" data-only="9">HTML อ้างถึงไฟล์อื่น → ขอเพิ่มทีละไฟล์</div>
+            <div class="minipage pop" style="left:17%;top:21%" data-only="10"><i class="mp-bar"></i><i class="mp-hero"></i><i class="mp-l"></i><i class="mp-l s"></i></div>
+            <div class="bubble ok pop" style="left:52%;top:72%" data-only="10">🎉 แสดงผลเสร็จ! ทั้งหมดใช้เวลาไม่ถึง 1 วินาที</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>พิมพ์ URL</b> แล้วกด Enter — เบราว์เซอร์ตรวจก่อนว่าเป็น URL หรือคำค้นหา (ถ้าไม่ใช่ URL จะส่งไปเสิร์ชเอนจิน)</li>
+            <li><b>ตรวจ Cache</b> เบราว์เซอร์ → ระบบปฏิบัติการ → ไฟล์ hosts ว่าเคยรู้ IP ของชื่อนี้ไหม</li>
+            <li><b>ถาม DNS</b> “www.example.ac.th มี IP อะไร?” (ละเอียดในหัวข้อที่ 6)</li>
+            <li><b>DNS ตอบ IP</b> <code>203.0.113.10</code> — ตอนนี้รู้แล้วว่าต้องไปหาเครื่องไหน</li>
+            <li><b>สร้างการเชื่อมต่อ</b> TCP จับมือ 3 ครั้ง (SYN → SYN-ACK → ACK) ไปที่พอร์ต 443 แล้วทำ <b>TLS Handshake</b> ตกลงกุญแจเข้ารหัส</li>
+            <li><b>ส่ง HTTP Request</b> <code>GET /index.html</code> พร้อม Header เช่น <code>Host: www.example.ac.th</code> (บอกว่าต้องการเว็บไหน เพราะ 1 เซิร์ฟเวอร์มีได้หลายเว็บ)</li>
+            <li><b>Server ประมวลผล</b> ไฟล์ธรรมดาส่งเลย · เว็บไดนามิกรัน PHP แล้วดึงข้อมูลจาก <b>ฐานข้อมูล</b></li>
+            <li><b>ส่ง HTTP Response</b> <code>200 OK</code> + Header + HTML</li>
+            <li><b>ขอไฟล์ประกอบเพิ่ม</b> CSS, JS, รูป, ฟอนต์ — เว็บหนึ่งหน้าอาจมีหลายสิบถึงหลายร้อย Request</li>
+            <li><b>Render</b> เบราว์เซอร์ประกอบ HTML + CSS + JS วาดเป็นภาพบนจอ (ละเอียดในหัวข้อที่ 11)</li>
+          </ol>
+        </figure>
+        <div class="nugs">
+          <div class="nug deep"><p><b>HTTP/1.1 → HTTP/2 → HTTP/3:</b> HTTP/2 ส่งหลายไฟล์พร้อมกันในการเชื่อมต่อเดียว (multiplexing) · HTTP/3 วิ่งบน <b>QUIC</b> ซึ่งใช้ UDP แทน TCP ทำให้เชื่อมต่อเร็วขึ้นและทนต่อเน็ตมือถือที่สลับเสาสัญญาณ — ดูได้ใน DevTools คอลัมน์ Protocol (h2, h3)</p></div>
+          <div class="nug deep"><p><b>CDN (Content Delivery Network)</b> เช่น Cloudflare เก็บสำเนาไฟล์เว็บไว้ใกล้ผู้ใช้ทั่วโลก ผู้ใช้ในไทยจึงโหลดจากเครื่องในไทยแทนต่างประเทศ → เร็วขึ้นมาก และช่วยกันการโจมตี DDoS</p></div>
+          <div class="nug oops"><p>เวลา “เว็บไม่ขึ้น” ให้ไล่ทีละขั้น: <b>DNS หาไม่เจอ</b> (DNS_PROBE_FINISHED_NXDOMAIN — ชื่อผิด/โดเมนหมดอายุ) · <b>เชื่อมต่อไม่ได้</b> (ERR_CONNECTION_REFUSED — เซิร์ฟเวอร์/พอร์ตปิด) · <b>404</b> ไฟล์ไม่มี · <b>500</b> โค้ดฝั่งเซิร์ฟเวอร์พัง</p></div>
+        </div>
+      </section>
+
+      <!-- ================= HTTP ================= -->
+      <section class="sec" id="http">
+        <div class="sec-head"><span class="sec-num">08</span><div><h2>HTTP Request &amp; Response</h2><p>“จดหมาย” ระหว่างเบราว์เซอร์กับเซิร์ฟเวอร์ — หน้าตาจริงเป็นแบบนี้</p></div></div>
+        <figure class="anim" id="anim-msg" data-ms="4200">
+          <div class="anim-title"><i data-i="mail"></i>เปิดซองจดหมาย HTTP<span class="chip">6 ขั้น</span></div>
+          <div class="stage auto">
+            <div class="g2" style="gap:12px">
+              <div class="msg">
+                <div class="msg-h">📤 HTTP Request (Browser → Server)</div>
+                <div class="ln" data-in="1" data-hl="1"><span class="t-kw">GET</span> <span class="t-val">/index.html</span> HTTP/1.1</div>
+                <div class="ln" data-in="2" data-hl="2"><span class="t-prop">Host:</span> www.example.ac.th</div>
+                <div class="ln" data-in="2" data-hl="2"><span class="t-prop">User-Agent:</span> Mozilla/5.0 (Windows) Chrome</div>
+                <div class="ln" data-in="2" data-hl="2"><span class="t-prop">Accept:</span> text/html</div>
+                <div class="ln" data-in="2" data-hl="2"><span class="t-prop">Cookie:</span> session=a8f3…</div>
+                <div class="ln" data-in="3" data-hl="3"><span class="t-com">(บรรทัดว่าง · GET ไม่มี Body)</span></div>
+              </div>
+              <div class="msg">
+                <div class="msg-h">📥 HTTP Response (Server → Browser)</div>
+                <div class="ln" data-in="4" data-hl="4">HTTP/1.1 <span class="t-str">200 OK</span></div>
+                <div class="ln" data-in="5" data-hl="5"><span class="t-prop">Server:</span> nginx</div>
+                <div class="ln" data-in="5" data-hl="5"><span class="t-prop">Content-Type:</span> text/html; charset=UTF-8</div>
+                <div class="ln" data-in="5" data-hl="5"><span class="t-prop">Cache-Control:</span> max-age=3600</div>
+                <div class="ln" data-in="6" data-hl="6"><span class="t-tag">&lt;!DOCTYPE html&gt;</span></div>
+                <div class="ln" data-in="6" data-hl="6"><span class="t-tag">&lt;html</span> <span class="t-attr">lang</span>=<span class="t-val">"th"</span><span class="t-tag">&gt;</span> …</div>
+              </div>
+            </div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>Request Line</b> = Method (ทำอะไร) + Path (ไฟล์ไหน) + เวอร์ชัน HTTP</li>
+            <li><b>Request Headers</b> ข้อมูลประกอบ: เว็บไหน (Host) เบราว์เซอร์อะไร (User-Agent) รับชนิดไหน (Accept) และ <b>Cookie</b> ที่เคยได้รับ</li>
+            <li><b>Body</b> — GET ไม่มี แต่ POST (ส่งฟอร์ม/ล็อกอิน) ข้อมูลจะอยู่ตรงนี้</li>
+            <li><b>Status Line</b> รหัสสถานะ <code>200 OK</code> = สำเร็จ</li>
+            <li><b>Response Headers</b> ซอฟต์แวร์เซิร์ฟเวอร์ ชนิดไฟล์ (MIME type) การเข้ารหัสอักขระ และนโยบายการเก็บ Cache</li>
+            <li><b>Response Body</b> เนื้อหาจริง คือโค้ด HTML</li>
+          </ol>
+        </figure>
+        <div class="g2">
+          <div class="tbl-wrap" style="margin:0">
+            <table class="tbl" style="min-width:0">
+              <thead><tr><th>Method</th><th>ความหมาย</th></tr></thead>
+              <tbody>
+                <tr><td><code>GET</code></td><td>ขอดูข้อมูล (ข้อมูลอยู่ใน URL)</td></tr>
+                <tr><td><code>POST</code></td><td>ส่งข้อมูลใหม่ (อยู่ใน Body) เช่น ล็อกอิน ฟอร์ม</td></tr>
+                <tr><td><code>PUT</code> / <code>PATCH</code></td><td>แก้ไขข้อมูล</td></tr>
+                <tr><td><code>DELETE</code></td><td>ลบข้อมูล</td></tr>
+                <tr><td><code>HEAD</code></td><td>ขอเฉพาะ Header (ใช้ <code>curl -I</code>)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tbl-wrap" style="margin:0">
+            <table class="tbl" style="min-width:0">
+              <thead><tr><th>Header</th><th>หน้าที่</th></tr></thead>
+              <tbody>
+                <tr><td><code>Content-Type</code></td><td>ชนิดข้อมูล เช่น text/html, image/webp</td></tr>
+                <tr><td><code>Cache-Control</code></td><td>ให้เบราว์เซอร์เก็บไฟล์ไว้นานแค่ไหน</td></tr>
+                <tr><td><code>Location</code></td><td>ที่อยู่ใหม่ (ใช้คู่กับ 301/302)</td></tr>
+                <tr><td><code>Set-Cookie</code></td><td>ฝากข้อมูลเล็ก ๆ ไว้ที่เบราว์เซอร์</td></tr>
+                <tr><td><code>Strict-Transport-Security</code></td><td>บังคับใช้ HTTPS เสมอ (HSTS)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="nugs">
+          <div class="nug deep"><p><b>HTTP เป็น Stateless</b> — เซิร์ฟเวอร์ “จำไม่ได้” ว่าคำขอก่อนหน้าเป็นใคร เว็บจึงใช้ <b>Cookie + Session</b>: หลังล็อกอิน เซิร์ฟเวอร์ส่ง <code>Set-Cookie: session=…</code> แล้วเบราว์เซอร์แนบ Cookie นี้กลับไปทุกครั้ง เซิร์ฟเวอร์จึงรู้ว่าเป็นคนเดิม</p></div>
+          <div class="nug pro"><p>ดู Header ของเว็บไหนก็ได้ใน 1 บรรทัด: <code>curl -I https://www.google.com</code> (มีใน Windows 10/11 แล้ว) — จะเห็น Status, Server, Content-Type, Cache-Control ทันที</p></div>
+        </div>
+      </section>
+
+      <!-- ================= STATUS ================= -->
+      <section class="sec" id="status">
+        <div class="sec-head"><span class="sec-num">09</span><div><h2>HTTP Status Code</h2><p>เลข 3 หลัก หลักแรกบอกกลุ่ม · แตะการ์ดเพื่อพลิก</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>กลุ่ม</th><th>ความหมาย</th><th>จำง่าย ๆ (ร้านอาหาร)</th></tr></thead>
+            <tbody>
+              <tr><td><code>1xx</code></td><td>Informational</td><td>“รับออเดอร์แล้ว กำลังทำ”</td></tr>
+              <tr><td><code>2xx</code></td><td>Success</td><td>“ได้เลย นี่ครับ” ✅</td></tr>
+              <tr><td><code>3xx</code></td><td>Redirection</td><td>“ร้านย้ายไปซอยข้าง ๆ” ↪️</td></tr>
+              <tr><td><code>4xx</code></td><td>Client Error</td><td>“คุณสั่งผิดเอง/ไม่มีสิทธิ์” 🙅</td></tr>
+              <tr><td><code>5xx</code></td><td>Server Error</td><td>“ครัวไฟไหม้” 🔥</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="flips">
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--green)">200</span><small>OK</small></div><div class="flip-b"><p><b>สำเร็จ</b> ได้ข้อมูลตามที่ขอ</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--blue)">301</span><small>Moved Permanently</small></div><div class="flip-b"><p><b>ย้ายถาวร</b> เช่น http → https หรือเปลี่ยนโดเมน · Google โอนคะแนน SEO ไปที่อยู่ใหม่</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--blue)">302</span><small>Found (ชั่วคราว)</small></div><div class="flip-b"><p><b>ย้ายชั่วคราว</b> เช่น พาไปหน้าล็อกอินก่อน แล้วค่อยกลับมา</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--blue)">304</span><small>Not Modified</small></div><div class="flip-b"><p><b>ไม่เปลี่ยน</b> ใช้ไฟล์ใน Cache ได้เลย ไม่ต้องโหลดใหม่ → เร็ว</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--amber)">403</span><small>Forbidden</small></div><div class="flip-b"><p><b>ไม่มีสิทธิ์</b> มักเกิดจาก <b>สิทธิ์ไฟล์ (permission) บนเซิร์ฟเวอร์ผิด</b> หรือไม่มี index.html ในโฟลเดอร์ — เจอบ่อยตอน Deploy วันที่ 5!</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--red)">404</span><small>Not Found</small></div><div class="flip-b"><p><b>ไม่พบไฟล์</b> URL ผิด ลิงก์เสีย หรือ <b>ตัวพิมพ์เล็ก-ใหญ่ไม่ตรง</b> บน Linux</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--red)">500</span><small>Internal Server Error</small></div><div class="flip-b"><p><b>เซิร์ฟเวอร์ผิดพลาด</b> โค้ด PHP มีบั๊ก หรือเชื่อมฐานข้อมูลไม่ได้ → ดู error log</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--red)">502</span><small>Bad Gateway</small></div><div class="flip-b"><p>Nginx ส่งต่อคำขอไปโปรแกรมหลังบ้าน (เช่น PHP-FPM) แล้ว <b>โปรแกรมนั้นไม่ตอบ</b></p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--red)">503</span><small>Service Unavailable</small></div><div class="flip-b"><p><b>ให้บริการไม่ได้ชั่วคราว</b> ปิดปรับปรุง หรือคนเข้าพร้อมกันมากเกินไป</p></div></div></button>
+        </div>
+        <div class="nug fun"><p>มีรหัส <b>418 I'm a teapot</b> (“ฉันเป็นกาน้ำชา ชงกาแฟไม่ได้”) มาจากมาตรฐานมุกวันโกหกเดือนเมษายน ปี 1998 — เว็บดังหลายแห่งยังทำหน้า 418 ไว้เป็นอีสเตอร์เอ้ก ☕</p></div>
+      </section>
+
+      <div class="part-label">ภาคบ่าย · ความปลอดภัย การแสดงผล และโครงสร้างเว็บ</div>
+
+      <!-- ================= HTTPS ================= -->
+      <section class="sec" id="https">
+        <div class="sec-head"><span class="sec-num">10</span><div><h2>HTTP vs HTTPS: ทำไมต้องมีกุญแจ 🔒</h2><p>ดูว่าคนดักฟัง Wi-Fi สาธารณะเห็นอะไรบ้าง</p></div></div>
+        <figure class="anim" id="anim-https" data-ms="4200">
+          <div class="anim-title"><i data-i="lock"></i>ส่งรหัสผ่านแบบ HTTP กับ HTTPS<span class="chip">5 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="10" y1="42" x2="90" y2="42" data-hl="1,4"/>
+              <line x1="50" y1="80" x2="50" y2="42" class="dash"/>
+            </svg>
+            <div class="actor c-blue" style="left:10%;top:42%"><span class="ab"><i data-i="laptop"></i></span><span class="lb">ผู้ใช้</span><span class="sub">กรอกรหัสผ่าน</span></div>
+            <div class="actor c-red" style="left:50%;top:82%" data-hl="1,4"><span class="ab"><i data-i="spy"></i></span><span class="lb">ผู้ไม่หวังดี</span><span class="sub">ดักฟัง Wi-Fi สาธารณะ</span></div>
+            <div class="actor c-green" style="left:90%;top:42%" data-hl="2,5"><span class="ab"><i data-i="server"></i></span><span class="lb">Web Server</span></div>
+            <div class="bubble bad pop" style="left:30%;top:14%" data-only="1">http:// ⚠️ ไม่เข้ารหัส</div>
+            <div class="flyer" style="--x1:10%;--y1:42%;--x2:90%;--y2:42%;--c:var(--red);--dur:2.8s" data-only="1">user=nong&amp;pass=1234</div>
+            <div class="bubble bad pop" style="left:73%;top:80%" data-only="1">👀 อ่านออกหมด: pass=1234</div>
+            <div class="flyer" style="--x1:90%;--y1:42%;--x2:10%;--y2:42%;--c:var(--teal);--dur:2.8s" data-only="2">📜 Certificate + Public key</div>
+            <div class="bubble wrap pop" style="left:30%;top:14%" data-only="2">ตรวจว่าใบรับรองออกโดย CA ที่เชื่อถือ และตรงกับชื่อโดเมน</div>
+            <div class="flyer" style="--x1:10%;--y1:42%;--x2:90%;--y2:42%;--c:var(--purple);--dur:2.8s" data-only="3">🔑 สร้างกุญแจลับร่วม</div>
+            <div class="flyer" style="--x1:90%;--y1:42%;--x2:10%;--y2:42%;--c:var(--purple);--dur:2.8s;--delay:1.4s" data-only="3">🔑 OK</div>
+            <div class="bubble wrap pop" style="left:30%;top:14%" data-only="3">สองฝ่ายได้ Session key เดียวกัน โดยไม่เคยส่งกุญแจนั้นผ่านสาย</div>
+            <div class="bubble ok pop" style="left:30%;top:14%" data-only="4-5">https:// 🔒 เข้ารหัสแล้ว</div>
+            <div class="flyer" style="--x1:10%;--y1:42%;--x2:90%;--y2:42%;--c:var(--green);--dur:2.8s" data-only="4">x9#Kq!@7zP%2a…</div>
+            <div class="bubble pop" style="left:73%;top:80%" data-only="4">🤯 อ่านไม่ออก: x9#Kq!@7z…</div>
+            <div class="bubble ok pop" style="left:88%;top:14%" data-only="5">🔓 ถอดรหัส: pass=1234 ✓</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>HTTP</b> ส่งเป็นข้อความธรรมดา ใครดักได้ระหว่างทางก็อ่านรหัสผ่านได้ทันที</li>
+            <li><b>TLS ขั้นที่ 1</b> เซิร์ฟเวอร์ส่ง <b>ใบรับรอง (Certificate)</b> ที่มี Public key มาให้ เบราว์เซอร์ตรวจว่าออกโดย <b>CA</b> (Certificate Authority) ที่เชื่อถือได้และตรงกับโดเมน</li>
+            <li><b>TLS ขั้นที่ 2</b> ใช้การเข้ารหัสแบบกุญแจคู่ (Asymmetric) ตกลง <b>Session key</b> ร่วมกัน</li>
+            <li><b>ส่งข้อมูลเข้ารหัส</b> ด้วย Session key (Symmetric ซึ่งเร็วกว่า) ผู้ดักฟังเห็นแต่ตัวอักษรมั่ว</li>
+            <li><b>เซิร์ฟเวอร์ถอดรหัส</b> ได้ข้อมูลจริงอย่างปลอดภัย — วันที่ 5 เราจะติดตั้งใบรับรองฟรีจาก Let's Encrypt บนเซิร์ฟเวอร์ของเราเอง</li>
+          </ol>
+        </figure>
+        <div class="nugs">
+          <div class="nug tech"><p>คลิกรูปกุญแจที่แถบที่อยู่ → “การเชื่อมต่อปลอดภัย” → “ใบรับรองถูกต้อง” จะเห็นว่าใครออกใบรับรอง (เช่น Let's Encrypt, DigiCert) และ <b>วันหมดอายุ</b></p></div>
+          <div class="nug fun"><p>Let's Encrypt แจกใบรับรอง <b>ฟรี</b> ทำให้ HTTPS กลายเป็นมาตรฐาน ใบรับรองมีอายุสั้น (ราว 90 วัน และมีแผนสั้นลงอีก) จึงต้องตั้ง <b>ต่ออายุอัตโนมัติ</b> — certbot ทำให้เอง</p></div>
+          <div class="nug oops"><p>HTTPS แปลว่า “ข้อมูลระหว่างทางปลอดภัย” <b>ไม่ได้แปลว่าเว็บนั้นน่าเชื่อถือ</b> — เว็บหลอกลวง (Phishing) ก็มีกุญแจได้ ต้องดูชื่อโดเมนให้ดีเสมอ</p></div>
+        </div>
+      </section>
+
+      <!-- ================= RENDER ================= -->
+      <section class="sec" id="render">
+        <div class="sec-head"><span class="sec-num">11</span><div><h2>เบราว์เซอร์วาดหน้าเว็บอย่างไร (Rendering Pipeline)</h2><p>ได้ไฟล์มาแล้ว → กลายเป็นพิกเซลบนจอใน 6 ขั้น</p></div></div>
+        <figure class="anim" id="anim-pipe" data-ms="4000">
+          <div class="anim-title"><i data-i="layers"></i>Critical Rendering Path<span class="chip">7 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="7" y1="28" x2="25" y2="28" data-hl="1"/>
+              <line x1="7" y1="72" x2="25" y2="72" data-hl="2"/>
+              <line x1="25" y1="28" x2="45" y2="50" data-in="3" data-hl="3"/>
+              <line x1="25" y1="72" x2="45" y2="50" data-in="3" data-hl="3"/>
+              <line x1="45" y1="50" x2="63" y2="50" data-in="4" data-hl="4,7"/>
+              <line x1="63" y1="50" x2="78" y2="50" data-in="5" data-hl="5,7"/>
+              <line x1="78" y1="50" x2="92" y2="50" data-in="6" data-hl="6"/>
+            </svg>
+            <div class="actor c-orange sm" style="left:7%;top:28%" data-hl="1"><span class="ab"><i data-i="file"></i></span><span class="lb">HTML</span></div>
+            <div class="actor c-blue sm" style="left:7%;top:72%" data-hl="2"><span class="ab"><i data-i="palette"></i></span><span class="lb">CSS</span></div>
+            <div class="actor c-orange pop" style="left:25%;top:28%" data-in="1" data-hl="1,7"><span class="ab"><i data-i="tree"></i></span><span class="lb">DOM</span></div>
+            <div class="actor c-blue pop" style="left:25%;top:72%" data-in="2" data-hl="2"><span class="ab"><i data-i="tree"></i></span><span class="lb">CSSOM</span></div>
+            <div class="actor c-purple pop" style="left:45%;top:50%" data-in="3" data-hl="3"><span class="ab"><i data-i="layers"></i></span><span class="lb">Render Tree</span></div>
+            <div class="actor c-pink pop" style="left:63%;top:50%" data-in="4" data-hl="4,7"><span class="ab"><i data-i="layout"></i></span><span class="lb">Layout</span></div>
+            <div class="actor c-amber pop" style="left:78%;top:50%" data-in="5" data-hl="5,7"><span class="ab"><i data-i="pencil"></i></span><span class="lb">Paint</span></div>
+            <div class="actor c-green pop" style="left:92%;top:50%" data-in="6" data-hl="6"><span class="ab"><i data-i="monitor"></i></span><span class="lb">Composite</span><span class="sub">จอภาพ</span></div>
+            <div class="flyer" style="--x1:7%;--y1:28%;--x2:25%;--y2:28%;--c:var(--orange)" data-only="1">bytes→tokens→nodes</div>
+            <div class="flyer" style="--x1:7%;--y1:72%;--x2:25%;--y2:72%;--c:var(--blue)" data-only="2">กฎ CSS</div>
+            <div class="bubble pop" style="left:45%;top:22%" data-only="3">ตัด &lt;head&gt; และ display:none ออก</div>
+            <div class="bubble pop" style="left:63%;top:78%" data-only="4">คำนวณ x, y, width, height ทุกกล่อง</div>
+            <div class="bubble pop" style="left:78%;top:22%" data-only="5">ลงสี ตัวอักษร เงา รูป → พิกเซล</div>
+            <div class="bubble pop" style="left:86%;top:80%" data-only="6">รวมเลเยอร์ด้วย GPU</div>
+            <div class="actor c-amber sm pop" style="left:45%;top:86%" data-in="7" data-hl="7"><span class="ab"><i data-i="zap"></i></span><span class="lb">JavaScript</span></div>
+            <div class="flyer" style="--x1:45%;--y1:86%;--x2:25%;--y2:28%;--c:var(--amber)" data-only="7">แก้ DOM</div>
+            <div class="bubble bad pop" style="left:70%;top:82%" data-only="7">🔁 Reflow + Repaint ใหม่</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>Parse HTML → DOM</b> อ่านโค้ดทีละตัวอักษร แปลงเป็นแท็ก แล้วสร้างต้นไม้ <b>DOM</b> (Document Object Model)</li>
+            <li><b>Parse CSS → CSSOM</b> อ่านกฎ CSS ทั้งหมดสร้างต้นไม้ <b>CSSOM</b> — CSS เป็น “Render-blocking” ต้องโหลดเสร็จก่อนวาด</li>
+            <li><b>Render Tree</b> รวม DOM + CSSOM เหลือเฉพาะสิ่งที่มองเห็น (ไม่รวม <code>&lt;head&gt;</code> และ <code>display:none</code>)</li>
+            <li><b>Layout (Reflow)</b> คำนวณตำแหน่งและขนาดของทุกกล่องตามขนาดจอ</li>
+            <li><b>Paint</b> วาดสี ตัวอักษร เส้นขอบ เงา รูปภาพ เป็นพิกเซล</li>
+            <li><b>Composite</b> รวมหลายเลเยอร์ (ด้วย GPU) แสดงบนจอ</li>
+            <li><b>JavaScript แก้ DOM</b> → ต้อง Layout และ Paint ใหม่ — ถ้าทำบ่อย ๆ เว็บจะกระตุก</li>
+          </ol>
+        </figure>
+        <div class="nugs">
+          <div class="nug pro"><p>ใส่ <code>&lt;script src="app.js" <b>defer</b>&gt;&lt;/script&gt;</code> ใน <code>&lt;head&gt;</code> — เบราว์เซอร์โหลด JS ไปพร้อมกับอ่าน HTML แต่รันหลังสร้าง DOM เสร็จ หน้าเว็บจึงแสดงเร็วขึ้น (แบบเก่าคือย้าย script ไปไว้ท้าย body)</p></div>
+          <div class="nug tech"><p>DevTools → แท็บ <b>Performance</b> กดบันทึกแล้วโหลดหน้าใหม่ จะเห็นแถบ Parse, Layout, Paint จริงของเว็บนั้น · แท็บ <b>Lighthouse</b> ให้คะแนนความเร็ว 0–100</p></div>
+        </div>
+      </section>
+
+      <!-- ================= TRIO ================= -->
+      <section class="sec" id="trio">
+        <div class="sec-head"><span class="sec-num">12</span><div><h2>HTML + CSS + JavaScript</h2><p>3 ภาษาฝั่งเบราว์เซอร์ แยกหน้าที่ชัดเจน — ลองกดปุ่มในตัวอย่างได้</p></div></div>
+        <div class="analogy" style="margin-bottom:18px">
+          <div class="pair"><div class="a">🧱</div><div class="eq">HTML =</div><b>โครงบ้าน</b><small>“มีอะไรบ้าง”</small></div>
+          <div class="pair"><div class="a">🎨</div><div class="eq">CSS =</div><b>ตกแต่งบ้าน</b><small>“หน้าตาเป็นอย่างไร”</small></div>
+          <div class="pair"><div class="a">💡</div><div class="eq">JavaScript =</div><b>ระบบไฟฟ้า</b><small>“ทำอะไรได้”</small></div>
+        </div>
+        <figure class="anim" id="anim-trio" data-ms="5200">
+          <div class="anim-title"><i data-i="layers"></i>เติมทีละภาษา แล้วดูหน้าเว็บเปลี่ยน<span class="chip">4 ขั้น</span></div>
+          <div class="stage auto">
+            <div class="g2" style="gap:14px;align-items:stretch">
+              <div class="stack">
+                <div class="msg rise" data-only="0-1"><div class="msg-h">index.html — โครงสร้าง</div><pre class="trio-code"><span class="t-tag">&lt;div</span> <span class="t-attr">class</span>=<span class="t-val">"card"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;h3&gt;</span>นายเว็บ ดีเวลอปเปอร์<span class="t-tag">&lt;/h3&gt;</span>
+  <span class="t-tag">&lt;p&gt;</span>นักเรียน ปวช. สาขา IT<span class="t-tag">&lt;/p&gt;</span>
+  <span class="t-tag">&lt;ul&gt;</span>
+    <span class="t-tag">&lt;li&gt;</span>HTML<span class="t-tag">&lt;/li&gt;</span>
+    <span class="t-tag">&lt;li&gt;</span>CSS<span class="t-tag">&lt;/li&gt;</span>
+    <span class="t-tag">&lt;li&gt;</span>JavaScript<span class="t-tag">&lt;/li&gt;</span>
+  <span class="t-tag">&lt;/ul&gt;</span>
+  <span class="t-tag">&lt;button</span> <span class="t-attr">id</span>=<span class="t-val">"like"</span><span class="t-tag">&gt;</span>👍 ถูกใจ<span class="t-tag">&lt;/button&gt;</span>
+<span class="t-tag">&lt;/div&gt;</span></pre></div>
+                <div class="msg rise" data-only="2"><div class="msg-h">style.css — หน้าตา</div><pre class="trio-code"><span class="t-sel">.card</span> {
+  <span class="t-prop">background</span>: <span class="t-val">white</span>;
+  <span class="t-prop">border-radius</span>: <span class="t-num">18px</span>;
+  <span class="t-prop">box-shadow</span>: <span class="t-num">0 10px 30px</span> <span class="t-val">#0002</span>;
+  <span class="t-prop">text-align</span>: <span class="t-val">center</span>;
+}
+<span class="t-sel">li</span> { <span class="t-prop">display</span>: <span class="t-val">inline-block</span>; }
+<span class="t-sel">button</span> {
+  <span class="t-prop">background</span>: <span class="t-val">linear-gradient</span>(<span class="t-val">#f97316</span>, <span class="t-val">#ec4899</span>);
+  <span class="t-prop">color</span>: <span class="t-val">white</span>; <span class="t-prop">border-radius</span>: <span class="t-num">99px</span>;
+}</pre></div>
+                <div class="msg rise" data-only="3"><div class="msg-h">app.js — การโต้ตอบ</div><pre class="trio-code"><span class="t-kw">let</span> likes = <span class="t-num">0</span>;
+<span class="t-kw">const</span> btn = document.<span class="t-prop">querySelector</span>(<span class="t-str">'#like'</span>);
+btn.<span class="t-prop">addEventListener</span>(<span class="t-str">'click'</span>, () =&gt; {
+  likes++;
+  <span class="t-prop">show</span>(<span class="t-str">'❤ '</span> + likes + <span class="t-str">' คนถูกใจ'</span>);
+});
+<span class="t-com">// กดปุ่มในตัวอย่างด้านขวาได้เลย →</span></pre></div>
+                <div class="mini rise" data-only="4"><h4>🧩 สามไฟล์ทำงานร่วมกัน</h4><ul class="clean"><li><b>HTML</b> = มีอะไร (โครงสร้าง/ความหมาย)</li><li><b>CSS</b> = หน้าตาแบบไหน (การนำเสนอ)</li><li><b>JS</b> = ทำอะไรได้ (พฤติกรรม)</li><li>แยกไฟล์ → แก้ง่าย ทีมแบ่งงานได้ เบราว์เซอร์ Cache ได้</li></ul></div>
+              </div>
+              <div class="trio-preview">
+                <div class="browser-bar"><i></i><i></i><i></i><span class="addr">index.html</span></div>
+                <div class="trio-body">
+                  <div class="demo keep" data-in="2">
+                    <h3>นายเว็บ ดีเวลอปเปอร์</h3><p>นักเรียน ปวช. สาขา IT</p>
+                    <ul><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+                    <button type="button" data-like>👍 ถูกใจ</button>
+                    <div class="like-out" data-like-out></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>HTML อย่างเดียว</b> — มีเนื้อหาครบ แต่ใช้รูปแบบพื้นฐานของเบราว์เซอร์ · กดปุ่ม → ไม่มีอะไรเกิดขึ้น</li>
+            <li><b>+ CSS</b> — เนื้อหาเดิม แต่สี ฟอนต์ ระยะห่าง เงา เปลี่ยนไปทั้งหมด</li>
+            <li><b>+ JavaScript</b> — หน้าเว็บ “ตอบสนอง” ได้แล้ว · <u>ลองกดปุ่ม 👍</u></li>
+            <li><b>สรุป</b> — ทั้งสามทำงานใน <b>เบราว์เซอร์ของผู้ใช้</b> (ฝั่ง Client)</li>
+          </ol>
+        </figure>
+      </section>
+
+      <!-- ================= STACK ================= -->
+      <section class="sec" id="stack">
+        <div class="sec-head"><span class="sec-num">13</span><div><h2>Frontend · Backend · Database · Server</h2><p>เว็บสมัยใหม่แบ่งเป็นชั้น ๆ เหมือนร้านอาหาร: หน้าร้าน – ครัว – ห้องเก็บของ – ตัวอาคาร</p></div></div>
+        <div class="g4">
+          <div class="mini c-pink"><span class="ic-wrap"><i data-i="monitor"></i></span><h4>Frontend</h4><p>ส่วนที่ผู้ใช้ <b>เห็นและโต้ตอบ</b> ในเบราว์เซอร์ · HTML, CSS, JS, Bootstrap, Tailwind, React, Vue</p></div>
+          <div class="mini c-purple"><span class="ic-wrap"><i data-i="cog"></i></span><h4>Backend</h4><p><b>ประมวลผลเบื้องหลัง</b> ตรวจรหัสผ่าน คำนวณ สร้างหน้าเว็บ · PHP, Node.js, Python, Java, Go</p></div>
+          <div class="mini c-blue"><span class="ic-wrap"><i data-i="database"></i></span><h4>Database</h4><p><b>เก็บข้อมูลเป็นระบบ</b> · MySQL/MariaDB, PostgreSQL (SQL) · MongoDB, Firebase (NoSQL)</p></div>
+          <div class="mini c-teal"><span class="ic-wrap"><i data-i="server"></i></span><h4>Server / Infra</h4><p><b>เครื่องและระบบที่รันทุกอย่าง</b> · Linux, Nginx/Apache, Docker, Cloud, DNS, SSL</p></div>
+        </div>
+        <div class="tbl-wrap" style="margin-top:16px">
+          <table class="tbl">
+            <thead><tr><th>Stack ยอดนิยม</th><th>ประกอบด้วย</th><th>ตัวอย่างการใช้</th></tr></thead>
+            <tbody>
+              <tr class="hl"><td><b>LAMP / LEMP</b></td><td>Linux + Apache/Nginx (E = “Engine-x”) + MySQL + PHP</td><td>WordPress, ระบบในสถานศึกษาจำนวนมาก (Day 5)</td></tr>
+              <tr><td><b>XAMPP</b></td><td>Apache + MariaDB + PHP + Perl (ทุก OS)</td><td>จำลองเซิร์ฟเวอร์บนเครื่องตัวเอง (Day 3)</td></tr>
+              <tr><td><b>MERN</b></td><td>MongoDB + Express + React + Node.js</td><td>เว็บแอปสมัยใหม่ (JavaScript ทั้งระบบ)</td></tr>
+              <tr><td><b>JAMstack / Static</b></td><td>HTML/CSS/JS + CDN</td><td>เว็บแนะนำตัว Portfolio โหลดเร็วมาก</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="nug pro"><p>อยากรู้ว่าเว็บไหนใช้เทคโนโลยีอะไร ติดตั้งส่วนขยาย <b>Wappalyzer</b> ในเบราว์เซอร์ — จะบอกทันทีว่าใช้ WordPress? React? Nginx? Cloudflare? (ใช้ในใบงาน Day 1)</p></div>
+      </section>
+
+      <!-- ================= STATIC / DYNAMIC ================= -->
+      <section class="sec" id="sd">
+        <div class="sec-head"><span class="sec-num">14</span><div><h2>เว็บไซต์ Static vs Dynamic</h2><p>“อาหารสำเร็จรูป” กับ “ปรุงสดตามออเดอร์”</p></div></div>
+        <figure class="anim" id="anim-sd" data-ms="4300">
+          <div class="anim-title"><i data-i="server"></i>สองแบบทำงานต่างกันอย่างไร<span class="chip">6 ขั้น</span></div>
+          <div class="stage">
+            <div class="zone" style="left:2%;top:4%;width:96%;height:42%">STATIC WEBSITE</div>
+            <div class="zone" style="left:2%;top:52%;width:96%;height:44%">DYNAMIC WEBSITE</div>
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="10" y1="27" x2="48" y2="27" data-hl="1,2"/><line x1="48" y1="27" x2="74" y2="27" data-hl="2"/>
+              <line x1="10" y1="76" x2="38" y2="76" data-hl="3,6"/><line x1="38" y1="76" x2="62" y2="76" data-hl="4,6"/><line x1="62" y1="76" x2="86" y2="76" data-hl="5"/>
+            </svg>
+            <div class="actor c-blue" style="left:10%;top:27%" data-hl="1,2"><span class="ab"><i data-i="laptop"></i></span><span class="lb">Browser</span></div>
+            <div class="actor c-green" style="left:48%;top:27%" data-hl="1,2"><span class="ab"><i data-i="server"></i></span><span class="lb">Web Server</span></div>
+            <div class="actor c-orange sm" style="left:74%;top:27%" data-hl="2"><span class="ab"><i data-i="file"></i></span><span class="lb">about.html</span><span class="sub">ไฟล์ทำไว้ล่วงหน้า</span></div>
+            <div class="flyer" style="--x1:10%;--y1:27%;--x2:48%;--y2:27%;--c:var(--blue)" data-only="1">GET /about.html</div>
+            <div class="flyer" style="--x1:48%;--y1:27%;--x2:10%;--y2:27%;--c:var(--orange)" data-only="2">about.html (เหมือนเดิม)</div>
+            <div class="bubble pop" style="left:80%;top:11%" data-only="2">ใครขอก็ได้หน้าเดียวกัน</div>
+            <div class="actor c-blue" style="left:10%;top:76%" data-hl="3,6"><span class="ab"><i data-i="laptop"></i></span><span class="lb">Browser</span></div>
+            <div class="actor c-green" style="left:38%;top:76%" data-hl="3,4"><span class="ab"><i data-i="server"></i></span><span class="lb">Web Server</span></div>
+            <div class="actor c-purple spin-on" style="left:62%;top:76%" data-hl="4,5,6"><span class="ab"><i data-i="cog"></i></span><span class="lb">PHP</span><span class="sub">ประมวลผล</span></div>
+            <div class="actor c-amber" style="left:86%;top:76%" data-hl="5"><span class="ab"><i data-i="database"></i></span><span class="lb">Database</span></div>
+            <div class="flyer" style="--x1:10%;--y1:76%;--x2:38%;--y2:76%;--c:var(--blue)" data-only="3">GET /grade.php?id=6701</div>
+            <div class="flyer" style="--x1:38%;--y1:76%;--x2:62%;--y2:76%;--c:var(--green)" data-only="4">รัน grade.php</div>
+            <div class="flyer" style="--x1:62%;--y1:76%;--x2:86%;--y2:76%;--c:var(--purple);--dur:2.6s" data-only="5">SELECT … id=6701</div>
+            <div class="flyer" style="--x1:86%;--y1:76%;--x2:62%;--y2:76%;--c:var(--amber);--dur:2.6s;--delay:1.3s" data-only="5">3.75, 3.50</div>
+            <div class="flyer" style="--x1:62%;--y1:76%;--x2:10%;--y2:76%;--c:var(--pink);--dur:2.6s" data-only="6">HTML ใหม่เฉพาะ 6701</div>
+            <div class="bubble pop" style="left:70%;top:59%" data-only="6">คนละ id → ได้คนละหน้า</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>Static:</b> เบราว์เซอร์ขอ <code>about.html</code></li>
+            <li><b>Static:</b> เซิร์ฟเวอร์หยิบไฟล์ที่ทำไว้ส่งกลับทันที — เร็ว ปลอดภัย แต่ทุกคนเห็นเหมือนกัน</li>
+            <li><b>Dynamic:</b> เบราว์เซอร์ขอ <code>grade.php?id=6701</code></li>
+            <li><b>Dynamic:</b> เว็บเซิร์ฟเวอร์ส่งให้ <b>PHP</b> รันโค้ด</li>
+            <li><b>Dynamic:</b> PHP ดึงข้อมูลจากฐานข้อมูลด้วยภาษา <b>SQL</b></li>
+            <li><b>Dynamic:</b> สร้าง HTML ใหม่แล้วส่งกลับ → แต่ละคนเห็นข้อมูลของตัวเอง</li>
+          </ol>
+        </figure>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>หัวข้อ</th><th>Static</th><th>Dynamic</th></tr></thead>
+            <tbody>
+              <tr><td>เนื้อหา</td><td>คงที่ เหมือนกันทุกคน</td><td>เปลี่ยนตามผู้ใช้/ข้อมูล</td></tr>
+              <tr><td>แก้ไขเนื้อหา</td><td>แก้ไฟล์โค้ด</td><td>แก้ผ่านหน้าแอดมิน (เช่น WordPress)</td></tr>
+              <tr><td>เทคโนโลยี</td><td>HTML, CSS, JS</td><td>+ PHP/Node + ฐานข้อมูล</td></tr>
+              <tr><td>ความเร็ว / ความปลอดภัย</td><td>เร็วมาก ช่องโหว่น้อย</td><td>ช้ากว่า ต้องอัปเดตความปลอดภัยสม่ำเสมอ</td></tr>
+              <tr><td>ในคอร์สนี้</td><td>เว็บที่เขียนเอง Day 3–4</td><td>WordPress Day 5</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= STRUCTURE ================= -->
+      <section class="sec" id="structure">
+        <div class="sec-head"><span class="sec-num">15</span><div><h2>โครงสร้างเว็บไซต์ (Site Structure) 4 แบบ</h2><p>แสดงด้วยแผนผังเว็บไซต์ (Sitemap) — จะใช้จริงตอนออกแบบโครงงานใน Day 2</p></div></div>
+        <div class="tabs">
+          <div role="tablist"><button role="tab" data-tab="s1">1. เชิงเส้น</button><button role="tab" data-tab="s2">2. ลำดับชั้น</button><button role="tab" data-tab="s3">3. เครือข่าย</button><button role="tab" data-tab="s4">4. แบบผสม</button></div>
+          <div class="tab-panel panel" data-panel="s1">
+            <svg class="smap" viewBox="0 0 520 120" role="img" aria-label="โครงสร้างแบบเชิงเส้น">
+              <path class="draw" d="M80 60H120M200 60H240M320 60H360M440 60H460"/>
+              <g class="nd" style="--d:0s"><rect x="10" y="42" width="70" height="36" rx="10"/><text x="45" y="65">Home</text></g>
+              <g class="nd" style="--d:.2s"><rect x="120" y="42" width="80" height="36" rx="10"/><text x="160" y="65">ขั้นที่ 1</text></g>
+              <g class="nd" style="--d:.4s"><rect x="240" y="42" width="80" height="36" rx="10"/><text x="280" y="65">ขั้นที่ 2</text></g>
+              <g class="nd" style="--d:.6s"><rect x="360" y="42" width="80" height="36" rx="10"/><text x="400" y="65">ขั้นที่ 3</text></g>
+              <g class="nd" style="--d:.8s"><rect x="460" y="42" width="54" height="36" rx="10"/><text x="487" y="65">จบ</text></g>
+            </svg>
+            <h3>เชิงเส้น (Linear)</h3><p>เรียงต่อกันตามลำดับ · <b>เหมาะ:</b> บทเรียน แบบทดสอบ ขั้นตอนสั่งซื้อ/สมัคร · <b>ข้อเสีย:</b> ข้ามหน้าไม่ได้</p>
+          </div>
+          <div class="tab-panel panel" data-panel="s2">
+            <svg class="smap" viewBox="0 0 520 190" role="img" aria-label="โครงสร้างแบบลำดับชั้น">
+              <path class="draw" d="M260 46V70M65 70H455M65 70V92M195 70V92M325 70V92M455 70V92M195 128V146M150 146H240M150 146V158M240 146V158M325 128V158"/>
+              <g class="nd" style="--d:0s"><rect x="215" y="10" width="90" height="36" rx="10"/><text x="260" y="33">Home</text></g>
+              <g class="nd" style="--d:.2s"><rect x="20" y="92" width="90" height="36" rx="10"/><text x="65" y="115">เกี่ยวกับเรา</text></g>
+              <g class="nd" style="--d:.3s"><rect x="150" y="92" width="90" height="36" rx="10"/><text x="195" y="115">หลักสูตร</text></g>
+              <g class="nd" style="--d:.4s"><rect x="280" y="92" width="90" height="36" rx="10"/><text x="325" y="115">ข่าวสาร</text></g>
+              <g class="nd" style="--d:.5s"><rect x="410" y="92" width="90" height="36" rx="10"/><text x="455" y="115">ติดต่อ</text></g>
+              <g class="nd sub" style="--d:.7s"><rect x="112" y="158" width="76" height="28" rx="8"/><text x="150" y="177">ปวช.</text></g>
+              <g class="nd sub" style="--d:.8s"><rect x="202" y="158" width="76" height="28" rx="8"/><text x="240" y="177">ปวส.</text></g>
+              <g class="nd sub" style="--d:.9s"><rect x="287" y="158" width="76" height="28" rx="8"/><text x="325" y="177">ข่าว 1..n</text></g>
+            </svg>
+            <h3>ลำดับชั้น (Hierarchical / Tree)</h3><p>หมวดใหญ่ → หมวดย่อย <b>นิยมที่สุด</b> · <b>เหมาะ:</b> เว็บองค์กร/วิทยาลัย · <b>กฎ:</b> ไม่ควรลึกเกิน 3 ระดับ (กฎ 3 คลิก)</p>
+          </div>
+          <div class="tab-panel panel" data-panel="s3">
+            <svg class="smap" viewBox="0 0 520 190" role="img" aria-label="โครงสร้างแบบเครือข่าย">
+              <path class="draw" d="M260 40L120 95M260 40L400 95M260 40L180 160M260 40L340 160M120 95L400 95M120 95L180 160M400 95L340 160M180 160L340 160M120 95L340 160M400 95L180 160"/>
+              <g class="nd" style="--d:0s"><rect x="215" y="22" width="90" height="36" rx="10"/><text x="260" y="45">Home</text></g>
+              <g class="nd" style="--d:.2s"><rect x="75" y="77" width="90" height="36" rx="10"/><text x="120" y="100">บทความ A</text></g>
+              <g class="nd" style="--d:.3s"><rect x="355" y="77" width="90" height="36" rx="10"/><text x="400" y="100">บทความ B</text></g>
+              <g class="nd" style="--d:.4s"><rect x="135" y="142" width="90" height="36" rx="10"/><text x="180" y="165">บทความ C</text></g>
+              <g class="nd" style="--d:.5s"><rect x="295" y="142" width="90" height="36" rx="10"/><text x="340" y="165">บทความ D</text></g>
+            </svg>
+            <h3>เครือข่าย (Network / Webbed)</h3><p>ทุกหน้าลิงก์ถึงกันอิสระ · <b>เหมาะ:</b> สารานุกรม Wikipedia · <b>ข้อเสีย:</b> ผู้ใช้หลงทางง่าย</p>
+          </div>
+          <div class="tab-panel panel" data-panel="s4">
+            <svg class="smap" viewBox="0 0 520 190" role="img" aria-label="โครงสร้างแบบผสม">
+              <path class="draw" d="M260 46V70M85 70H435M85 70V92M260 70V92M435 70V92M260 128V140H200V158M200 172H230M290 172H320M435 128V158"/>
+              <path class="draw cross" d="M130 110C200 60 330 60 390 110"/>
+              <g class="nd" style="--d:0s"><rect x="215" y="10" width="90" height="36" rx="10"/><text x="260" y="33">Home</text></g>
+              <g class="nd" style="--d:.2s"><rect x="40" y="92" width="90" height="36" rx="10"/><text x="85" y="115">เกี่ยวกับเรา</text></g>
+              <g class="nd" style="--d:.3s"><rect x="215" y="92" width="90" height="36" rx="10"/><text x="260" y="115">สมัครเรียน</text></g>
+              <g class="nd" style="--d:.4s"><rect x="390" y="92" width="90" height="36" rx="10"/><text x="435" y="115">ข่าวสาร</text></g>
+              <g class="nd sub" style="--d:.6s"><rect x="170" y="158" width="60" height="28" rx="8"/><text x="200" y="177">ขั้น 1</text></g>
+              <g class="nd sub" style="--d:.7s"><rect x="230" y="158" width="60" height="28" rx="8"/><text x="260" y="177">ขั้น 2</text></g>
+              <g class="nd sub" style="--d:.8s"><rect x="320" y="158" width="60" height="28" rx="8"/><text x="350" y="177">ขั้น 3</text></g>
+              <g class="nd sub" style="--d:.9s"><rect x="400" y="158" width="70" height="28" rx="8"/><text x="435" y="177">ข่าว 1..n</text></g>
+            </svg>
+            <h3>แบบผสม (Hybrid)</h3><p>โครงหลักเป็นลำดับชั้น + บางส่วนเชิงเส้น (ขั้นตอนสมัคร) + ลิงก์ข้ามหมวด (เส้นโค้ง) · <b>เว็บจริงส่วนใหญ่เป็นแบบนี้</b></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= WDLC ================= -->
+      <section class="sec" id="wdlc">
+        <div class="sec-head"><span class="sec-num">16</span><div><h2>วงจรการพัฒนาเว็บไซต์ (WDLC) 7 ขั้น</h2><p>แผนที่ของคอร์ส 5 วัน — Day 2 = วิเคราะห์ + ออกแบบ · Day 3–4 = พัฒนา · Day 5 = CMS + ทดสอบ + เผยแพร่</p></div></div>
+        <figure class="anim" id="anim-cycle" data-ms="5000">
+          <div class="anim-title"><i data-i="restart"></i>WDLC ทีละขั้น<span class="chip">8 ขั้น</span></div>
+          <div class="stage auto">
+            <div class="cyc-grid">
+              <div class="cyc">
+                <svg class="wires" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="38" class="cyc-ring"/></svg>
+                <div class="cyc-center"><b>WDLC</b><span>วงจรพัฒนาเว็บไซต์</span></div>
+                <div class="actor c-orange" style="left:50%;top:12%" data-hl="1,8"><span class="ab"><b class="n">1</b></span><span class="lb">วางแผน</span></div>
+                <div class="actor c-pink" style="left:79.7%;top:26.3%" data-hl="2,8"><span class="ab"><b class="n">2</b></span><span class="lb">วิเคราะห์</span></div>
+                <div class="actor c-purple" style="left:87%;top:58.5%" data-hl="3,8"><span class="ab"><b class="n">3</b></span><span class="lb">ออกแบบ</span></div>
+                <div class="actor c-blue" style="left:66.5%;top:84.2%" data-hl="4,8"><span class="ab"><b class="n">4</b></span><span class="lb">พัฒนา</span></div>
+                <div class="actor c-amber" style="left:33.5%;top:84.2%" data-hl="5,8"><span class="ab"><b class="n">5</b></span><span class="lb">ทดสอบ</span></div>
+                <div class="actor c-green" style="left:13%;top:58.5%" data-hl="6,8"><span class="ab"><b class="n">6</b></span><span class="lb">เผยแพร่</span></div>
+                <div class="actor c-teal" style="left:20.3%;top:26.3%" data-hl="7,8"><span class="ab"><b class="n">7</b></span><span class="lb">ดูแลรักษา</span></div>
+              </div>
+              <div class="stack">
+                <div class="cyc-card rise" data-only="0"><h4>▶ กดเล่นเพื่อดูทีละขั้น</h4><p>แต่ละขั้นบอก <b>คำถามหลัก · กิจกรรม · ผลลัพธ์</b> และเรียนวันไหน</p></div>
+                <div class="cyc-card rise" data-only="1" style="--c:var(--orange)"><span class="tag">ขั้นที่ 1 · Planning</span><h4>วางแผน</h4><p><b>คำถาม:</b> ทำเว็บไปทำไม ใครใช้ มีเวลา งบ คนเท่าไร?</p><p><b>ผลลัพธ์:</b> เอกสารโครงการ · ขอบเขต · Gantt Chart</p><span class="unit">📅 Day 1 (วันนี้)</span></div>
+                <div class="cyc-card rise" data-only="2" style="--c:var(--pink)"><span class="tag">ขั้นที่ 2 · Analysis</span><h4>วิเคราะห์ความต้องการ</h4><p><b>คำถาม:</b> ผู้ใช้ต้องการอะไร ต้องมีเนื้อหา/ฟังก์ชันอะไร?</p><p><b>ผลลัพธ์:</b> Requirements · Persona · Content inventory</p><span class="unit">📅 Day 2</span></div>
+                <div class="cyc-card rise" data-only="3" style="--c:var(--purple)"><span class="tag">ขั้นที่ 3 · Design</span><h4>ออกแบบ</h4><p><b>คำถาม:</b> มีกี่หน้า เชื่อมกันอย่างไร หน้าตาแบบไหน?</p><p><b>ผลลัพธ์:</b> Sitemap · Wireframe · Mockup (Figma)</p><span class="unit">📅 Day 2</span></div>
+                <div class="cyc-card rise" data-only="4" style="--c:var(--blue)"><span class="tag">ขั้นที่ 4 · Development</span><h4>พัฒนา</h4><p><b>คำถาม:</b> เขียนโค้ดเอง หรือใช้ CMS?</p><p><b>ผลลัพธ์:</b> เว็บที่ทำงานได้บน localhost</p><span class="unit">📅 Day 3–4 (+ CMS Day 5)</span></div>
+                <div class="cyc-card rise" data-only="5" style="--c:var(--amber)"><span class="tag">ขั้นที่ 5 · Testing</span><h4>ทดสอบ</h4><p><b>คำถาม:</b> ใช้งานได้จริงไหม ช้าไหม มือถือดูได้ไหม?</p><p><b>ผลลัพธ์:</b> รายงานผลทดสอบ · คะแนน Lighthouse</p><span class="unit">📅 Day 5</span></div>
+                <div class="cyc-card rise" data-only="6" style="--c:var(--green)"><span class="tag">ขั้นที่ 6 · Deployment</span><h4>เผยแพร่</h4><p><b>คำถาม:</b> จะขึ้นเซิร์ฟเวอร์และโดเมนจริงอย่างไร?</p><p><b>ผลลัพธ์:</b> เว็บออนไลน์บน <code>student.<span class="v" data-v="domain">example.ac.th</span></code> พร้อม HTTPS</p><span class="unit">📅 Day 5</span></div>
+                <div class="cyc-card rise" data-only="7" style="--c:var(--teal)"><span class="tag">ขั้นที่ 7 · Maintenance</span><h4>ดูแลรักษา</h4><p><b>กิจกรรม:</b> อัปเดตเนื้อหา สำรองข้อมูล อัปเดตความปลอดภัย ต่ออายุโดเมน ดูสถิติ</p><span class="unit">📅 Day 5</span></div>
+                <div class="cyc-card rise" data-only="8" style="--c:var(--pink)"><span class="tag">Iteration</span><h4>ทำไมเป็น “วงจร”?</h4><p>ข้อมูลจากการดูแลรักษา (สถิติ คำติชม) กลายเป็นจุดเริ่มของการ <b>วางแผนรอบใหม่</b> และขั้นตอนอาจ <b>ย้อนกลับ</b> ได้ เช่น ทดสอบแล้วพบปัญหา → กลับไปแก้</p></div>
+              </div>
+            </div>
+          </div>
+          <ol class="anim-steps compact">
+            <li><b>วางแผน</b> — เป้าหมาย ขอบเขต เวลา ทีม</li><li><b>วิเคราะห์</b> — ผู้ใช้และความต้องการ</li><li><b>ออกแบบ</b> — Sitemap, Wireframe, Mockup</li><li><b>พัฒนา</b> — โค้ด / CMS</li><li><b>ทดสอบ</b> — หาข้อผิดพลาด</li><li><b>เผยแพร่</b> — โดเมน เซิร์ฟเวอร์ HTTPS</li><li><b>ดูแลรักษา</b> — อัปเดต สำรอง ป้องกัน</li><li><b>วนกลับ</b> — ปรับปรุงต่อเนื่อง</li>
+          </ol>
+        </figure>
+        <div class="g4">
+          <div class="mini"><span class="ic-wrap"><i data-i="flag"></i></span><h4>Project Manager</h4><p>วางแผน แบ่งงาน คุมเวลา</p></div>
+          <div class="mini c-pink"><span class="ic-wrap"><i data-i="palette"></i></span><h4>UX/UI Designer</h4><p>วิเคราะห์ผู้ใช้ Wireframe Mockup</p></div>
+          <div class="mini c-purple"><span class="ic-wrap"><i data-i="code"></i></span><h4>Developer</h4><p>เขียน HTML CSS JS / ตั้งค่า CMS</p></div>
+          <div class="mini c-teal"><span class="ic-wrap"><i data-i="server"></i></span><h4>DevOps / Admin</h4><p>เซิร์ฟเวอร์ โดเมน SSL สำรองข้อมูล</p></div>
+        </div>
+        <div class="panel worksheet planner" data-plan="project" style="margin-top:18px">
+          <div class="ws-head"><h3><i data-i="clipboard"></i>วางแผนโครงงาน (ใช้ต่อเนื่องทั้ง 5 วัน)</h3><span class="chip c-teal">บันทึกอัตโนมัติในเครื่องนี้</span></div>
+          <p class="muted" style="font-size:15px">ตัวอย่างหัวข้อ: เว็บร้านค้าชุมชน · แหล่งท่องเที่ยวในจังหวัด · เว็บแผนกวิชา · รับซ่อมคอมพิวเตอร์ · Portfolio ส่วนตัว</p>
+          <div class="form-grid">
+            <label>ชื่อโครงงาน / ซับโดเมนที่จะใช้<input type="text" data-field="name" placeholder="เช่น coffee — coffee.example.ac.th"></label>
+            <label>สมาชิกและบทบาท<textarea data-field="team" rows="3" placeholder="1. ……… — PM&#10;2. ……… — Designer"></textarea></label>
+            <label>วัตถุประสงค์ (SMART อย่างน้อย 2 ข้อ)<textarea data-field="goal" rows="3"></textarea></label>
+            <label>กลุ่มผู้ใช้ และสิ่งที่เขาต้องการ<textarea data-field="user" rows="3"></textarea></label>
+            <label>รายชื่อหน้า (Sitemap คร่าว ๆ)<textarea data-field="pages" rows="3" placeholder="หน้าแรก › เกี่ยวกับ › สินค้า › รีวิว › ติดต่อ"></textarea></label>
+            <label>ส่วนที่เขียนเอง (HTML/CSS) และส่วนที่ใช้ CMS<textarea data-field="tech" rows="3"></textarea></label>
+          </div>
+          <div class="live-tools"><button class="btn primary" type="button" data-print><i data-i="printer"></i>พิมพ์ / บันทึก PDF</button><button class="btn" type="button" data-plan-clear><i data-i="x"></i>ล้างแบบฟอร์ม</button></div>
+        </div>
+      </section>
+
+      <!-- ================= LAB ================= -->
+      <section class="sec" id="lab">
+        <div class="sec-head"><span class="sec-num">17</span><div><h2>ใบงาน Day 1 · สืบหลังบ้านเว็บด้วยเครื่องมือจริง</h2><p>งานคู่ · ส่งเป็นเอกสาร/ภาพหน้าจอ · 20 คะแนน</p></div></div>
+        <div class="panel worksheet">
+          <div class="ws-head"><h3><i data-i="clipboard"></i>ขั้นตอน</h3><span class="ws-progress"></span></div>
+          <ul class="checklist" data-key="d1">
+            <li><label><input type="checkbox"><span><b>1. ผ่า URL</b> — เลือก URL ที่มี <code>?</code> 3 อัน แยก 8 ส่วนเอง แล้วตรวจกับเครื่องมือในหัวข้อที่ 4</span></label></li>
+            <li><label><input type="checkbox"><span><b>2. DNS</b> — รัน <code>nslookup</code> กับโดเมนวิทยาลัยและโดเมนของเราเอง บันทึก IP · ลอง <code>nslookup -type=mx</code> และ <code>-type=ns</code></span></label></li>
+            <li><label><input type="checkbox"><span><b>3. เส้นทาง</b> — <code>ping</code> และ <code>tracert</code> ไปยังเซิร์ฟเวอร์ของเรา นับจำนวน hop และเวลา (ms)</span></label></li>
+            <li><label><input type="checkbox"><span><b>4. Header</b> — <code>curl -I</code> เว็บ 3 เว็บ บันทึก Status, Server, Content-Type และดูว่า http:// ถูก redirect (301) ไป https:// หรือไม่</span></label></li>
+            <li><label><input type="checkbox"><span><b>5. DevTools Network</b> — <kbd>F12</kbd> → Network → ติ๊ก Disable cache → <kbd>Ctrl</kbd>+<kbd>F5</kbd> บันทึกจำนวน Request ขนาดรวม เวลาโหลด Protocol (h2/h3) · ลอง Throttling “Slow 4G”</span></label></li>
+            <li><label><input type="checkbox"><span><b>6. 404 &amp; Wappalyzer</b> — ทำให้เกิด 404 · ใช้ Wappalyzer ตรวจเทคโนโลยีของ 3 เว็บ แล้วระบุว่า Static หรือ Dynamic</span></label></li>
+            <li><label><input type="checkbox"><span><b>7. สรุปด้วยภาพ</b> — วาดแผนภาพ 10 ขั้น “กด Enter แล้วเกิดอะไรขึ้น” ระบุว่าแต่ละขั้นเห็นหลักฐานจากเครื่องมือใด</span></label></li>
+          </ul>
+          <div class="code-head"><i></i><i></i><i></i>Command Prompt / Terminal</div>
+<pre class="code"><span class="t-com"># 1) ถาม DNS</span>
+nslookup <span class="v" data-v="domain">example.ac.th</span>
+nslookup -type=mx <span class="v" data-v="domain">example.ac.th</span>
+
+<span class="t-com"># 2) ทดสอบเส้นทาง (Linux/macOS ใช้ traceroute)</span>
+ping <span class="v" data-v="domain">example.ac.th</span>
+tracert <span class="v" data-v="domain">example.ac.th</span>
+
+<span class="t-com"># 3) ดู HTTP Header (ดูการ redirect ด้วย -L)</span>
+curl -I http://<span class="v" data-v="domain">example.ac.th</span>
+curl -IL http://<span class="v" data-v="domain">example.ac.th</span></pre>
+          <div class="callout tip"><i data-i="bulb"></i><p><strong class="t">ใส่โดเมนของตัวเอง</strong>กรอกโดเมนในกล่อง “ข้อมูลเซิร์ฟเวอร์ของฉัน” ที่หน้า <a href="day-5.html#vars">Day 5</a> แล้วคำสั่งทุกหน้าจะเปลี่ยนเป็นโดเมนของคุณอัตโนมัติ</p></div>
+        </div>
+      </section>
+
+      <!-- ================= QUIZ ================= -->
+      <section class="sec" id="quiz">
+        <div class="sec-head"><span class="sec-num">18</span><div><h2>แบบทดสอบ Day 1</h2><p>12 ข้อ · เฉลยทันที</p></div></div>
+        <div class="quiz" data-quiz="d1">
+          <div class="q" data-a="2"><p class="q-t">ข้อใดอธิบายความสัมพันธ์ของ Internet กับ WWW ได้ถูกต้อง</p><div class="opts"><button>เป็นสิ่งเดียวกัน</button><button>WWW เกิดก่อน Internet</button><button>WWW เป็นบริการหนึ่งบน Internet</button><button>Internet เป็นบริการของ WWW</button></div><p class="q-ex">Internet = โครงสร้างเครือข่าย (ถนน) · WWW = บริการเอกสารเว็บที่วิ่งบนเครือข่าย</p></div>
+          <div class="q" data-a="3"><p class="q-t">ใน <code>https://shop.example.co.th/products/list.html?cat=shirt#top</code> ส่วนใดคือ Path</p><div class="opts"><button>shop</button><button>.co.th</button><button>?cat=shirt</button><button>/products/list.html</button></div><p class="q-ex">Path คือตำแหน่งโฟลเดอร์/ไฟล์ต่อจากชื่อโดเมน</p></div>
+          <div class="q" data-a="1"><p class="q-t">IP ใดเป็น Private IP ที่ใช้ภายใน LAN</p><div class="opts"><button>8.8.8.8</button><button>192.168.1.20</button><button>203.0.113.10</button><button>1.1.1.1</button></div><p class="q-ex">ช่วง Private: 192.168.x.x, 10.x.x.x, 172.16–31.x.x</p></div>
+          <div class="q" data-a="0"><p class="q-t">ต้องการให้ <code>student01.example.ac.th</code> ชี้ไปที่ IP ของเซิร์ฟเวอร์ ควรสร้าง DNS record ชนิดใด</p><div class="opts"><button>A</button><button>MX</button><button>TXT</button><button>NS</button></div><p class="q-ex">A record แปลงชื่อเป็น IPv4 · MX ใช้กับอีเมล</p></div>
+          <div class="q" data-a="2"><p class="q-t">อัปโหลดไฟล์ขึ้นเซิร์ฟเวอร์อย่างปลอดภัยด้วย SFTP ใช้พอร์ตใด</p><div class="opts"><button>21</button><button>80</button><button>22</button><button>3306</button></div><p class="q-ex">SFTP ทำงานบน SSH พอร์ต 22 · FTP (21) ไม่เข้ารหัส</p></div>
+          <div class="q" data-a="1"><p class="q-t">เรียงลำดับ: (ก) HTTP Request (ข) DNS (ค) Render (ง) TCP/TLS</p><div class="opts"><button>ก ข ง ค</button><button>ข ง ก ค</button><button>ง ข ก ค</button><button>ข ก ง ค</button></div><p class="q-ex">ต้องรู้ IP (DNS) → เชื่อมต่อ (TCP/TLS) → ขอข้อมูล (HTTP) → วาด (Render)</p></div>
+          <div class="q" data-a="3"><p class="q-t">หลัง Deploy เว็บแล้วเข้าไม่ได้ ขึ้น 403 Forbidden สาเหตุที่น่าจะเป็นที่สุดคือ</p><div class="opts"><button>DNS ยังไม่อัปเดต</button><button>โค้ด PHP มีบั๊ก</button><button>ลืมจดโดเมน</button><button>สิทธิ์ไฟล์บนเซิร์ฟเวอร์ผิด หรือไม่มี index.html</button></div><p class="q-ex">403 = เซิร์ฟเวอร์ไม่อนุญาตให้อ่าน · ถ้า DNS ผิดจะเข้าไม่ถึงเซิร์ฟเวอร์เลย · บั๊ก PHP = 500</p></div>
+          <div class="q" data-a="0"><p class="q-t">เหตุใด HTTP จึงต้องใช้ Cookie/Session ในการจำผู้ใช้ที่ล็อกอิน</p><div class="opts"><button>เพราะ HTTP เป็น Stateless จำคำขอก่อนหน้าไม่ได้</button><button>เพราะ HTTP ไม่มี Header</button><button>เพราะ DNS ไม่รองรับ</button><button>เพราะ HTTPS ห้ามส่งรหัสผ่าน</button></div><p class="q-ex">แต่ละ Request เป็นอิสระ จึงต้องแนบ Cookie เพื่อบอกว่าเป็นใคร</p></div>
+          <div class="q" data-a="2"><p class="q-t">ในการ Render ข้อใดคือขั้น “คำนวณตำแหน่งและขนาดของทุกกล่อง”</p><div class="opts"><button>Parse</button><button>Paint</button><button>Layout</button><button>Composite</button></div><p class="q-ex">Layout (Reflow) คำนวณเรขาคณิต · Paint ลงสี · Composite รวมเลเยอร์</p></div>
+          <div class="q" data-a="1"><p class="q-t">ข้อใดจับคู่ภาษากับหน้าที่ถูกต้อง</p><div class="opts"><button>HTML – การโต้ตอบ</button><button>CSS – การนำเสนอ/หน้าตา</button><button>JS – โครงสร้าง</button><button>PHP – ทำงานในเบราว์เซอร์</button></div><p class="q-ex">HTML โครงสร้าง · CSS หน้าตา · JS พฤติกรรม · PHP ทำงานฝั่งเซิร์ฟเวอร์</p></div>
+          <div class="q" data-a="3"><p class="q-t">“LEMP stack” ประกอบด้วยอะไร</p><div class="opts"><button>Linux, Excel, MySQL, Python</button><button>Laravel, Express, Mongo, PHP</button><button>Linux, Edge, MariaDB, Perl</button><button>Linux, Nginx, MySQL/MariaDB, PHP</button></div><p class="q-ex">E มาจากการอ่าน Nginx ว่า “Engine-x”</p></div>
+          <div class="q" data-a="2"><p class="q-t">ขั้นใดของ WDLC ที่ผลลัพธ์คือ Sitemap, Wireframe และ Mockup</p><div class="opts"><button>วางแผน</button><button>วิเคราะห์</button><button>ออกแบบ</button><button>ทดสอบ</button></div><p class="q-ex">ขั้นออกแบบ (Design) — เรียนใน Day 2</p></div>
+          <div class="quiz-foot"><span class="quiz-score"></span><button class="btn sm quiz-reset" type="button">ทำใหม่</button></div>
+        </div>
+      </section>
+
+      <!-- ================= SUM ================= -->
+      <section class="sec" id="sum">
+        <div class="sec-head"><span class="sec-num">19</span><div><h2>สรุป Day 1</h2><p>ภาพใหญ่ในประโยคเดียว: “ถามที่อยู่ → เคาะประตู → ขอของ → ได้ของ → ประกอบร่าง”</p></div></div>
+        <div class="panel">
+          <ul class="ticks">
+            <li><b>Internet</b> = เครือข่ายของเครือข่าย (TCP/IP, IP, Port) · <b>WWW</b> = บริการเอกสารบนอินเทอร์เน็ต (HTML + HTTP + URL)</li>
+            <li><b>URL</b> 8 ส่วน · <b>DNS</b> แปลงชื่อเป็น IP ด้วย Record (A, CNAME, MX, TXT, NS) และ Cache ตาม TTL</li>
+            <li><b>ลำดับ</b>: DNS → TCP/TLS → HTTP Request → ประมวลผล → Response → ไฟล์ประกอบ → Render (DOM, CSSOM, Layout, Paint, Composite)</li>
+            <li><b>HTTP</b> Method · Header · Status (2xx/3xx/4xx/5xx) · Stateless → Cookie · <b>HTTPS</b> = TLS + Certificate</li>
+            <li><b>HTML/CSS/JS</b> · Frontend/Backend/Database/Server · Static vs Dynamic · โครงสร้างเว็บ 4 แบบ</li>
+            <li><b>WDLC 7 ขั้น</b> = แผนที่ของ 5 วันนี้</li>
+          </ul>
+          <div class="callout"><i data-i="help"></i><p><strong class="t">เตรียมตัวสำหรับ Day 2</strong>แต่ละทีมคุยกับ “ผู้ใช้จริง” ของโครงงานอย่างน้อย 3 คน (เพื่อน ครอบครัว เจ้าของร้าน) ถามว่าเขาอยากเห็นอะไรในเว็บ — พรุ่งนี้จะใช้ข้อมูลนี้สร้าง Persona</p></div>
+          <button class="btn mark-done" type="button" data-lesson="d1"></button>
+        </div>
+        <nav class="pager">
+          <a href="../index.html"><small>← กลับ</small><strong>หน้าแรก</strong></a>
+          <a class="next" href="day-2.html"><small>วันถัดไป →</small><strong>Day 2 · วิเคราะห์ผู้ใช้ &amp; ออกแบบ UI</strong></a>
+        </nav>
+      </section>
+    </article>
+  </div>
+</div>
+</main>
+<footer class="site-foot">made with <i data-i="heart" class="heart"></i> &amp; <i data-i="coffee" class="cup"></i> by IT RVC · 2026</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

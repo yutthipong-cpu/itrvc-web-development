@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 3 Web Server จำลอง &amp; HTML · Web Dev</title>
+<meta name="description" content="วันที่ 3 ติดตั้งโปรแกรมจำลอง Web Server (XAMPP) VS Code และสร้างเว็บด้วย HTML เชิงลึก โครงสร้างเอกสาร Semantic ลิงก์และพาธ รูปภาพ ตาราง ฟอร์ม GET POST และ Meta SEO">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec4899'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem('wd-theme'));if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid"></div><div class="floaters"></div></div>
+<header class="topbar">
+  <nav class="pill" aria-label="เมนูหลัก">
+    <a href="../index.html">Web Dev</a>
+    <a href="day-1.html">Day 1</a>
+    <a href="day-2.html">Day 2</a>
+    <a href="day-3.html" aria-current="page">Day 3</a>
+    <a href="day-4.html">Day 4</a>
+    <a href="day-5.html">Day 5</a>
+  </nav>
+  <button class="theme-btn" type="button">auto</button>
+</header>
+
+<main>
+<div class="wrap">
+  <section class="lesson-hero">
+    <div class="crumbs"><a href="../index.html">Web Dev</a> / Day 3</div>
+    <div class="meta"><span class="chip hot">DAY 3 / 5</span><span class="chip">หน่วยที่ 4 + 5 (HTML)</span><span class="chip">09:00–16:30</span><span class="chip c-purple">6 แอนิเมชัน + Live editor</span></div>
+    <h1>Web Server จำลอง &amp; <span class="grad-text">HTML เชิงลึก</span></h1>
+    <p class="lead">วันนี้เปลี่ยนเครื่องของเราให้เป็น “เว็บเซิร์ฟเวอร์” ด้วย XAMPP ตั้งค่า VS Code แบบมือโปร แล้วเขียน HTML ตั้งแต่โครงสร้างเอกสาร แท็กเชิงความหมาย ลิงก์และพาธ (เรื่องที่ทำให้รูปไม่ขึ้นบ่อยที่สุด) รูปภาพ ตาราง สื่อ ฟอร์มที่ส่งข้อมูลไปให้ PHP จริง ไปจนถึง Meta tag สำหรับ SEO และการแชร์ — จบวันด้วยหน้าเว็บโครงงานเวอร์ชัน HTML ครบทุกหน้า</p>
+  </section>
+
+  <div class="lesson-grid">
+    <aside class="toc">
+      <span class="toc-title">DAY 3</span>
+      <nav>
+        <a href="#plan">ตารางเรียน</a>
+        <a href="#server">Web Server คืออะไร</a>
+        <a href="#xampp">localhost ทำงานอย่างไร</a>
+        <a href="#install">ติดตั้ง XAMPP</a>
+        <a href="#vscode">VS Code แบบมือโปร</a>
+        <a href="#render">จากโค้ดสู่หน้าจอ</a>
+        <a href="#tag">กายวิภาคของแท็ก</a>
+        <a href="#skeleton">โครงสร้าง HTML5</a>
+        <a href="#text">ข้อความ &amp; Semantic</a>
+        <a href="#paths">ลิงก์ &amp; พาธ</a>
+        <a href="#img">รูปภาพ</a>
+        <a href="#table">รายการ &amp; ตาราง</a>
+        <a href="#embed">วิดีโอ &amp; ฝังสื่อ</a>
+        <a href="#form">ฟอร์ม GET/POST</a>
+        <a href="#meta">Meta &amp; SEO</a>
+        <a href="#try">Live editor</a>
+        <a href="#lab">ใบงาน Day 3</a>
+        <a href="#quiz">แบบทดสอบ</a>
+        <a href="#sum">สรุป</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+      <section class="sec" id="plan">
+        <div class="sec-head"><span class="sec-num">00</span><div><h2>ตารางเรียน &amp; เป้าหมายวันที่ 3</h2><p>หน่วยที่ 4 + หน่วยที่ 5 ส่วน HTML (เทียบเท่าสัปดาห์ที่ 8–9)</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl sched">
+            <thead><tr><th>เวลา</th><th>หัวข้อ</th><th>รูปแบบ</th></tr></thead>
+            <tbody>
+              <tr><td>09:00–09:30</td><td>Web Server · localhost · พอร์ต · การทำงานของ XAMPP</td><td><span class="k lec">บรรยาย</span> <span class="k demo">แอนิเมชัน</span></td></tr>
+              <tr><td>09:30–10:15</td><td>ติดตั้ง XAMPP · แก้ปัญหาพอร์ตชน · ทดสอบ PHP · phpMyAdmin</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>10:15–10:45</td><td>VS Code + ส่วนขยาย + Emmet · Live Server</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>10:45–12:00</td><td>โค้ด→หน้าจอ · กายวิภาคแท็ก · โครง HTML5 · ข้อความ · Semantic</td><td><span class="k demo">สาธิต</span> <span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr class="brk"><td colspan="3">12:00–13:00 พักกลางวัน</td></tr>
+              <tr><td>13:00–13:45</td><td>ลิงก์ · พาธสัมพัทธ์/สัมบูรณ์ · รูปภาพ · ชนิดไฟล์ภาพ</td><td><span class="k demo">แอนิเมชัน</span> <span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>13:45–14:30</td><td>รายการ · ตาราง · วิดีโอ · ฝัง YouTube/Google Maps</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>14:30–15:15</td><td>ฟอร์ม · GET vs POST · รับข้อมูลด้วย PHP บน XAMPP</td><td><span class="k demo">แอนิเมชัน</span> <span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>15:15–16:15</td><td>Meta/SEO/Open Graph · ตรวจ HTML · สร้างหน้าโครงงานครบ</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>16:15–16:30</td><td>แบบทดสอบ</td><td><span class="k quiz">ทดสอบ</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ol class="objectives">
+          <li>อธิบายการทำงานของ Web Server และ localhost ได้</li>
+          <li>ติดตั้งและตั้งค่า XAMPP, VS Code, Live Server และแก้ปัญหาพื้นฐานได้</li>
+          <li>เขียนเอกสาร HTML5 ที่ถูกต้องตามหลักความหมาย (Semantic) ได้</li>
+          <li>ใช้ลิงก์ พาธ รูปภาพ ตาราง สื่อ และฟอร์มได้อย่างถูกต้อง</li>
+          <li>ส่งข้อมูลจากฟอร์มไปยัง PHP ด้วย GET/POST และกำหนด Meta tag สำหรับ SEO ได้</li>
+        </ol>
+      </section>
+
+      <div class="part-label">ภาคเช้า · โปรแกรมจำลอง Web Server (หน่วยที่ 4)</div>
+
+      <section class="sec" id="server">
+        <div class="sec-head"><span class="sec-num">01</span><div><h2>Web Server คืออะไร</h2><p>โปรแกรมที่ “รอฟัง” คำขอที่พอร์ต 80/443 แล้วส่งไฟล์หรือผลลัพธ์ของโปรแกรมกลับไป</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>ซอฟต์แวร์</th><th>จุดเด่น</th><th>เจอที่ไหน</th></tr></thead>
+            <tbody>
+              <tr><td><b>Nginx</b> (เอ็นจิน-เอ็กซ์)</td><td>เร็ว ใช้หน่วยความจำน้อย รับคนพร้อมกันได้มาก ทำ Reverse proxy</td><td>เซิร์ฟเวอร์จริงส่วนใหญ่ · Day 5</td></tr>
+              <tr><td><b>Apache HTTP Server</b></td><td>เก่าแก่ ยืดหยุ่น ตั้งค่ารายโฟลเดอร์ได้ด้วย <code>.htaccess</code></td><td>XAMPP · Shared hosting</td></tr>
+              <tr><td><b>LiteSpeed</b></td><td>เข้ากันกับ Apache เร็ว มี Cache สำหรับ WordPress</td><td>โฮสติ้งเชิงพาณิชย์</td></tr>
+              <tr><td><b>IIS</b></td><td>ของ Microsoft ทำงานกับ ASP.NET</td><td>องค์กรที่ใช้ Windows Server</td></tr>
+              <tr><td><b>Live Server / Node.js</b></td><td>เซิร์ฟเวอร์เล็ก ๆ สำหรับพัฒนา รีเฟรชอัตโนมัติ</td><td>VS Code บนเครื่องเรา</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="vs">
+          <div class="mini c-teal"><h4>โปรแกรมจำลอง (Local)</h4><ul class="clean"><li>อยู่ในเครื่องเรา <code>http://localhost</code></li><li>คนอื่นเข้าไม่ได้ (ปลอดภัย ทดลองได้เต็มที่)</li><li>ไม่ต้องมีโดเมน/เน็ต</li><li>XAMPP, Laragon, MAMP, Docker</li></ul></div>
+          <div class="mid">→</div>
+          <div class="mini c-pink"><h4>เซิร์ฟเวอร์จริง (Production)</h4><ul class="clean"><li>อยู่บนอินเทอร์เน็ต มี Public IP</li><li>เข้าผ่านโดเมนของเรา + HTTPS</li><li>เปิด 24 ชม. ต้องดูแลความปลอดภัย</li><li>Linux + Nginx/Apache (Day 5)</li></ul></div>
+        </div>
+        <div class="nug fun"><p>ชื่อ <b>Apache</b> มักถูกเล่าว่ามาจาก “a patchy server” เพราะยุคแรกสร้างจากการเอา <b>แพตช์ (patch)</b> หลายชิ้นมาปะรวมกัน (ผู้สร้างบอกว่าตั้งตามชื่อชนเผ่าอเมริกันพื้นเมือง แต่มุกนี้ติดปากวงการไปแล้ว)</p></div>
+      </section>
+
+      <section class="sec" id="xampp">
+        <div class="sec-head"><span class="sec-num">02</span><div><h2>localhost ทำงานอย่างไร (XAMPP)</h2><p>เหมือนอินเทอร์เน็ตจำลองในเครื่องเดียว — เข้าใจตรงนี้แล้ว Day 5 จะง่ายมาก</p></div></div>
+        <figure class="anim" id="anim-xampp" data-ms="4200">
+          <div class="anim-title"><i data-i="server"></i>เปิด http://localhost/myweb/ แล้วเกิดอะไรขึ้น<span class="chip">7 ขั้น</span></div>
+          <div class="stage">
+            <div class="zone" style="left:2%;top:4%;width:96%;height:92%">💻 คอมพิวเตอร์ของเราเครื่องเดียว (127.0.0.1)</div>
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="12" y1="50" x2="40" y2="50" data-hl="2,4,7"/>
+              <line x1="40" y1="50" x2="64" y2="24" data-hl="3,4"/>
+              <line x1="40" y1="50" x2="64" y2="76" data-hl="5,7"/>
+              <line x1="64" y1="76" x2="88" y2="76" data-hl="6"/>
+            </svg>
+            <div class="actor c-blue" style="left:12%;top:50%" data-hl="1,7"><span class="ab"><i data-i="globe"></i></span><span class="lb">Browser</span><span class="sub">localhost/myweb/</span></div>
+            <div class="actor c-orange lg" style="left:40%;top:50%" data-hl="2,3,4,5"><span class="ab"><i data-i="server"></i></span><span class="lb">Apache</span><span class="sub">พอร์ต 80</span></div>
+            <div class="actor c-amber" style="left:64%;top:24%" data-hl="3,4"><span class="ab"><i data-i="folder"></i></span><span class="lb">htdocs\myweb\</span><span class="sub">C:\xampp\htdocs</span></div>
+            <div class="actor c-purple spin-on" style="left:64%;top:76%" data-hl="5,6,7"><span class="ab"><i data-i="cog"></i></span><span class="lb">PHP</span></div>
+            <div class="actor c-blue" style="left:88%;top:76%" data-hl="6"><span class="ab"><i data-i="database"></i></span><span class="lb">MySQL / MariaDB</span><span class="sub">พอร์ต 3306</span></div>
+            <div class="bubble mono pop" style="left:16%;top:20%" data-only="1">localhost → 127.0.0.1</div>
+            <div class="flyer" style="--x1:12%;--y1:50%;--x2:40%;--y2:50%;--c:var(--blue)" data-only="2">GET /myweb/ :80</div>
+            <div class="flyer" style="--x1:40%;--y1:50%;--x2:64%;--y2:24%;--c:var(--orange)" data-only="3">หาไฟล์ index.*</div>
+            <div class="bubble mono pop" style="left:84%;top:40%" data-only="3">/myweb/ → htdocs\myweb\index.html</div>
+            <div class="flyer" style="--x1:64%;--y1:24%;--x2:12%;--y2:50%;--c:var(--amber);--dur:2.6s" data-only="4">index.html (ส่งตรง)</div>
+            <div class="flyer" style="--x1:40%;--y1:50%;--x2:64%;--y2:76%;--c:var(--purple)" data-only="5">contact.php → รันโค้ด</div>
+            <div class="flyer" style="--x1:64%;--y1:76%;--x2:88%;--y2:76%;--c:var(--purple);--dur:2.6s" data-only="6">INSERT ข้อความ</div>
+            <div class="flyer" style="--x1:88%;--y1:76%;--x2:64%;--y2:76%;--c:var(--blue);--dur:2.6s;--delay:1.3s" data-only="6">OK</div>
+            <div class="flyer" style="--x1:64%;--y1:76%;--x2:12%;--y2:50%;--c:var(--green);--dur:2.6s" data-only="7">HTML ผลลัพธ์</div>
+            <div class="bubble ok wrap pop" style="left:40%;top:86%" data-only="7">Day 5 ย้ายไปเซิร์ฟเวอร์จริง ขั้นตอนเหมือนกันเกือบทั้งหมด!</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>localhost</b> ถูกแปลงเป็น <code>127.0.0.1</code> (Loopback) — ข้อมูลไม่ออกจากเครื่องเลย ไม่ต้องใช้ DNS</li>
+            <li>คำขอวิ่งไปที่ <b>Apache</b> ที่รอฟังอยู่ <b>พอร์ต 80</b></li>
+            <li>Apache แปลง URL เป็นตำแหน่งไฟล์: <code>/myweb/</code> → <code>C:\xampp\htdocs\myweb\</code> (โฟลเดอร์ <b>DocumentRoot</b>) แล้วหา <code>index.html</code> / <code>index.php</code></li>
+            <li>ถ้าเป็นไฟล์ <code>.html</code> <code>.css</code> <code>.jpg</code> → <b>ส่งกลับทันที</b> (Static)</li>
+            <li>ถ้าเป็นไฟล์ <code>.php</code> → ส่งให้ <b>PHP</b> รันโค้ดก่อน</li>
+            <li>PHP คุยกับ <b>MySQL/MariaDB</b> ที่พอร์ต 3306 เพื่ออ่าน/บันทึกข้อมูล</li>
+            <li>PHP ส่ง HTML ที่สร้างเสร็จกลับผ่าน Apache ไปยังเบราว์เซอร์</li>
+          </ol>
+        </figure>
+        <div class="nug oops"><p>เปิดไฟล์ <code>.php</code> ด้วยการ <b>ดับเบิลคลิก</b> (ที่อยู่เป็น <code>file:///C:/…</code>) จะเห็นโค้ด PHP ดิบ ๆ หรือหน้าว่าง เพราะไม่ได้ผ่าน Apache + PHP — ต้องเปิดผ่าน <code>http://localhost/…</code> เสมอ</p></div>
+      </section>
+
+      <section class="sec" id="install">
+        <div class="sec-head"><span class="sec-num">03</span><div><h2>ติดตั้ง XAMPP &amp; แก้ปัญหาที่เจอบ่อย</h2><p>XAMPP = <b>X</b> (ทุก OS) + <b>A</b>pache + <b>M</b>ariaDB + <b>P</b>HP + <b>P</b>erl</p></div></div>
+        <div class="panel">
+          <ol class="clean">
+            <li>ดาวน์โหลดจาก <code>apachefriends.org</code> ติดตั้งที่ <code>C:\xampp</code> (อย่าติดตั้งใน Program Files เพราะติดสิทธิ์ของ Windows)</li>
+            <li>เปิด <b>XAMPP Control Panel</b> (คลิกขวา Run as administrator) → กด <b>Start</b> ที่ Apache และ MySQL → ช่องเป็นสีเขียว</li>
+            <li>เปิด <code>http://localhost</code> เห็นหน้า Welcome = Apache ทำงาน · เปิด <code>http://localhost/phpmyadmin</code> = จัดการฐานข้อมูล</li>
+            <li>สร้างโฟลเดอร์ <code>C:\xampp\htdocs\myweb</code> → ใส่ <code>index.html</code> → เปิด <code>http://localhost/myweb/</code></li>
+            <li>ทดสอบ PHP: สร้าง <code>info.php</code> ใส่โค้ดด้านล่าง เปิด <code>http://localhost/myweb/info.php</code></li>
+          </ol>
+        </div>
+        <div class="code-head"><i></i><i></i><i></i>htdocs/myweb/info.php</div>
+<pre class="code"><span class="t-tag">&lt;?php</span>
+<span class="t-kw">echo</span> <span class="t-str">"&lt;h1&gt;สวัสดีจาก PHP เวอร์ชัน "</span> . <span class="t-prop">phpversion</span>() . <span class="t-str">"&lt;/h1&gt;"</span>;
+<span class="t-kw">echo</span> <span class="t-str">"เวลาบนเซิร์ฟเวอร์: "</span> . <span class="t-prop">date</span>(<span class="t-str">'d/m/Y H:i:s'</span>);
+<span class="t-com">// phpinfo();   ← เปิดบรรทัดนี้เพื่อดูการตั้งค่า PHP ทั้งหมด (ห้ามทิ้งไว้บนเซิร์ฟเวอร์จริง!)</span></pre>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>อาการ</th><th>สาเหตุ</th><th>วิธีแก้</th></tr></thead>
+            <tbody>
+              <tr><td>Apache Start ไม่ได้ / “Port 80 in use”</td><td>โปรแกรมอื่นใช้พอร์ต 80 (IIS, Skype, VMware)</td><td>ปิดโปรแกรมนั้น หรือ Config → <code>httpd.conf</code> แก้ <code>Listen 80</code> เป็น <code>Listen 8080</code> แล้วเข้า <code>localhost:8080</code></td></tr>
+              <tr><td>MySQL Start ไม่ได้</td><td>พอร์ต 3306 ชน (มี MySQL อื่นติดตั้งอยู่)</td><td>ปิด Service MySQL ตัวอื่นใน <code>services.msc</code> หรือเปลี่ยนพอร์ต</td></tr>
+              <tr><td>เปิด localhost แล้วเจอ 404</td><td>พิมพ์ชื่อโฟลเดอร์/ไฟล์ผิด หรือไม่ได้วางใน htdocs</td><td>ตรวจตำแหน่งไฟล์และตัวสะกด</td></tr>
+              <tr><td>ภาษาไทยเพี้ยน</td><td>ไฟล์ไม่ได้บันทึกเป็น UTF-8 / ขาด meta charset</td><td>VS Code มุมขวาล่างเลือก UTF-8 · ใส่ <code>&lt;meta charset="UTF-8"&gt;</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="nugs">
+          <div class="nug tech"><p>ดูว่าใครใช้พอร์ต 80 อยู่: เปิด cmd พิมพ์ <code>netstat -ano | findstr :80</code> แล้วนำเลข PID ไปดูใน Task Manager แท็บ Details</p></div>
+          <div class="nug oops"><p>MySQL ใน XAMPP ใช้ผู้ใช้ <code>root</code> <b>ไม่มีรหัสผ่าน</b> — ใช้ได้เพราะอยู่ในเครื่องตัวเองเท่านั้น <b>ห้าม</b> ใช้ค่าแบบนี้บนเซิร์ฟเวอร์จริงเด็ดขาด</p></div>
+          <div class="nug pro"><p>ทางเลือกที่เบากว่า: <b>Laragon</b> (Windows) สร้างโดเมนจำลองให้อัตโนมัติ เช่น <code>myweb.test</code> · หรือ <b>Docker</b>: <code>docker run -d -p 8080:80 -v "%cd%":/usr/share/nginx/html nginx</code> ได้ Nginx ใน 1 บรรทัด</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="vscode">
+        <div class="sec-head"><span class="sec-num">04</span><div><h2>VS Code แบบมือโปร</h2><p>ตั้งค่าครั้งเดียว พิมพ์โค้ดเร็วขึ้นหลายเท่า</p></div></div>
+        <div class="g2">
+          <div class="panel" style="margin:0">
+            <h3><i data-i="box"></i>ส่วนขยายที่แนะนำ</h3>
+            <ul class="clean">
+              <li><b>Live Server</b> — เปิดเว็บผ่าน <code>127.0.0.1:5500</code> รีเฟรชเองเมื่อบันทึก</li>
+              <li><b>Prettier</b> — จัดรูปแบบโค้ดอัตโนมัติ</li>
+              <li><b>Auto Rename Tag</b> — แก้แท็กเปิด แท็กปิดเปลี่ยนตาม</li>
+              <li><b>HTML CSS Support</b> — เติมชื่อ class อัตโนมัติ</li>
+              <li><b>Thai Language Pack</b> — เมนูภาษาไทย (ถ้าต้องการ)</li>
+              <li><b>Remote - SSH</b> — แก้ไฟล์บนเซิร์ฟเวอร์จริงได้ใน VS Code (Day 5)</li>
+            </ul>
+          </div>
+          <div class="panel" style="margin:0">
+            <h3><i data-i="cog"></i>ตั้งค่าที่ควรเปิด (<kbd>Ctrl</kbd>+<kbd>,</kbd>)</h3>
+            <ul class="clean">
+              <li><b>Auto Save</b>: afterDelay — ไม่ลืมบันทึก</li>
+              <li><b>Format On Save</b>: เปิด — โค้ดเป็นระเบียบทุกครั้งที่บันทึก</li>
+              <li><b>Word Wrap</b>: on — ข้อความยาวไม่ล้นจอ</li>
+              <li><b>Files: Encoding</b>: utf8 — ภาษาไทยไม่เพี้ยน</li>
+            </ul>
+          </div>
+        </div>
+        <h3 style="margin-top:22px">Emmet: พิมพ์สั้น กด <kbd>Tab</kbd> ได้โค้ดยาว</h3>
+        <div class="cheat">
+          <div><code>!</code><span>โครง HTML5 ทั้งหน้า</span></div>
+          <div><code>ul&gt;li*5</code><span>รายการ 5 ข้อ (&gt; = ซ้อนข้างใน, * = ทำซ้ำ)</span></div>
+          <div><code>.card&gt;h3+p</code><span>div class card มี h3 และ p (+ = พี่น้อง)</span></div>
+          <div><code>nav&gt;a[href=#]*4{เมนู $}</code><span>ลิงก์ 4 อัน ข้อความ เมนู 1..4</span></div>
+          <div><code>lorem20</code><span>ข้อความตัวอย่าง 20 คำ</span></div>
+          <div><code>img:s / a:link</code><span>ตัวช่วยแท็กพร้อมแอตทริบิวต์</span></div>
+          <div><code>Alt + Shift + ↓</code><span>คัดลอกบรรทัดลงล่าง</span></div>
+          <div><code>Ctrl + D</code><span>เลือกคำเดียวกันถัดไป (แก้หลายจุดพร้อมกัน)</span></div>
+          <div><code>Alt + คลิก</code><span>หลายเคอร์เซอร์</span></div>
+          <div><code>Ctrl + /</code><span>คอมเมนต์ / ยกเลิกคอมเมนต์</span></div>
+          <div><code>Ctrl + P</code><span>ค้นหาเปิดไฟล์ในโปรเจกต์</span></div>
+          <div><code>Ctrl + `</code><span>เปิด Terminal ใน VS Code</span></div>
+        </div>
+      </section>
+
+      <div class="part-label">ภาคเช้า (ต่อ) · HTML พื้นฐานที่ถูกต้อง (หน่วยที่ 5)</div>
+
+      <section class="sec" id="render">
+        <div class="sec-head"><span class="sec-num">05</span><div><h2>จากโค้ดสู่หน้าจอ</h2><p>วงจรการทำงานของนักพัฒนาทุกวัน: เขียน → บันทึก → ดูผล</p></div></div>
+        <figure class="anim" id="anim-render" data-ms="4000">
+          <div class="anim-title"><i data-i="monitor"></i>เส้นทางของโค้ด HTML<span class="chip">6 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="10" y1="48" x2="31" y2="48" data-in="2" data-hl="2,6"/>
+              <line x1="31" y1="48" x2="52" y2="48" data-in="3" data-hl="3,6"/>
+              <line x1="52" y1="48" x2="72" y2="18" data-in="4" data-hl="4,6"/>
+              <line x1="72" y1="18" x2="80" y2="66" data-in="5" data-hl="5,6"/>
+            </svg>
+            <div class="actor c-blue" style="left:10%;top:48%" data-hl="1,6"><span class="ab"><i data-i="code"></i></span><span class="lb">VS Code</span></div>
+            <div class="bubble dark mono pop" style="left:15%;top:15%" data-only="1">&lt;h1&gt;สวัสดี&lt;/h1&gt;</div>
+            <div class="actor c-orange pop" style="left:31%;top:48%" data-in="2" data-hl="2"><span class="ab"><i data-i="file"></i></span><span class="lb">index.html</span></div>
+            <div class="flyer" style="--x1:10%;--y1:48%;--x2:31%;--y2:48%;--c:var(--blue)" data-only="2">Ctrl + S</div>
+            <div class="bubble pop" style="left:31%;top:80%" data-only="2">💾 บันทึก .html · UTF-8</div>
+            <div class="actor c-purple lg" style="left:52%;top:48%" data-hl="3,4,5"><span class="ab"><i data-i="globe"></i></span><span class="lb">Browser</span></div>
+            <div class="flyer" style="--x1:31%;--y1:48%;--x2:52%;--y2:48%;--c:var(--orange)" data-only="3">เปิดผ่าน Live Server</div>
+            <div class="bubble pop" style="left:52%;top:82%" data-only="3">http://127.0.0.1:5500/index.html</div>
+            <div class="actor c-teal pop" style="left:72%;top:18%" data-in="4" data-hl="4"><span class="ab"><i data-i="tree"></i></span><span class="lb">DOM</span></div>
+            <div class="flyer" style="--x1:52%;--y1:48%;--x2:72%;--y2:18%;--c:var(--purple)" data-only="4">Parse</div>
+            <pre class="bubble dark mono pop dom-tree" style="left:90%;top:30%" data-in="4">html
+ ├ head
+ │ └ title
+ └ body
+   └ h1</pre>
+            <div class="minipage pop" style="left:80%;top:70%" data-in="5"><i class="mp-bar"></i><b class="mp-h1">สวัสดี</b><i class="mp-l"></i><i class="mp-l s"></i></div>
+            <div class="flyer" style="--x1:72%;--y1:18%;--x2:80%;--y2:66%;--c:var(--teal)" data-only="5">Render</div>
+            <div class="bubble ok pop" style="left:36%;top:88%" data-only="6">🔁 แก้ → Save → Live Server รีเฟรชให้เอง</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>เขียนโค้ด</b> — HTML เป็น “ข้อความธรรมดา” เขียนด้วยโปรแกรมอะไรก็ได้</li>
+            <li><b>บันทึก</b> นามสกุล <code>.html</code> เข้ารหัส <b>UTF-8</b></li>
+            <li><b>เปิดด้วยเบราว์เซอร์</b> ผ่าน Live Server หรือ <code>localhost</code> (เหมือนเว็บจริง)</li>
+            <li><b>Parse</b> → DOM Tree (แท็กซ้อนกัน = กิ่งของต้นไม้)</li>
+            <li><b>Render</b> → พิกเซลบนจอ</li>
+            <li><b>วนซ้ำ</b> แก้ → บันทึก → ดูผล</li>
+          </ol>
+        </figure>
+      </section>
+
+      <section class="sec" id="tag">
+        <div class="sec-head"><span class="sec-num">06</span><div><h2>กายวิภาคของแท็ก HTML</h2><p>หนึ่งบรรทัดนี้มีชิ้นส่วนอะไรบ้าง?</p></div></div>
+        <figure class="anim" id="anim-tag" data-ms="3800">
+          <div class="anim-title"><i data-i="code"></i>ผ่าแท็ก &lt;a&gt; ทีละชิ้น<span class="chip">7 ขั้น</span></div>
+          <div class="stage auto">
+            <div class="url-big tag-big" data-sync>
+              <span data-part="1,7" style="--c:var(--pink)">&lt;</span><span data-part="1,2,7" style="--c:var(--pink)">a</span><span data-part="1,3,7" style="--c:var(--orange)">&nbsp;href</span><span data-part="1,4,7" style="--c:var(--teal)">="https://www.example.ac.th"</span><span data-part="1,3,7" style="--c:var(--orange)">&nbsp;target</span><span data-part="1,4,7" style="--c:var(--teal)">="_blank"</span><span data-part="1,7" style="--c:var(--pink)">&gt;</span><span data-part="5,7" style="--c:var(--purple)">ไปเว็บวิทยาลัย</span><span data-part="6,7" style="--c:var(--pink)">&lt;/a&gt;</span>
+            </div>
+            <div class="stack" style="margin-top:18px">
+              <div class="mini rise" data-only="0"><h4>▶ กดเล่นเพื่อผ่าแท็ก</h4><p><code>&lt;a&gt;</code> (anchor) สร้างลิงก์ — หัวใจของ HyperText</p></div>
+              <div class="mini rise" data-only="1"><h4 style="color:var(--pink)">① แท็กเปิด</h4><p><code>&lt;</code> … <code>&gt;</code> บอกว่า “ตั้งแต่ตรงนี้คือลิงก์” ภายในใส่แอตทริบิวต์ได้</p></div>
+              <div class="mini rise" data-only="2"><h4 style="color:var(--pink)">② ชื่อแท็ก (Element name)</h4><p>ชนิดขององค์ประกอบ ควรเขียน <b>ตัวพิมพ์เล็ก</b></p></div>
+              <div class="mini rise" data-only="3"><h4 style="color:var(--orange)">③ แอตทริบิวต์</h4><p>คุณสมบัติเพิ่มเติม อยู่ในแท็กเปิดเท่านั้น คั่นด้วยเว้นวรรค · <code>href</code> ปลายทาง · <code>target</code> เปิดที่ไหน</p></div>
+              <div class="mini rise" data-only="4"><h4 style="color:var(--teal)">④ ค่าของแอตทริบิวต์</h4><p>อยู่ใน <code>"…"</code> เสมอ · <code>_blank</code> = แท็บใหม่</p></div>
+              <div class="mini rise" data-only="5"><h4 style="color:var(--purple)">⑤ เนื้อหา</h4><p>สิ่งที่ผู้ใช้เห็นและคลิก — อาจเป็นแท็กอื่นซ้อน (เช่น รูป)</p></div>
+              <div class="mini rise" data-only="6"><h4 style="color:var(--pink)">⑥ แท็กปิด</h4><p>มี <code>/</code> นำหน้าชื่อ · ลืมปิด = ข้อผิดพลาดอันดับ 1 ของมือใหม่</p></div>
+              <div class="mini rise" data-only="7"><h4>🧩 ทั้งหมด = 1 Element</h4><p>แท็กเปิด + เนื้อหา + แท็กปิด · <b>Void element</b> ไม่มีเนื้อหา/แท็กปิด: <code>&lt;img&gt;</code> <code>&lt;br&gt;</code> <code>&lt;hr&gt;</code> <code>&lt;meta&gt;</code> <code>&lt;link&gt;</code> <code>&lt;input&gt;</code></p></div>
+            </div>
+          </div>
+          <ol class="anim-steps compact">
+            <li>แท็กเปิด</li><li>ชื่อแท็ก</li><li>ชื่อแอตทริบิวต์</li><li>ค่าแอตทริบิวต์</li><li>เนื้อหา</li><li>แท็กปิด</li><li>ทั้งหมด = 1 Element</li>
+          </ol>
+        </figure>
+        <div class="g2">
+          <div class="mini c-teal"><h4>✓ ซ้อนถูก (เปิดก่อน ปิดทีหลัง)</h4><pre class="code" style="margin:0"><span class="t-tag">&lt;p&gt;</span>ผมชอบ <span class="t-tag">&lt;b&gt;</span>HTML<span class="t-tag">&lt;/b&gt;</span><span class="t-tag">&lt;/p&gt;</span></pre></div>
+          <div class="mini c-pink"><h4>✗ ซ้อนผิด (ไขว้กัน)</h4><pre class="code" style="margin:0"><span class="t-tag">&lt;p&gt;</span>ผมชอบ <span class="t-tag">&lt;b&gt;</span>HTML<span class="t-tag">&lt;/p&gt;</span><span class="t-tag">&lt;/b&gt;</span></pre></div>
+        </div>
+        <div class="nug pro"><p>ใส่ <code>rel="noopener"</code> คู่กับ <code>target="_blank"</code> เสมอ (<code>&lt;a href="…" target="_blank" rel="noopener"&gt;</code>) — ป้องกันไม่ให้หน้าเว็บปลายทางแอบควบคุมแท็บเดิมของเรา (เบราว์เซอร์ใหม่ทำให้อัตโนมัติแล้ว แต่ใส่ไว้ปลอดภัยกว่า)</p></div>
+      </section>
+
+      <section class="sec" id="skeleton">
+        <div class="sec-head"><span class="sec-num">07</span><div><h2>โครงสร้าง HTML5 ทีละบรรทัด</h2><p>พิมพ์ <kbd>!</kbd> + <kbd>Tab</kbd> ใน VS Code ได้โครงนี้ทันที — แต่ต้องเข้าใจทุกบรรทัด</p></div></div>
+        <figure class="anim" id="anim-skel" data-ms="4200">
+          <div class="anim-title"><i data-i="file"></i>สร้างโครง HTML5<span class="chip">8 ขั้น</span></div>
+          <div class="stage auto">
+            <div class="g2" style="gap:14px;align-items:start">
+              <div class="msg skel">
+                <div class="msg-h">index.html</div>
+                <div class="ln" data-in="1" data-hl="1"><span class="t-kw">&lt;!DOCTYPE html&gt;</span></div>
+                <div class="ln" data-in="2" data-hl="2"><span class="t-tag">&lt;html</span> <span class="t-attr">lang</span>=<span class="t-val">"th"</span><span class="t-tag">&gt;</span></div>
+                <div class="ln i1" data-in="3" data-hl="3"><span class="t-tag">&lt;head&gt;</span></div>
+                <div class="ln i2" data-in="4" data-hl="4"><span class="t-tag">&lt;meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-tag">&gt;</span></div>
+                <div class="ln i2" data-in="5" data-hl="5"><span class="t-tag">&lt;meta</span> <span class="t-attr">name</span>=<span class="t-val">"viewport"</span> <span class="t-attr">content</span>=<span class="t-val">"width=device-width, initial-scale=1.0"</span><span class="t-tag">&gt;</span></div>
+                <div class="ln i2" data-in="6" data-hl="6"><span class="t-tag">&lt;title&gt;</span>แนะนำตัว<span class="t-tag">&lt;/title&gt;</span></div>
+                <div class="ln i1" data-in="3" data-hl="3"><span class="t-tag">&lt;/head&gt;</span></div>
+                <div class="ln i1" data-in="7" data-hl="7"><span class="t-tag">&lt;body&gt;</span></div>
+                <div class="ln i2" data-in="8" data-hl="8"><span class="t-tag">&lt;h1&gt;</span>สวัสดีครับ ผมชื่อเว็บ<span class="t-tag">&lt;/h1&gt;</span></div>
+                <div class="ln i2" data-in="8" data-hl="8"><span class="t-tag">&lt;p&gt;</span>นักเรียนสาขาเทคโนโลยีสารสนเทศ<span class="t-tag">&lt;/p&gt;</span></div>
+                <div class="ln i1" data-in="7" data-hl="7"><span class="t-tag">&lt;/body&gt;</span></div>
+                <div class="ln" data-in="2" data-hl="2"><span class="t-tag">&lt;/html&gt;</span></div>
+              </div>
+              <div>
+                <div class="trio-preview" style="min-height:190px">
+                  <div class="browser-bar"><i></i><i></i><i></i><span class="addr"><span data-in="6">แนะนำตัว</span></span></div>
+                  <div class="skel-body">
+                    <div class="pop" data-only="0-7" style="color:#9ca3af;font:13px var(--mono)">(หน้าว่าง — ยังไม่มีเนื้อหาใน body)</div>
+                    <h1 class="pop" data-in="8">สวัสดีครับ ผมชื่อเว็บ</h1>
+                    <p class="pop" data-in="8">นักเรียนสาขาเทคโนโลยีสารสนเทศ</p>
+                  </div>
+                </div>
+                <div class="stack" style="margin-top:12px">
+                  <div class="mini rise" data-only="0"><p>▶ กดเล่นเพื่อพิมพ์โครง HTML ทีละส่วน</p></div>
+                  <div class="mini rise" data-only="1"><p><b>DOCTYPE</b> บอกว่าเป็น HTML5 · ถ้าไม่มี เบราว์เซอร์จะเข้า <b>Quirks mode</b> (แสดงผลแบบเว็บยุคเก่า เพี้ยนได้)</p></div>
+                  <div class="mini rise" data-only="2"><p><b>&lt;html lang="th"&gt;</b> แท็กราก · <code>lang</code> ช่วยโปรแกรมอ่านหน้าจอออกเสียงไทยถูก และช่วย Google</p></div>
+                  <div class="mini rise" data-only="3"><p><b>&lt;head&gt;</b> ข้อมูลเกี่ยวกับหน้า <u>ไม่แสดง</u> บนหน้า: charset, title, CSS, meta SEO</p></div>
+                  <div class="mini rise" data-only="4"><p><b>charset UTF-8</b> แสดงภาษาไทยถูก · ถ้าไม่มีอาจเห็น <code>à¸ªà¸§à¸±à¸ª</code> 😱 · ต้องอยู่ต้น head</p></div>
+                  <div class="mini rise" data-only="5"><p><b>viewport</b> ให้มือถือแสดงตามความกว้างจริง ไม่ย่อหน้าเว็บจนตัวเล็ก — ไม่มีบรรทัดนี้ Responsive ไม่ทำงาน!</p></div>
+                  <div class="mini rise" data-only="6"><p><b>&lt;title&gt;</b> ชื่อบนแท็บ (ดูด้านบน ↑) · หัวข้อในผล Google · ชื่อตอนบุ๊กมาร์ก</p></div>
+                  <div class="mini rise" data-only="7"><p><b>&lt;body&gt;</b> ทุกอย่างที่ผู้ใช้เห็นอยู่ในนี้</p></div>
+                  <div class="mini rise" data-only="8"><p><b>เนื้อหา</b> ปรากฏแล้ว · ย่อหน้าโค้ด (Indent) ตามระดับการซ้อน</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="anim-steps compact">
+            <li><code>&lt;!DOCTYPE html&gt;</code></li><li><code>&lt;html lang="th"&gt;</code></li><li><code>&lt;head&gt;</code></li><li><code>&lt;meta charset&gt;</code></li><li><code>&lt;meta viewport&gt;</code></li><li><code>&lt;title&gt;</code></li><li><code>&lt;body&gt;</code></li><li>เนื้อหา <code>&lt;h1&gt;</code> <code>&lt;p&gt;</code></li>
+          </ol>
+        </figure>
+      </section>
+
+      <section class="sec" id="text">
+        <div class="sec-head"><span class="sec-num">08</span><div><h2>แท็กข้อความ &amp; Semantic HTML</h2><p>เลือกแท็กตาม “ความหมาย” ไม่ใช่ตามหน้าตา (หน้าตาเป็นหน้าที่ของ CSS)</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>แท็ก</th><th>ความหมาย</th><th>หมายเหตุ</th></tr></thead>
+            <tbody>
+              <tr><td><code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code></td><td>หัวข้อ 6 ระดับ</td><td>h1 หน้าละ 1 อัน · ห้ามข้ามระดับ (h2 → h4)</td></tr>
+              <tr><td><code>&lt;p&gt;</code></td><td>ย่อหน้า</td><td>อย่าใช้ <code>&lt;br&gt;</code> หลายอันแทนการขึ้นย่อหน้า</td></tr>
+              <tr><td><code>&lt;strong&gt;</code> / <code>&lt;b&gt;</code></td><td>สำคัญ / ตัวหนา</td><td>strong มีความหมาย “สำคัญ” (โปรแกรมอ่านหน้าจอเน้นเสียง)</td></tr>
+              <tr><td><code>&lt;em&gt;</code> / <code>&lt;i&gt;</code></td><td>เน้นน้ำเสียง / ตัวเอียง</td><td>ภาษาไทยตัวเอียงอ่านยาก ใช้เท่าที่จำเป็น</td></tr>
+              <tr><td><code>&lt;br&gt;</code> · <code>&lt;hr&gt;</code></td><td>ขึ้นบรรทัดใหม่ · เส้นแบ่งหัวข้อ</td><td>Void element</td></tr>
+              <tr><td><code>&lt;blockquote&gt;</code> · <code>&lt;code&gt;</code> · <code>&lt;mark&gt;</code></td><td>คำพูดอ้างอิง · โค้ด · ไฮไลต์</td><td></td></tr>
+              <tr><td><code>&lt;!-- --&gt;</code></td><td>คอมเมนต์</td><td>ไม่แสดงผล แต่ <b>ดูได้ด้วย View source</b> อย่าเขียนรหัสผ่านไว้!</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="g2">
+          <div>
+            <div class="code-head"><i></i><i></i><i></i>โครงหน้าแบบ Semantic</div>
+<pre class="code"><span class="t-tag">&lt;body&gt;</span>
+  <span class="t-tag">&lt;header&gt;</span>   <span class="t-com">&lt;!-- ส่วนหัว: โลโก้ --&gt;</span>
+    <span class="t-tag">&lt;nav&gt;</span>…<span class="t-tag">&lt;/nav&gt;</span>  <span class="t-com">&lt;!-- เมนูหลัก --&gt;</span>
+  <span class="t-tag">&lt;/header&gt;</span>
+  <span class="t-tag">&lt;main&gt;</span>     <span class="t-com">&lt;!-- เนื้อหาหลัก (หน้าละ 1) --&gt;</span>
+    <span class="t-tag">&lt;section&gt;</span>   <span class="t-com">&lt;!-- หมวด มีหัวข้อ --&gt;</span>
+      <span class="t-tag">&lt;h2&gt;</span>ผลงาน<span class="t-tag">&lt;/h2&gt;</span>
+      <span class="t-tag">&lt;article&gt;</span>…<span class="t-tag">&lt;/article&gt;</span> <span class="t-com">&lt;!-- ชิ้นงานอิสระ --&gt;</span>
+    <span class="t-tag">&lt;/section&gt;</span>
+    <span class="t-tag">&lt;aside&gt;</span>ข่าวล่าสุด<span class="t-tag">&lt;/aside&gt;</span>
+  <span class="t-tag">&lt;/main&gt;</span>
+  <span class="t-tag">&lt;footer&gt;</span>© 2026<span class="t-tag">&lt;/footer&gt;</span>
+<span class="t-tag">&lt;/body&gt;</span></pre>
+          </div>
+          <div>
+            <div class="nug deep" style="margin-top:0"><p><b>ทำไมไม่ใช้ <code>&lt;div&gt;</code> ทั้งหมด?</b> หน้าตาเหมือนกัน แต่ Semantic tag บอก “ความหมาย” ให้ <b>Google</b> (เข้าใจว่าส่วนไหนเนื้อหาหลัก) และ <b>โปรแกรมอ่านหน้าจอ</b> ของผู้พิการทางสายตา (กระโดดไปที่ nav/main ได้ทันที)</p></div>
+            <h4>อักขระพิเศษ (HTML Entities)</h4>
+            <div class="tbl-wrap"><table class="tbl" style="min-width:0">
+              <tbody>
+                <tr><td><code>&amp;lt;</code> <code>&amp;gt;</code></td><td>&lt; &gt; (แสดงเครื่องหมายแท็ก)</td></tr>
+                <tr><td><code>&amp;amp;</code></td><td>&amp;</td></tr>
+                <tr><td><code>&amp;nbsp;</code></td><td>ช่องว่างที่ไม่ตัดบรรทัด</td></tr>
+                <tr><td><code>&amp;copy;</code> <code>&amp;reg;</code></td><td>© ®</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="part-label">ภาคบ่าย · ลิงก์ สื่อ ฟอร์ม และ SEO</div>
+
+      <section class="sec" id="paths">
+        <div class="sec-head"><span class="sec-num">09</span><div><h2>ลิงก์ &amp; พาธ: ทำไมรูป “ไม่ขึ้น”</h2><p>พาธสัมพัทธ์ (Relative) vs สัมบูรณ์ (Absolute) — สาเหตุอันดับ 1 ของปัญหาหลังอัปโหลด</p></div></div>
+        <figure class="anim" id="anim-paths" data-ms="4800">
+          <div class="anim-title"><i data-i="folder"></i>เดินตามพาธทีละขั้น<span class="chip">7 ขั้น</span></div>
+          <div class="stage auto">
+            <div class="g2" style="gap:14px;align-items:start">
+              <div class="ptree">
+                <div data-hl="5">📁 my-site/            <span class="t-com">← root ( / )</span></div>
+                <div class="from" data-hl="1,2">├─ 📄 index.html</div>
+                <div data-hl="2">├─ 📁 css/</div>
+                <div data-hl="2">│   └─ 📄 style.css</div>
+                <div data-hl="1,3,5">├─ 📁 images/</div>
+                <div data-hl="1,3,5,7">│   └─ 🖼️ logo.png</div>
+                <div data-hl="3,4">└─ 📁 about/</div>
+                <div class="from" data-hl="3,4">    └─ 📄 team.html</div>
+              </div>
+              <div class="stack">
+                <div class="mini rise" data-only="0"><h4>▶ กดเล่น</h4><p>ดูว่าเบราว์เซอร์ “เดิน” หาไฟล์อย่างไรจากไฟล์ที่กำลังเปิดอยู่</p></div>
+                <div class="mini rise" data-only="1"><h4>จาก index.html → รูปโลโก้</h4><pre class="code" style="margin:6px 0"><span class="t-tag">&lt;img</span> <span class="t-attr">src</span>=<span class="t-val">"images/logo.png"</span><span class="t-tag">&gt;</span></pre><p>เริ่มจาก <b>โฟลเดอร์เดียวกับไฟล์ปัจจุบัน</b> → เข้า images → logo.png</p></div>
+                <div class="mini rise" data-only="2"><h4>จาก index.html → ไฟล์ CSS</h4><pre class="code" style="margin:6px 0"><span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"stylesheet"</span> <span class="t-attr">href</span>=<span class="t-val">"css/style.css"</span><span class="t-tag">&gt;</span></pre><p>หลักการเดียวกัน: เข้าโฟลเดอร์ css</p></div>
+                <div class="mini rise" data-only="3"><h4>จาก about/team.html → รูปโลโก้</h4><pre class="code" style="margin:6px 0"><span class="t-tag">&lt;img</span> <span class="t-attr">src</span>=<span class="t-val">"../images/logo.png"</span><span class="t-tag">&gt;</span></pre><p><code>..</code> = <b>ถอยขึ้น 1 โฟลเดอร์</b> (ออกจาก about) → เข้า images</p></div>
+                <div class="mini rise" data-only="4"><h4>จาก about/team.html → กลับหน้าแรก</h4><pre class="code" style="margin:6px 0"><span class="t-tag">&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"../index.html"</span><span class="t-tag">&gt;</span>หน้าแรก<span class="t-tag">&lt;/a&gt;</span></pre><p>ถอยขึ้น 1 ชั้นแล้วหา index.html · ถอย 2 ชั้นใช้ <code>../../</code></p></div>
+                <div class="mini rise" data-only="5"><h4>Root-relative (ขึ้นต้นด้วย /)</h4><pre class="code" style="margin:6px 0"><span class="t-tag">&lt;img</span> <span class="t-attr">src</span>=<span class="t-val">"/images/logo.png"</span><span class="t-tag">&gt;</span></pre><p>เริ่มจาก <b>ราก (root) ของโดเมน</b> เสมอ ไม่ว่าไฟล์อยู่ที่ไหน · ⚠️ ถ้าเปิดแบบ <code>file:///</code> หรือเว็บอยู่ในโฟลเดอร์ย่อยของ localhost จะหาไม่เจอ</p></div>
+                <div class="mini rise" data-only="6"><h4>Absolute URL</h4><pre class="code" style="margin:6px 0"><span class="t-tag">&lt;a</span> <span class="t-attr">href</span>=<span class="t-val">"https://www.example.ac.th/"</span><span class="t-tag">&gt;</span></pre><p>ที่อยู่เต็ม ใช้กับ <b>เว็บภายนอก</b> · ไม่ควรใช้กับไฟล์ในเว็บตัวเอง (ย้ายโดเมนแล้วพัง)</p></div>
+                <div class="mini rise" data-only="7"><h4 style="color:var(--red)">❌ ข้อผิดพลาดคลาสสิก</h4><pre class="code" style="margin:6px 0"><span class="t-tag">&lt;img</span> <span class="t-attr">src</span>=<span class="t-val">"C:\Users\nong\Desktop\Logo.PNG"</span><span class="t-tag">&gt;</span></pre><p>ใช้ได้เฉพาะเครื่องตัวเอง อัปโหลดแล้ว 404 · ใช้ <code>\</code> แทน <code>/</code> · และบนเซิร์ฟเวอร์ Linux <code>Logo.PNG</code> ≠ <code>logo.png</code></p></div>
+              </div>
+            </div>
+          </div>
+          <ol class="anim-steps compact">
+            <li>Relative: ไฟล์ในโฟลเดอร์ย่อย</li><li>Relative: ลิงก์ไฟล์ CSS</li><li>Relative: ถอยขึ้นด้วย ../</li><li>ลิงก์กลับหน้าแรก</li><li>Root-relative ( / )</li><li>Absolute URL</li><li>ข้อผิดพลาดคลาสสิก</li>
+          </ol>
+        </figure>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>ลิงก์พิเศษ</th><th>ตัวอย่าง</th><th>ผลลัพธ์</th></tr></thead>
+            <tbody>
+              <tr><td>กระโดดในหน้า</td><td><code>&lt;a href="#contact"&gt;</code> + <code>&lt;section id="contact"&gt;</code></td><td>เลื่อนไปยังส่วนนั้น</td></tr>
+              <tr><td>อีเมล</td><td><code>&lt;a href="mailto:info@example.ac.th"&gt;</code></td><td>เปิดแอปอีเมล</td></tr>
+              <tr><td>โทรศัพท์</td><td><code>&lt;a href="tel:+6643123456"&gt;</code></td><td>มือถือกดโทรได้ทันที</td></tr>
+              <tr><td>ดาวน์โหลด</td><td><code>&lt;a href="files/form.pdf" download&gt;</code></td><td>บังคับดาวน์โหลด</td></tr>
+              <tr><td>LINE</td><td><code>&lt;a href="https://line.me/R/ti/p/@id"&gt;</code></td><td>เพิ่มเพื่อน LINE OA</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="img">
+        <div class="sec-head"><span class="sec-num">10</span><div><h2>รูปภาพบนเว็บ</h2><p>แท็กเดียว แต่ทำให้เว็บช้าหรือเร็วได้มากที่สุด</p></div></div>
+        <div class="code-head"><i></i><i></i><i></i>รูปภาพแบบมืออาชีพ</div>
+<pre class="code"><span class="t-tag">&lt;figure&gt;</span>
+  <span class="t-tag">&lt;img</span> <span class="t-attr">src</span>=<span class="t-val">"images/team.webp"</span>
+       <span class="t-attr">alt</span>=<span class="t-val">"นักเรียนสาขา IT 5 คนกำลังประกอบคอมพิวเตอร์"</span>
+       <span class="t-attr">width</span>=<span class="t-val">"800"</span> <span class="t-attr">height</span>=<span class="t-val">"533"</span>
+       <span class="t-attr">loading</span>=<span class="t-val">"lazy"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;figcaption&gt;</span>กิจกรรมประกอบคอมพิวเตอร์ ปี 2569<span class="t-tag">&lt;/figcaption&gt;</span>
+<span class="t-tag">&lt;/figure&gt;</span></pre>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>ชนิดไฟล์</th><th>เหมาะกับ</th><th>หมายเหตุ</th></tr></thead>
+            <tbody>
+              <tr><td><b>JPG</b></td><td>ภาพถ่าย</td><td>บีบอัดแบบเสียคุณภาพ ไม่มีพื้นใส</td></tr>
+              <tr><td><b>PNG</b></td><td>โลโก้ ภาพหน้าจอ ต้องการพื้นใส</td><td>ไฟล์ใหญ่ถ้าเป็นภาพถ่าย</td></tr>
+              <tr class="hl"><td><b>WebP</b></td><td>แทนได้ทั้ง JPG/PNG</td><td>มักเล็กกว่า JPG ราว 25–35% รองรับทุกเบราว์เซอร์ปัจจุบัน</td></tr>
+              <tr><td><b>AVIF</b></td><td>ภาพถ่ายคุณภาพสูง</td><td>เล็กกว่า WebP อีก แต่เข้ารหัสช้ากว่า</td></tr>
+              <tr class="hl"><td><b>SVG</b></td><td>โลโก้ ไอคอน กราฟิกเส้น</td><td>เป็นโค้ด (เวกเตอร์) ขยายเท่าไรก็คม ไฟล์เล็กมาก</td></tr>
+              <tr><td><b>GIF</b></td><td>ภาพเคลื่อนไหวสั้น ๆ</td><td>ไฟล์ใหญ่ · ใช้วิดีโอ MP4/WebM แทนจะเล็กกว่ามาก</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="nugs">
+          <div class="nug deep"><p><b>ใส่ width/height เสมอ</b> — เบราว์เซอร์จะจองพื้นที่ไว้ก่อนรูปโหลดเสร็จ เนื้อหาไม่ “กระโดด” (ลดค่า <b>CLS — Cumulative Layout Shift</b> ซึ่งเป็นคะแนนหนึ่งที่ Google ใช้วัดเว็บ)</p></div>
+          <div class="nug tech"><p><code>loading="lazy"</code> = โหลดรูปเมื่อเลื่อนใกล้ถึงเท่านั้น ประหยัดเน็ตผู้ใช้ · แต่ <b>รูปแรกบนสุดของหน้า</b> (Hero) ห้ามใส่ lazy เพราะจะทำให้เห็นช้าลง</p></div>
+          <div class="nug pro"><p><b>alt ที่ดี</b> อธิบายว่ารูป “สื่ออะไร” ไม่ใช่ “รูปภาพ1.jpg” · ถ้าเป็นรูปตกแต่งล้วน ๆ ใส่ <code>alt=""</code> (ว่าง) เพื่อให้โปรแกรมอ่านหน้าจอข้าม</p></div>
+          <div class="nug tech"><p><b>Favicon</b> (ไอคอนบนแท็บ): <code>&lt;link rel="icon" href="favicon.png"&gt;</code> ขนาด 32×32 หรือใช้ SVG · สร้างได้จากเว็บ favicon generator</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="table">
+        <div class="sec-head"><span class="sec-num">11</span><div><h2>รายการ &amp; ตาราง</h2><p>ตารางใช้กับ “ข้อมูล” เท่านั้น — ห้ามใช้จัดหน้าเว็บ (ยุค 2000 ทำกันแบบนั้น)</p></div></div>
+        <div class="g2">
+          <div>
+            <div class="code-head"><i></i><i></i><i></i>ตารางค่าเทอม</div>
+<pre class="code"><span class="t-tag">&lt;table&gt;</span>
+  <span class="t-tag">&lt;caption&gt;</span>ค่าใช้จ่ายต่อภาคเรียน<span class="t-tag">&lt;/caption&gt;</span>
+  <span class="t-tag">&lt;thead&gt;</span>
+    <span class="t-tag">&lt;tr&gt;&lt;th&gt;</span>ระดับ<span class="t-tag">&lt;/th&gt;&lt;th&gt;</span>ค่าเทอม<span class="t-tag">&lt;/th&gt;&lt;/tr&gt;</span>
+  <span class="t-tag">&lt;/thead&gt;</span>
+  <span class="t-tag">&lt;tbody&gt;</span>
+    <span class="t-tag">&lt;tr&gt;&lt;td&gt;</span>ปวช.<span class="t-tag">&lt;/td&gt;&lt;td&gt;</span>2,500<span class="t-tag">&lt;/td&gt;&lt;/tr&gt;</span>
+    <span class="t-tag">&lt;tr&gt;&lt;td&gt;</span>ปวส.<span class="t-tag">&lt;/td&gt;&lt;td&gt;</span>3,500<span class="t-tag">&lt;/td&gt;&lt;/tr&gt;</span>
+  <span class="t-tag">&lt;/tbody&gt;</span>
+  <span class="t-tag">&lt;tfoot&gt;</span>
+    <span class="t-tag">&lt;tr&gt;&lt;td</span> <span class="t-attr">colspan</span>=<span class="t-val">"2"</span><span class="t-tag">&gt;</span>*ไม่รวมค่าชุด<span class="t-tag">&lt;/td&gt;&lt;/tr&gt;</span>
+  <span class="t-tag">&lt;/tfoot&gt;</span>
+<span class="t-tag">&lt;/table&gt;</span></pre>
+          </div>
+          <div>
+            <ul class="clean">
+              <li><code>&lt;tr&gt;</code> แถว · <code>&lt;th&gt;</code> หัวตาราง · <code>&lt;td&gt;</code> ช่องข้อมูล</li>
+              <li><code>colspan="2"</code> รวมคอลัมน์ · <code>rowspan="2"</code> รวมแถว</li>
+              <li><code>&lt;caption&gt;</code> ชื่อตาราง (ช่วย Accessibility)</li>
+              <li>รายการ: <code>&lt;ul&gt;</code> ไม่มีลำดับ · <code>&lt;ol&gt;</code> มีลำดับ (<code>type="A"</code>, <code>start="5"</code>) · <code>&lt;dl&gt;&lt;dt&gt;&lt;dd&gt;</code> คำศัพท์–คำอธิบาย</li>
+              <li>เมนูนำทางเขียนเป็น <code>&lt;nav&gt;&lt;ul&gt;&lt;li&gt;&lt;a&gt;</code> — แล้วใช้ CSS จัดเป็นแนวนอน (Day 4)</li>
+            </ul>
+            <div class="nug tech"><p>ตารางกว้างบนมือถือจะล้นจอ — ครอบด้วย <code>&lt;div style="overflow-x:auto"&gt;</code> ให้เลื่อนแนวนอนได้ (เว็บนี้ก็ใช้วิธีนี้)</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="embed">
+        <div class="sec-head"><span class="sec-num">12</span><div><h2>วิดีโอ เสียง และการฝังสื่อ</h2><p>HTML5 เล่นสื่อได้เองโดยไม่ต้องใช้ปลั๊กอิน</p></div></div>
+        <div class="code-head"><i></i><i></i><i></i>สื่อแบบต่าง ๆ</div>
+<pre class="code"><span class="t-com">&lt;!-- วิดีโอของเราเอง --&gt;</span>
+<span class="t-tag">&lt;video</span> <span class="t-attr">src</span>=<span class="t-val">"media/intro.mp4"</span> <span class="t-attr">controls</span> <span class="t-attr">muted</span> <span class="t-attr">playsinline</span> <span class="t-attr">poster</span>=<span class="t-val">"images/cover.webp"</span><span class="t-tag">&gt;&lt;/video&gt;</span>
+
+<span class="t-com">&lt;!-- เสียง --&gt;</span>
+<span class="t-tag">&lt;audio</span> <span class="t-attr">src</span>=<span class="t-val">"media/song.mp3"</span> <span class="t-attr">controls</span><span class="t-tag">&gt;&lt;/audio&gt;</span>
+
+<span class="t-com">&lt;!-- YouTube: กด แชร์ → ฝัง แล้วคัดลอกโค้ด iframe --&gt;</span>
+<span class="t-tag">&lt;iframe</span> <span class="t-attr">src</span>=<span class="t-val">"https://www.youtube.com/embed/VIDEO_ID"</span> <span class="t-attr">title</span>=<span class="t-val">"แนะนำสาขา"</span> <span class="t-attr">loading</span>=<span class="t-val">"lazy"</span> <span class="t-attr">allowfullscreen</span><span class="t-tag">&gt;&lt;/iframe&gt;</span>
+
+<span class="t-com">&lt;!-- Google Maps: แชร์ → ฝังแผนที่ --&gt;</span>
+<span class="t-tag">&lt;iframe</span> <span class="t-attr">src</span>=<span class="t-val">"https://www.google.com/maps/embed?pb=..."</span> <span class="t-attr">loading</span>=<span class="t-val">"lazy"</span><span class="t-tag">&gt;&lt;/iframe&gt;</span></pre>
+        <div class="nugs">
+          <div class="nug fun"><p>เบราว์เซอร์ <b>ไม่อนุญาตให้วิดีโอเล่นอัตโนมัติพร้อมเสียง</b> (เพราะผู้ใช้ไม่ชอบ) ถ้าอยากให้ autoplay ต้องใส่ <code>muted</code> ด้วยเสมอ</p></div>
+          <div class="nug tech"><p>วิดีโอขนาดใหญ่ อย่าอัปโหลดขึ้นเซิร์ฟเวอร์ของเราเอง (กินพื้นที่และแบนด์วิดท์) ให้ฝังจาก YouTube แทน</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="form">
+        <div class="sec-head"><span class="sec-num">13</span><div><h2>ฟอร์ม: ส่งข้อมูลไปเซิร์ฟเวอร์ (GET vs POST)</h2><p>ทดลองจริงบน XAMPP — เห็นข้อมูลวิ่งจากฟอร์มไปถึง PHP</p></div></div>
+        <figure class="anim" id="anim-form" data-ms="4500">
+          <div class="anim-title"><i data-i="mail"></i>ข้อมูลฟอร์มเดินทางอย่างไร<span class="chip">6 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="14" y1="58" x2="86" y2="58" data-hl="2,4"/></svg>
+            <div class="actor c-blue lg" style="left:14%;top:58%" data-hl="1"><span class="ab"><i data-i="clipboard"></i></span><span class="lb">ฟอร์ม</span><span class="sub">ชื่อ: somchai · รหัส: 1234</span></div>
+            <div class="actor c-purple lg" style="left:86%;top:58%" data-hl="3,5"><span class="ab"><i data-i="server"></i></span><span class="lb">PHP</span><span class="sub">search.php / login.php</span></div>
+            <div class="bubble mono pop" style="left:50%;top:13%" data-only="1">🌐 localhost/myweb/form.html</div>
+            <div class="bubble bad mono pop" style="left:50%;top:13%" data-only="2-3">🌐 search.php?name=somchai&amp;pass=1234</div>
+            <div class="bubble ok mono pop" style="left:50%;top:13%" data-only="4-5">🌐 login.php &nbsp;(ข้อมูลไม่อยู่ใน URL)</div>
+            <div class="flyer" style="--x1:14%;--y1:58%;--x2:86%;--y2:58%;--c:var(--red)" data-only="2">GET ?name=somchai&amp;pass=1234</div>
+            <div class="bubble bad wrap pop" style="left:50%;top:86%" data-only="2">⚠️ รหัสผ่านโผล่ใน URL · ถูกเก็บในประวัติเบราว์เซอร์และ log ของเซิร์ฟเวอร์</div>
+            <div class="bubble dark mono pop" style="left:78%;top:28%" data-only="3">$_GET['name'] → "somchai"</div>
+            <div class="flyer" style="--x1:14%;--y1:58%;--x2:86%;--y2:58%;--c:var(--green)" data-only="4">POST · Body: name=…&amp;pass=****</div>
+            <div class="bubble ok wrap pop" style="left:50%;top:86%" data-only="4">ข้อมูลอยู่ใน Body ของ Request (ยังต้องใช้ HTTPS เพื่อเข้ารหัส!)</div>
+            <div class="bubble dark mono pop" style="left:78%;top:28%" data-only="5">$_POST['pass'] → ตรวจรหัสผ่าน</div>
+            <div class="bubble wrap pop" style="left:50%;top:86%" data-only="6">GET = ค้นหา/กรองข้อมูล แชร์ลิงก์ได้ · POST = ล็อกอิน สมัคร อัปโหลดไฟล์ ข้อมูลยาว</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>ผู้ใช้กรอกฟอร์ม</b> แต่ละช่องต้องมี <code>name</code> (เป็น “ชื่อตัวแปร” ที่เซิร์ฟเวอร์ใช้)</li>
+            <li><b>method="get"</b> — ข้อมูลถูกต่อท้าย URL เป็น Query string</li>
+            <li>PHP อ่านด้วย <code>$_GET['ชื่อช่อง']</code></li>
+            <li><b>method="post"</b> — ข้อมูลอยู่ใน <b>Body</b> ไม่โผล่ใน URL ส่งได้ยาวและส่งไฟล์ได้</li>
+            <li>PHP อ่านด้วย <code>$_POST['ชื่อช่อง']</code></li>
+            <li><b>เลือกใช้</b> GET สำหรับดึงข้อมูล · POST สำหรับส่ง/เปลี่ยนข้อมูล</li>
+          </ol>
+        </figure>
+        <div class="g2">
+          <div>
+            <div class="code-head"><i></i><i></i><i></i>htdocs/myweb/contact.html</div>
+<pre class="code"><span class="t-tag">&lt;form</span> <span class="t-attr">action</span>=<span class="t-val">"contact.php"</span> <span class="t-attr">method</span>=<span class="t-val">"post"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;label</span> <span class="t-attr">for</span>=<span class="t-val">"name"</span><span class="t-tag">&gt;</span>ชื่อ<span class="t-tag">&lt;/label&gt;</span>
+  <span class="t-tag">&lt;input</span> <span class="t-attr">id</span>=<span class="t-val">"name"</span> <span class="t-attr">name</span>=<span class="t-val">"name"</span> <span class="t-attr">required</span><span class="t-tag">&gt;</span>
+
+  <span class="t-tag">&lt;label</span> <span class="t-attr">for</span>=<span class="t-val">"email"</span><span class="t-tag">&gt;</span>อีเมล<span class="t-tag">&lt;/label&gt;</span>
+  <span class="t-tag">&lt;input</span> <span class="t-attr">type</span>=<span class="t-val">"email"</span> <span class="t-attr">id</span>=<span class="t-val">"email"</span> <span class="t-attr">name</span>=<span class="t-val">"email"</span> <span class="t-attr">required</span><span class="t-tag">&gt;</span>
+
+  <span class="t-tag">&lt;label</span> <span class="t-attr">for</span>=<span class="t-val">"topic"</span><span class="t-tag">&gt;</span>เรื่อง<span class="t-tag">&lt;/label&gt;</span>
+  <span class="t-tag">&lt;select</span> <span class="t-attr">id</span>=<span class="t-val">"topic"</span> <span class="t-attr">name</span>=<span class="t-val">"topic"</span><span class="t-tag">&gt;</span>
+    <span class="t-tag">&lt;option&gt;</span>สอบถามหลักสูตร<span class="t-tag">&lt;/option&gt;</span>
+    <span class="t-tag">&lt;option&gt;</span>อื่น ๆ<span class="t-tag">&lt;/option&gt;</span>
+  <span class="t-tag">&lt;/select&gt;</span>
+
+  <span class="t-tag">&lt;textarea</span> <span class="t-attr">name</span>=<span class="t-val">"msg"</span> <span class="t-attr">rows</span>=<span class="t-val">"4"</span><span class="t-tag">&gt;&lt;/textarea&gt;</span>
+  <span class="t-tag">&lt;button</span> <span class="t-attr">type</span>=<span class="t-val">"submit"</span><span class="t-tag">&gt;</span>ส่งข้อความ<span class="t-tag">&lt;/button&gt;</span>
+<span class="t-tag">&lt;/form&gt;</span></pre>
+          </div>
+          <div>
+            <div class="code-head"><i></i><i></i><i></i>htdocs/myweb/contact.php</div>
+<pre class="code"><span class="t-tag">&lt;?php</span>
+<span class="t-com">// รับค่า + ป้องกันโค้ดแปลกปลอม (XSS)</span>
+<span class="t-prop">$name</span>  = <span class="t-prop">htmlspecialchars</span>(<span class="t-prop">$_POST</span>[<span class="t-str">'name'</span>] ?? <span class="t-str">''</span>);
+<span class="t-prop">$email</span> = <span class="t-prop">htmlspecialchars</span>(<span class="t-prop">$_POST</span>[<span class="t-str">'email'</span>] ?? <span class="t-str">''</span>);
+<span class="t-prop">$topic</span> = <span class="t-prop">htmlspecialchars</span>(<span class="t-prop">$_POST</span>[<span class="t-str">'topic'</span>] ?? <span class="t-str">''</span>);
+<span class="t-tag">?&gt;</span>
+<span class="t-tag">&lt;h1&gt;</span>ขอบคุณคุณ <span class="t-tag">&lt;?=</span> <span class="t-prop">$name</span> <span class="t-tag">?&gt;</span><span class="t-tag">&lt;/h1&gt;</span>
+<span class="t-tag">&lt;p&gt;</span>เรื่อง “<span class="t-tag">&lt;?=</span> <span class="t-prop">$topic</span> <span class="t-tag">?&gt;</span>”
+   เราจะตอบกลับที่ <span class="t-tag">&lt;?=</span> <span class="t-prop">$email</span> <span class="t-tag">?&gt;</span><span class="t-tag">&lt;/p&gt;</span></pre>
+            <div class="tbl-wrap"><table class="tbl" style="min-width:0">
+              <thead><tr><th>input type</th><th>บนมือถือได้อะไร</th></tr></thead>
+              <tbody>
+                <tr><td><code>email</code></td><td>คีย์บอร์ดมี @ · ตรวจรูปแบบให้</td></tr>
+                <tr><td><code>tel</code></td><td>แป้นตัวเลขโทรศัพท์</td></tr>
+                <tr><td><code>number</code></td><td>แป้นตัวเลข · กำหนด min/max</td></tr>
+                <tr><td><code>date</code></td><td>ปฏิทินเลือกวัน</td></tr>
+                <tr><td><code>password</code></td><td>ซ่อนตัวอักษร</td></tr>
+                <tr><td><code>radio</code> / <code>checkbox</code> / <code>file</code></td><td>เลือก 1 / หลายข้อ / แนบไฟล์</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+        </div>
+        <div class="nugs">
+          <div class="nug pro"><p><code>&lt;label for="email"&gt;</code> ที่ตรงกับ <code>id="email"</code> ทำให้ <b>คลิกที่ข้อความแล้วเคอร์เซอร์ไปที่ช่อง</b> (กดง่ายขึ้นบนมือถือ) และโปรแกรมอ่านหน้าจออ่านชื่อช่องได้</p></div>
+          <div class="nug oops"><p><code>required</code> / <code>type="email"</code> เป็นการตรวจฝั่งเบราว์เซอร์ ซึ่ง <b>ปิดได้ง่ายมาก</b> (DevTools) — เซิร์ฟเวอร์ต้องตรวจซ้ำเสมอ กฎเหล็ก: <b>“อย่าไว้ใจข้อมูลจากผู้ใช้”</b></p></div>
+          <div class="nug deep"><p><b>XSS (Cross-Site Scripting):</b> ถ้ามีคนพิมพ์ <code>&lt;script&gt;…&lt;/script&gt;</code> ในช่องชื่อ แล้วเราแสดงผลตรง ๆ โค้ดนั้นจะรันในเบราว์เซอร์ของคนอื่น — <code>htmlspecialchars()</code> แปลง <code>&lt;</code> เป็น <code>&amp;lt;</code> จึงแสดงเป็นข้อความธรรมดา</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="meta">
+        <div class="sec-head"><span class="sec-num">14</span><div><h2>Meta Tag · SEO · Open Graph · ตรวจความถูกต้อง</h2><p>สิ่งที่อยู่ใน &lt;head&gt; ซึ่งผู้ใช้ไม่เห็น แต่ Google และโซเชียลเห็น</p></div></div>
+        <div class="code-head"><i></i><i></i><i></i>&lt;head&gt; ที่สมบูรณ์</div>
+<pre class="code"><span class="t-tag">&lt;head&gt;</span>
+  <span class="t-tag">&lt;meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;meta</span> <span class="t-attr">name</span>=<span class="t-val">"viewport"</span> <span class="t-attr">content</span>=<span class="t-val">"width=device-width, initial-scale=1.0"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;title&gt;</span>ร้านกาแฟบ้านเรา | กาแฟคั่วสดจากดอยในจังหวัด<span class="t-tag">&lt;/title&gt;</span>
+  <span class="t-tag">&lt;meta</span> <span class="t-attr">name</span>=<span class="t-val">"description"</span> <span class="t-attr">content</span>=<span class="t-val">"กาแฟคั่วสดทุกวัน เปิด 7:00–17:00 สั่งออนไลน์ได้"</span><span class="t-tag">&gt;</span>
+  <span class="t-com">&lt;!-- Open Graph: หน้าตาตอนแชร์ใน Facebook / LINE --&gt;</span>
+  <span class="t-tag">&lt;meta</span> <span class="t-attr">property</span>=<span class="t-val">"og:title"</span> <span class="t-attr">content</span>=<span class="t-val">"ร้านกาแฟบ้านเรา"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;meta</span> <span class="t-attr">property</span>=<span class="t-val">"og:description"</span> <span class="t-attr">content</span>=<span class="t-val">"กาแฟคั่วสดจากดอย"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;meta</span> <span class="t-attr">property</span>=<span class="t-val">"og:image"</span> <span class="t-attr">content</span>=<span class="t-val">"https://coffee.<span class="v" data-v="domain">example.ac.th</span>/images/share.jpg"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"icon"</span> <span class="t-attr">href</span>=<span class="t-val">"images/favicon.png"</span><span class="t-tag">&gt;</span>
+  <span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"stylesheet"</span> <span class="t-attr">href</span>=<span class="t-val">"css/style.css"</span><span class="t-tag">&gt;</span>
+<span class="t-tag">&lt;/head&gt;</span></pre>
+        <div class="nugs">
+          <div class="nug tech"><p><b>title</b> ควรยาวราว 50–60 ตัวอักษร · <b>description</b> ราว 150–160 ตัวอักษร (เกินจะถูกตัดในผลค้นหา) · ทุกหน้าต้อง <b>ไม่ซ้ำกัน</b></p></div>
+          <div class="nug deep"><p><code>og:image</code> ต้องเป็น <b>URL เต็ม (Absolute)</b> และควรขนาด <b>1200×630px</b> — ทดสอบหน้าตาการแชร์ได้ที่ Facebook Sharing Debugger หลังเว็บขึ้นโดเมนจริง (Day 5)</p></div>
+          <div class="nug pro"><p>ตรวจ HTML ที่ <b>validator.w3.org</b> (เลือก Validate by Direct Input แล้ววางโค้ด) — จะบอกแท็กที่ลืมปิด ซ้อนผิด หรือแอตทริบิวต์ผิด พร้อมเลขบรรทัด</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="try">
+        <div class="sec-head"><span class="sec-num">15</span><div><h2>Live Editor — ลองเขียนสด</h2><p>แก้โค้ดซ้าย ผลลัพธ์ขวาเปลี่ยนทันที · กดปุ่มเพื่อแทรกตัวอย่าง</p></div></div>
+        <div class="live">
+          <textarea spellcheck="false" aria-label="โค้ด HTML">&lt;!DOCTYPE html&gt;
+&lt;html lang="th"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;ร้านกาแฟบ้านเรา&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;☕ ร้านกาแฟบ้านเรา&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;a href="#menu"&gt;เมนู&lt;/a&gt; |
+      &lt;a href="#contact"&gt;ติดต่อ&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;section id="menu"&gt;
+      &lt;h2&gt;เมนูแนะนำ&lt;/h2&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;strong&gt;เอสเพรสโซ่&lt;/strong&gt; 45 บาท&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;ลาเต้เย็น&lt;/strong&gt; 55 บาท&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer id="contact"&gt;
+    &lt;p&gt;โทร &lt;a href="tel:0812345678"&gt;081-234-5678&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&amp;copy; 2026 ร้านกาแฟบ้านเรา&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+          <div class="preview">
+            <div class="browser-bar"><i></i><i></i><i></i><span class="addr">index.html</span></div>
+            <iframe title="ผลลัพธ์" sandbox="allow-scripts allow-popups"></iframe>
+          </div>
+        </div>
+        <div class="live-tools">
+          <button class="btn sm" type="button" data-insert="  &lt;table border=&quot;1&quot;&gt;\n    &lt;caption&gt;เวลาเปิด&lt;/caption&gt;\n    &lt;tr&gt;&lt;th&gt;วัน&lt;/th&gt;&lt;th&gt;เวลา&lt;/th&gt;&lt;/tr&gt;\n    &lt;tr&gt;&lt;td&gt;จันทร์–ศุกร์&lt;/td&gt;&lt;td&gt;07:00–17:00&lt;/td&gt;&lt;/tr&gt;\n    &lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;หยุดวันอาทิตย์&lt;/td&gt;&lt;/tr&gt;\n  &lt;/table&gt;">+ ตาราง</button>
+          <button class="btn sm" type="button" data-insert="  &lt;form&gt;\n    &lt;label for=&quot;n&quot;&gt;ชื่อ&lt;/label&gt; &lt;input id=&quot;n&quot; name=&quot;name&quot; required&gt;\n    &lt;label for=&quot;e&quot;&gt;อีเมล&lt;/label&gt; &lt;input id=&quot;e&quot; type=&quot;email&quot; name=&quot;email&quot;&gt;\n    &lt;button&gt;ส่ง&lt;/button&gt;\n  &lt;/form&gt;">+ ฟอร์ม</button>
+          <button class="btn sm" type="button" data-insert="  &lt;figure&gt;\n    &lt;img src=&quot;https://placehold.co/400x250?text=Coffee&quot; alt=&quot;แก้วกาแฟลาเต้&quot; width=&quot;400&quot; height=&quot;250&quot;&gt;\n    &lt;figcaption&gt;ลาเต้อาร์ตของร้าน&lt;/figcaption&gt;\n  &lt;/figure&gt;">+ รูป + คำบรรยาย</button>
+          <button class="btn sm" type="button" data-insert="  &lt;details&gt;\n    &lt;summary&gt;ร้านมีที่จอดรถไหม?&lt;/summary&gt;\n    &lt;p&gt;มีที่จอดรถ 10 คัน&lt;/p&gt;\n  &lt;/details&gt;">+ FAQ (details)</button>
+          <button class="btn sm" type="button" data-act="reset"><i data-i="restart"></i>เริ่มใหม่</button>
+          <button class="btn sm primary" type="button" data-act="download"><i data-i="download"></i>ดาวน์โหลด index.html</button>
+        </div>
+        <div class="nug fun"><p><code>&lt;details&gt;</code> + <code>&lt;summary&gt;</code> ทำกล่อง “กดเพื่อเปิด/ปิด” ได้โดย <b>ไม่ต้องเขียน JavaScript</b> สักบรรทัด — เหมาะทำหน้า FAQ</p></div>
+      </section>
+
+      <section class="sec" id="lab">
+        <div class="sec-head"><span class="sec-num">16</span><div><h2>ใบงาน Day 3 · โครงงานเวอร์ชัน HTML</h2><p>งานกลุ่ม (แบ่งหน้ากันทำ) · 25 คะแนน</p></div></div>
+        <div class="panel worksheet">
+          <div class="ws-head"><h3><i data-i="clipboard"></i>ขั้นตอน</h3><span class="ws-progress"></span></div>
+          <ul class="checklist" data-key="d3">
+            <li><label><input type="checkbox"><span><b>1.</b> ติดตั้ง XAMPP · Start Apache + MySQL · เปิด <code>localhost</code> และ <code>localhost/phpmyadmin</code> ได้ · ทดสอบ <code>info.php</code></span></label></li>
+            <li><label><input type="checkbox"><span><b>2.</b> สร้างโฟลเดอร์ <code>htdocs/ชื่อโครงงาน/</code> มี <code>index.html</code> <code>css/</code> <code>images/</code> <code>js/</code> ตั้งชื่อไฟล์ถูกหลัก</span></label></li>
+            <li><label><input type="checkbox"><span><b>3.</b> เขียนทุกหน้าตาม Sitemap (≥ 4 หน้า) ด้วยโครง Semantic: header / nav / main / section / footer</span></label></li>
+            <li><label><input type="checkbox"><span><b>4.</b> เมนูลิงก์ไปทุกหน้าได้ (พาธสัมพัทธ์) · มีลิงก์ภายนอก (target _blank) · tel/mailto</span></label></li>
+            <li><label><input type="checkbox"><span><b>5.</b> รูปเป็น WebP/JPG ที่ย่อขนาดแล้ว มี alt, width, height · มีตาราง 1 ตาราง · ฝัง YouTube หรือ Google Maps</span></label></li>
+            <li><label><input type="checkbox"><span><b>6.</b> หน้าติดต่อมีฟอร์ม POST ส่งไป <code>contact.php</code> แสดงข้อความขอบคุณได้จริงบน localhost</span></label></li>
+            <li><label><input type="checkbox"><span><b>7.</b> ทุกหน้ามี title/description ไม่ซ้ำ + Open Graph + favicon</span></label></li>
+            <li><label><input type="checkbox"><span><b>8.</b> ตรวจด้วย validator.w3.org ไม่มี Error · Commit ลง Git (ถ้าครูกำหนด)</span></label></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sec" id="quiz">
+        <div class="sec-head"><span class="sec-num">17</span><div><h2>แบบทดสอบ Day 3</h2><p>10 ข้อ</p></div></div>
+        <div class="quiz" data-quiz="d3">
+          <div class="q" data-a="2"><p class="q-t">ไฟล์เว็บใน XAMPP ต้องวางไว้ที่โฟลเดอร์ใดจึงเปิดผ่าน http://localhost ได้</p><div class="opts"><button>C:\xampp\php</button><button>Desktop</button><button>C:\xampp\htdocs</button><button>C:\Windows</button></div><p class="q-ex">htdocs คือ DocumentRoot ของ Apache ใน XAMPP</p></div>
+          <div class="q" data-a="0"><p class="q-t">Apache ใน XAMPP Start ไม่ได้เพราะพอร์ต 80 ถูกใช้ วิธีแก้ที่ถูกต้องคือ</p><div class="opts"><button>เปลี่ยน Listen เป็น 8080 ใน httpd.conf แล้วเข้า localhost:8080</button><button>ลบ XAMPP</button><button>เปลี่ยนชื่อโฟลเดอร์ htdocs</button><button>ปิด MySQL</button></div><p class="q-ex">หรือปิดโปรแกรมที่ใช้พอร์ต 80 อยู่</p></div>
+          <div class="q" data-a="3"><p class="q-t">ไฟล์ about/team.html ต้องแสดงรูป images/logo.png (images อยู่ระดับเดียวกับโฟลเดอร์ about) ควรเขียน src อย่างไร</p><div class="opts"><button>images/logo.png</button><button>C:\site\images\logo.png</button><button>/about/images/logo.png</button><button>../images/logo.png</button></div><p class="q-ex">.. ถอยออกจาก about หนึ่งชั้น แล้วเข้า images</p></div>
+          <div class="q" data-a="1"><p class="q-t">บรรทัดใดทำให้หน้าเว็บแสดงผลพอดีจอมือถือ</p><div class="opts"><button>&lt;meta charset="UTF-8"&gt;</button><button>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</button><button>&lt;!DOCTYPE html&gt;</button><button>&lt;title&gt;</button></div><p class="q-ex">ถ้าไม่มี viewport มือถือจะแสดงแบบย่อหน้าเว็บขนาดคอมพิวเตอร์</p></div>
+          <div class="q" data-a="2"><p class="q-t">โลโก้ที่ต้องคมชัดทุกขนาดจอและไฟล์เล็ก ควรใช้ไฟล์ชนิดใด</p><div class="opts"><button>GIF</button><button>JPG</button><button>SVG</button><button>BMP</button></div><p class="q-ex">SVG เป็นเวกเตอร์ ขยายแล้วไม่แตก</p></div>
+          <div class="q" data-a="0"><p class="q-t">ฟอร์มล็อกอินควรใช้ method ใด</p><div class="opts"><button>POST</button><button>GET</button><button>DELETE</button><button>ไม่ต้องระบุ</button></div><p class="q-ex">POST ไม่แสดงรหัสผ่านใน URL (และต้องใช้ HTTPS)</p></div>
+          <div class="q" data-a="3"><p class="q-t">PHP อ่านค่าจากช่อง &lt;input name="email"&gt; ที่ส่งแบบ POST อย่างไร</p><div class="opts"><button>$_GET['email']</button><button>$email.POST</button><button>document.email</button><button>$_POST['email']</button></div><p class="q-ex">ชื่อใน [] ต้องตรงกับแอตทริบิวต์ name</p></div>
+          <div class="q" data-a="1"><p class="q-t">แท็กใดเหมาะเป็นส่วน “เนื้อหาหลัก” ของหน้า (มีหน้าละ 1)</p><div class="opts"><button>&lt;section&gt;</button><button>&lt;main&gt;</button><button>&lt;div&gt;</button><button>&lt;aside&gt;</button></div><p class="q-ex">main ครอบเนื้อหาหลักที่ไม่ซ้ำกับหน้าอื่น</p></div>
+          <div class="q" data-a="2"><p class="q-t">ทำไมควรใส่ width และ height ให้ &lt;img&gt;</p><div class="opts"><button>ให้รูปคมขึ้น</button><button>ให้ไฟล์เล็กลง</button><button>ให้เบราว์เซอร์จองพื้นที่ เนื้อหาไม่กระโดดขณะโหลด</button><button>บังคับให้รูปเป็นสี่เหลี่ยม</button></div><p class="q-ex">ลด Layout Shift (CLS)</p></div>
+          <div class="q" data-a="0"><p class="q-t">ฟังก์ชัน htmlspecialchars() ใน PHP ช่วยป้องกันอะไร</p><div class="opts"><button>XSS — โค้ดอันตรายที่แอบใส่มาในข้อมูลผู้ใช้</button><button>ไฟดับ</button><button>รูปไม่ขึ้น</button><button>DNS ผิด</button></div><p class="q-ex">แปลง &lt; &gt; เป็นข้อความธรรมดา ไม่ให้รันเป็นโค้ด</p></div>
+          <div class="quiz-foot"><span class="quiz-score"></span><button class="btn sm quiz-reset" type="button">ทำใหม่</button></div>
+        </div>
+      </section>
+
+      <section class="sec" id="sum">
+        <div class="sec-head"><span class="sec-num">18</span><div><h2>สรุป Day 3</h2><p>เครื่องเราเป็นเซิร์ฟเวอร์ได้ และเว็บมี “โครง” ครบแล้ว</p></div></div>
+        <div class="panel">
+          <ul class="ticks">
+            <li><b>Web Server</b> รอฟังที่พอร์ต 80/443 · localhost = 127.0.0.1 · XAMPP = Apache + MariaDB + PHP · DocumentRoot = htdocs</li>
+            <li><b>VS Code</b> + Live Server + Prettier + Emmet (<code>!</code>, <code>ul&gt;li*5</code>)</li>
+            <li><b>HTML5</b>: DOCTYPE · lang · charset · viewport · title · Semantic (header, nav, main, section, article, aside, footer)</li>
+            <li><b>พาธ</b>: relative (<code>images/</code>, <code>../</code>) · root-relative (<code>/</code>) · absolute (<code>https://</code>) · Linux แยกตัวพิมพ์เล็ก-ใหญ่</li>
+            <li><b>รูป</b>: WebP/SVG · alt · width/height · lazy · <b>ตาราง</b> ใช้กับข้อมูล · <b>ฟอร์ม</b> name + label · GET/POST · htmlspecialchars</li>
+            <li><b>SEO</b>: title · description · Open Graph · favicon · validator</li>
+          </ul>
+          <div class="callout"><i data-i="help"></i><p><strong class="t">พรุ่งนี้ Day 4</strong>เว็บของเรายังหน้าตาแบบ “ปี 1995” — พรุ่งนี้จะแต่งด้วย CSS ให้เหมือน Mockup ใน Figma และทำให้ Responsive บนมือถือ</p></div>
+          <button class="btn mark-done" type="button" data-lesson="d3"></button>
+        </div>
+        <nav class="pager">
+          <a href="day-2.html"><small>← วันก่อน</small><strong>Day 2 · วิเคราะห์ผู้ใช้ &amp; ออกแบบ UI</strong></a>
+          <a class="next" href="day-4.html"><small>วันถัดไป →</small><strong>Day 4 · CSS, Responsive &amp; JavaScript</strong></a>
+        </nav>
+      </section>
+    </article>
+  </div>
+</div>
+</main>
+<footer class="site-foot">made with <i data-i="heart" class="heart"></i> &amp; <i data-i="coffee" class="cup"></i> by IT RVC · 2026</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

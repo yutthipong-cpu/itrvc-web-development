@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 4 CSS, Responsive &amp; JavaScript · Web Dev</title>
+<meta name="description" content="วันที่ 4 ตกแต่งเว็บด้วย CSS Selector Specificity Box Model Flexbox Grid Responsive Media Query CSS Variables และ JavaScript DOM Events พร้อมเครื่องมือทดลองสด">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec4899'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem('wd-theme'));if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid"></div><div class="floaters"></div></div>
+<header class="topbar">
+  <nav class="pill" aria-label="เมนูหลัก">
+    <a href="../index.html">Web Dev</a>
+    <a href="day-1.html">Day 1</a>
+    <a href="day-2.html">Day 2</a>
+    <a href="day-3.html">Day 3</a>
+    <a href="day-4.html" aria-current="page">Day 4</a>
+    <a href="day-5.html">Day 5</a>
+  </nav>
+  <button class="theme-btn" type="button">auto</button>
+</header>
+
+<main>
+<div class="wrap">
+  <section class="lesson-hero">
+    <div class="crumbs"><a href="../index.html">Web Dev</a> / Day 4</div>
+    <div class="meta"><span class="chip hot">DAY 4 / 5</span><span class="chip">หน่วยที่ 5 (CSS + JS)</span><span class="chip">09:00–16:30</span><span class="chip c-purple">2 แอนิเมชัน + 4 แล็บทดลองสด</span></div>
+    <h1>CSS · <span class="grad-text">Responsive</span> · JavaScript</h1>
+    <p class="lead">วันนี้เปลี่ยนหน้าเว็บ HTML เปล่า ๆ ให้เหมือน Mockup ใน Figma: เข้าใจว่า CSS “เลือก” และ “ตัดสิน” กฎอย่างไร (Specificity — เรื่องที่ทำให้มือใหม่งงที่สุด) กล่อง Box Model จัดวางด้วย Flexbox/Grid ทำให้ Responsive ทุกจอ ใช้ CSS Variables จาก Style guide และปิดท้ายด้วย JavaScript ทำเมนูมือถือที่กดได้จริง</p>
+  </section>
+
+  <div class="lesson-grid">
+    <aside class="toc">
+      <span class="toc-title">DAY 4</span>
+      <nav>
+        <a href="#plan">ตารางเรียน</a>
+        <a href="#intro">CSS คืออะไร</a>
+        <a href="#selectors">Selector</a>
+        <a href="#cascade">Cascade &amp; Specificity</a>
+        <a href="#units">สี &amp; หน่วย</a>
+        <a href="#font">ฟอนต์ไทย</a>
+        <a href="#box">Box Model</a>
+        <a href="#position">display &amp; position</a>
+        <a href="#flex">Flexbox</a>
+        <a href="#gridsec">CSS Grid</a>
+        <a href="#resp">Responsive</a>
+        <a href="#modern">Variables &amp; Animation</a>
+        <a href="#js">JavaScript</a>
+        <a href="#arch">จัดระเบียบ CSS</a>
+        <a href="#devtools">DevTools สำหรับ CSS</a>
+        <a href="#lab">ใบงาน Day 4</a>
+        <a href="#quiz">แบบทดสอบ</a>
+        <a href="#sum">สรุป</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+      <section class="sec" id="plan">
+        <div class="sec-head"><span class="sec-num">00</span><div><h2>ตารางเรียน &amp; เป้าหมายวันที่ 4</h2><p>หน่วยที่ 5 ส่วน CSS/JS (เทียบเท่าสัปดาห์ที่ 10–11)</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl sched">
+            <thead><tr><th>เวลา</th><th>หัวข้อ</th><th>รูปแบบ</th></tr></thead>
+            <tbody>
+              <tr><td>09:00–09:30</td><td>CSS 3 วิธี · โครงสร้างคำสั่ง · Selector</td><td><span class="k lec">บรรยาย</span></td></tr>
+              <tr><td>09:30–10:15</td><td>Cascade · Specificity (แล็บทดลอง) · Inheritance</td><td><span class="k lab">แล็บ</span></td></tr>
+              <tr><td>10:15–11:00</td><td>สี หน่วย ฟอนต์ไทยจาก Google Fonts</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>11:00–12:00</td><td>Box Model · box-sizing · display · position</td><td><span class="k demo">แอนิเมชัน</span> <span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr class="brk"><td colspan="3">12:00–13:00 พักกลางวัน</td></tr>
+              <tr><td>13:00–13:45</td><td>Flexbox (แล็บทดลอง) · ทำ Navbar</td><td><span class="k lab">แล็บ</span></td></tr>
+              <tr><td>13:45–14:15</td><td>CSS Grid · การ์ดสินค้า/แกลเลอรี</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>14:15–15:00</td><td>Responsive · Media Query · Mobile-first (แล็บลากความกว้าง)</td><td><span class="k lab">แล็บ</span></td></tr>
+              <tr><td>15:00–15:30</td><td>CSS Variables · Transition · Dark mode</td><td><span class="k demo">สาธิต</span></td></tr>
+              <tr><td>15:30–16:15</td><td>JavaScript: DOM · Event · เมนูมือถือ</td><td><span class="k demo">แอนิเมชัน</span> <span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>16:15–16:30</td><td>แบบทดสอบ</td><td><span class="k quiz">ทดสอบ</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ol class="objectives">
+          <li>เขียน CSS แบบไฟล์ภายนอก และเลือก Selector ได้เหมาะสม</li>
+          <li>อธิบายลำดับการตัดสินกฎ CSS (Cascade, Specificity, Inheritance) ได้</li>
+          <li>ใช้สี หน่วย ฟอนต์ไทย Box Model และ position ได้ถูกต้อง</li>
+          <li>จัดวางด้วย Flexbox และ Grid และทำเว็บ Responsive แบบ Mobile-first ได้</li>
+          <li>ใช้ CSS Variables, Transition และ JavaScript จัดการ Event/DOM เบื้องต้นได้</li>
+        </ol>
+      </section>
+
+      <div class="part-label">ภาคเช้า · พื้นฐาน CSS ที่ต้องแน่น</div>
+
+      <section class="sec" id="intro">
+        <div class="sec-head"><span class="sec-num">01</span><div><h2>CSS คืออะไร &amp; ใส่ได้ 3 วิธี</h2><p>CSS (Cascading Style Sheets) = ภาษากำหนดหน้าตา</p></div></div>
+        <div class="url-big tag-big" style="margin-bottom:16px"><span style="color:var(--pink)">h1</span>&nbsp;<span>{</span>&nbsp;<span style="color:var(--blue)">color</span><span>:</span>&nbsp;<span style="color:var(--teal)">#6d28d9</span><span>;</span>&nbsp;<span style="color:var(--blue)">font-size</span><span>:</span>&nbsp;<span style="color:var(--teal)">2rem</span><span>;</span>&nbsp;<span>}</span></div>
+        <p class="muted" style="text-align:center;font-size:14px;margin-top:-6px"><b style="color:var(--pink)">Selector</b> (เลือกอะไร) · <b style="color:var(--blue)">Property</b> (เปลี่ยนอะไร) · <b style="color:var(--teal)">Value</b> (เป็นค่าอะไร) · <code>;</code> จบคำสั่ง · <code>{ }</code> = Declaration block</p>
+        <div class="g3">
+          <div class="mini c-pink"><h4>1. Inline</h4><pre class="code" style="margin:0"><span class="t-tag">&lt;p</span> <span class="t-attr">style</span>=<span class="t-val">"color:red"</span><span class="t-tag">&gt;</span></pre><p>ใส่ในแท็ก — แก้ยาก ใช้ซ้ำไม่ได้ ❌</p></div>
+          <div class="mini c-purple"><h4>2. Internal</h4><pre class="code" style="margin:0"><span class="t-tag">&lt;style&gt;</span> p { color: red; } <span class="t-tag">&lt;/style&gt;</span></pre><p>ใน &lt;head&gt; ของหน้านั้น — ใช้ได้หน้าเดียว</p></div>
+          <div class="mini c-teal"><h4>3. External ✓</h4><pre class="code" style="margin:0"><span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"stylesheet"</span> <span class="t-attr">href</span>=<span class="t-val">"css/style.css"</span><span class="t-tag">&gt;</span></pre><p>ไฟล์แยก ใช้ทุกหน้า แก้ที่เดียวเปลี่ยนทั้งเว็บ</p></div>
+        </div>
+        <div class="nug deep"><p>ไฟล์ CSS ภายนอกถูก <b>เบราว์เซอร์ Cache</b> ไว้ — เปิดหน้าที่ 2, 3, 4 ไม่ต้องโหลดซ้ำ เว็บจึงเร็วขึ้น · ถ้าแก้ CSS แล้วบนเซิร์ฟเวอร์ไม่เปลี่ยน ให้กด <kbd>Ctrl</kbd>+<kbd>F5</kbd> หรือต่อท้ายไฟล์ <code>style.css?v=2</code> (Cache busting)</p></div>
+      </section>
+
+      <section class="sec" id="selectors">
+        <div class="sec-head"><span class="sec-num">02</span><div><h2>Selector: เลือกสิ่งที่จะตกแต่ง</h2><p>เลือกแม่นเท่าไร โค้ดยิ่งสั้นและแก้ง่าย</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Selector</th><th>ตัวอย่าง</th><th>เลือกอะไร</th></tr></thead>
+            <tbody>
+              <tr><td>Type</td><td><code>p</code></td><td>ทุก &lt;p&gt;</td></tr>
+              <tr class="hl"><td>Class (ใช้บ่อยที่สุด)</td><td><code>.card</code></td><td>ทุกตัวที่มี <code>class="card"</code> (ซ้ำได้หลายตัว)</td></tr>
+              <tr><td>ID</td><td><code>#header</code></td><td>ตัวที่มี <code>id="header"</code> (ต้องไม่ซ้ำในหน้า)</td></tr>
+              <tr><td>Descendant (เว้นวรรค)</td><td><code>nav a</code></td><td>&lt;a&gt; ทุกตัวที่อยู่ “ข้างใน” nav</td></tr>
+              <tr><td>Child</td><td><code>ul &gt; li</code></td><td>li ที่เป็นลูกชั้นแรกของ ul</td></tr>
+              <tr><td>Group</td><td><code>h1, h2, h3</code></td><td>เลือกหลายอย่างพร้อมกัน</td></tr>
+              <tr><td>Attribute</td><td><code>input[type="email"]</code></td><td>input ชนิด email</td></tr>
+              <tr><td>Pseudo-class</td><td><code>a:hover</code> <code>input:focus</code> <code>li:nth-child(2n)</code></td><td>ตามสถานะ / ตำแหน่ง</td></tr>
+              <tr><td>Pseudo-element</td><td><code>p::first-line</code> <code>.btn::before</code></td><td>ส่วนย่อย / สร้างเนื้อหาเสมือน</td></tr>
+              <tr><td>Universal</td><td><code>*</code></td><td>ทุกองค์ประกอบ</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="nug tech"><p><b>ใช้ class เป็นหลัก</b> ไม่ใช้ id สำหรับตกแต่ง (id มีพลังสูงเกิน ทำให้แก้ทับยาก) · ตั้งชื่อ class ตาม “หน้าที่” เช่น <code>.btn-primary</code> ไม่ใช่ตามหน้าตา <code>.red-text</code> (วันหนึ่งอาจเปลี่ยนเป็นสีน้ำเงิน)</p></div>
+      </section>
+
+      <section class="sec" id="cascade">
+        <div class="sec-head"><span class="sec-num">03</span><div><h2>Cascade &amp; Specificity: กฎไหนชนะ?</h2><p>“ทำไมสั่งสีแดงแล้วไม่แดง!?” — คำตอบอยู่ที่นี่</p></div></div>
+        <div class="panel">
+          <h3><i data-i="list"></i>ลำดับการตัดสิน (Cascade)</h3>
+          <ol class="clean">
+            <li><b>ความสำคัญ</b> — <code>!important</code> ชนะทุกอย่าง (ใช้เป็นทางสุดท้ายเท่านั้น)</li>
+            <li><b>Specificity (ความเฉพาะเจาะจง)</b> — คิดคะแนนเป็น (ID, Class, Tag) เทียบจากหลักซ้ายก่อน · Inline style ชนะ selector ทุกแบบ</li>
+            <li><b>ลำดับในไฟล์</b> — คะแนนเท่ากัน ตัวที่เขียน <b>ทีหลัง</b> ชนะ</li>
+          </ol>
+        </div>
+        <div class="panel speclab">
+          <h3><i data-i="zap"></i>แล็บ: คำนวณ Specificity</h3>
+          <p class="muted" style="font-size:14.5px">สมมติ Selector A ตั้งสีน้ำเงิน และ B ตั้งสีชมพู กับลิงก์เดียวกัน — พิมพ์ Selector เองหรือกดตัวอย่าง</p>
+          <div class="spec-row"><b>A</b><input class="lab-input" value="#menu a" aria-label="Selector A"></div>
+          <div class="spec-out"></div>
+          <div class="spec-row"><b>B</b><input class="lab-input" value=".nav .link:hover" aria-label="Selector B"></div>
+          <div class="spec-out"></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
+            <button class="btn sm" type="button" data-a="p" data-b=".intro">p vs .intro</button>
+            <button class="btn sm" type="button" data-a="nav ul li a" data-b=".menu-link">4 tags vs 1 class</button>
+            <button class="btn sm" type="button" data-a="#main p" data-b=".content .text p.lead">id vs หลาย class</button>
+            <button class="btn sm" type="button" data-a=".btn" data-b=".btn">เท่ากัน</button>
+          </div>
+          <div class="spec-verdict"></div>
+          <span class="spec-demo">ลิงก์ตัวอย่าง →</span>
+        </div>
+        <div class="nugs">
+          <div class="nug deep"><p><b>Inheritance (การสืบทอด):</b> คุณสมบัติด้านตัวอักษร (color, font-family, line-height) ส่งต่อจาก parent ไป child อัตโนมัติ — จึงตั้งฟอนต์ที่ <code>body</code> ครั้งเดียวทั้งเว็บ · แต่ margin, padding, border <b>ไม่สืบทอด</b></p></div>
+          <div class="nug oops"><p>ติด <code>!important</code> แก้ปัญหาไปทีละจุด = สร้างปัญหาใหม่ (ต้องใช้ !important ซ้อนไปเรื่อย ๆ) · ให้แก้ด้วยการลด/เพิ่ม Specificity ให้เหมาะสมแทน</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="units">
+        <div class="sec-head"><span class="sec-num">04</span><div><h2>สี &amp; หน่วยวัด</h2><p>เลือกหน่วยให้ถูก เว็บจะยืดหยุ่นทุกจอ</p></div></div>
+        <div class="g2">
+          <div class="tbl-wrap" style="margin:0"><table class="tbl" style="min-width:0">
+            <thead><tr><th>รูปแบบสี</th><th>ตัวอย่าง</th></tr></thead>
+            <tbody>
+              <tr><td>ชื่อสี</td><td><code>tomato</code> <code>white</code></td></tr>
+              <tr><td>HEX</td><td><code>#ec4899</code> · ย่อ <code>#fff</code></td></tr>
+              <tr><td>RGB / ความโปร่งใส</td><td><code>rgb(236 72 153 / 50%)</code></td></tr>
+              <tr><td>HSL (ปรับง่ายสุด)</td><td><code>hsl(330 81% 60%)</code></td></tr>
+              <tr><td>ไล่สี</td><td><code>linear-gradient(90deg, #f97316, #a855f7)</code></td></tr>
+            </tbody>
+          </table></div>
+          <div class="tbl-wrap" style="margin:0"><table class="tbl" style="min-width:0">
+            <thead><tr><th>หน่วย</th><th>อ้างอิงจาก · ใช้กับ</th></tr></thead>
+            <tbody>
+              <tr><td><code>px</code></td><td>ค่าคงที่ · เส้นขอบ เงา</td></tr>
+              <tr class="hl"><td><code>rem</code></td><td>ขนาดฟอนต์ของ html (ปกติ 16px) · ฟอนต์ ระยะห่าง</td></tr>
+              <tr><td><code>em</code></td><td>ขนาดฟอนต์ของตัวมันเอง/parent · padding ปุ่ม</td></tr>
+              <tr><td><code>%</code></td><td>ขนาดของ parent · ความกว้าง</td></tr>
+              <tr><td><code>vw</code> / <code>vh</code></td><td>1% ของความกว้าง/สูงจอ · Hero เต็มจอ</td></tr>
+              <tr><td><code>fr</code></td><td>สัดส่วนพื้นที่ที่เหลือ · CSS Grid</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+        <div class="nugs">
+          <div class="nug pro"><p><code>font-size: clamp(1.75rem, 5vw, 3rem);</code> = ฟอนต์โตตามจอ แต่ไม่เล็กกว่า 1.75rem และไม่ใหญ่กว่า 3rem — หัวข้อ Responsive ในบรรทัดเดียว ไม่ต้องใช้ Media query</p></div>
+          <div class="nug deep"><p>ใช้ <b>rem</b> กับฟอนต์แทน px เพราะเคารพการตั้งค่าขนาดตัวอักษรของผู้ใช้ (ผู้สูงอายุมักตั้งเบราว์เซอร์ให้ตัวใหญ่) — ถ้าใช้ px ค่าที่ผู้ใช้ตั้งจะไม่มีผล</p></div>
+          <div class="nug tech"><p><b>HSL</b> = Hue (สี 0–360°) · Saturation (ความสด) · Lightness (ความสว่าง) — อยากได้สีเดิมที่อ่อนลงแค่เพิ่ม L เหมาะกับทำปุ่มตอน hover</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="font">
+        <div class="sec-head"><span class="sec-num">05</span><div><h2>ฟอนต์ไทยจาก Google Fonts &amp; ข้อความ</h2><p>นำค่าจาก Style guide (Day 2) มาใช้จริง</p></div></div>
+        <div class="code-head"><i></i><i></i><i></i>ใน &lt;head&gt; ของทุกหน้า</div>
+<pre class="code"><span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"preconnect"</span> <span class="t-attr">href</span>=<span class="t-val">"https://fonts.googleapis.com"</span><span class="t-tag">&gt;</span>
+<span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"preconnect"</span> <span class="t-attr">href</span>=<span class="t-val">"https://fonts.gstatic.com"</span> <span class="t-attr">crossorigin</span><span class="t-tag">&gt;</span>
+<span class="t-tag">&lt;link</span> <span class="t-attr">href</span>=<span class="t-val">"https://fonts.googleapis.com/css2?family=Prompt:wght@600;700&amp;family=Sarabun:wght@400;600&amp;display=swap"</span> <span class="t-attr">rel</span>=<span class="t-val">"stylesheet"</span><span class="t-tag">&gt;</span></pre>
+        <div class="code-head"><i></i><i></i><i></i>css/style.css</div>
+<pre class="code"><span class="t-sel">body</span> {
+  <span class="t-prop">font-family</span>: <span class="t-str">'Sarabun'</span>, <span class="t-val">system-ui</span>, <span class="t-val">sans-serif</span>;  <span class="t-com">/* สำรองถ้าโหลดไม่ได้ */</span>
+  <span class="t-prop">font-size</span>: <span class="t-num">1.0625rem</span>;      <span class="t-com">/* 17px ภาษาไทยอ่านสบาย */</span>
+  <span class="t-prop">line-height</span>: <span class="t-num">1.75</span>;        <span class="t-com">/* ไม่มีหน่วย = เท่าของขนาดฟอนต์ */</span>
+  <span class="t-prop">color</span>: <span class="t-val">#1f2937</span>;
+}
+<span class="t-sel">h1, h2, h3</span> { <span class="t-prop">font-family</span>: <span class="t-str">'Prompt'</span>, <span class="t-val">sans-serif</span>; <span class="t-prop">line-height</span>: <span class="t-num">1.3</span>; }
+<span class="t-sel">.lead</span> { <span class="t-prop">max-width</span>: <span class="t-num">65ch</span>; }  <span class="t-com">/* จำกัดความยาวบรรทัด */</span></pre>
+        <div class="nugs">
+          <div class="nug deep"><p><code>display=swap</code> ทำให้เบราว์เซอร์แสดงข้อความด้วยฟอนต์สำรองไปก่อน แล้วค่อยสลับเมื่อฟอนต์โหลดเสร็จ → ไม่มีช่วง “ข้อความหายไป” (FOIT) · <code>preconnect</code> เปิดการเชื่อมต่อไปเซิร์ฟเวอร์ฟอนต์ล่วงหน้า ประหยัดเวลา DNS+TLS</p></div>
+          <div class="nug tech"><p>โหลดเฉพาะน้ำหนักที่ใช้จริง (เช่น 400 กับ 700) — ฟอนต์ไทยแต่ละน้ำหนักมีขนาดไฟล์ใหญ่กว่าฟอนต์อังกฤษ</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="box">
+        <div class="sec-head"><span class="sec-num">06</span><div><h2>Box Model: ทุกอย่างคือกล่อง</h2><p>เข้าใจเรื่องนี้ = แก้ปัญหา “ทำไมกล่องล้น/ไม่ตรง” ได้ 80%</p></div></div>
+        <figure class="anim" id="anim-box" data-ms="4300">
+          <div class="anim-title"><i data-i="box"></i>สร้างกล่องทีละชั้น<span class="chip">6 ขั้น</span></div>
+          <div class="stage auto bm-stage">
+            <div class="bm-margin"><span class="bm-lbl">margin</span>
+              <div class="bm-border">
+                <div class="bm-pad"><span class="bm-lbl">padding</span>
+                  <div class="bm-content"><span class="bm-lbl">content</span>width: 200px<br>height: 80px</div>
+                </div>
+              </div>
+            </div>
+            <div class="stack bm-ruler">
+              <div class="rise" data-only="0">▶ กดเล่นเพื่อสร้างกล่อง</div>
+              <div class="rise" data-only="1">content = 200 × 80 px (พื้นที่เนื้อหา)</div>
+              <div class="rise" data-only="2">+ padding 22px รอบด้าน → 244 × 124</div>
+              <div class="rise" data-only="3">+ border 6px → <b>256 × 136</b> คือขนาดที่เห็นจริง</div>
+              <div class="rise" data-only="4">+ margin 22px → กินพื้นที่บนหน้า 300 × 180</div>
+              <div class="rise" data-only="5">😵 ตั้ง width: 200px แต่ได้กว้าง 200 + 44 + 12 = 256px</div>
+              <div class="rise" data-only="6">✅ box-sizing: border-box → กว้าง 200px พอดี (content หดเหลือ 144px)</div>
+            </div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>Content</b> — พื้นที่ของข้อความ/รูป กำหนดด้วย <code>width</code> <code>height</code></li>
+            <li><b>Padding</b> — ช่องว่าง <u>ภายใน</u> ระหว่างเนื้อหากับขอบ (มีสีพื้นหลังของกล่อง)</li>
+            <li><b>Border</b> — เส้นขอบ <code>border: 6px solid #1f1530</code></li>
+            <li><b>Margin</b> — ช่องว่าง <u>ภายนอก</u> ระหว่างกล่องนี้กับกล่องอื่น (โปร่งใส)</li>
+            <li><b>ปัญหาของค่าเริ่มต้น</b> (content-box): width ไม่รวม padding/border → กล่องใหญ่กว่าที่ตั้ง ล้น Layout</li>
+            <li><b>วิธีแก้มาตรฐาน</b>: <code>box-sizing: border-box</code> ให้ width รวม padding + border แล้ว</li>
+          </ol>
+        </figure>
+        <div class="code-head"><i></i><i></i><i></i>บรรทัดแรกของ style.css ทุกโปรเจกต์ (CSS Reset ฉบับย่อ)</div>
+<pre class="code"><span class="t-sel">*, *::before, *::after</span> { <span class="t-prop">box-sizing</span>: <span class="t-val">border-box</span>; }
+<span class="t-sel">body</span> { <span class="t-prop">margin</span>: <span class="t-num">0</span>; }
+<span class="t-sel">img</span> { <span class="t-prop">max-width</span>: <span class="t-num">100%</span>; <span class="t-prop">height</span>: <span class="t-val">auto</span>; <span class="t-prop">display</span>: <span class="t-val">block</span>; }
+<span class="t-sel">.container</span> { <span class="t-prop">max-width</span>: <span class="t-num">1100px</span>; <span class="t-prop">margin</span>: <span class="t-num">0</span> <span class="t-val">auto</span>; <span class="t-prop">padding</span>: <span class="t-num">0 16px</span>; }  <span class="t-com">/* จัดกลาง */</span></pre>
+        <div class="nugs">
+          <div class="nug fun"><p><b>Margin collapse:</b> margin บน-ล่างของกล่องที่อยู่ติดกันจะ “ยุบรวม” เหลือค่าที่มากกว่า (ไม่บวกกัน) เช่น 20px + 30px = 30px — เป็นพฤติกรรมตั้งใจของ CSS ที่มือใหม่งงกันทั่วโลก</p></div>
+          <div class="nug tech"><p>ทางลัด: <code>margin: 10px 20px</code> = บน-ล่าง 10 ซ้าย-ขวา 20 · <code>margin: 1px 2px 3px 4px</code> = บน ขวา ล่าง ซ้าย (หมุนตามเข็มนาฬิกา “TRouBLe”)</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="position">
+        <div class="sec-head"><span class="sec-num">07</span><div><h2>display &amp; position</h2><p>กล่องวางตัวอย่างไร และจะ “ลอย” ออกจากลำดับปกติได้อย่างไร</p></div></div>
+        <div class="g2">
+          <div class="tbl-wrap" style="margin:0"><table class="tbl" style="min-width:0">
+            <thead><tr><th>display</th><th>พฤติกรรม</th></tr></thead>
+            <tbody>
+              <tr><td><code>block</code></td><td>กว้างเต็มแถว ขึ้นบรรทัดใหม่ (div, p, h1)</td></tr>
+              <tr><td><code>inline</code></td><td>อยู่ในบรรทัด ตั้ง width/height ไม่ได้ (a, span, b)</td></tr>
+              <tr><td><code>inline-block</code></td><td>อยู่ในบรรทัด แต่ตั้งขนาดได้ (ปุ่ม)</td></tr>
+              <tr><td><code>flex</code> / <code>grid</code></td><td>จัดลูกด้านใน (หัวข้อถัดไป)</td></tr>
+              <tr><td><code>none</code></td><td>ซ่อน (ไม่กินพื้นที่)</td></tr>
+            </tbody>
+          </table></div>
+          <div class="tbl-wrap" style="margin:0"><table class="tbl" style="min-width:0">
+            <thead><tr><th>position</th><th>ใช้ทำ</th></tr></thead>
+            <tbody>
+              <tr><td><code>static</code></td><td>ค่าปกติ ตามลำดับ HTML</td></tr>
+              <tr><td><code>relative</code></td><td>ขยับจากที่เดิม · เป็น “จุดอ้างอิง” ให้ลูก absolute</td></tr>
+              <tr><td><code>absolute</code></td><td>ลอยวางตามพ่อที่เป็น relative · ป้าย “SALE” บนการ์ด</td></tr>
+              <tr><td><code>fixed</code></td><td>ติดจอแม้เลื่อน · ปุ่มแชต/ปุ่มขึ้นบนสุด</td></tr>
+              <tr class="hl"><td><code>sticky</code></td><td>เลื่อนปกติจนถึงขอบแล้วติด · <b>เมนูติดด้านบน</b></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+        <div class="code-head" style="margin-top:16px"><i></i><i></i><i></i>เมนูติดด้านบนเมื่อเลื่อน (1 บรรทัดที่สำคัญ)</div>
+<pre class="code"><span class="t-sel">.site-header</span> { <span class="t-prop">position</span>: <span class="t-val">sticky</span>; <span class="t-prop">top</span>: <span class="t-num">0</span>; <span class="t-prop">z-index</span>: <span class="t-num">100</span>; <span class="t-prop">background</span>: <span class="t-val">white</span>; }</pre>
+        <div class="nug tech"><p><code>z-index</code> (ใครอยู่บน) ทำงานกับองค์ประกอบที่มี position ไม่ใช่ static เท่านั้น — ถ้าตั้ง z-index แล้วไม่มีผล ให้ตรวจ position ก่อน</p></div>
+      </section>
+
+      <div class="part-label">ภาคบ่าย · จัดวาง Layout และทำให้ Responsive</div>
+
+      <section class="sec" id="flex">
+        <div class="sec-head"><span class="sec-num">08</span><div><h2>Flexbox — แล็บทดลองสด</h2><p>จัดของ “แถวเดียว” (แนวนอนหรือแนวตั้ง) · กดปุ่มแล้วดูกล่องเปลี่ยน + โค้ดที่ได้</p></div></div>
+        <div class="panel flexlab">
+          <div class="ctrl-group" data-prop="flex-direction"><span>flex-direction</span><button data-val="row" class="on">row</button><button data-val="column">column</button><button data-val="row-reverse">row-reverse</button></div>
+          <div class="ctrl-group" data-prop="justify-content"><span>justify-content</span><button data-val="flex-start" class="on">flex-start</button><button data-val="center">center</button><button data-val="space-between">space-between</button><button data-val="space-around">space-around</button><button data-val="space-evenly">space-evenly</button><button data-val="flex-end">flex-end</button></div>
+          <div class="ctrl-group" data-prop="align-items"><span>align-items</span><button data-val="stretch" class="on">stretch</button><button data-val="flex-start">flex-start</button><button data-val="center">center</button><button data-val="flex-end">flex-end</button></div>
+          <div class="ctrl-group" data-prop="flex-wrap"><span>flex-wrap</span><button data-val="nowrap" class="on">nowrap</button><button data-val="wrap">wrap</button></div>
+          <div class="ctrl-group" data-prop="gap"><span>gap</span><button data-val="0px">0</button><button data-val="8px" class="on">8px</button><button data-val="24px">24px</button></div>
+          <div class="flex-demo"><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div></div>
+          <pre class="code flex-code"></pre>
+        </div>
+        <div class="g2">
+          <div class="mini c-blue"><h4>แกนหลัก vs แกนรอง</h4><p><b>justify-content</b> จัดตาม <u>แกนหลัก</u> (แนวนอนถ้า row) · <b>align-items</b> จัดตาม <u>แกนรอง</u> · เปลี่ยน direction เป็น column แกนสลับกัน!</p></div>
+          <div class="mini c-pink"><h4>สูตรจัดกึ่งกลางที่ทุกคนตามหา</h4><pre class="code" style="margin:0"><span class="t-sel">.center</span> { <span class="t-prop">display</span>: <span class="t-val">flex</span>;
+  <span class="t-prop">justify-content</span>: <span class="t-val">center</span>; <span class="t-prop">align-items</span>: <span class="t-val">center</span>; }</pre></div>
+        </div>
+        <div class="code-head" style="margin-top:16px"><i></i><i></i><i></i>Navbar ด้วย Flexbox</div>
+<pre class="code"><span class="t-sel">.nav</span> { <span class="t-prop">display</span>: <span class="t-val">flex</span>; <span class="t-prop">align-items</span>: <span class="t-val">center</span>; <span class="t-prop">gap</span>: <span class="t-num">24px</span>; }
+<span class="t-sel">.nav .logo</span> { <span class="t-prop">margin-right</span>: <span class="t-val">auto</span>; }   <span class="t-com">/* ดันเมนูที่เหลือไปขวาสุด */</span>
+<span class="t-sel">.nav a</span> { <span class="t-prop">text-decoration</span>: <span class="t-val">none</span>; <span class="t-prop">padding</span>: <span class="t-num">8px 12px</span>; }</pre>
+        <div class="nug pro"><p><code>flex: 1</code> ให้ลูกตัวนั้น “กินพื้นที่ที่เหลือ” · <code>margin-left: auto</code> ใน flex ดันตัวเองไปชิดขวา — 2 ทริกนี้ทำ Layout ได้เกือบทุกแบบในชีวิตจริง</p></div>
+      </section>
+
+      <section class="sec" id="gridsec">
+        <div class="sec-head"><span class="sec-num">09</span><div><h2>CSS Grid — Layout 2 มิติ</h2><p>จัดทั้ง “แถวและคอลัมน์” พร้อมกัน เหมาะกับการ์ดสินค้า แกลเลอรี และโครงหน้า</p></div></div>
+        <div class="g2">
+          <div>
+            <div class="code-head"><i></i><i></i><i></i>การ์ดที่จัดคอลัมน์เองตามจอ (ไม่ต้องใช้ Media query!)</div>
+<pre class="code"><span class="t-sel">.cards</span> {
+  <span class="t-prop">display</span>: <span class="t-val">grid</span>;
+  <span class="t-prop">grid-template-columns</span>:
+    <span class="t-val">repeat</span>(<span class="t-val">auto-fit</span>, <span class="t-val">minmax</span>(<span class="t-num">140px</span>, <span class="t-num">1fr</span>));
+  <span class="t-prop">gap</span>: <span class="t-num">10px</span>;
+}</pre>
+            <p class="muted" style="font-size:14px">ผลลัพธ์จริง ↓ (ลองย่อหน้าต่างเบราว์เซอร์ดู)</p>
+            <div class="grid-live"><div>การ์ด 1</div><div>การ์ด 2</div><div>การ์ด 3</div><div>การ์ด 4</div><div>การ์ด 5</div><div>การ์ด 6</div></div>
+          </div>
+          <div>
+            <div class="code-head"><i></i><i></i><i></i>โครงหน้าด้วย grid-template-areas</div>
+<pre class="code"><span class="t-sel">.page</span> {
+  <span class="t-prop">display</span>: <span class="t-val">grid</span>;
+  <span class="t-prop">grid-template-columns</span>: <span class="t-num">1fr 280px</span>;
+  <span class="t-prop">grid-template-areas</span>:
+    <span class="t-str">"header header"</span>
+    <span class="t-str">"main   aside"</span>
+    <span class="t-str">"footer footer"</span>;
+}
+<span class="t-sel">header</span> { <span class="t-prop">grid-area</span>: <span class="t-val">header</span>; }
+<span class="t-sel">main</span>   { <span class="t-prop">grid-area</span>: <span class="t-val">main</span>; }
+<span class="t-sel">aside</span>  { <span class="t-prop">grid-area</span>: <span class="t-val">aside</span>; }
+<span class="t-sel">footer</span> { <span class="t-prop">grid-area</span>: <span class="t-val">footer</span>; }</pre>
+          </div>
+        </div>
+        <div class="vs">
+          <div class="mini c-blue"><h4>Flexbox</h4><p>1 มิติ · เนื้อหากำหนดขนาด · Navbar ปุ่มเรียงกัน จัดกลาง</p></div>
+          <div class="mid">+</div>
+          <div class="mini c-purple"><h4>Grid</h4><p>2 มิติ · Layout กำหนดขนาด · โครงหน้า การ์ด แกลเลอรี</p></div>
+        </div>
+        <div class="nug tech"><p>DevTools มี <b>Grid/Flex overlay</b> — ในแท็บ Elements คลิกป้าย <code>grid</code> หรือ <code>flex</code> ข้างแท็ก จะเห็นเส้นกริดและช่องว่างวาดทับบนหน้าเว็บจริง</p></div>
+      </section>
+
+      <section class="sec" id="resp">
+        <div class="sec-head"><span class="sec-num">10</span><div><h2>Responsive Design — แล็บลากความกว้าง</h2><p>Mobile-first: เขียน CSS สำหรับมือถือก่อน แล้ว “เพิ่ม” เมื่อจอกว้างขึ้นด้วย min-width</p></div></div>
+        <div class="panel resp-lab">
+          <h3><i data-i="phone"></i>ลากแถบเพื่อเปลี่ยนความกว้างของ “จอ”</h3>
+          <input type="range" min="320" max="1100" value="1000" aria-label="ความกว้างหน้าจอจำลอง">
+          <div class="resp-out"></div>
+          <div class="resp-frame">
+            <div class="rf-head">☕ ร้านกาแฟบ้านเรา <span class="rf-nav"><span>เมนู</span><span>เกี่ยวกับ</span><span>ติดต่อ</span></span><span class="rf-burger">☰</span></div>
+            <div class="rf-body">
+              <div class="rf-card"><b>เอสเพรสโซ่</b>45 บาท</div>
+              <div class="rf-card"><b>ลาเต้เย็น</b>55 บาท</div>
+              <div class="rf-card"><b>โกโก้</b>50 บาท</div>
+              <div class="rf-card"><b>ชาไทย</b>45 บาท</div>
+              <div class="rf-card"><b>มัทฉะ</b>60 บาท</div>
+              <div class="rf-card"><b>อเมริกาโน่</b>45 บาท</div>
+              <div class="rf-side">📢 <b>ข่าวร้าน</b><br>ซื้อ 10 แก้ว ฟรี 1 แก้ว</div>
+            </div>
+          </div>
+        </div>
+        <div class="code-head"><i></i><i></i><i></i>Mobile-first Media Query</div>
+<pre class="code"><span class="t-com">/* 1) มือถือ (ค่าพื้นฐาน ไม่ต้องอยู่ใน @media) */</span>
+<span class="t-sel">.menu-list</span> { <span class="t-prop">display</span>: <span class="t-val">grid</span>; <span class="t-prop">grid-template-columns</span>: <span class="t-num">1fr</span>; <span class="t-prop">gap</span>: <span class="t-num">12px</span>; }
+<span class="t-sel">.nav-links</span> { <span class="t-prop">display</span>: <span class="t-val">none</span>; }        <span class="t-com">/* ใช้ปุ่ม ☰ แทน */</span>
+
+<span class="t-com">/* 2) แท็บเล็ตขึ้นไป */</span>
+<span class="t-kw">@media</span> (<span class="t-prop">min-width</span>: <span class="t-num">768px</span>) {
+  <span class="t-sel">.menu-list</span> { <span class="t-prop">grid-template-columns</span>: <span class="t-num">1fr 1fr</span>; }
+}
+
+<span class="t-com">/* 3) จอคอมพิวเตอร์ */</span>
+<span class="t-kw">@media</span> (<span class="t-prop">min-width</span>: <span class="t-num">992px</span>) {
+  <span class="t-sel">.menu-list</span> { <span class="t-prop">grid-template-columns</span>: <span class="t-val">repeat</span>(<span class="t-num">3</span>, <span class="t-num">1fr</span>) <span class="t-num">260px</span>; }
+  <span class="t-sel">.nav-links</span> { <span class="t-prop">display</span>: <span class="t-val">flex</span>; }
+  <span class="t-sel">.burger</span> { <span class="t-prop">display</span>: <span class="t-val">none</span>; }
+}</pre>
+        <div class="nugs">
+          <div class="nug tech"><p>ทดสอบใน DevTools: กด <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> (Device toolbar) เลือกรุ่นมือถือ หรือลากขอบ · แต่ <b>ต้องทดสอบบนมือถือจริงด้วย</b> เพราะนิ้วกดไม่แม่นเท่าเมาส์</p></div>
+          <div class="nug deep"><p>แล็บด้านบนใช้ <b>Container Query</b> (<code>@container</code>) ซึ่งตอบสนองต่อขนาด “กล่องแม่” แทนขนาดจอ — CSS สมัยใหม่ที่ทำให้คอมโพเนนต์ปรับตัวเองได้ไม่ว่าจะถูกวางไว้ตรงไหน</p></div>
+          <div class="nug oops"><p>ลืม <code>&lt;meta name="viewport"&gt;</code> = Media query บนมือถือจริงไม่ทำงาน (แต่ใน DevTools อาจดูเหมือนปกติ) — ตรวจทุกหน้า!</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="modern">
+        <div class="sec-head"><span class="sec-num">11</span><div><h2>CSS Variables · Transition · Dark mode</h2><p>CSS สมัยใหม่ที่ทำให้เว็บดูเป็นมืออาชีพด้วยโค้ดไม่กี่บรรทัด</p></div></div>
+        <div class="code-head"><i></i><i></i><i></i>นำ Style guide จาก Figma มาเป็นตัวแปร</div>
+<pre class="code"><span class="t-sel">:root</span> {
+  <span class="t-prop">--brand</span>: <span class="t-val">#6d28d9</span>;
+  <span class="t-prop">--accent</span>: <span class="t-val">#f97316</span>;     <span class="t-com">/* สีเน้น 10% สำหรับปุ่ม */</span>
+  <span class="t-prop">--bg</span>: <span class="t-val">#ffffff</span>;
+  <span class="t-prop">--text</span>: <span class="t-val">#1f2937</span>;
+  <span class="t-prop">--radius</span>: <span class="t-num">12px</span>;
+  <span class="t-prop">--space</span>: <span class="t-num">16px</span>;
+}
+<span class="t-kw">@media</span> (<span class="t-prop">prefers-color-scheme</span>: <span class="t-val">dark</span>) {   <span class="t-com">/* เปลี่ยนตามการตั้งค่าเครื่องผู้ใช้ */</span>
+  <span class="t-sel">:root</span> { <span class="t-prop">--bg</span>: <span class="t-val">#0f0c15</span>; <span class="t-prop">--text</span>: <span class="t-val">#f2eef8</span>; }
+}
+<span class="t-sel">body</span> { <span class="t-prop">background</span>: <span class="t-val">var</span>(<span class="t-prop">--bg</span>); <span class="t-prop">color</span>: <span class="t-val">var</span>(<span class="t-prop">--text</span>); }
+<span class="t-sel">.btn</span> {
+  <span class="t-prop">background</span>: <span class="t-val">var</span>(<span class="t-prop">--accent</span>); <span class="t-prop">color</span>: <span class="t-val">white</span>;
+  <span class="t-prop">padding</span>: <span class="t-num">12px 20px</span>; <span class="t-prop">border-radius</span>: <span class="t-val">var</span>(<span class="t-prop">--radius</span>);
+  <span class="t-prop">transition</span>: <span class="t-val">transform</span> <span class="t-num">.2s</span>, <span class="t-val">box-shadow</span> <span class="t-num">.2s</span>;
+}
+<span class="t-sel">.btn:hover</span> { <span class="t-prop">transform</span>: <span class="t-val">translateY</span>(<span class="t-num">-2px</span>); <span class="t-prop">box-shadow</span>: <span class="t-num">0 8px 20px</span> <span class="t-val">rgb</span>(<span class="t-num">0 0 0 / 20%</span>); }
+<span class="t-sel">.btn:focus-visible</span> { <span class="t-prop">outline</span>: <span class="t-num">3px</span> <span class="t-val">solid</span> <span class="t-val">var</span>(<span class="t-prop">--brand</span>); }  <span class="t-com">/* Accessibility */</span></pre>
+        <div class="nugs">
+          <div class="nug pro"><p>เปลี่ยนธีมทั้งเว็บด้วยการแก้ตัวแปรที่เดียว — เว็บที่คุณกำลังดูอยู่นี้ใช้เทคนิคนี้ทำปุ่ม auto/light/dark มุมขวาบน (ลองกดดู!)</p></div>
+          <div class="nug deep"><p>แอนิเมชันที่ลื่นที่สุดคือการเปลี่ยน <code>transform</code> และ <code>opacity</code> เพราะทำที่ขั้น Composite ด้วย GPU (Day 1) · ถ้าเปลี่ยน <code>width</code> <code>top</code> <code>margin</code> จะต้อง Layout ใหม่ทุกเฟรม → กระตุก</p></div>
+          <div class="nug tech"><p>เคารพผู้ใช้ที่เวียนหัวกับการเคลื่อนไหว: <code>@media (prefers-reduced-motion: reduce) { * { animation: none; transition: none; } }</code></p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="js">
+        <div class="sec-head"><span class="sec-num">12</span><div><h2>JavaScript: ทำให้เว็บ “ตอบสนอง”</h2><p>DOM + Event — พื้นฐานที่ใช้ทำเมนูมือถือ แท็บ แกลเลอรี ฯลฯ</p></div></div>
+        <figure class="anim" id="anim-dom" data-ms="4000">
+          <div class="anim-title"><i data-i="zap"></i>กดปุ่ม ☰ แล้วเกิดอะไรขึ้น<span class="chip">6 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <polyline points="10,50 30,50 50,22 70,50 50,80 90,50" class="dash"/>
+            </svg>
+            <div class="actor c-pink" style="left:10%;top:50%" data-hl="1,6"><span class="ab"><i data-i="hand"></i></span><span class="lb">ผู้ใช้</span><span class="sub">แตะปุ่ม</span></div>
+            <div class="actor c-orange" style="left:30%;top:50%" data-hl="1,2"><span class="ab"><i data-i="list"></i></span><span class="lb">&lt;button&gt; ☰</span></div>
+            <div class="actor c-amber" style="left:50%;top:22%" data-hl="2,3"><span class="ab"><i data-i="zap"></i></span><span class="lb">Event: click</span></div>
+            <div class="actor c-purple" style="left:70%;top:50%" data-hl="3,4"><span class="ab"><i data-i="code"></i></span><span class="lb">Listener</span><span class="sub">addEventListener</span></div>
+            <div class="actor c-teal" style="left:50%;top:80%" data-hl="4,5"><span class="ab"><i data-i="tree"></i></span><span class="lb">DOM</span><span class="sub">class="open"</span></div>
+            <div class="actor c-green" style="left:90%;top:50%" data-hl="5,6"><span class="ab"><i data-i="phone"></i></span><span class="lb">หน้าจอ</span><span class="sub">เมนูเลื่อนลง</span></div>
+            <div class="flyer" style="--x1:10%;--y1:50%;--x2:30%;--y2:50%;--c:var(--pink)" data-only="1">tap</div>
+            <div class="flyer" style="--x1:30%;--y1:50%;--x2:50%;--y2:22%;--c:var(--orange)" data-only="2">สร้าง Event</div>
+            <div class="flyer" style="--x1:50%;--y1:22%;--x2:70%;--y2:50%;--c:var(--amber)" data-only="3">เรียกฟังก์ชัน</div>
+            <div class="flyer" style="--x1:70%;--y1:50%;--x2:50%;--y2:80%;--c:var(--purple)" data-only="4">classList.toggle('open')</div>
+            <div class="flyer" style="--x1:50%;--y1:80%;--x2:90%;--y2:50%;--c:var(--teal)" data-only="5">CSS .open → Repaint</div>
+            <div class="bubble ok pop" style="left:70%;top:14%" data-only="6">กดอีกครั้ง → toggle เอา class ออก → เมนูปิด</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>ผู้ใช้แตะปุ่ม</b> ☰</li>
+            <li><b>เบราว์เซอร์สร้าง Event</b> ชื่อ <code>click</code> พร้อมข้อมูล (กดที่ไหน เมื่อไร)</li>
+            <li><b>Listener</b> ที่เราลงทะเบียนไว้ด้วย <code>addEventListener('click', …)</code> ถูกเรียก</li>
+            <li><b>JS แก้ DOM</b> — เพิ่ม/ลบ class <code>open</code> ที่ตัวเมนู</li>
+            <li><b>CSS ของ .open</b> ทำงาน (transform) → เบราว์เซอร์วาดใหม่</li>
+            <li><b>ผู้ใช้เห็นผล</b> · หลักคิด: JS แค่ “สลับ class” ส่วนหน้าตาให้ CSS จัดการ</li>
+          </ol>
+        </figure>
+        <div class="g2">
+          <div data-menu-demo>
+            <div class="mm">
+              <div class="mm-bar">☕ Coffee <button class="mm-btn" type="button" aria-label="เปิดเมนู">☰</button></div>
+              <nav class="mm-menu"><a href="#js">หน้าแรก</a><a href="#js">เมนูเครื่องดื่ม</a><a href="#js">เกี่ยวกับร้าน</a><a href="#js">ติดต่อ</a></nav>
+              <div class="mm-content"><b>ลองกด ☰ ด้านบน</b><i></i><i></i><i style="width:70%"></i><i></i><i style="width:50%"></i></div>
+            </div>
+            <div class="mm-log">กดปุ่ม ☰ ในมือถือจำลอง</div>
+          </div>
+          <div>
+            <div class="code-head"><i></i><i></i><i></i>js/main.js (โหลดด้วย &lt;script src="js/main.js" defer&gt;)</div>
+<pre class="code"><span class="t-kw">const</span> btn  = document.<span class="t-prop">querySelector</span>(<span class="t-str">'.mm-btn'</span>);
+<span class="t-kw">const</span> menu = document.<span class="t-prop">querySelector</span>(<span class="t-str">'.mm'</span>);
+
+btn.<span class="t-prop">addEventListener</span>(<span class="t-str">'click'</span>, () =&gt; {
+  <span class="t-kw">const</span> open = menu.classList.<span class="t-prop">toggle</span>(<span class="t-str">'open'</span>);
+  btn.<span class="t-prop">setAttribute</span>(<span class="t-str">'aria-expanded'</span>, open);
+  console.<span class="t-prop">log</span>(<span class="t-str">'เมนูเปิด?'</span>, open);
+});</pre>
+            <div class="code-head"><i></i><i></i><i></i>css</div>
+<pre class="code"><span class="t-sel">.mm-menu</span> { <span class="t-prop">transform</span>: <span class="t-val">translateY</span>(<span class="t-num">-110%</span>); <span class="t-prop">transition</span>: <span class="t-val">transform</span> <span class="t-num">.35s</span>; }
+<span class="t-sel">.open .mm-menu</span> { <span class="t-prop">transform</span>: <span class="t-val">none</span>; }</pre>
+          </div>
+        </div>
+        <div class="cheat" style="margin-top:14px">
+          <div><code>let / const</code><span>ประกาศตัวแปร (const เปลี่ยนค่าไม่ได้)</span></div>
+          <div><code>querySelector('.x')</code><span>เลือกองค์ประกอบด้วย CSS selector</span></div>
+          <div><code>textContent = '…'</code><span>เปลี่ยนข้อความ</span></div>
+          <div><code>classList.add/remove/toggle</code><span>จัดการ class</span></div>
+          <div><code>addEventListener('click', fn)</code><span>รอฟังเหตุการณ์ (click, input, submit, scroll)</span></div>
+          <div><code>console.log()</code><span>พิมพ์ค่าดูใน DevTools → Console</span></div>
+        </div>
+        <div class="nugs">
+          <div class="nug fun"><p>JavaScript ถูกสร้างขึ้นใน <b>10 วัน</b> เมื่อปี 1995 โดย Brendan Eich และ <b>ไม่เกี่ยวอะไรกับภาษา Java</b> — ตั้งชื่อตามกระแสการตลาดของ Java ในยุคนั้น</p></div>
+          <div class="nug tech"><p>เปิด DevTools → แท็บ <b>Console</b> จะเห็น error สีแดงพร้อมเลขบรรทัด — 90% ของปัญหา JS ของมือใหม่คือ selector สะกดผิด (<code>querySelector</code> คืนค่า <code>null</code>)</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="arch">
+        <div class="sec-head"><span class="sec-num">13</span><div><h2>จัดระเบียบไฟล์ CSS &amp; เฟรมเวิร์ก</h2><p>โค้ดที่ทีมอ่านง่าย = แก้เร็ว บั๊กน้อย</p></div></div>
+        <div class="g2">
+          <div class="panel" style="margin:0">
+            <h3><i data-i="list"></i>ลำดับหมวดใน style.css</h3>
+            <ol class="clean">
+              <li><b>Reset</b> — box-sizing, margin 0</li>
+              <li><b>Variables</b> — :root สี ฟอนต์ ระยะ</li>
+              <li><b>Base</b> — body, h1–h3, a, img</li>
+              <li><b>Layout</b> — .container, header, footer, grid</li>
+              <li><b>Components</b> — .btn, .card, .nav</li>
+              <li><b>Utilities</b> — .text-center, .mt-2</li>
+              <li><b>Media queries</b> — แยกท้ายไฟล์หรือไว้ใต้คอมโพเนนต์</li>
+            </ol>
+          </div>
+          <div class="panel" style="margin:0">
+            <h3><i data-i="box"></i>ควรใช้เฟรมเวิร์กไหม?</h3>
+            <p><b>Bootstrap</b> — มีคอมโพเนนต์สำเร็จรูป (Navbar, Card, Modal) และกริด 12 คอลัมน์ เร็วแต่เว็บมักหน้าตาคล้ายกัน</p>
+            <p><b>Tailwind CSS</b> — เขียน class เล็ก ๆ ใน HTML เช่น <code>class="p-4 rounded-lg bg-white"</code> ยืดหยุ่นสูง</p>
+            <p style="margin:0">👉 <b>เรียน CSS ล้วนให้เข้าใจก่อน</b> แล้วเฟรมเวิร์กจะง่ายมาก</p>
+          </div>
+        </div>
+        <div class="nug tech"><p>ตั้งชื่อ class แบบ <b>BEM</b>: <code>.card</code> (Block) · <code>.card__title</code> (Element) · <code>.card--featured</code> (Modifier) — รู้ทันทีว่าอะไรเป็นส่วนของอะไร ไม่ชนกัน</p></div>
+      </section>
+
+      <section class="sec" id="devtools">
+        <div class="sec-head"><span class="sec-num">14</span><div><h2>DevTools สำหรับ CSS: แก้สดบนเบราว์เซอร์</h2><p>ทดลองในเบราว์เซอร์ก่อน ได้ค่าที่ใช่แล้วค่อยคัดลอกไปใส่ไฟล์</p></div></div>
+        <div class="cheat">
+          <div><code>Ctrl + Shift + C</code><span>ชี้เลือกองค์ประกอบบนหน้า</span></div>
+          <div><code>Styles panel</code><span>ติ๊กเปิด/ปิดแต่ละ property · คลิกแก้ค่า · กฎที่ถูกขีดฆ่า = แพ้ Specificity</span></div>
+          <div><code>Computed</code><span>ค่าสุดท้ายจริง + แผนภาพ Box Model</span></div>
+          <div><code>:hov</code><span>บังคับสถานะ :hover / :focus เพื่อตกแต่ง</span></div>
+          <div><code>Ctrl + Shift + M</code><span>จำลองมือถือ</span></div>
+          <div><code>Lighthouse</code><span>คะแนน Performance / Accessibility / SEO</span></div>
+        </div>
+        <div class="nug oops"><p>สิ่งที่แก้ใน DevTools <b>หายเมื่อรีเฟรช</b>! ต้องคัดลอกไปใส่ในไฟล์ CSS เสมอ</p></div>
+      </section>
+
+      <section class="sec" id="lab">
+        <div class="sec-head"><span class="sec-num">15</span><div><h2>ใบงาน Day 4 · แต่งเว็บโครงงานให้เหมือน Mockup</h2><p>งานกลุ่ม · 30 คะแนน · พรุ่งนี้จะนำขึ้นโดเมนจริง</p></div></div>
+        <div class="panel worksheet">
+          <div class="ws-head"><h3><i data-i="clipboard"></i>ขั้นตอน</h3><span class="ws-progress"></span></div>
+          <ul class="checklist" data-key="d4">
+            <li><label><input type="checkbox"><span><b>1.</b> สร้าง <code>css/style.css</code> ลิงก์ทุกหน้า · ใส่ Reset (box-sizing) และ <code>:root</code> ตัวแปรจาก Style guide</span></label></li>
+            <li><label><input type="checkbox"><span><b>2.</b> ฟอนต์ไทยจาก Google Fonts (≤ 2 ตระกูล) · line-height 1.6–1.8 · <code>.container</code> max-width + จัดกลาง</span></label></li>
+            <li><label><input type="checkbox"><span><b>3.</b> Header + Navbar ด้วย Flexbox · sticky top</span></label></li>
+            <li><label><input type="checkbox"><span><b>4.</b> ส่วนการ์ด/สินค้า/ผลงาน ด้วย Grid <code>auto-fit, minmax()</code></span></label></li>
+            <li><label><input type="checkbox"><span><b>5.</b> ปุ่ม CTA สีเน้น มี <code>:hover</code> + <code>transition</code> + <code>:focus-visible</code></span></label></li>
+            <li><label><input type="checkbox"><span><b>6.</b> Responsive แบบ Mobile-first ≥ 2 breakpoint · ทดสอบบนมือถือจริง ไม่มีแถบเลื่อนแนวนอน</span></label></li>
+            <li><label><input type="checkbox"><span><b>7.</b> เมนูมือถือ ☰ ด้วย JavaScript (<code>classList.toggle</code>) · Console ไม่มี error</span></label></li>
+            <li><label><input type="checkbox"><span><b>8.</b> Lighthouse: Accessibility ≥ 90 · คอนทราสต์ผ่าน · บันทึกคะแนนไว้เทียบหลังขึ้นเซิร์ฟเวอร์จริง</span></label></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sec" id="quiz">
+        <div class="sec-head"><span class="sec-num">16</span><div><h2>แบบทดสอบ Day 4</h2><p>10 ข้อ</p></div></div>
+        <div class="quiz" data-quiz="d4">
+          <div class="q" data-a="2"><p class="q-t">วิธีใส่ CSS ใดเหมาะที่สุดสำหรับเว็บหลายหน้า</p><div class="opts"><button>Inline style ทุกแท็ก</button><button>&lt;style&gt; ในทุกหน้า</button><button>ไฟล์ภายนอก + &lt;link&gt;</button><button>ใช้ &lt;font&gt;</button></div><p class="q-ex">แก้ที่เดียวเปลี่ยนทั้งเว็บ และเบราว์เซอร์ Cache ได้</p></div>
+          <div class="q" data-a="1"><p class="q-t">Selector ใดมี Specificity สูงที่สุด</p><div class="opts"><button>nav ul li a</button><button>#menu a</button><button>.nav .link</button><button>a</button></div><p class="q-ex">#menu a = (1,0,1) ชนะทุกตัวที่ไม่มี ID</p></div>
+          <div class="q" data-a="3"><p class="q-t">ถ้า Specificity เท่ากัน กฎใดชนะ</p><div class="opts"><button>กฎที่เขียนก่อน</button><button>กฎที่สั้นกว่า</button><button>สุ่ม</button><button>กฎที่เขียนทีหลัง</button></div><p class="q-ex">ลำดับในไฟล์ (Source order) — ตัวหลังชนะ</p></div>
+          <div class="q" data-a="0"><p class="q-t">width: 300px; padding: 20px; border: 5px (content-box) กล่องกว้างจริงเท่าไร</p><div class="opts"><button>350px</button><button>300px</button><button>325px</button><button>345px</button></div><p class="q-ex">300 + 20×2 + 5×2 = 350 · ถ้าใช้ border-box จะได้ 300 พอดี</p></div>
+          <div class="q" data-a="2"><p class="q-t">หน่วยใดอิงขนาดฟอนต์ของ &lt;html&gt; (ค่าเริ่มต้น 16px)</p><div class="opts"><button>px</button><button>vw</button><button>rem</button><button>%</button></div><p class="q-ex">1rem = ขนาดฟอนต์ root</p></div>
+          <div class="q" data-a="1"><p class="q-t">ต้องการให้กล่องอยู่กึ่งกลางทั้งแนวนอนและแนวตั้งด้วย Flexbox ใช้ข้อใด</p><div class="opts"><button>text-align: center</button><button>justify-content: center; align-items: center</button><button>float: center</button><button>margin: center</button></div><p class="q-ex">จัดทั้งแกนหลักและแกนรอง</p></div>
+          <div class="q" data-a="3"><p class="q-t">โค้ด <code>repeat(auto-fit, minmax(200px, 1fr))</code> ทำอะไร</p><div class="opts"><button>สร้าง 200 คอลัมน์</button><button>ซ่อนการ์ด</button><button>ทำให้รูปหมุน</button><button>จำนวนคอลัมน์ปรับเองตามความกว้าง แต่ละคอลัมน์กว้างอย่างน้อย 200px</button></div><p class="q-ex">Responsive โดยไม่ต้องเขียน Media query</p></div>
+          <div class="q" data-a="0"><p class="q-t">Mobile-first เขียน Media query ด้วยเงื่อนไขใด</p><div class="opts"><button>min-width</button><button>max-width</button><button>orientation</button><button>print</button></div><p class="q-ex">เริ่มจากมือถือ แล้วเพิ่มกฎเมื่อจอกว้าง “อย่างน้อย” เท่าไร</p></div>
+          <div class="q" data-a="2"><p class="q-t">ทำเมนูติดด้านบนเมื่อเลื่อนหน้า ใช้ position ใด</p><div class="opts"><button>static</button><button>absolute</button><button>sticky</button><button>relative</button></div><p class="q-ex">sticky + top: 0</p></div>
+          <div class="q" data-a="1"><p class="q-t">คำสั่ง JS ใดสลับให้เพิ่ม/ลบ class “open” ทุกครั้งที่กด</p><div class="opts"><button>menu.class = 'open'</button><button>menu.classList.toggle('open')</button><button>menu.style.open()</button><button>toggle(menu)</button></div><p class="q-ex">classList.toggle เพิ่มถ้ายังไม่มี ลบถ้ามีแล้ว</p></div>
+          <div class="quiz-foot"><span class="quiz-score"></span><button class="btn sm quiz-reset" type="button">ทำใหม่</button></div>
+        </div>
+      </section>
+
+      <section class="sec" id="sum">
+        <div class="sec-head"><span class="sec-num">17</span><div><h2>สรุป Day 4</h2><p>เว็บของเราสวยและใช้ได้ทุกจอแล้ว</p></div></div>
+        <div class="panel">
+          <ul class="ticks">
+            <li><b>CSS</b> ไฟล์ภายนอก · Selector (เน้น class) · Cascade = !important → Specificity (ID, Class, Tag) → ลำดับ · Inheritance</li>
+            <li><b>หน่วย</b> rem / % / vw / fr · clamp() · สี HEX/RGB/HSL · ฟอนต์ไทย + display=swap</li>
+            <li><b>Box Model</b> content → padding → border → margin · <code>box-sizing: border-box</code></li>
+            <li><b>Layout</b> Flexbox (1 มิติ) · Grid (2 มิติ, auto-fit/minmax, areas) · position sticky</li>
+            <li><b>Responsive</b> viewport + Mobile-first min-width · ทดสอบมือถือจริง</li>
+            <li><b>Modern</b> CSS Variables · transition (transform/opacity) · dark mode · <b>JS</b> querySelector + addEventListener + classList</li>
+          </ul>
+          <div class="callout"><i data-i="help"></i><p><strong class="t">พรุ่งนี้ Day 5 (วันสุดท้าย!)</strong>เตรียมข้อมูลเข้าเซิร์ฟเวอร์ (IP, ชื่อผู้ใช้ SSH หรือบัญชี SFTP) และโดเมน/ซับโดเมนที่ครูแจก — เราจะติดตั้ง WordPress ทดสอบ และนำเว็บขึ้นออนไลน์พร้อม HTTPS</p></div>
+          <button class="btn mark-done" type="button" data-lesson="d4"></button>
+        </div>
+        <nav class="pager">
+          <a href="day-3.html"><small>← วันก่อน</small><strong>Day 3 · Web Server จำลอง &amp; HTML</strong></a>
+          <a class="next" href="day-5.html"><small>วันถัดไป →</small><strong>Day 5 · CMS &amp; เผยแพร่บนโดเมนจริง</strong></a>
+        </nav>
+      </section>
+    </article>
+  </div>
+</div>
+</main>
+<footer class="site-foot">made with <i data-i="heart" class="heart"></i> &amp; <i data-i="coffee" class="cup"></i> by IT RVC · 2026</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

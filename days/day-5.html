@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 5 CMS &amp; เผยแพร่บนโดเมนจริง · Web Dev</title>
+<meta name="description" content="วันที่ 5 สร้างเว็บด้วย WordPress ทดสอบเว็บไซต์ จดโดเมน ตั้งค่า DNS อัปโหลดขึ้นเซิร์ฟเวอร์ของตนเองด้วย SSH SFTP ตั้งค่า Nginx ติดตั้ง HTTPS ด้วย Let's Encrypt SEO และการดูแลรักษา">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec4899'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem('wd-theme'));if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid"></div><div class="floaters"></div></div>
+<header class="topbar">
+  <nav class="pill" aria-label="เมนูหลัก">
+    <a href="../index.html">Web Dev</a>
+    <a href="day-1.html">Day 1</a>
+    <a href="day-2.html">Day 2</a>
+    <a href="day-3.html">Day 3</a>
+    <a href="day-4.html">Day 4</a>
+    <a href="day-5.html" aria-current="page">Day 5</a>
+  </nav>
+  <button class="theme-btn" type="button">auto</button>
+</header>
+
+<main>
+<div class="wrap">
+  <section class="lesson-hero">
+    <div class="crumbs"><a href="../index.html">Web Dev</a> / Day 5</div>
+    <div class="meta"><span class="chip hot">DAY 5 / 5</span><span class="chip">หน่วยที่ 6 + 7</span><span class="chip">09:00–16:30</span><span class="chip c-purple">4 แอนิเมชัน · เซิร์ฟเวอร์ &amp; โดเมนจริง</span></div>
+    <h1>CMS · ทดสอบ · <span class="grad-text">ขึ้นโดเมนจริง</span> 🚀</h1>
+    <p class="lead">วันสุดท้าย: สร้างเว็บด้วย WordPress เข้าใจว่าเบื้องหลังทำงานอย่างไร ทดสอบเว็บแบบมืออาชีพ แล้วนำเว็บโครงงานขึ้น <b>เซิร์ฟเวอร์และโดเมนของเราเอง</b> — ตั้งค่า DNS, เชื่อมต่อ SSH, อัปโหลดด้วย SFTP, ตั้งค่า Nginx, ติดตั้ง HTTPS ฟรีด้วย Let's Encrypt, ทำ SEO และวางแผนดูแลรักษา จบด้วยการนำเสนอเว็บที่ใครก็เปิดได้จากทุกที่ในโลก</p>
+  </section>
+
+  <div class="lesson-grid">
+    <aside class="toc">
+      <span class="toc-title">DAY 5</span>
+      <nav>
+        <a href="#plan">ตารางเรียน</a>
+        <a href="#vars">ข้อมูลเซิร์ฟเวอร์ของฉัน</a>
+        <a href="#cms">CMS คืออะไร</a>
+        <a href="#wpflow">WordPress ทำงานอย่างไร</a>
+        <a href="#wpinstall">ติดตั้ง WordPress</a>
+        <a href="#wpuse">ใช้งาน WordPress</a>
+        <a href="#wpsec">ความปลอดภัย WordPress</a>
+        <a href="#test">ทดสอบเว็บไซต์</a>
+        <a href="#hosting">ประเภทโฮสติ้ง</a>
+        <a href="#domain">โดเมน &amp; DNS</a>
+        <a href="#linux">Linux &amp; SSH</a>
+        <a href="#deploy">Deploy ขึ้นเซิร์ฟเวอร์</a>
+        <a href="#https">HTTPS ด้วย Let's Encrypt</a>
+        <a href="#seo">SEO &amp; เปิดตัว</a>
+        <a href="#maint">ดูแลรักษา</a>
+        <a href="#lab">ใบงาน Day 5</a>
+        <a href="#project">ประเมินโครงงาน</a>
+        <a href="#quiz">แบบทดสอบ</a>
+        <a href="#final">ทดสอบหลังเรียน</a>
+        <a href="#sum">สรุปทั้งคอร์ส</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+      <section class="sec" id="plan">
+        <div class="sec-head"><span class="sec-num">00</span><div><h2>ตารางเรียน &amp; เป้าหมายวันที่ 5</h2><p>หน่วยที่ 6–7 (เทียบเท่าสัปดาห์ที่ 12–15)</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl sched">
+            <thead><tr><th>เวลา</th><th>หัวข้อ</th><th>รูปแบบ</th></tr></thead>
+            <tbody>
+              <tr><td>09:00–09:30</td><td>CMS · สถาปัตยกรรม WordPress</td><td><span class="k lec">บรรยาย</span> <span class="k demo">แอนิเมชัน</span></td></tr>
+              <tr><td>09:30–10:15</td><td>ติดตั้ง WordPress (localhost หรือบนเซิร์ฟเวอร์)</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>10:15–11:15</td><td>Pages/Posts · เมนู · ธีม · ปลั๊กอิน · ผู้ใช้ · ความปลอดภัย</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>11:15–12:00</td><td>ทดสอบเว็บไซต์ · Lighthouse · Core Web Vitals</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr class="brk"><td colspan="3">12:00–13:00 พักกลางวัน</td></tr>
+              <tr><td>13:00–13:30</td><td>โฮสติ้ง · โดเมน · DNS Record ของซับโดเมนแต่ละคน</td><td><span class="k demo">แอนิเมชัน</span></td></tr>
+              <tr><td>13:30–14:30</td><td>Linux + SSH · อัปโหลด SFTP/scp · ตั้งค่า Nginx</td><td><span class="k lab">ปฏิบัติบนเซิร์ฟเวอร์จริง</span></td></tr>
+              <tr><td>14:30–15:00</td><td>HTTPS ด้วย Let's Encrypt (certbot)</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
+              <tr><td>15:00–15:30</td><td>SEO · Search Console · ดูแลรักษา · สำรองข้อมูล</td><td><span class="k lec">บรรยาย</span></td></tr>
+              <tr><td>15:30–16:30</td><td>นำเสนอโครงงาน (เปิดจากโดเมนจริง) · แบบทดสอบหลังเรียน</td><td><span class="k quiz">นำเสนอ/ทดสอบ</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ol class="objectives">
+          <li>อธิบายหลักการของ CMS และติดตั้ง/ใช้งาน WordPress สร้างเว็บไซต์ได้</li>
+          <li>ทดสอบเว็บไซต์ด้านการทำงาน การแสดงผล ความเร็ว และการเข้าถึงได้</li>
+          <li>ตั้งค่า DNS ให้โดเมน/ซับโดเมนชี้ไปยังเซิร์ฟเวอร์ของตนเองได้</li>
+          <li>อัปโหลดเว็บขึ้นเซิร์ฟเวอร์ผ่าน SSH/SFTP ตั้งค่า Nginx และติดตั้ง HTTPS ได้</li>
+          <li>ทำ SEO เบื้องต้น และวางแผนดูแลรักษาเว็บไซต์อย่างมีความรับผิดชอบได้</li>
+        </ol>
+      </section>
+
+      <section class="sec" id="vars">
+        <div class="sec-head"><span class="sec-num"><i data-i="server"></i></span><div><h2>ข้อมูลเซิร์ฟเวอร์ของฉัน</h2><p>กรอกครั้งเดียว — คำสั่งและไฟล์ตั้งค่าทุกบล็อกในหน้านี้ (และ Day 1, 3) จะเปลี่ยนเป็นข้อมูลของคุณ พร้อมกด copy ไปใช้ได้ทันที</p></div></div>
+        <div class="panel">
+          <div class="vars">
+            <label>โดเมนหลัก<input data-var="domain" placeholder="example.ac.th" autocomplete="off" spellcheck="false"></label>
+            <label>ซับโดเมนของฉัน<input data-var="sub" placeholder="student01" autocomplete="off" spellcheck="false"></label>
+            <label>IP ของเซิร์ฟเวอร์<input data-var="ip" placeholder="203.0.113.50" autocomplete="off" spellcheck="false"></label>
+            <label>ชื่อผู้ใช้ SSH<input data-var="user" placeholder="student01" autocomplete="off" spellcheck="false"></label>
+          </div>
+          <p class="muted" style="font-size:14px;margin:12px 0 0">เว็บของฉันจะอยู่ที่ <b><span class="v" data-v="sub">student01</span>.<span class="v" data-v="domain">example.ac.th</span></b> · ข้อมูลเก็บเฉพาะในเบราว์เซอร์เครื่องนี้ · <b>ห้ามกรอกรหัสผ่าน</b></p>
+        </div>
+      </section>
+
+      <div class="part-label">ภาคเช้า · สร้างเว็บด้วยโปรแกรมสำเร็จรูป (หน่วยที่ 6)</div>
+
+      <section class="sec" id="cms">
+        <div class="sec-head"><span class="sec-num">01</span><div><h2>CMS คืออะไร</h2><p>Content Management System — ระบบที่ให้คนไม่เขียนโค้ดจัดการเนื้อหาเว็บได้ผ่านหน้าแอดมิน</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>CMS / Site builder</th><th>ประเภท</th><th>จุดเด่น</th><th>ข้อจำกัด</th></tr></thead>
+            <tbody>
+              <tr class="hl"><td><b>WordPress</b></td><td>Open source (PHP + MySQL) ติดตั้งเอง</td><td>ธีม/ปลั๊กอินมหาศาล ชุมชนใหญ่ ย้ายเซิร์ฟเวอร์ได้</td><td>ต้องอัปเดตความปลอดภัยสม่ำเสมอ</td></tr>
+              <tr><td><b>Joomla / Drupal</b></td><td>Open source</td><td>ระบบสมาชิก/สิทธิ์ซับซ้อน (Drupal นิยมในหน่วยงานใหญ่)</td><td>เรียนรู้ยากกว่า</td></tr>
+              <tr><td><b>Google Sites</b></td><td>บริการออนไลน์ฟรี</td><td>ง่ายที่สุด เหมาะกับครู/หน่วยงานภายใน</td><td>ปรับแต่งได้น้อย</td></tr>
+              <tr><td><b>Wix / Squarespace</b></td><td>Site builder เสียเงิน</td><td>ลากวาง สวยเร็ว</td><td>ย้ายออกไม่ได้ ผูกกับผู้ให้บริการ</td></tr>
+              <tr><td><b>Shopify / WooCommerce</b></td><td>ร้านค้าออนไลน์</td><td>ตะกร้า ชำระเงิน สต็อก</td><td>มีค่าธรรมเนียม/ต้องดูแล</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="vs">
+          <div class="mini c-blue"><h4>เขียนโค้ดเอง (Day 3–4)</h4><ul class="clean"><li>ควบคุมได้ทุกพิกเซล เร็ว ปลอดภัย</li><li>เจ้าของต้องเขียนโค้ดเป็นเมื่อจะแก้</li><li>เหมาะ: Landing page, Portfolio</li></ul></div>
+          <div class="mid">VS</div>
+          <div class="mini c-pink"><h4>CMS (WordPress)</h4><ul class="clean"><li>เจ้าของอัปเดตข่าวเองได้ ไม่ต้องพึ่งโปรแกรมเมอร์</li><li>ต้องดูแลอัปเดต/สำรองข้อมูล</li><li>เหมาะ: เว็บข่าว องค์กร ร้านค้า</li></ul></div>
+        </div>
+        <div class="nug fun"><p>WordPress ขับเคลื่อนเว็บไซต์ราว <b>40% ของเว็บทั้งโลก</b> (ตามสถิติ W3Techs) — เริ่มต้นปี 2003 จากการเป็นโปรแกรมเขียนบล็อก</p></div>
+      </section>
+
+      <section class="sec" id="wpflow">
+        <div class="sec-head"><span class="sec-num">02</span><div><h2>WordPress ทำงานอย่างไร (เบื้องหลัง)</h2><p>URL <code>/about-us/</code> ไม่มีไฟล์จริงอยู่บนเซิร์ฟเวอร์ — แล้วหน้าเว็บมาจากไหน?</p></div></div>
+        <figure class="anim" id="anim-wp" data-ms="4300">
+          <div class="anim-title"><i data-i="box"></i>เส้นทางคำขอของ WordPress<span class="chip">6 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="8" y1="50" x2="27" y2="50" data-hl="1,6"/><line x1="27" y1="50" x2="47" y2="50" data-hl="2,6"/>
+              <line x1="47" y1="50" x2="66" y2="18" data-hl="3"/><line x1="47" y1="50" x2="88" y2="50" data-hl="4"/><line x1="47" y1="50" x2="66" y2="82" data-hl="5"/>
+            </svg>
+            <div class="actor c-blue" style="left:8%;top:50%" data-hl="1,6"><span class="ab"><i data-i="globe"></i></span><span class="lb">Browser</span></div>
+            <div class="actor c-green" style="left:27%;top:50%" data-hl="1,2"><span class="ab"><i data-i="server"></i></span><span class="lb">Nginx</span></div>
+            <div class="actor c-purple lg spin-on" style="left:47%;top:50%" data-hl="2,3,4,5"><span class="ab"><i data-i="cog"></i></span><span class="lb">index.php</span><span class="sub">WordPress core + PHP-FPM</span></div>
+            <div class="actor c-pink" style="left:66%;top:18%" data-hl="3"><span class="ab"><i data-i="box"></i></span><span class="lb">Plugins</span><span class="sub">SEO · Form · Cache</span></div>
+            <div class="actor c-blue" style="left:88%;top:50%" data-hl="4"><span class="ab"><i data-i="database"></i></span><span class="lb">MySQL</span><span class="sub">wp_posts</span></div>
+            <div class="actor c-orange" style="left:66%;top:82%" data-hl="5"><span class="ab"><i data-i="palette"></i></span><span class="lb">Theme</span><span class="sub">แม่แบบหน้าตา</span></div>
+            <div class="flyer" style="--x1:8%;--y1:50%;--x2:27%;--y2:50%;--c:var(--blue)" data-only="1">GET /about-us/</div>
+            <div class="bubble mono wrap pop" style="left:27%;top:20%" data-only="2">ไม่มีไฟล์นี้ → try_files … /index.php</div>
+            <div class="flyer" style="--x1:27%;--y1:50%;--x2:47%;--y2:50%;--c:var(--green)" data-only="2">ส่งต่อ index.php</div>
+            <div class="flyer" style="--x1:47%;--y1:50%;--x2:66%;--y2:18%;--c:var(--pink)" data-only="3">โหลด wp-config + ปลั๊กอิน</div>
+            <div class="flyer" style="--x1:47%;--y1:50%;--x2:88%;--y2:50%;--c:var(--purple);--dur:2.6s" data-only="4">SELECT … post_name='about-us'</div>
+            <div class="flyer" style="--x1:88%;--y1:50%;--x2:47%;--y2:50%;--c:var(--blue);--dur:2.6s;--delay:1.3s" data-only="4">ชื่อเรื่อง + เนื้อหา</div>
+            <div class="flyer" style="--x1:47%;--y1:50%;--x2:66%;--y2:82%;--c:var(--orange);--dur:2.6s" data-only="5">ข้อมูล → page template</div>
+            <div class="flyer" style="--x1:66%;--y1:82%;--x2:47%;--y2:50%;--c:var(--orange);--dur:2.6s;--delay:1.3s" data-only="5">HTML</div>
+            <div class="flyer" style="--x1:47%;--y1:50%;--x2:8%;--y2:50%;--c:var(--green)" data-only="6">200 OK + HTML</div>
+            <div class="bubble ok wrap pop" style="left:30%;top:84%" data-only="6">⚡ ปลั๊กอิน Cache เก็บ HTML ไว้ ครั้งหน้าข้ามขั้น 3–5</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>ผู้ใช้ขอ</b> <code>/about-us/</code> (Pretty permalink — URL สวย อ่านง่าย ดีต่อ SEO)</li>
+            <li><b>Nginx ไม่พบไฟล์</b> ชื่อนี้ จึงส่งทุกคำขอไปที่ <code>index.php</code> ตัวเดียว (Front controller)</li>
+            <li><b>WordPress core</b> อ่าน <code>wp-config.php</code> (ข้อมูลเชื่อมฐานข้อมูล) แล้วโหลด <b>ปลั๊กอิน</b> ที่เปิดใช้</li>
+            <li><b>ค้นฐานข้อมูล</b> หา “หน้า” ที่ชื่อ about-us ในตาราง <code>wp_posts</code></li>
+            <li><b>ธีม</b> นำข้อมูลใส่แม่แบบ (template) สร้างเป็น HTML</li>
+            <li><b>ส่งกลับ</b> — เนื้อหาอยู่ในฐานข้อมูล หน้าตาอยู่ในธีม จึงเปลี่ยนธีมได้โดยเนื้อหาไม่หาย</li>
+          </ol>
+        </figure>
+        <div class="g2">
+          <div class="code-wrap-holder">
+            <div class="code-head"><i></i><i></i><i></i>โครงสร้างไฟล์ WordPress</div>
+<pre class="code">📁 wordpress/
+ ├─ 📄 wp-config.php   <span class="t-com">← รหัสฐานข้อมูล (สำคัญมาก!)</span>
+ ├─ 📁 wp-admin/       <span class="t-com">← หน้าแอดมิน (อย่าแก้)</span>
+ ├─ 📁 wp-includes/    <span class="t-com">← แกนระบบ (อย่าแก้)</span>
+ └─ 📁 wp-content/     <span class="t-com">← ของเราทั้งหมด → สำรองโฟลเดอร์นี้</span>
+     ├─ 📁 themes/
+     ├─ 📁 plugins/
+     └─ 📁 uploads/    <span class="t-com">← รูปที่อัปโหลด</span></pre>
+          </div>
+          <div class="tbl-wrap" style="margin:0"><table class="tbl" style="min-width:0">
+            <thead><tr><th>ตารางในฐานข้อมูล</th><th>เก็บอะไร</th></tr></thead>
+            <tbody>
+              <tr><td><code>wp_posts</code></td><td>โพสต์ หน้า เมนู ไฟล์แนบ</td></tr>
+              <tr><td><code>wp_users</code></td><td>ผู้ใช้ (รหัสผ่านถูกแฮช)</td></tr>
+              <tr><td><code>wp_options</code></td><td>การตั้งค่าเว็บ ชื่อเว็บ URL</td></tr>
+              <tr><td><code>wp_terms</code></td><td>หมวดหมู่ แท็ก</td></tr>
+              <tr><td><code>wp_comments</code></td><td>ความคิดเห็น</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </section>
+
+      <section class="sec" id="wpinstall">
+        <div class="sec-head"><span class="sec-num">03</span><div><h2>ติดตั้ง WordPress</h2><p>ทางเลือก A ฝึกบน XAMPP (เร็ว) · ทางเลือก B ติดตั้งบนเซิร์ฟเวอร์จริง</p></div></div>
+        <div class="tabs">
+          <div role="tablist"><button role="tab" data-tab="wa">A · บน XAMPP (localhost)</button><button role="tab" data-tab="wb">B · บนเซิร์ฟเวอร์ (LEMP)</button></div>
+          <div class="tab-panel panel" data-panel="wa">
+            <ol class="clean">
+              <li>XAMPP Start <b>Apache + MySQL</b> → เปิด <code>localhost/phpmyadmin</code> → <b>New</b> → ตั้งชื่อฐานข้อมูล <code>wp_project</code> เลือก Collation <code>utf8mb4_unicode_ci</code> (รองรับภาษาไทยและอีโมจิ) → Create</li>
+              <li>ดาวน์โหลด WordPress จาก <code>wordpress.org</code> แตกไฟล์ไว้ที่ <code>C:\xampp\htdocs\wp\</code></li>
+              <li>เปิด <code>http://localhost/wp</code> → เลือกภาษา <b>ไทย</b></li>
+              <li>กรอก Database: ชื่อ <code>wp_project</code> · User <code>root</code> · Password (ว่าง) · Host <code>localhost</code> · Table prefix <code>wp_</code> → WordPress สร้าง <code>wp-config.php</code> ให้</li>
+              <li>ตั้งชื่อเว็บ · <b>ชื่อผู้ใช้ห้ามเป็น admin</b> · รหัสผ่านแข็งแรง · อีเมลจริง → ติดตั้ง → เข้า <code>localhost/wp/wp-admin</code></li>
+            </ol>
+          </div>
+          <div class="tab-panel panel" data-panel="wb">
+            <p class="muted" style="font-size:14.5px">ต้องมีสิทธิ์ sudo (ครูอาจเตรียมให้แล้ว) · Ubuntu Server 22.04/24.04</p>
+            <div class="code-head"><i></i><i></i><i></i>1) ติดตั้งแพ็กเกจ (ครั้งเดียวต่อเซิร์ฟเวอร์)</div>
+<pre class="code">sudo apt update
+sudo apt install -y nginx mariadb-server php-fpm php-mysql php-xml php-curl php-gd php-mbstring php-zip php-intl</pre>
+            <div class="code-head"><i></i><i></i><i></i>2) สร้างฐานข้อมูลและผู้ใช้ (sudo mysql)</div>
+<pre class="code"><span class="t-kw">CREATE DATABASE</span> wp_<span class="v" data-v="sub">student01</span> <span class="t-kw">CHARACTER SET</span> utf8mb4 <span class="t-kw">COLLATE</span> utf8mb4_unicode_ci;
+<span class="t-kw">CREATE USER</span> <span class="t-str">'wp_<span class="v" data-v="sub">student01</span>'@'localhost'</span> <span class="t-kw">IDENTIFIED BY</span> <span class="t-str">'ตั้งรหัสผ่านยาวๆ'</span>;
+<span class="t-kw">GRANT ALL PRIVILEGES ON</span> wp_<span class="v" data-v="sub">student01</span>.* <span class="t-kw">TO</span> <span class="t-str">'wp_<span class="v" data-v="sub">student01</span>'@'localhost'</span>;
+<span class="t-kw">FLUSH PRIVILEGES</span>;</pre>
+            <div class="code-head"><i></i><i></i><i></i>3) ดาวน์โหลด WordPress</div>
+<pre class="code">cd /var/www
+sudo wget https://wordpress.org/latest.tar.gz
+sudo tar -xzf latest.tar.gz
+sudo mv wordpress wp-<span class="v" data-v="sub">student01</span>
+sudo chown -R www-data:www-data /var/www/wp-<span class="v" data-v="sub">student01</span></pre>
+            <p style="margin:0">จากนั้นตั้งค่า Nginx ให้รัน PHP (ดูบล็อก WordPress ในหัวข้อ Deploy) แล้วเปิดโดเมนเพื่อติดตั้งต่อเหมือนทางเลือก A</p>
+          </div>
+        </div>
+        <div class="nug pro"><p>ย้าย WordPress จาก localhost ขึ้นเซิร์ฟเวอร์จริงแบบง่าย: ใช้ปลั๊กอิน <b>All-in-One WP Migration</b> หรือ <b>Duplicator</b> — Export เป็นไฟล์เดียว แล้ว Import ที่ปลายทาง (ระบบแก้ URL ในฐานข้อมูลให้เอง)</p></div>
+      </section>
+
+      <section class="sec" id="wpuse">
+        <div class="sec-head"><span class="sec-num">04</span><div><h2>ใช้งาน WordPress ให้เป็นมืออาชีพ</h2><p>ตั้งค่าก่อนใส่เนื้อหา แล้วงานจะไม่ต้องรื้อ</p></div></div>
+        <div class="g2">
+          <div class="mini c-blue"><h4>Pages (หน้า)</h4><p>เนื้อหาถาวร ไม่ขึ้นกับเวลา: เกี่ยวกับเรา ติดต่อ หลักสูตร · จัดเป็นลำดับชั้น (หน้าแม่/หน้าลูก) ได้</p></div>
+          <div class="mini c-pink"><h4>Posts (เรื่อง/โพสต์)</h4><p>เนื้อหาตามเวลา: ข่าว กิจกรรม บทความ · มีวันที่ หมวดหมู่ (Category) และแท็ก (Tag) · แสดงเรียงใหม่→เก่า</p></div>
+        </div>
+        <div class="tbl-wrap" style="margin-top:16px">
+          <table class="tbl">
+            <thead><tr><th>เมนูแอดมิน</th><th>สิ่งที่ต้องทำ</th></tr></thead>
+            <tbody>
+              <tr class="hl"><td>ตั้งค่า → ทั่วไป</td><td>ชื่อเว็บ คำโปรย <b>เขตเวลา Bangkok</b> รูปแบบวันที่</td></tr>
+              <tr class="hl"><td>ตั้งค่า → ลิงก์ถาวร</td><td>เลือก <b>“ชื่อเรื่อง” (Post name)</b> → URL สวย /about-us/</td></tr>
+              <tr><td>หน้าตา → ธีม</td><td>เลือกธีม (แนะนำ Block theme เช่น Twenty Twenty-Five, Astra, Kadence) · ปรับใน <b>Site Editor</b></td></tr>
+              <tr><td>หน้าตา → เมนู / Navigation</td><td>สร้างเมนูตาม Sitemap ใน Day 2</td></tr>
+              <tr><td>สื่อ</td><td>อัปโหลดรูปที่ย่อขนาดแล้ว ใส่ Alt text ทุกรูป</td></tr>
+              <tr><td>ปลั๊กอิน</td><td>ติดตั้งเฉพาะที่จำเป็น (ตารางด้านล่าง)</td></tr>
+              <tr><td>ผู้ใช้</td><td>ให้สิทธิ์เท่าที่จำเป็น (ตารางด้านล่าง)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="g2">
+          <div class="tbl-wrap" style="margin:0"><table class="tbl" style="min-width:0">
+            <thead><tr><th>ปลั๊กอินที่แนะนำ</th><th>หน้าที่</th></tr></thead>
+            <tbody>
+              <tr><td>Rank Math / Yoast SEO</td><td>SEO · sitemap.xml อัตโนมัติ</td></tr>
+              <tr><td>Wordfence / Solid Security</td><td>ความปลอดภัย ไฟร์วอลล์ จำกัดการล็อกอินผิด</td></tr>
+              <tr><td>UpdraftPlus</td><td>สำรองข้อมูลอัตโนมัติไป Google Drive</td></tr>
+              <tr><td>WPForms / Contact Form 7</td><td>ฟอร์มติดต่อ</td></tr>
+              <tr><td>LiteSpeed Cache / WP Super Cache</td><td>เร่งความเร็ว</td></tr>
+            </tbody>
+          </table></div>
+          <div class="tbl-wrap" style="margin:0"><table class="tbl" style="min-width:0">
+            <thead><tr><th>บทบาทผู้ใช้</th><th>ทำอะไรได้</th></tr></thead>
+            <tbody>
+              <tr><td>Administrator</td><td>ทุกอย่าง (มีน้อยที่สุด 1–2 คน)</td></tr>
+              <tr><td>Editor</td><td>จัดการโพสต์/หน้าของทุกคน</td></tr>
+              <tr><td>Author</td><td>เขียนและเผยแพร่โพสต์ของตัวเอง</td></tr>
+              <tr><td>Contributor</td><td>เขียนได้ แต่ต้องรออนุมัติ</td></tr>
+              <tr><td>Subscriber</td><td>อ่าน/แก้โปรไฟล์ตัวเอง</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+        <div class="nug tech"><p>Editor แบบบล็อก (<b>Gutenberg</b>): กด <kbd>/</kbd> แล้วพิมพ์ชื่อบล็อก เช่น <code>/image</code> <code>/columns</code> <code>/button</code> · บล็อกที่ใช้บ่อยกด “Create pattern” เก็บไว้ใช้ซ้ำทุกหน้า</p></div>
+      </section>
+
+      <section class="sec" id="wpsec">
+        <div class="sec-head"><span class="sec-num">05</span><div><h2>ความปลอดภัย WordPress</h2><p>WordPress ถูกโจมตีบ่อยเพราะใช้กันมาก — แต่ป้องกันได้ถ้าทำตามนี้</p></div></div>
+        <div class="g2">
+          <ul class="ticks">
+            <li>อัปเดต Core / ธีม / ปลั๊กอินสม่ำเสมอ (สาเหตุถูกแฮกอันดับ 1 คือปลั๊กอินเก่า)</li>
+            <li>ห้ามใช้ชื่อผู้ใช้ <code>admin</code> · รหัสผ่านยาว · เปิด 2FA</li>
+            <li>ลบธีม/ปลั๊กอินที่ไม่ใช้</li>
+            <li>สำรองข้อมูลอัตโนมัติ (ไฟล์ + ฐานข้อมูล)</li>
+          </ul>
+          <ul class="ticks">
+            <li>ใช้ HTTPS ทั้งเว็บ</li>
+            <li>สิทธิ์ไฟล์ถูกต้อง <code>wp-config.php</code> ไม่ให้คนอื่นอ่าน</li>
+            <li>จำกัดการล็อกอินผิดซ้ำ ๆ (Brute force)</li>
+            <li>ปิดการแก้ไขไฟล์จากหน้าแอดมิน: <code>define('DISALLOW_FILE_EDIT', true);</code></li>
+          </ul>
+        </div>
+        <div class="nug oops"><p><b>ห้ามใช้ธีม/ปลั๊กอิน “เถื่อน” (Nulled)</b> ที่แจกฟรีจากเว็บไม่เป็นทางการ — มักฝังมัลแวร์/ลิงก์สแปมไว้ ผิดลิขสิทธิ์ และอาจทำให้เซิร์ฟเวอร์ทั้งเครื่องถูกยึด</p></div>
+      </section>
+
+      <section class="sec" id="test">
+        <div class="sec-head"><span class="sec-num">06</span><div><h2>ทดสอบเว็บไซต์แบบมืออาชีพ</h2><p>ขั้นที่ 5 ของ WDLC — ทดสอบก่อนเปิดตัว และทดสอบซ้ำหลังขึ้นเซิร์ฟเวอร์จริง</p></div></div>
+        <div class="panel worksheet">
+          <div class="ws-head"><h3><i data-i="bug"></i>Test checklist (ติ๊กได้)</h3><span class="ws-progress"></span></div>
+          <ul class="checklist" data-key="d5test">
+            <li><label><input type="checkbox"><span><b>ฟังก์ชัน</b> — ทุกลิงก์ในเมนูไปถูกหน้า · ไม่มี 404 · ฟอร์มส่งได้ แจ้งผลชัด</span></label></li>
+            <li><label><input type="checkbox"><span><b>Responsive</b> — จอ 360 / 768 / 1440 ไม่มีแถบเลื่อนแนวนอน · ปุ่มกดง่ายบนมือถือจริง</span></label></li>
+            <li><label><input type="checkbox"><span><b>Cross-browser</b> — Chrome, Edge, Firefox และ Safari บน iPhone (ถ้ามี)</span></label></li>
+            <li><label><input type="checkbox"><span><b>ความเร็ว</b> — Lighthouse / PageSpeed Insights · รูปย่อขนาดแล้ว</span></label></li>
+            <li><label><input type="checkbox"><span><b>Accessibility</b> — alt ครบ · คอนทราสต์ผ่าน · ใช้ Tab ได้</span></label></li>
+            <li><label><input type="checkbox"><span><b>เนื้อหา</b> — สะกดคำ ข้อมูลติดต่อถูก ไม่มี “Lorem ipsum” ค้าง</span></label></li>
+            <li><label><input type="checkbox"><span><b>SEO</b> — title/description ทุกหน้า · Open Graph แสดงผลถูก</span></label></li>
+            <li><label><input type="checkbox"><span><b>ความปลอดภัย</b> — HTTPS 🔒 ไม่มีไฟล์ทดสอบ (info.php) ค้างบนเซิร์ฟเวอร์</span></label></li>
+          </ul>
+        </div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Core Web Vitals (Google)</th><th>วัดอะไร</th><th>เกณฑ์ “ดี”</th><th>แก้อย่างไร</th></tr></thead>
+            <tbody>
+              <tr><td><b>LCP</b> Largest Contentful Paint</td><td>เนื้อหาหลักแสดงเร็วแค่ไหน</td><td>≤ 2.5 วินาที</td><td>ย่อรูป Hero · WebP · Cache · CDN</td></tr>
+              <tr><td><b>INP</b> Interaction to Next Paint</td><td>กดแล้วตอบสนองไวไหม</td><td>≤ 200 ms</td><td>ลด JS หนัก ๆ · defer</td></tr>
+              <tr><td><b>CLS</b> Cumulative Layout Shift</td><td>เนื้อหากระโดดไหม</td><td>≤ 0.1</td><td>ใส่ width/height รูป · จองที่โฆษณา</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="nug tech"><p>ทดสอบหลังขึ้นโดเมนจริงที่ <b>pagespeed.web.dev</b> (ทดสอบจากเซิร์ฟเวอร์ Google ผลแม่นกว่าในเครื่อง) · ตรวจลิงก์เสียทั้งเว็บด้วยส่วนขยาย <b>Check My Links</b></p></div>
+      </section>
+
+      <div class="part-label">ภาคบ่าย · เผยแพร่บนเซิร์ฟเวอร์และโดเมนของตนเอง (หน่วยที่ 7)</div>
+
+      <section class="sec" id="hosting">
+        <div class="sec-head"><span class="sec-num">07</span><div><h2>ประเภทของเว็บโฮสติ้ง</h2><p>เลือกตามงบ ความรู้ และความต้องการควบคุม</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>ประเภท</th><th>เปรียบเหมือน</th><th>ข้อดี</th><th>ข้อควรรู้</th></tr></thead>
+            <tbody>
+              <tr><td><b>Shared Hosting</b></td><td>หอพัก</td><td>ถูก มี cPanel/DirectAdmin ใช้ง่าย</td><td>แชร์ทรัพยากร ปรับแต่งเซิร์ฟเวอร์ไม่ได้</td></tr>
+              <tr class="hl"><td><b>VPS</b> (Virtual Private Server)</td><td>คอนโดของตัวเอง</td><td>ได้สิทธิ์ root ติดตั้งอะไรก็ได้ (คอร์สนี้ใช้)</td><td>ต้องดูแลความปลอดภัยเอง</td></tr>
+              <tr><td><b>Cloud</b> (AWS, GCP, Azure)</td><td>โรงแรมที่ขยายห้องได้ทันที</td><td>ขยายตามโหลด จ่ายตามใช้</td><td>คิดค่าบริการซับซ้อน</td></tr>
+              <tr><td><b>Dedicated / On-premise</b></td><td>บ้านทั้งหลัง</td><td>ทรัพยากรเต็มเครื่อง (เซิร์ฟเวอร์ของวิทยาลัย)</td><td>ดูแลฮาร์ดแวร์ ไฟ เน็ตเอง</td></tr>
+              <tr><td><b>Static hosting</b> (GitHub Pages, Netlify, Cloudflare Pages)</td><td>ป้ายประกาศ</td><td>ฟรี เร็ว มี HTTPS</td><td>ใช้ได้เฉพาะ HTML/CSS/JS (ไม่มี PHP)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="domain">
+        <div class="sec-head"><span class="sec-num">08</span><div><h2>โดเมน &amp; DNS: ชี้ชื่อมาที่เซิร์ฟเวอร์ของเรา</h2><p>จากการจดโดเมน → จนผู้ใช้ทั่วโลกพิมพ์ชื่อแล้วมาถึงเครื่องเรา</p></div></div>
+        <figure class="anim" id="anim-domain" data-ms="4500">
+          <div class="anim-title"><i data-i="globe"></i>ตั้งค่าโดเมนทีละขั้น<span class="chip">6 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="9" y1="24" x2="38" y2="24" data-hl="1"/><line x1="38" y1="24" x2="68" y2="24" data-hl="2"/>
+              <line x1="9" y1="76" x2="40" y2="76" data-hl="5"/><line x1="40" y1="76" x2="68" y2="24" data-hl="4,5"/><line x1="9" y1="76" x2="90" y2="70" class="dash" data-hl="6"/>
+            </svg>
+            <div class="actor c-blue" style="left:9%;top:24%" data-hl="1,3"><span class="ab"><i data-i="user"></i></span><span class="lb">เรา (ผู้ดูแล)</span></div>
+            <div class="actor c-orange" style="left:38%;top:24%" data-hl="1,2"><span class="ab"><i data-i="building"></i></span><span class="lb">Registrar</span><span class="sub">ผู้รับจดโดเมน</span></div>
+            <div class="actor c-purple" style="left:68%;top:24%" data-hl="2,3,5"><span class="ab"><i data-i="book"></i></span><span class="lb">Name Server</span><span class="sub">เก็บ DNS Record</span></div>
+            <div class="actor c-green lg" style="left:90%;top:68%" data-hl="6"><span class="ab"><i data-i="server"></i></span><span class="lb">VPS ของเรา</span><span class="sub v" data-v="ip">203.0.113.50</span></div>
+            <div class="actor c-pink" style="left:9%;top:76%" data-hl="5,6"><span class="ab"><i data-i="phone"></i></span><span class="lb">ผู้เข้าชม</span></div>
+            <div class="actor c-teal" style="left:40%;top:76%" data-hl="4,5"><span class="ab"><i data-i="globe"></i></span><span class="lb">DNS Resolver</span><span class="sub">ทั่วโลก (มี Cache)</span></div>
+            <div class="flyer" style="--x1:9%;--y1:24%;--x2:38%;--y2:24%;--c:var(--blue)" data-only="1">จดโดเมน 1 ปี</div>
+            <div class="flyer" style="--x1:38%;--y1:24%;--x2:68%;--y2:24%;--c:var(--orange)" data-only="2">NS = ns1.provider</div>
+            <div class="flyer" style="--x1:9%;--y1:24%;--x2:68%;--y2:24%;--c:var(--purple);--dur:2.6s" data-only="3">เพิ่ม A record</div>
+            <pre class="bubble dark mono pop dom-tree" style="left:72%;top:50%" data-only="3">@          A  <span data-v="ip">203.0.113.50</span>
+www        CNAME  @
+<span data-v="sub">student01</span>  A  <span data-v="ip">203.0.113.50</span></pre>
+            <div class="bubble wrap pop" style="left:40%;top:50%" data-only="4">⏳ รอ Cache เก่าหมดอายุ (TTL) — ไม่กี่นาทีถึง 48 ชม.</div>
+            <div class="flyer" style="--x1:9%;--y1:76%;--x2:40%;--y2:76%;--c:var(--pink);--dur:2.6s" data-only="5">IP ของ sub ?</div>
+            <div class="flyer" style="--x1:40%;--y1:76%;--x2:68%;--y2:24%;--c:var(--teal);--dur:2.6s;--delay:1.3s" data-only="5">ถาม NS</div>
+            <div class="flyer" style="--x1:9%;--y1:76%;--x2:90%;--y2:68%;--c:var(--green)" data-only="6">HTTPS → เว็บของเรา</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>จดโดเมน</b> กับ Registrar ชำระเป็นรายปี (โดเมน <code>.th</code> จดผ่านตัวแทนของ THNIC · <code>.com</code> จดได้หลายเจ้า) · ตั้ง <b>ต่ออายุอัตโนมัติ</b></li>
+            <li><b>กำหนด Name Server</b> ที่ Registrar ว่าจะให้ใครเก็บ DNS (ของ Registrar เอง, Cloudflare หรือ DNS ของวิทยาลัย)</li>
+            <li><b>สร้าง DNS Record</b> — <code>A</code> ชี้ชื่อไป IP ของ VPS · <code>CNAME</code> ให้ www ชี้ตามโดเมนหลัก · ซับโดเมนของแต่ละคนเป็น <code>A</code> ไป IP เดียวกันได้</li>
+            <li><b>Propagation</b> — Resolver ทั่วโลกที่จำค่าเก่าไว้ต้องรอให้ <b>TTL</b> หมดก่อน (เทคนิค: ลด TTL ลงเหลือ 300 วินาทีก่อนย้ายเซิร์ฟเวอร์)</li>
+            <li><b>ผู้เข้าชมถามหา IP</b> — Resolver ไปถาม Name Server ของเรา ได้ IP ของ VPS</li>
+            <li><b>เชื่อมต่อเซิร์ฟเวอร์</b> — ทุกซับโดเมนมาที่เครื่องเดียวกัน แล้ว Nginx แยกว่าจะส่งเว็บไหนจาก Host header (หัวข้อถัดไป)</li>
+          </ol>
+        </figure>
+        <div class="code-head"><i></i><i></i><i></i>ตรวจว่า DNS ชี้ถูกแล้วหรือยัง</div>
+<pre class="code">nslookup <span class="v" data-v="sub">student01</span>.<span class="v" data-v="domain">example.ac.th</span>
+nslookup <span class="v" data-v="sub">student01</span>.<span class="v" data-v="domain">example.ac.th</span> 1.1.1.1     <span class="t-com"># ถาม Cloudflare ตรง ๆ (ข้าม cache ของ ISP)</span>
+ping <span class="v" data-v="sub">student01</span>.<span class="v" data-v="domain">example.ac.th</span></pre>
+        <div class="nugs">
+          <div class="nug pro"><p><b>Wildcard record</b> <code>*.<span class="v" data-v="domain">example.ac.th</span> A <span class="v" data-v="ip">203.0.113.50</span></code> ทำให้ <b>ทุกซับโดเมน</b> ชี้มาที่เซิร์ฟเวอร์อัตโนมัติ — ครูสร้างครั้งเดียว นักเรียน 40 คนไม่ต้องรอเพิ่ม record ทีละคน</p></div>
+          <div class="nug fun"><p>ตรวจดูว่า DNS กระจายไปทั่วโลกหรือยังได้ที่เว็บ <b>dnschecker.org</b> — จะเห็นแผนที่โลกพร้อมผลการ resolve จากแต่ละประเทศ</p></div>
+          <div class="nug oops"><p><b>โดเมนหมดอายุ = เว็บหายทั้งเว็บ</b> (และอีเมลด้วย) แม้เซิร์ฟเวอร์ยังทำงานปกติ — หลายองค์กรเสียโดเมนให้คนอื่นเพราะลืมต่ออายุ</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="linux">
+        <div class="sec-head"><span class="sec-num">09</span><div><h2>Linux &amp; SSH: เข้าไปบัญชาการเซิร์ฟเวอร์</h2><p>เซิร์ฟเวอร์ส่วนใหญ่ไม่มีหน้าจอ — เราสั่งงานผ่านบรรทัดคำสั่งจากระยะไกลอย่างปลอดภัยด้วย SSH</p></div></div>
+        <div class="code-head"><i></i><i></i><i></i>เชื่อมต่อด้วย SSH Key (ปลอดภัยกว่ารหัสผ่าน)</div>
+<pre class="code"><span class="t-com"># บนเครื่องเรา (Windows PowerShell / macOS / Linux) — ทำครั้งเดียว</span>
+ssh-keygen -t ed25519 -C "<span class="v" data-v="user">student01</span>"
+<span class="t-com"># ส่ง public key ให้ครู หรือคัดลอกขึ้นเซิร์ฟเวอร์ (Linux/macOS):</span>
+ssh-copy-id <span class="v" data-v="user">student01</span>@<span class="v" data-v="ip">203.0.113.50</span>
+
+<span class="t-com"># เข้าสู่เซิร์ฟเวอร์</span>
+ssh <span class="v" data-v="user">student01</span>@<span class="v" data-v="ip">203.0.113.50</span></pre>
+        <div class="cheat">
+          <div><code>pwd · ls -la</code><span>อยู่ที่ไหน · ดูไฟล์ทั้งหมดพร้อมสิทธิ์</span></div>
+          <div><code>cd /var/www</code><span>ย้ายโฟลเดอร์ (<code>cd ..</code> ถอยขึ้น)</span></div>
+          <div><code>mkdir -p dir</code><span>สร้างโฟลเดอร์</span></div>
+          <div><code>cp -r · mv</code><span>คัดลอก · ย้าย/เปลี่ยนชื่อ</span></div>
+          <div><code>rm -r dir</code><span>ลบ (ไม่มีถังขยะ! ระวัง)</span></div>
+          <div><code>nano file</code><span>แก้ไฟล์ (Ctrl+O บันทึก, Ctrl+X ออก)</span></div>
+          <div><code>sudo คำสั่ง</code><span>รันด้วยสิทธิ์ผู้ดูแล</span></div>
+          <div><code>chmod · chown</code><span>เปลี่ยนสิทธิ์ · เจ้าของไฟล์</span></div>
+          <div><code>systemctl status nginx</code><span>ดูสถานะบริการ</span></div>
+          <div><code>tail -f /var/log/nginx/error.log</code><span>ดู error สด ๆ</span></div>
+          <div><code>df -h · free -h</code><span>พื้นที่ดิสก์ · หน่วยความจำ</span></div>
+          <div><code>exit</code><span>ออกจาก SSH</span></div>
+        </div>
+        <div class="tbl-wrap" style="margin-top:16px">
+          <table class="tbl">
+            <thead><tr><th>สิทธิ์ (permission)</th><th>ความหมาย</th><th>ใช้กับ</th></tr></thead>
+            <tbody>
+              <tr><td><code>755</code> (rwxr-xr-x)</td><td>เจ้าของ อ่าน/เขียน/เข้า · คนอื่น อ่าน/เข้า</td><td>โฟลเดอร์</td></tr>
+              <tr><td><code>644</code> (rw-r--r--)</td><td>เจ้าของ อ่าน/เขียน · คนอื่น อ่านอย่างเดียว</td><td>ไฟล์ html css js รูป</td></tr>
+              <tr><td><code>600</code></td><td>เจ้าของเท่านั้น</td><td>ไฟล์ลับ เช่น private key</td></tr>
+              <tr class="hl"><td><code>777</code> ❌</td><td>ทุกคนแก้ได้</td><td><b>ห้ามใช้</b> — เปิดประตูให้แฮกเกอร์</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="nug deep"><p>ตัวเลขสิทธิ์มาจากการบวก: <b>r = 4</b> (อ่าน) · <b>w = 2</b> (เขียน) · <b>x = 1</b> (รัน/เข้าโฟลเดอร์) แยก 3 กลุ่ม เจ้าของ–กลุ่ม–คนอื่น → 7 = 4+2+1 · 5 = 4+1 · 6 = 4+2</p></div>
+      </section>
+
+      <section class="sec" id="deploy">
+        <div class="sec-head"><span class="sec-num">10</span><div><h2>Deploy: นำเว็บขึ้นเซิร์ฟเวอร์จริง</h2><p>อัปโหลดไฟล์ → ตั้งสิทธิ์ → ตั้งค่า Nginx → เปิดใช้</p></div></div>
+        <figure class="anim" id="anim-deploy" data-ms="4400">
+          <div class="anim-title"><i data-i="upload"></i>จากเครื่องเรา → ออนไลน์<span class="chip">6 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="8" y1="55" x2="28" y2="55" data-hl="2,3"/><line x1="28" y1="55" x2="50" y2="55" data-hl="2,3"/>
+              <line x1="50" y1="55" x2="50" y2="18" data-hl="3,4"/><line x1="50" y1="18" x2="74" y2="55" data-hl="5"/><line x1="74" y1="55" x2="92" y2="55" data-hl="6"/>
+            </svg>
+            <div class="actor c-blue" style="left:8%;top:55%" data-hl="1,2"><span class="ab"><i data-i="laptop"></i></span><span class="lb">เครื่องเรา</span><span class="sub">โฟลเดอร์โครงงาน</span></div>
+            <div class="actor c-purple sm" style="left:28%;top:55%" data-hl="2,3"><span class="ab"><i data-i="lock"></i></span><span class="lb">SSH/SFTP</span><span class="sub">พอร์ต 22</span></div>
+            <div class="actor c-green lg" style="left:50%;top:55%" data-hl="2,4"><span class="ab"><i data-i="server"></i></span><span class="lb">Ubuntu Server</span><span class="sub v" data-v="ip">203.0.113.50</span></div>
+            <div class="actor c-amber" style="left:50%;top:16%" data-hl="3,4"><span class="ab"><i data-i="folder"></i></span><span class="lb">/var/www/<span data-v="sub">student01</span></span></div>
+            <div class="actor c-teal" style="left:74%;top:55%" data-hl="5,6"><span class="ab"><i data-i="cog"></i></span><span class="lb">Nginx</span><span class="sub">server block</span></div>
+            <div class="actor c-pink" style="left:92%;top:55%" data-hl="6"><span class="ab"><i data-i="phone"></i></span><span class="lb">ผู้เข้าชม</span></div>
+            <pre class="bubble dark mono pop dom-tree" style="left:12%;top:20%" data-only="1">index.html
+css/style.css
+js/main.js
+images/*.webp</pre>
+            <div class="flyer" style="--x1:8%;--y1:55%;--x2:50%;--y2:55%;--c:var(--purple)" data-only="2">ssh user@ip (key)</div>
+            <div class="flyer" style="--x1:8%;--y1:55%;--x2:50%;--y2:16%;--c:var(--blue);--dur:2.4s" data-only="3">index.html</div>
+            <div class="flyer" style="--x1:8%;--y1:55%;--x2:50%;--y2:16%;--c:var(--amber);--dur:2.4s;--delay:.8s" data-only="3">style.css</div>
+            <div class="flyer" style="--x1:8%;--y1:55%;--x2:50%;--y2:16%;--c:var(--pink);--dur:2.4s;--delay:1.6s" data-only="3">logo.webp</div>
+            <div class="bubble dark mono pop" style="left:76%;top:16%" data-only="4">dirs 755 · files 644</div>
+            <div class="flyer" style="--x1:50%;--y1:16%;--x2:74%;--y2:55%;--c:var(--teal)" data-only="5">root /var/www/…</div>
+            <div class="bubble mono pop" style="left:74%;top:84%" data-only="5">nginx -t ✓ → reload</div>
+            <div class="flyer" style="--x1:92%;--y1:55%;--x2:74%;--y2:55%;--c:var(--pink);--dur:2.6s" data-only="6">Host: sub.domain</div>
+            <div class="flyer" style="--x1:74%;--y1:55%;--x2:92%;--y2:55%;--c:var(--green);--dur:2.6s;--delay:1.3s" data-only="6">200 OK</div>
+            <div class="bubble ok wrap pop" style="left:74%;top:84%" data-only="6">1 IP มีได้หลายเว็บ — Nginx แยกด้วย Host header</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>เตรียมไฟล์</b> — ทดสอบบน localhost ผ่านแล้ว · ลบไฟล์ทดสอบ · ชื่อไฟล์ตัวพิมพ์เล็กทั้งหมด</li>
+            <li><b>เชื่อมต่อ SSH</b> ด้วย Key — ช่องทางเข้ารหัสระหว่างเรากับเซิร์ฟเวอร์</li>
+            <li><b>อัปโหลด</b> ผ่าน SFTP (FileZilla) / <code>scp</code> / <code>rsync</code> ไปที่ <code>/var/www/ซับโดเมน</code></li>
+            <li><b>ตั้งสิทธิ์</b> โฟลเดอร์ 755 ไฟล์ 644 — ไม่งั้นจะเจอ 403 Forbidden</li>
+            <li><b>สร้าง server block</b> ของ Nginx บอกว่า “ชื่อนี้ → โฟลเดอร์นี้” แล้ว <code>nginx -t</code> ตรวจไวยากรณ์และ reload</li>
+            <li><b>ผู้เข้าชม</b> ส่ง Request ที่มี <code>Host: ซับโดเมน</code> → Nginx เลือก server block ที่ <code>server_name</code> ตรงกัน (Virtual hosting)</li>
+          </ol>
+        </figure>
+
+        <div class="tabs">
+          <div role="tablist"><button role="tab" data-tab="u1">อัปโหลด: FileZilla</button><button role="tab" data-tab="u2">อัปโหลด: คำสั่ง</button><button role="tab" data-tab="u3">อัปโหลด: Git</button></div>
+          <div class="tab-panel panel" data-panel="u1">
+            <ol class="clean">
+              <li>เปิด FileZilla → File → Site Manager → New site</li>
+              <li>Protocol: <b>SFTP – SSH File Transfer Protocol</b> · Host: <code><span class="v" data-v="ip">203.0.113.50</span></code> · Port: <code>22</code></li>
+              <li>Logon Type: <b>Key file</b> (เลือกไฟล์ private key) หรือ Normal ถ้าครูให้รหัสผ่าน · User: <code><span class="v" data-v="user">student01</span></code></li>
+              <li>ฝั่งขวา (Remote) ไปที่ <code>/var/www/<span class="v" data-v="sub">student01</span></code> → ลากไฟล์จากฝั่งซ้ายไปวาง</li>
+            </ol>
+          </div>
+          <div class="tab-panel panel" data-panel="u2">
+<pre class="code"><span class="t-com"># ครั้งแรก: สร้างโฟลเดอร์บนเซิร์ฟเวอร์ (ถ้ามีสิทธิ์ sudo)</span>
+ssh <span class="v" data-v="user">student01</span>@<span class="v" data-v="ip">203.0.113.50</span> "sudo mkdir -p /var/www/<span class="v" data-v="sub">student01</span> &amp;&amp; sudo chown <span class="v" data-v="user">student01</span>:www-data /var/www/<span class="v" data-v="sub">student01</span>"
+
+<span class="t-com"># อัปโหลดทั้งโฟลเดอร์ (รันบนเครื่องเรา ในโฟลเดอร์โครงงาน)</span>
+scp -r ./* <span class="v" data-v="user">student01</span>@<span class="v" data-v="ip">203.0.113.50</span>:/var/www/<span class="v" data-v="sub">student01</span>/
+
+<span class="t-com"># หรือ rsync: ส่งเฉพาะไฟล์ที่เปลี่ยน (เร็วกว่ามากเมื่ออัปเดตครั้งต่อไป)</span>
+rsync -avz --delete ./ <span class="v" data-v="user">student01</span>@<span class="v" data-v="ip">203.0.113.50</span>:/var/www/<span class="v" data-v="sub">student01</span>/
+
+<span class="t-com"># ตั้งสิทธิ์บนเซิร์ฟเวอร์</span>
+find /var/www/<span class="v" data-v="sub">student01</span> -type d -exec chmod 755 {} \;
+find /var/www/<span class="v" data-v="sub">student01</span> -type f -exec chmod 644 {} \;</pre>
+          </div>
+          <div class="tab-panel panel" data-panel="u3">
+            <p>มืออาชีพนิยมเก็บโค้ดใน Git แล้วดึงลงเซิร์ฟเวอร์ — มีประวัติทุกเวอร์ชัน ย้อนกลับได้</p>
+<pre class="code"><span class="t-com"># บนเครื่องเรา</span>
+git add . &amp;&amp; git commit -m "เพิ่มหน้าติดต่อ" &amp;&amp; git push
+
+<span class="t-com"># บนเซิร์ฟเวอร์ (ครั้งแรก git clone, ครั้งต่อไป git pull)</span>
+cd /var/www/<span class="v" data-v="sub">student01</span> &amp;&amp; git pull</pre>
+            <div class="nug oops"><p>ถ้า Deploy ด้วย Git ต้องกันไม่ให้คนเปิด <code>/.git/</code> ผ่านเว็บได้ (ในนั้นมีประวัติโค้ดทั้งหมด) — เพิ่ม <code>location ~ /\.git { deny all; }</code> ใน Nginx</p></div>
+          </div>
+        </div>
+
+        <div class="code-head"><i></i><i></i><i></i>/etc/nginx/sites-available/<span class="v" data-v="sub">student01</span></div>
+<pre class="code"><span class="t-kw">server</span> {
+    <span class="t-prop">listen</span> 80;
+    <span class="t-prop">server_name</span> <span class="v" data-v="sub">student01</span>.<span class="v" data-v="domain">example.ac.th</span>;
+    <span class="t-prop">root</span> /var/www/<span class="v" data-v="sub">student01</span>;
+    <span class="t-prop">index</span> index.html index.php;
+
+    <span class="t-kw">location</span> / {
+        <span class="t-prop">try_files</span> $uri $uri/ =404;            <span class="t-com"># เว็บ HTML/CSS ที่เขียนเอง</span>
+        <span class="t-com"># try_files $uri $uri/ /index.php?$args;  ← ใช้บรรทัดนี้แทนถ้าเป็น WordPress</span>
+    }
+
+    <span class="t-com"># เปิดใช้เฉพาะเว็บที่มี PHP / WordPress (ดูชื่อไฟล์ sock ด้วย: ls /run/php/)</span>
+    <span class="t-com"># location ~ \.php$ {</span>
+    <span class="t-com">#     include snippets/fastcgi-php.conf;</span>
+    <span class="t-com">#     fastcgi_pass unix:/run/php/php8.3-fpm.sock;</span>
+    <span class="t-com"># }</span>
+
+    <span class="t-kw">location</span> ~ /\. { <span class="t-prop">deny</span> all; }                 <span class="t-com"># ซ่อนไฟล์ .git .env</span>
+}</pre>
+        <div class="code-head"><i></i><i></i><i></i>เปิดใช้งาน (ต้องใช้ sudo)</div>
+<pre class="code">sudo ln -s /etc/nginx/sites-available/<span class="v" data-v="sub">student01</span> /etc/nginx/sites-enabled/
+sudo nginx -t                  <span class="t-com"># ต้องขึ้น "syntax is ok" และ "test is successful"</span>
+sudo systemctl reload nginx    <span class="t-com"># reload ไม่ตัดผู้ใช้คนอื่นที่กำลังเข้าเว็บ (ต่างจาก restart)</span></pre>
+        <div class="nugs">
+          <div class="nug deep"><p><b>Virtual hosting:</b> นักเรียนทั้งห้องใช้เซิร์ฟเวอร์ IP เดียวกันได้ เพราะเบราว์เซอร์ส่ง <code>Host: student01.…</code> มาใน HTTP Header ทุกครั้ง (Day 1!) Nginx จึงรู้ว่าต้องเปิดโฟลเดอร์ไหน</p></div>
+          <div class="nug tech"><p>ใช้ Apache แทน Nginx? หลักการเดียวกัน: ไฟล์ <code>/etc/apache2/sites-available/student01.conf</code> ใช้ <code>&lt;VirtualHost *:80&gt;</code> + <code>ServerName</code> + <code>DocumentRoot</code> แล้ว <code>a2ensite</code> และ <code>systemctl reload apache2</code></p></div>
+          <div class="nug pro"><p><b>Docker</b> (ทางเลือกสมัยใหม่): รันเว็บ Static ใน container เดียว <code>docker run -d --name web01 -p 8081:80 -v /var/www/student01:/usr/share/nginx/html:ro nginx</code> แล้วให้ Nginx ตัวหลักทำ <code>proxy_pass http://127.0.0.1:8081;</code> — แยกเว็บแต่ละคนออกจากกันได้ชัดเจน</p></div>
+          <div class="nug oops"><p>เปิดเว็บแล้วเจอ <b>“Welcome to nginx!”</b> = server_name ไม่ตรง/ยังไม่ reload · เจอ <b>403</b> = สิทธิ์ไฟล์หรือไม่มี index.html · เจอ <b>502</b> = PHP-FPM ไม่ทำงาน — ดูสาเหตุจริงที่ <code>/var/log/nginx/error.log</code></p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="https">
+        <div class="sec-head"><span class="sec-num">11</span><div><h2>HTTPS ฟรีด้วย Let's Encrypt (certbot)</h2><p>พิสูจน์ว่าเราเป็นเจ้าของโดเมนจริง แล้วรับใบรับรองอัตโนมัติ</p></div></div>
+        <figure class="anim" id="anim-acme" data-ms="4300">
+          <div class="anim-title"><i data-i="lock"></i>ACME Challenge ทีละขั้น<span class="chip">6 ขั้น</span></div>
+          <div class="stage">
+            <svg class="wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <line x1="14" y1="50" x2="86" y2="50" data-hl="1,2,4,5"/><line x1="14" y1="50" x2="50" y2="86" data-hl="6"/>
+            </svg>
+            <div class="actor c-green lg" style="left:14%;top:50%" data-hl="1,3,6"><span class="ab"><i data-i="server"></i></span><span class="lb">certbot บน VPS</span><span class="sub"><span data-v="sub">student01</span>.<span data-v="domain">example.ac.th</span></span></div>
+            <div class="actor c-teal lg" style="left:86%;top:50%" data-hl="2,4,5"><span class="ab"><i data-i="shield"></i></span><span class="lb">Let's Encrypt</span><span class="sub">Certificate Authority</span></div>
+            <div class="actor c-pink pop" style="left:50%;top:86%" data-in="6"><span class="ab"><i data-i="phone"></i></span><span class="lb">ผู้เข้าชม</span><span class="sub">เห็น 🔒</span></div>
+            <div class="flyer" style="--x1:14%;--y1:50%;--x2:86%;--y2:50%;--c:var(--green)" data-only="1">ขอใบรับรองให้โดเมนนี้</div>
+            <div class="flyer" style="--x1:86%;--y1:50%;--x2:14%;--y2:50%;--c:var(--teal)" data-only="2">พิสูจน์สิ: วางไฟล์ token “a1b2…”</div>
+            <div class="bubble dark mono pop" style="left:22%;top:16%" data-only="3">/.well-known/acme-challenge/a1b2…</div>
+            <div class="flyer" style="--x1:86%;--y1:50%;--x2:14%;--y2:50%;--c:var(--purple)" data-only="4">GET http://โดเมน/.well-known/…</div>
+            <div class="bubble wrap pop" style="left:50%;top:20%" data-only="4">CA เข้ามาทางอินเทอร์เน็ตผ่าน DNS จริง — ถ้าเจอไฟล์ แปลว่าโดเมนนี้ชี้มาที่เครื่องเราจริง</div>
+            <div class="flyer" style="--x1:86%;--y1:50%;--x2:14%;--y2:50%;--c:var(--teal)" data-only="5">📜 ใบรับรอง (อายุสั้น)</div>
+            <div class="bubble mono pop" style="left:22%;top:16%" data-only="6">listen 443 ssl · 80 → 301 → 443</div>
+            <div class="flyer" style="--x1:14%;--y1:50%;--x2:50%;--y2:86%;--c:var(--green)" data-only="6">https:// 🔒</div>
+          </div>
+          <ol class="anim-steps">
+            <li><b>certbot ขอใบรับรอง</b> จาก Let's Encrypt ให้กับโดเมนของเรา</li>
+            <li><b>CA ส่งโจทย์ (challenge)</b> — “ถ้าเป็นเจ้าของจริง ให้วางไฟล์ token นี้ไว้บนเว็บ”</li>
+            <li><b>certbot วางไฟล์</b> ไว้ที่ <code>/.well-known/acme-challenge/</code> อัตโนมัติ</li>
+            <li><b>CA ตรวจ</b> โดยเปิด URL นั้นผ่านอินเทอร์เน็ต — จึง <u>ต้องตั้ง DNS ให้ถูกและเปิดพอร์ต 80 ก่อน</u></li>
+            <li><b>ออกใบรับรอง</b> (อายุสั้น จึงต้องต่ออายุอัตโนมัติ)</li>
+            <li><b>certbot แก้ config Nginx</b> ให้ฟังพอร์ต 443 + redirect 80 → 443 และตั้งตัวต่ออายุอัตโนมัติ</li>
+          </ol>
+        </figure>
+        <div class="code-head"><i></i><i></i><i></i>ติดตั้งและขอใบรับรอง</div>
+<pre class="code">sudo apt install -y certbot python3-certbot-nginx      <span class="t-com"># ครั้งเดียวต่อเซิร์ฟเวอร์</span>
+sudo certbot --nginx -d <span class="v" data-v="sub">student01</span>.<span class="v" data-v="domain">example.ac.th</span>      <span class="t-com"># เลือก Redirect เมื่อถูกถาม</span>
+sudo certbot renew --dry-run                            <span class="t-com"># ทดสอบการต่ออายุอัตโนมัติ</span>
+sudo certbot certificates                               <span class="t-com"># ดูใบรับรองทั้งหมดและวันหมดอายุ</span></pre>
+        <div class="nugs">
+          <div class="nug tech"><p>ตรวจคุณภาพ HTTPS ที่ <b>ssllabs.com/ssltest</b> — ตั้งค่าดีจะได้เกรด A · และตรวจ Header ความปลอดภัยที่ <b>securityheaders.com</b></p></div>
+          <div class="nug deep"><p>อยากได้ใบรับรองแบบ <b>Wildcard</b> (<code>*.domain</code>) ต้องใช้วิธี <b>DNS-01 challenge</b> (ใส่ TXT record แทนการวางไฟล์) — ครูทำครั้งเดียวใช้ได้กับทุกซับโดเมนของนักเรียน</p></div>
+          <div class="nug oops"><p>Let's Encrypt มี <b>Rate limit</b> (จำนวนครั้งที่ขอได้ต่อสัปดาห์) — ถ้าทดลองหลายรอบให้ใช้ <code>--dry-run</code> หรือ <code>--staging</code> ก่อน อย่ากดขอซ้ำ ๆ</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="seo">
+        <div class="sec-head"><span class="sec-num">12</span><div><h2>SEO &amp; การเปิดตัวเว็บไซต์</h2><p>เว็บออนไลน์แล้ว — ทำให้คนหาเจอ</p></div></div>
+        <div class="g2">
+          <div>
+            <div class="code-head"><i></i><i></i><i></i>/robots.txt</div>
+<pre class="code">User-agent: *
+Allow: /
+Sitemap: https://<span class="v" data-v="sub">student01</span>.<span class="v" data-v="domain">example.ac.th</span>/sitemap.xml</pre>
+            <div class="code-head"><i></i><i></i><i></i>/sitemap.xml (WordPress + ปลั๊กอิน SEO สร้างให้อัตโนมัติ)</div>
+<pre class="code">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;&lt;loc&gt;https://<span class="v" data-v="sub">student01</span>.<span class="v" data-v="domain">example.ac.th</span>/&lt;/loc&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://<span class="v" data-v="sub">student01</span>.<span class="v" data-v="domain">example.ac.th</span>/menu.html&lt;/loc&gt;&lt;/url&gt;
+&lt;/urlset&gt;</pre>
+          </div>
+          <div>
+            <ul class="ticks">
+              <li><b>Google Search Console</b> — ยืนยันความเป็นเจ้าของด้วย <b>TXT record</b> ใน DNS → ส่ง sitemap → ดูว่า Google เก็บหน้าไหนแล้ว ค้นด้วยคำอะไร</li>
+              <li><b>Google Analytics 4</b> — สถิติผู้เข้าชม อุปกรณ์ หน้าไหนนิยม (ยืนยันสมมติฐานจาก Day 2)</li>
+              <li><b>Google Business Profile</b> — ถ้าเป็นร้าน/หน่วยงาน ให้ขึ้นบน Google Maps</li>
+              <li><b>เนื้อหาคุณภาพ</b> + title/description ทุกหน้า + URL สวย + รูปมี alt + โหลดเร็ว + HTTPS + มือถือดี</li>
+              <li>ทดสอบการแชร์: <b>Facebook Sharing Debugger</b> · LINE จะแสดง og:image</li>
+            </ul>
+            <div class="nug fun"><p>คำว่า <code>site:</code> ใน Google เช่น <code>site:<span class="v" data-v="sub">student01</span>.<span class="v" data-v="domain">example.ac.th</span></code> จะแสดงเฉพาะหน้าที่ Google รู้จักจากเว็บเรา — ใช้เช็กว่าเว็บถูกเก็บข้อมูลแล้วหรือยัง (เว็บใหม่อาจใช้เวลาหลายวัน)</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="maint">
+        <div class="sec-head"><span class="sec-num">13</span><div><h2>ดูแลรักษาเว็บไซต์ (Maintenance)</h2><p>ขั้นที่ 7 ของ WDLC — เว็บที่ไม่มีคนดูแลจะ “ตาย” หรือถูกแฮกในที่สุด</p></div></div>
+        <div class="g3">
+          <div class="mini"><span class="ic-wrap"><i data-i="download"></i></span><h4>สำรองข้อมูล 3-2-1</h4><p><b>3</b> ชุด · <b>2</b> สื่อต่างกัน · <b>1</b> ชุดอยู่นอกสถานที่ (Cloud) · ทดลองกู้คืนจริงอย่างน้อยเทอมละครั้ง</p></div>
+          <div class="mini c-pink"><span class="ic-wrap"><i data-i="restart"></i></span><h4>อัปเดต</h4><p>ระบบปฏิบัติการ (<code>apt upgrade</code>) · WordPress/ปลั๊กอิน · ต่ออายุโดเมนและโฮสติ้ง</p></div>
+          <div class="mini c-purple"><span class="ic-wrap"><i data-i="eye"></i></span><h4>เฝ้าระวัง</h4><p>UptimeRobot แจ้งเตือนเมื่อเว็บล่ม · ดู log · Search Console แจ้งปัญหา</p></div>
+          <div class="mini c-teal"><span class="ic-wrap"><i data-i="shield"></i></span><h4>ความปลอดภัยเซิร์ฟเวอร์</h4><p>Firewall <code>ufw</code> เปิดเฉพาะ 22/80/443 · ปิดล็อกอิน root ด้วยรหัสผ่าน · <code>fail2ban</code> บล็อกการเดารหัส</p></div>
+          <div class="mini c-blue"><span class="ic-wrap"><i data-i="file"></i></span><h4>เนื้อหา</h4><p>อัปเดตข่าว ลบข้อมูลหมดอายุ ตอบข้อความจากฟอร์ม</p></div>
+          <div class="mini"><span class="ic-wrap"><i data-i="star"></i></span><h4>ปรับปรุง</h4><p>ดูสถิติ + ฟังผู้ใช้ → วางแผนรอบใหม่ (กลับสู่ขั้นที่ 1)</p></div>
+        </div>
+        <div class="nug deep"><p><b>จริยธรรมและกฎหมาย:</b> เว็บที่เก็บข้อมูลส่วนบุคคล (ชื่อ เบอร์ อีเมลจากฟอร์ม) ต้องปฏิบัติตาม <b>พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล (PDPA)</b> — แจ้งวัตถุประสงค์ เก็บเท่าที่จำเป็น และมีนโยบายความเป็นส่วนตัว · ผู้ดูแลระบบต้องเก็บ log ตามที่ <b>พ.ร.บ.คอมพิวเตอร์</b> กำหนด</p></div>
+      </section>
+
+      <section class="sec" id="lab">
+        <div class="sec-head"><span class="sec-num">14</span><div><h2>ใบงาน Day 5 · Go Live!</h2><p>งานกลุ่ม · ผลลัพธ์คือ URL ที่ใครก็เปิดได้</p></div></div>
+        <div class="panel worksheet">
+          <div class="ws-head"><h3><i data-i="rocket"></i>ขั้นตอน</h3><span class="ws-progress"></span></div>
+          <ul class="checklist" data-key="d5">
+            <li><label><input type="checkbox"><span><b>1.</b> ติดตั้ง WordPress (localhost หรือเซิร์ฟเวอร์) · ตั้งเขตเวลา · Permalink “ชื่อเรื่อง” · ธีม · เมนูตาม Sitemap · หน้า 3 หน้า + โพสต์ข่าว 2 โพสต์ · ปลั๊กอิน SEO + Backup</span></label></li>
+            <li><label><input type="checkbox"><span><b>2.</b> ทดสอบเว็บที่เขียนเอง (Day 3–4) ตาม Test checklist บันทึกผลและแก้ไข</span></label></li>
+            <li><label><input type="checkbox"><span><b>3.</b> ตรวจว่า DNS ของซับโดเมนชี้มาที่เซิร์ฟเวอร์แล้ว (<code>nslookup</code>)</span></label></li>
+            <li><label><input type="checkbox"><span><b>4.</b> SSH เข้าเซิร์ฟเวอร์ด้วย Key ได้ · อัปโหลดเว็บไป <code>/var/www/ซับโดเมน</code> · ตั้งสิทธิ์ 755/644</span></label></li>
+            <li><label><input type="checkbox"><span><b>5.</b> สร้าง server block ของ Nginx · <code>nginx -t</code> ผ่าน · reload · เปิดผ่าน http:// ได้</span></label></li>
+            <li><label><input type="checkbox"><span><b>6.</b> ติดตั้ง HTTPS ด้วย certbot · http redirect เป็น https · กุญแจ 🔒 ขึ้น</span></label></li>
+            <li><label><input type="checkbox"><span><b>7.</b> เพิ่ม robots.txt + sitemap.xml · ทดสอบ PageSpeed บนโดเมนจริง · ทดสอบแชร์ลิงก์ใน LINE</span></label></li>
+            <li><label><input type="checkbox"><span><b>8.</b> เตรียมนำเสนอ 5 นาที: ปัญหาที่ผู้ใช้มี → การออกแบบ → เดโมบนมือถือจริงจากโดเมน → คะแนน Lighthouse → สิ่งที่จะพัฒนาต่อ</span></label></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sec" id="project">
+        <div class="sec-head"><span class="sec-num">15</span><div><h2>เกณฑ์ประเมินโครงงาน 5 วัน</h2><p>100 คะแนน · ประเมินจากเว็บบนโดเมนจริง + การนำเสนอ</p></div></div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>ด้าน</th><th>หลักฐาน</th><th>คะแนน</th></tr></thead>
+            <tbody>
+              <tr><td>วิเคราะห์ &amp; ออกแบบ (Day 2)</td><td>Persona · Requirements · Sitemap · Mockup ใน Figma</td><td class="c">20</td></tr>
+              <tr><td>HTML/CSS/JS &amp; Responsive (Day 3–4)</td><td>Semantic · ไม่มี error · มือถือดี · เมนู JS</td><td class="c">25</td></tr>
+              <tr><td>CMS (Day 5)</td><td>WordPress ตั้งค่าครบ ใช้งานได้</td><td class="c">15</td></tr>
+              <tr><td>เผยแพร่บนโดเมนจริง + HTTPS</td><td>URL ใช้งานได้ · 🔒 · redirect ถูก</td><td class="c">20</td></tr>
+              <tr><td>คุณภาพ &amp; ทดสอบ</td><td>รายงานทดสอบ · Lighthouse · ไม่มีลิงก์เสีย</td><td class="c">10</td></tr>
+              <tr><td>นำเสนอ · ทำงานเป็นทีม · ตรงเวลา · จริยธรรม (ลิขสิทธิ์ภาพ/PDPA)</td><td>การนำเสนอ · แบบสังเกต</td><td class="c">10</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="quiz">
+        <div class="sec-head"><span class="sec-num">16</span><div><h2>แบบทดสอบ Day 5</h2><p>10 ข้อ</p></div></div>
+        <div class="quiz" data-quiz="d5">
+          <div class="q" data-a="1"><p class="q-t">ใน WordPress เนื้อหาบทความถูกเก็บไว้ที่ใด</p><div class="opts"><button>ในไฟล์ธีม</button><button>ในฐานข้อมูล MySQL (ตาราง wp_posts)</button><button>ในไฟล์ wp-config.php</button><button>ใน Nginx</button></div><p class="q-ex">เนื้อหาอยู่ในฐานข้อมูล ธีมทำหน้าที่แสดงผล</p></div>
+          <div class="q" data-a="3"><p class="q-t">ข่าวกิจกรรมประจำเดือน ควรสร้างเป็นอะไรใน WordPress</p><div class="opts"><button>Page</button><button>Theme</button><button>Plugin</button><button>Post</button></div><p class="q-ex">Post เป็นเนื้อหาตามเวลา มีวันที่และหมวดหมู่</p></div>
+          <div class="q" data-a="0"><p class="q-t">ค่า LCP ที่ถือว่า “ดี” ตาม Core Web Vitals คือ</p><div class="opts"><button>≤ 2.5 วินาที</button><button>≤ 10 วินาที</button><button>≤ 30 วินาที</button><button>ไม่มีเกณฑ์</button></div><p class="q-ex">LCP วัดเวลาที่เนื้อหาหลักแสดง</p></div>
+          <div class="q" data-a="2"><p class="q-t">นักเรียน 30 คนต้องการเว็บของตัวเองบนเซิร์ฟเวอร์ IP เดียว ครูควรตั้งค่า DNS อย่างไรให้เร็วที่สุด</p><div class="opts"><button>ซื้อ IP เพิ่ม 30 IP</button><button>ใช้ MX record</button><button>สร้าง Wildcard A record *.โดเมน ไปที่ IP เซิร์ฟเวอร์</button><button>ไม่ต้องตั้งค่า DNS</button></div><p class="q-ex">ทุกซับโดเมนชี้มาที่เครื่องเดียว แล้วแยกด้วย server_name</p></div>
+          <div class="q" data-a="1"><p class="q-t">SFTP ทำงานผ่านโปรโตคอลและพอร์ตใด</p><div class="opts"><button>FTP พอร์ต 21</button><button>SSH พอร์ต 22</button><button>HTTP พอร์ต 80</button><button>HTTPS พอร์ต 443</button></div><p class="q-ex">SFTP = SSH File Transfer Protocol เข้ารหัสทั้งหมด</p></div>
+          <div class="q" data-a="3"><p class="q-t">สิทธิ์ไฟล์ที่เหมาะกับไฟล์ index.html บนเซิร์ฟเวอร์คือ</p><div class="opts"><button>777</button><button>000</button><button>700</button><button>644</button></div><p class="q-ex">เจ้าของแก้ได้ คนอื่น (รวม Nginx) อ่านได้</p></div>
+          <div class="q" data-a="0"><p class="q-t">คำสั่งใดควรรันก่อน reload Nginx ทุกครั้ง</p><div class="opts"><button>sudo nginx -t</button><button>rm -r /etc/nginx</button><button>ping nginx</button><button>chmod 777</button></div><p class="q-ex">ตรวจไวยากรณ์ก่อน ถ้าผิดแล้ว reload เว็บทุกเว็บบนเครื่องอาจล่ม</p></div>
+          <div class="q" data-a="2"><p class="q-t">ทำไม Let's Encrypt ต้องเข้ามาเปิดไฟล์ใน /.well-known/acme-challenge/</p><div class="opts"><button>เพื่อดาวน์โหลดเว็บไปเก็บ</button><button>เพื่อทดสอบความเร็ว</button><button>เพื่อยืนยันว่าโดเมนชี้มาที่เซิร์ฟเวอร์ที่ขอใบรับรองจริง</button><button>เพื่อติดตั้ง WordPress</button></div><p class="q-ex">เป็นการพิสูจน์ความเป็นเจ้าของ/การควบคุมโดเมน</p></div>
+          <div class="q" data-a="1"><p class="q-t">เปิดเว็บแล้วเจอหน้า “Welcome to nginx!” แทนเว็บของเรา สาเหตุที่เป็นไปได้มากที่สุดคือ</p><div class="opts"><button>โดเมนหมดอายุ</button><button>server_name ไม่ตรงกับโดเมน หรือยังไม่ได้เปิดใช้/reload server block</button><button>รูปภาพใหญ่เกินไป</button><button>ลืมใส่ alt</button></div><p class="q-ex">คำขอมาถึงเซิร์ฟเวอร์แล้ว (DNS ถูก) แต่ Nginx ใช้ server block ค่าเริ่มต้น</p></div>
+          <div class="q" data-a="0"><p class="q-t">หลักการสำรองข้อมูล 3-2-1 หมายถึง</p><div class="opts"><button>3 ชุด · 2 สื่อต่างกัน · 1 ชุดนอกสถานที่</button><button>สำรอง 3 วันครั้ง</button><button>3 เว็บ 2 โดเมน 1 เซิร์ฟเวอร์</button><button>เก็บไว้ 321 วัน</button></div><p class="q-ex">ป้องกันทั้งฮาร์ดแวร์เสีย ไฟไหม้ และแรนซัมแวร์</p></div>
+          <div class="quiz-foot"><span class="quiz-score"></span><button class="btn sm quiz-reset" type="button">ทำใหม่</button></div>
+        </div>
+      </section>
+
+      <section class="sec" id="final">
+        <div class="sec-head"><span class="sec-num">17</span><div><h2>แบบทดสอบหลังเรียน (ทั้งรายวิชา)</h2><p>15 ข้อ ครอบคลุม Day 1–5 · เกณฑ์ผ่าน 60% (9 ข้อ)</p></div></div>
+        <div class="quiz" data-quiz="final">
+          <div class="q" data-a="2"><p class="q-t">WWW เป็นอะไรเมื่อเทียบกับอินเทอร์เน็ต</p><div class="opts"><button>ฮาร์ดแวร์เครือข่าย</button><button>ชื่อเล่นของอินเทอร์เน็ต</button><button>บริการหนึ่งที่ทำงานบนอินเทอร์เน็ต</button><button>โปรโตคอลส่งอีเมล</button></div><p class="q-ex">Day 1</p></div>
+          <div class="q" data-a="0"><p class="q-t">DNS Record ชนิดใดชี้ชื่อโดเมนไปยัง IPv4</p><div class="opts"><button>A</button><button>AAAA</button><button>MX</button><button>TXT</button></div><p class="q-ex">Day 1 / Day 5</p></div>
+          <div class="q" data-a="3"><p class="q-t">Status code ใดหมายถึงไม่พบไฟล์</p><div class="opts"><button>200</button><button>301</button><button>500</button><button>404</button></div><p class="q-ex">Day 1</p></div>
+          <div class="q" data-a="1"><p class="q-t">ตัวแทนผู้ใช้สมมติที่สร้างจากข้อมูลวิจัยจริง เรียกว่า</p><div class="opts"><button>Sitemap</button><button>Persona</button><button>Wireframe</button><button>Plugin</button></div><p class="q-ex">Day 2</p></div>
+          <div class="q" data-a="2"><p class="q-t">ปุ่มบนมือถือควรมีขนาดอย่างน้อยเท่าไรตามแนวคิด Fitts's Law</p><div class="opts"><button>10px</button><button>20px</button><button>44–48px</button><button>200px</button></div><p class="q-ex">Day 2</p></div>
+          <div class="q" data-a="0"><p class="q-t">คอนทราสต์ขั้นต่ำของข้อความปกติตาม WCAG AA</p><div class="opts"><button>4.5 : 1</button><button>1 : 1</button><button>2 : 1</button><button>3 : 2</button></div><p class="q-ex">Day 2</p></div>
+          <div class="q" data-a="3"><p class="q-t">localhost มี IP ใด</p><div class="opts"><button>192.168.1.1</button><button>8.8.8.8</button><button>0.0.0.0</button><button>127.0.0.1</button></div><p class="q-ex">Day 3</p></div>
+          <div class="q" data-a="1"><p class="q-t">บรรทัดใดทำให้ภาษาไทยแสดงผลถูกต้อง</p><div class="opts"><button>&lt;html lang="th"&gt;</button><button>&lt;meta charset="UTF-8"&gt;</button><button>&lt;title&gt;</button><button>&lt;meta name="viewport"&gt;</button></div><p class="q-ex">Day 3</p></div>
+          <div class="q" data-a="2"><p class="q-t">จาก pages/about.html อ้างถึง images/logo.png (อยู่ที่ราก) ต้องเขียนพาธอย่างไร</p><div class="opts"><button>images/logo.png</button><button>/pages/images/logo.png</button><button>../images/logo.png</button><button>C:\images\logo.png</button></div><p class="q-ex">Day 3</p></div>
+          <div class="q" data-a="0"><p class="q-t">ฟอร์มล็อกอินควรใช้ method ใด</p><div class="opts"><button>POST</button><button>GET</button><button>HEAD</button><button>LINK</button></div><p class="q-ex">Day 3</p></div>
+          <div class="q" data-a="3"><p class="q-t">Selector ใดชนะ: <code>.menu a</code> กับ <code>#nav a</code></p><div class="opts"><button>.menu a</button><button>เท่ากัน</button><button>ขึ้นกับลำดับเสมอ</button><button>#nav a</button></div><p class="q-ex">Day 4 — ID มีน้ำหนักมากกว่า class</p></div>
+          <div class="q" data-a="1"><p class="q-t">ค่าใดทำให้ width รวม padding และ border แล้ว</p><div class="opts"><button>display: block</button><button>box-sizing: border-box</button><button>position: relative</button><button>overflow: hidden</button></div><p class="q-ex">Day 4</p></div>
+          <div class="q" data-a="2"><p class="q-t">Mobile-first เขียน Media query แบบใด</p><div class="opts"><button>max-width</button><button>orientation: landscape</button><button>min-width</button><button>print</button></div><p class="q-ex">Day 4</p></div>
+          <div class="q" data-a="0"><p class="q-t">ตาราง wp_posts ของ WordPress เก็บอะไร</p><div class="opts"><button>โพสต์และหน้า</button><button>รหัสผ่านฐานข้อมูล</button><button>ไฟล์ธีม</button><button>ใบรับรอง SSL</button></div><p class="q-ex">Day 5</p></div>
+          <div class="q" data-a="3"><p class="q-t">เครื่องมือใดขอใบรับรอง HTTPS ฟรีจาก Let's Encrypt และตั้งค่า Nginx ให้อัตโนมัติ</p><div class="opts"><button>FileZilla</button><button>phpMyAdmin</button><button>Figma</button><button>certbot</button></div><p class="q-ex">Day 5</p></div>
+          <div class="quiz-foot"><span class="quiz-score"></span><button class="btn sm quiz-reset" type="button">ทำใหม่</button></div>
+        </div>
+      </section>
+
+      <section class="sec" id="sum">
+        <div class="sec-head"><span class="sec-num">18</span><div><h2>สรุปทั้งคอร์ส 5 วัน</h2><p>จากสายเคเบิลใต้น้ำ → สู่เว็บของเราบนโดเมนจริงพร้อม 🔒</p></div></div>
+        <div class="panel">
+          <ul class="ticks">
+            <li><b>Day 1</b> เว็บทำงานอย่างไร: URL · IP · DNS · HTTP · HTTPS · Rendering · Static/Dynamic · WDLC</li>
+            <li><b>Day 2</b> วิเคราะห์ผู้ใช้และออกแบบ: Persona · MoSCoW · Card sorting · UX laws · Grid · สี · ตัวอักษร · Figma</li>
+            <li><b>Day 3</b> XAMPP + HTML: localhost · Semantic · พาธ · รูป · ตาราง · ฟอร์ม GET/POST · SEO meta</li>
+            <li><b>Day 4</b> CSS + JS: Specificity · Box model · Flexbox · Grid · Responsive · Variables · DOM events</li>
+            <li><b>Day 5</b> CMS + Go live: WordPress · ทดสอบ · DNS · SSH/SFTP · Nginx · Let's Encrypt · SEO · ดูแลรักษา</li>
+          </ul>
+          <div class="callout tip"><i data-i="rocket"></i><p><strong class="t">ไปต่อหลังคอร์ส</strong>เว็บของคุณออนไลน์แล้ว — ดูแลต่อทุกเดือน ใส่ลิงก์ไว้ใน Resume/Portfolio และเรียนต่อ: JavaScript เชิงลึก → React/Vue → Backend (PHP/Node.js) + ฐานข้อมูล → Git/Docker</p></div>
+          <button class="btn mark-done" type="button" data-lesson="d5"></button>
+        </div>
+        <nav class="pager">
+          <a href="day-4.html"><small>← วันก่อน</small><strong>Day 4 · CSS, Responsive &amp; JavaScript</strong></a>
+          <a class="next" href="../course.html"><small>เอกสาร →</small><strong>วิเคราะห์รายวิชา (15 สัปดาห์)</strong></a>
+        </nav>
+      </section>
+    </article>
+  </div>
+</div>
+</main>
+<footer class="site-foot">made with <i data-i="heart" class="heart"></i> &amp; <i data-i="coffee" class="cup"></i> by IT RVC · 2026</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
