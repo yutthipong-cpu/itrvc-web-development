@@ -98,25 +98,38 @@
   // <i data-i="name"></i> → inline icon
   document.querySelectorAll('i[data-i]').forEach(el => { el.outerHTML = icon(el.dataset.i, el.className); });
 
-  /* ---------- Theme ---------- */
+  /* ---------- Top bar actions: background-code toggle + light/dark toggle ---------- */
   const themeBtn = document.querySelector('.theme-btn');
-  const THEMES = ['auto', 'light', 'dark'];
-  const THEME_ICON = { auto: 'sun', light: 'sun', dark: 'moon' };
-  function applyTheme(t) {
-    if (t === 'auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', t);
-    if (themeBtn) themeBtn.innerHTML = `${icon(THEME_ICON[t])}<span class="lbl">${t}</span>`;
-    if (themeBtn) themeBtn.setAttribute('aria-label', 'สลับธีม (ตอนนี้: ' + t + ')');
+  let actions = null;
+  if (themeBtn) {
+    actions = document.createElement('div');
+    actions.className = 'top-actions';
+    themeBtn.parentNode.insertBefore(actions, themeBtn);
+    actions.appendChild(themeBtn);
   }
-  let theme = store.get('wd-theme', 'auto');
-  if (!THEMES.includes(theme)) theme = 'auto';
-  applyTheme(theme);
-  themeBtn && themeBtn.addEventListener('click', () => {
-    theme = THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length];
-    store.set('wd-theme', theme);
-    applyTheme(theme);
-  });
 
-  /* ---------- Floating code background ---------- */
+  /* Theme: two states (light ↔ dark). Until the viewer chooses, follow the system setting. */
+  const sysDark = window.matchMedia('(prefers-color-scheme: dark)');
+  let chosen = store.get('wd-theme', null);
+  if (chosen !== 'light' && chosen !== 'dark') chosen = null;
+  const current = () => chosen || (sysDark.matches ? 'dark' : 'light');
+  function applyTheme() {
+    const t = current();
+    root.setAttribute('data-theme', t);
+    if (!themeBtn) return;
+    themeBtn.innerHTML = t === 'dark' ? `${icon('moon')}<span class="lbl">โหมดมืด</span>` : `${icon('sun')}<span class="lbl">โหมดสว่าง</span>`;
+    themeBtn.setAttribute('aria-label', t === 'dark' ? 'ตอนนี้โหมดมืด — กดเพื่อเปลี่ยนเป็นโหมดสว่าง' : 'ตอนนี้โหมดสว่าง — กดเพื่อเปลี่ยนเป็นโหมดมืด');
+    themeBtn.title = themeBtn.getAttribute('aria-label');
+  }
+  applyTheme();
+  themeBtn && themeBtn.addEventListener('click', () => {
+    chosen = current() === 'dark' ? 'light' : 'dark';
+    store.set('wd-theme', chosen);
+    applyTheme();
+  });
+  sysDark.addEventListener && sysDark.addEventListener('change', () => { if (!chosen) applyTheme(); });
+
+  /* ---------- Floating code background (can be paused) ---------- */
   const SNIPS = [
     '<!DOCTYPE html>', 'GET /index.html HTTP/1.1', 'HTTP/1.1 200 OK', 'nslookup www.example.ac.th',
     'ping 8.8.8.8', '<meta charset="UTF-8">', 'body { margin: 0; }', 'fetch("/api/news")',
@@ -126,7 +139,25 @@
     'SYN → SYN-ACK → ACK', 'cd htdocs/', 'TLS 1.3 handshake ✓', '404 Not Found', 'localhost:8080'
   ];
   const COLORS = ['#f97316', '#ec4899', '#a855f7', '#0d9488'];
+  const bgLayer = document.querySelector('.bg');
   const bgFloat = document.querySelector('.bg .floaters');
+  let bgPaused = store.get('wd-bg-paused', reduced);
+  const wait = (fn, ms) => setTimeout(() => (bgPaused ? wait(fn, 300) : fn()), ms);
+  if (bgFloat && actions) {
+    const bgBtn = document.createElement('button');
+    bgBtn.type = 'button';
+    bgBtn.className = 'theme-btn bg-btn';
+    const paintBg = () => {
+      bgLayer && bgLayer.classList.toggle('paused', bgPaused);
+      bgBtn.innerHTML = bgPaused ? `${icon('play')}<span class="lbl">เล่นโค้ดพื้นหลัง</span>` : `${icon('pause')}<span class="lbl">หยุดโค้ดพื้นหลัง</span>`;
+      bgBtn.setAttribute('aria-pressed', String(bgPaused));
+      bgBtn.setAttribute('aria-label', bgPaused ? 'เล่นโค้ดที่วิ่งบนพื้นหลัง' : 'หยุดโค้ดที่วิ่งบนพื้นหลัง');
+      bgBtn.title = bgBtn.getAttribute('aria-label');
+    };
+    bgBtn.addEventListener('click', () => { bgPaused = !bgPaused; store.set('wd-bg-paused', bgPaused); paintBg(); });
+    actions.insertBefore(bgBtn, themeBtn);
+    paintBg();
+  }
   if (bgFloat) {
     const count = window.innerWidth < 700 ? 7 : 15;
     const rnd = (a, b) => a + Math.random() * (b - a);
@@ -140,21 +171,21 @@
       el.className = 'floater';
       bgFloat.appendChild(el);
       place(el);
-      const s = SNIPS[Math.floor(Math.random() * SNIPS.length)];
-      if (reduced) { el.textContent = s; continue; }
+      el.textContent = SNIPS[Math.floor(Math.random() * SNIPS.length)];
       const cycle = () => {
         const text = SNIPS[Math.floor(Math.random() * SNIPS.length)];
         el.classList.remove('fade'); el.textContent = ''; place(el);
         let c = 0;
         const t = setInterval(() => {
+          if (bgPaused) return;               // freeze while paused
           el.textContent = text.slice(0, ++c);
           if (c >= text.length) {
             clearInterval(t);
-            setTimeout(() => { el.classList.add('fade'); setTimeout(cycle, 1100); }, rnd(2500, 6000));
+            wait(() => { el.classList.add('fade'); wait(cycle, 1100); }, rnd(2500, 6000));
           }
         }, rnd(45, 95));
       };
-      setTimeout(cycle, rnd(0, 4000));
+      wait(cycle, rnd(0, 4000));
     }
   }
 

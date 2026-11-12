@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Day 2 วิเคราะห์ผู้ใช้และออกแบบ UI · Web Dev</title>
-<meta name="description" content="วันที่ 2 การวิเคราะห์ความต้องการผู้ใช้ Persona Requirements Card sorting Sitemap หลัก UX/UI การจัดวางองค์ประกอบ สี ตัวอักษร Wireframe Mockup และ Responsive">
+<title>หน่วยที่ 2 วิเคราะห์ผู้ใช้และออกแบบ UI · Web Dev</title>
+<meta name="description" content="หน่วยที่ 2 การวิเคราะห์ความต้องการผู้ใช้ Persona Requirements Card sorting Sitemap หลัก UX/UI การจัดวางองค์ประกอบ สี ตัวอักษร Wireframe Mockup และ Responsive">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec4899'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,11 +17,11 @@
 <header class="topbar">
   <nav class="pill" aria-label="เมนูหลัก">
     <a href="../index.html">Web Dev</a>
-    <a href="day-1.html">Day 1</a>
-    <a href="day-2.html" aria-current="page">Day 2</a>
-    <a href="day-3.html">Day 3</a>
-    <a href="day-4.html">Day 4</a>
-    <a href="day-5.html">Day 5</a>
+    <a href="unit-1.html">หน่วย 1</a>
+    <a href="unit-2.html" aria-current="page">หน่วย 2</a>
+    <a href="unit-3.html">หน่วย 3</a>
+    <a href="unit-4.html">หน่วย 4</a>
+    <a href="unit-5.html">หน่วย 5</a>
   </nav>
   <button class="theme-btn" type="button">auto</button>
 </header>
@@ -29,17 +29,17 @@
 <main>
 <div class="wrap">
   <section class="lesson-hero">
-    <div class="crumbs"><a href="../index.html">Web Dev</a> / Day 2</div>
-    <div class="meta"><span class="chip hot">DAY 2 / 5</span><span class="chip">หน่วยที่ 2 + 3</span><span class="chip">09:00–16:30</span><span class="chip c-purple">5 แอนิเมชัน + เครื่องมือวัดคอนทราสต์</span></div>
+    <div class="crumbs"><a href="../index.html">Web Dev</a> / หน่วยที่ 2</div>
+    <div class="meta"><span class="chip hot">หน่วยที่ 2 / 5</span><span class="chip">การวิเคราะห์ความต้องการผู้ใช้และการออกแบบส่วนติดต่อผู้ใช้</span><span class="chip c-purple">5 แอนิเมชัน + เครื่องมือวัดคอนทราสต์</span></div>
     <h1>วิเคราะห์ผู้ใช้ &amp; <span class="grad-text">ออกแบบ UI</span> ให้คนใช้ง่ายจริง</h1>
-    <p class="lead">เว็บสวยแต่ไม่มีใครใช้ = ล้มเหลว วันนี้เราเริ่มจาก “คน” — หาว่าใครจะใช้เว็บ เขาต้องการอะไร จัดระเบียบเนื้อหาให้ตรงกับความคิดของเขา แล้วค่อยออกแบบหน้าตาด้วยหลัก UX/UI ที่พิสูจน์แล้ว: ลำดับสายตา กริด ช่องว่าง สี ตัวอักษรไทย และ Responsive จบวันด้วย Wireframe + Mockup ของโครงงานใน Figma</p>
+    <p class="lead">เว็บสวยแต่ไม่มีใครใช้ = ล้มเหลว หน่วยนี้เราเริ่มจาก “คน” — หาว่าใครจะใช้เว็บ เขาต้องการอะไร จัดระเบียบเนื้อหาให้ตรงกับความคิดของเขา แล้วค่อยออกแบบหน้าตาด้วยหลัก UX/UI ที่พิสูจน์แล้ว: ลำดับสายตา กริด ช่องว่าง สี ตัวอักษรไทย และ Responsive ปิดท้ายด้วย Wireframe + Mockup ของโครงงานใน Figma</p>
   </section>
 
   <div class="lesson-grid">
     <aside class="toc">
-      <span class="toc-title">DAY 2</span>
+      <span class="toc-title">หน่วยที่ 2</span>
       <nav>
-        <a href="#plan">ตารางเรียน</a>
+        <a href="#plan">จุดประสงค์</a>
         <a href="#goal">เป้าหมาย &amp; กลุ่มผู้ใช้</a>
         <a href="#research">เก็บความต้องการ</a>
         <a href="#flow">จากข้อมูลสู่ Requirements</a>
@@ -55,7 +55,7 @@
         <a href="#media">ภาพ &amp; ไอคอน</a>
         <a href="#a11y">Accessibility</a>
         <a href="#wf">Wireframe → Mockup</a>
-        <a href="#lab">ใบงาน Day 2</a>
+        <a href="#lab">ใบงาน หน่วยที่ 2</a>
         <a href="#quiz">แบบทดสอบ</a>
         <a href="#sum">สรุป</a>
       </nav>
@@ -63,24 +63,7 @@
 
     <article class="content">
       <section class="sec" id="plan">
-        <div class="sec-head"><span class="sec-num">00</span><div><h2>ตารางเรียน &amp; เป้าหมายวันที่ 2</h2><p>หน่วยที่ 2–3 (เทียบเท่าสัปดาห์ที่ 4–7)</p></div></div>
-        <div class="tbl-wrap">
-          <table class="tbl sched">
-            <thead><tr><th>เวลา</th><th>หัวข้อ</th><th>รูปแบบ</th></tr></thead>
-            <tbody>
-              <tr><td>09:00–09:30</td><td>ทบทวน Day 1 · เป้าหมาย SMART · กลุ่มผู้ใช้</td><td><span class="k lec">บรรยาย</span></td></tr>
-              <tr><td>09:30–10:30</td><td>เก็บความต้องการ: สัมภาษณ์ แบบสอบถาม คู่แข่ง · ทำแบบสอบถามจริง</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr><td>10:30–11:15</td><td>Persona · User Journey · Requirements (MoSCoW)</td><td><span class="k lab">งานกลุ่ม</span></td></tr>
-              <tr><td>11:15–12:00</td><td>Information Architecture · Card sorting · Sitemap</td><td><span class="k demo">แอนิเมชัน</span> <span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr class="brk"><td colspan="3">12:00–13:00 พักกลางวัน</td></tr>
-              <tr><td>13:00–13:45</td><td>หลัก UX · กฎทางจิตวิทยา · ลำดับสายตา F/Z</td><td><span class="k lec">บรรยาย</span> <span class="k demo">แอนิเมชัน</span></td></tr>
-              <tr><td>13:45–14:30</td><td>Layout · Grid · Spacing · Gestalt · Responsive</td><td><span class="k demo">สาธิต</span></td></tr>
-              <tr><td>14:30–15:00</td><td>สี (คอนทราสต์ WCAG) · ตัวอักษรไทย · ภาพ/ไอคอน · Accessibility</td><td><span class="k lab">เครื่องมือ</span></td></tr>
-              <tr><td>15:00–16:15</td><td>Wireframe → Mockup → Prototype ใน Figma</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr><td>16:15–16:30</td><td>นำเสนอ Sitemap/Mockup ทีมละ 2 นาที · แบบทดสอบ</td><td><span class="k quiz">ทดสอบ</span></td></tr>
-            </tbody>
-          </table>
-        </div>
+        <div class="sec-head"><span class="sec-num">00</span><div><h2>จุดประสงค์การเรียนรู้</h2><p>เมื่อเรียนจบหน่วยนี้ ผู้เรียนสามารถ…</p></div></div>
         <ol class="objectives">
           <li>กำหนดเป้าหมายเว็บไซต์แบบ SMART และระบุกลุ่มผู้ใช้ได้</li>
           <li>เลือกวิธีเก็บความต้องการ และสร้าง Persona, User Journey, Requirements (MoSCoW) ได้</li>
@@ -90,7 +73,7 @@
         </ol>
       </section>
 
-      <div class="part-label">ภาคเช้า · วิเคราะห์ความต้องการผู้ใช้ (หน่วยที่ 2)</div>
+      <div class="part-label">ตอนที่ 1 · วิเคราะห์ความต้องการผู้ใช้</div>
 
       <section class="sec" id="goal">
         <div class="sec-head"><span class="sec-num">01</span><div><h2>เป้าหมายเว็บไซต์ &amp; กลุ่มผู้ใช้</h2><p>ตอบให้ได้ก่อนวาดอะไรทั้งนั้น: “ทำไปเพื่ออะไร” และ “ทำให้ใคร”</p></div></div>
@@ -116,7 +99,7 @@
             </ul>
           </div>
         </div>
-        <div class="nug tech"><p>เว็บไซต์ในไทยส่วนใหญ่มีผู้เข้าชมจาก <b>มือถือมากกว่าคอมพิวเตอร์</b> — ถ้ายังไม่มีข้อมูลจริง ให้สมมติว่าผู้ใช้หลักใช้มือถือไว้ก่อน แล้วยืนยันภายหลังด้วยสถิติ (Google Analytics, Day 5)</p></div>
+        <div class="nug tech"><p>เว็บไซต์ในไทยส่วนใหญ่มีผู้เข้าชมจาก <b>มือถือมากกว่าคอมพิวเตอร์</b> — ถ้ายังไม่มีข้อมูลจริง ให้สมมติว่าผู้ใช้หลักใช้มือถือไว้ก่อน แล้วยืนยันภายหลังด้วยสถิติ (Google Analytics, หน่วยที่ 5)</p></div>
       </section>
 
       <section class="sec" id="research">
@@ -172,8 +155,8 @@
           <ol class="anim-steps">
             <li><b>ระบุผู้ใช้จริง</b> ทั้งกลุ่มหลักและกลุ่มรอง</li>
             <li><b>เก็บข้อมูล</b> ด้วยหลายวิธีผสมกัน (เชิงลึก + เชิงปริมาณ)</li>
-            <li><b>สรุป Insight</b> — ข้อค้นพบสำคัญที่มีหลักฐาน ไม่ใช่ความคิดเห็นของทีม</li>
-            <li><b>สร้าง Persona</b> — ตัวแทนผู้ใช้สมมติที่สร้างจากข้อมูลจริง ใช้ตัดสินใจในทีม (“น้องมายด์จะเข้าใจไหม?”)</li>
+            <li><b>สรุป Insight</b> — ข้อค้นพบสำคัญที่มีหลักฐาน ไม่ใช่ความคิดเห็นของเราเอง</li>
+            <li><b>สร้าง Persona</b> — ตัวแทนผู้ใช้สมมติที่สร้างจากข้อมูลจริง ใช้ช่วยตัดสินใจระหว่างออกแบบ (“น้องมายด์จะเข้าใจไหม?”)</li>
             <li><b>วาด User Journey</b> — ขั้นตอนที่ผู้ใช้ทำตั้งแต่รู้จักจนบรรลุเป้าหมาย พร้อมจุดที่ติดขัด</li>
             <li><b>เขียน Requirements</b> — รายการสิ่งที่เว็บ “ต้องมี/ควรมี” เรียงตามความสำคัญ</li>
           </ol>
@@ -208,11 +191,11 @@
             </table></div>
           </div>
         </div>
-        <div class="nug oops"><p>Persona ที่ “แต่งเอาเอง” โดยไม่มีข้อมูลรองรับ = ความคิดของทีมที่สวมหน้ากากผู้ใช้ ทุกข้อใน Persona ควรอ้างอิงได้ว่ามาจากการสัมภาษณ์/แบบสอบถามข้อไหน</p></div>
+        <div class="nug oops"><p>Persona ที่ “แต่งเอาเอง” โดยไม่มีข้อมูลรองรับ = ความคิดของผู้ออกแบบที่สวมหน้ากากผู้ใช้ ทุกข้อใน Persona ควรอ้างอิงได้ว่ามาจากการสัมภาษณ์/แบบสอบถามข้อไหน</p></div>
       </section>
 
       <section class="sec" id="req">
-        <div class="sec-head"><span class="sec-num">05</span><div><h2>Requirements &amp; การจัดลำดับแบบ MoSCoW</h2><p>เวลาจำกัด 5 วัน — ต้องรู้ว่าอะไร “ต้องมี” อะไร “ไว้ทีหลัง”</p></div></div>
+        <div class="sec-head"><span class="sec-num">05</span><div><h2>Requirements &amp; การจัดลำดับแบบ MoSCoW</h2><p>เวลาและแรงมีจำกัด — ต้องรู้ว่าอะไร “ต้องมี” อะไร “ไว้ทีหลัง”</p></div></div>
         <div class="g2">
           <div class="mini c-blue"><h4>Functional — เว็บต้อง “ทำอะไรได้”</h4><ul class="clean"><li>แสดงหลักสูตรและค่าเทอม</li><li>ฟอร์มสอบถามข้อมูล</li><li>แกลเลอรีผลงาน</li></ul></div>
           <div class="mini c-purple"><h4>Non-functional — “ทำได้ดีแค่ไหน”</h4><ul class="clean"><li>โหลดเสร็จภายใน 3 วินาทีบน 4G</li><li>แสดงผลดีบนจอ 360px ขึ้นไป</li><li>ใช้ HTTPS · คอนทราสต์ผ่าน WCAG AA</li></ul></div>
@@ -266,7 +249,7 @@
         </div>
       </section>
 
-      <div class="part-label">ภาคบ่าย · ออกแบบส่วนติดต่อผู้ใช้ (หน่วยที่ 3)</div>
+      <div class="part-label">ตอนที่ 2 · ออกแบบส่วนติดต่อผู้ใช้</div>
 
       <section class="sec" id="ux">
         <div class="sec-head"><span class="sec-num">07</span><div><h2>หลัก UX: ทำไมบางเว็บ “ใช้ง่าย”</h2><p>UX (User Experience) = ประสบการณ์ทั้งหมด · UI (User Interface) = สิ่งที่มองเห็นและกดได้</p></div></div>
@@ -404,7 +387,7 @@
         </div>
         <div class="nugs">
           <div class="nug pro"><p><b>Mobile-first:</b> ออกแบบจอมือถือก่อน (บังคับให้เลือกแต่สิ่งสำคัญ) แล้วค่อยขยายเป็นจอใหญ่ — ง่ายกว่าย่อเว็บใหญ่ลงมา และ Google ใช้เวอร์ชันมือถือในการจัดอันดับ (Mobile-first indexing)</p></div>
-          <div class="nug tech"><p>Breakpoint ที่ดีควรกำหนดจาก “จุดที่ดีไซน์เริ่มพัง” ไม่ใช่ยึดรุ่นมือถือ — ลากขอบเบราว์เซอร์ให้แคบลงเรื่อย ๆ แล้วดูว่าตรงไหนเริ่มอึดอัด (วิธีเขียน CSS เรียนใน Day 4)</p></div>
+          <div class="nug tech"><p>Breakpoint ที่ดีควรกำหนดจาก “จุดที่ดีไซน์เริ่มพัง” ไม่ใช่ยึดรุ่นมือถือ — ลากขอบเบราว์เซอร์ให้แคบลงเรื่อย ๆ แล้วดูว่าตรงไหนเริ่มอึดอัด (วิธีเขียน CSS เรียนใน หน่วยที่ 4)</p></div>
         </div>
       </section>
 
@@ -483,7 +466,7 @@
           <div class="mini c-pink"><span class="ic-wrap"><i data-i="star"></i></span><h4>ไอคอน</h4><p>Lucide · Font Awesome · Material Symbols · Iconify — ใช้ชุดเดียวทั้งเว็บ (ความหนาเส้นเท่ากัน)</p></div>
           <div class="mini c-purple"><span class="ic-wrap"><i data-i="shield"></i></span><h4>ลิขสิทธิ์</h4><p>ภาพจาก Google Images ไม่ใช่ภาพฟรี! · Creative Commons มีหลายแบบ (บางแบบต้องให้เครดิต/ห้ามใช้เชิงการค้า)</p></div>
         </div>
-        <div class="nug tech"><p>ภาพเว็บควรกว้างไม่เกินที่แสดงจริง (เช่น 1600px สำหรับภาพเต็มจอ) และบีบอัดก่อนใช้ด้วย <b>Squoosh</b> หรือ TinyPNG — ไฟล์ภาพเป็นสาเหตุอันดับหนึ่งที่ทำให้เว็บช้า (รายละเอียดชนิดไฟล์ภาพ Day 3)</p></div>
+        <div class="nug tech"><p>ภาพเว็บควรกว้างไม่เกินที่แสดงจริง (เช่น 1600px สำหรับภาพเต็มจอ) และบีบอัดก่อนใช้ด้วย <b>Squoosh</b> หรือ TinyPNG — ไฟล์ภาพเป็นสาเหตุอันดับหนึ่งที่ทำให้เว็บช้า (รายละเอียดชนิดไฟล์ภาพ หน่วยที่ 3)</p></div>
       </section>
 
       <section class="sec" id="a11y">
@@ -530,7 +513,7 @@
             <li><b>Sitemap</b> — โครงสร้างหน้าทั้งหมด (จาก Card sorting) แล้วเลือกหน้าที่จะออกแบบ</li>
             <li><b>Wireframe (Low-fidelity)</b> — ขาว–เทา บอกแค่ตำแหน่งและขนาด กล่องกากบาท = รูปภาพ · ทำเร็ว แก้ง่าย ใช้คุยว่า “จัดวางแบบนี้โอเคไหม”</li>
             <li><b>Mockup (High-fidelity)</b> — ใส่สี ฟอนต์ ภาพ ข้อความจริง เหมือนเว็บจริง 100% แต่เป็นภาพนิ่ง · ถ้าเชื่อมลิงก์ให้กดเปลี่ยนหน้าได้ใน Figma = <b>Prototype</b></li>
-            <li><b>Website</b> — เขียนโค้ดตาม Mockup (Day 3–4) ได้เว็บที่ใช้งานได้จริง แล้วขึ้นโดเมนจริง (Day 5)</li>
+            <li><b>Website</b> — เขียนโค้ดตาม Mockup (หน่วยที่ 3–4) ได้เว็บที่ใช้งานได้จริง แล้วขึ้นโดเมนจริง (หน่วยที่ 5)</li>
           </ol>
         </figure>
         <h3>Figma ฉบับเร่งรัด</h3>
@@ -544,11 +527,11 @@
           <div><code>Dev Mode / Inspect</code><span>ดูค่า CSS (สี ขนาด ระยะ) ไปเขียนโค้ด</span></div>
           <div><code>Plugins</code><span>Unsplash (ภาพ) · Iconify (ไอคอน) · Contrast (ตรวจสี)</span></div>
         </div>
-        <div class="nug pro"><p>สร้าง <b>Style guide</b> ไว้หน้าแรกของไฟล์ Figma: สีทั้งหมด (พร้อมรหัส HEX) · ฟอนต์และขนาด h1–h3/body · ปุ่ม 3 สถานะ (ปกติ/ชี้/กด) — วันที่ 4 จะนำค่าพวกนี้ไปทำเป็น <b>CSS Variables</b> ได้ทันที</p></div>
+        <div class="nug pro"><p>สร้าง <b>Style guide</b> ไว้หน้าแรกของไฟล์ Figma: สีทั้งหมด (พร้อมรหัส HEX) · ฟอนต์และขนาด h1–h3/body · ปุ่ม 3 สถานะ (ปกติ/ชี้/กด) — หน่วยที่ 4 จะนำค่าพวกนี้ไปทำเป็น <b>CSS Variables</b> ได้ทันที</p></div>
       </section>
 
       <section class="sec" id="lab">
-        <div class="sec-head"><span class="sec-num">16</span><div><h2>ใบงาน Day 2 · ออกแบบโครงงาน</h2><p>งานกลุ่ม · ส่งลิงก์ Figma + เอกสาร · 25 คะแนน</p></div></div>
+        <div class="sec-head"><span class="sec-num">16</span><div><h2>ใบงาน หน่วยที่ 2 · ออกแบบโครงงาน</h2><p>งานเดี่ยว · ส่งลิงก์ Figma + เอกสาร · 25 คะแนน</p></div></div>
         <div class="panel worksheet">
           <div class="ws-head"><h3><i data-i="clipboard"></i>ชิ้นงานที่ต้องส่ง</h3><span class="ws-progress"></span></div>
           <ul class="checklist" data-key="d2">
@@ -567,14 +550,14 @@
               <tr><td>การวิเคราะห์มีหลักฐานจากผู้ใช้จริง (ข้อ 1–4)</td><td class="c">8</td></tr>
               <tr><td>IA/Sitemap สมเหตุสมผล ชื่อเมนูเข้าใจง่าย</td><td class="c">5</td></tr>
               <tr><td>ประยุกต์หลัก UX/UI (ลำดับสายตา กริด สี ตัวอักษร คอนทราสต์)</td><td class="c">8</td></tr>
-              <tr><td>รองรับมือถือ · ทำงานเป็นทีม · ส่งตรงเวลา</td><td class="c">4</td></tr>
+              <tr><td>รองรับมือถือ · ความรับผิดชอบ · ส่งตรงเวลา</td><td class="c">4</td></tr>
             </tbody>
           </table></div>
         </div>
       </section>
 
       <section class="sec" id="quiz">
-        <div class="sec-head"><span class="sec-num">17</span><div><h2>แบบทดสอบ Day 2</h2><p>10 ข้อ · เฉลยทันที</p></div></div>
+        <div class="sec-head"><span class="sec-num">17</span><div><h2>แบบทดสอบ หน่วยที่ 2</h2><p>10 ข้อ · เฉลยทันที</p></div></div>
         <div class="quiz" data-quiz="d2">
           <div class="q" data-a="1"><p class="q-t">เป้าหมายใดเขียนแบบ SMART ได้ดีที่สุด</p><div class="opts"><button>ทำเว็บให้สวยที่สุด</button><button>มีผู้กรอกฟอร์มสอบถามหลักสูตร 30 คนภายในเดือนแรก</button><button>ให้ทุกคนชอบเว็บ</button><button>ใส่ข้อมูลให้ครบ</button></div><p class="q-ex">ชัดเจน วัดได้ และมีกรอบเวลา</p></div>
           <div class="q" data-a="3"><p class="q-t">คำถามสัมภาษณ์ใดดีที่สุด</p><div class="opts"><button>คุณชอบเว็บสีฟ้าใช่ไหม</button><button>คุณจะใช้แชตบอตไหม</button><button>เว็บควรมีกี่หน้า</button><button>ครั้งล่าสุดที่หาข้อมูลเรียนต่อ คุณทำอย่างไร</button></div><p class="q-ex">ให้เล่าจากประสบการณ์จริง ไม่ชี้นำ ไม่ให้ผู้ใช้เดาอนาคต</p></div>
@@ -591,7 +574,7 @@
       </section>
 
       <section class="sec" id="sum">
-        <div class="sec-head"><span class="sec-num">18</span><div><h2>สรุป Day 2</h2><p>“เข้าใจคน → จัดระเบียบเนื้อหา → ออกแบบให้ตาเดินถูกทาง”</p></div></div>
+        <div class="sec-head"><span class="sec-num">18</span><div><h2>สรุป หน่วยที่ 2</h2><p>“เข้าใจคน → จัดระเบียบเนื้อหา → ออกแบบให้ตาเดินถูกทาง”</p></div></div>
         <div class="panel">
           <ul class="ticks">
             <li><b>วิเคราะห์:</b> SMART → Research → Insight → Persona → Journey → Requirements (MoSCoW)</li>
@@ -601,12 +584,12 @@
             <li><b>สี/ตัวอักษร:</b> 60-30-10 · คอนทราสต์ ≥ 4.5:1 · ฟอนต์ไทย 16px+ · line-height 1.6–1.8 · ≤ 2 ฟอนต์</li>
             <li><b>ออกแบบ:</b> Sitemap → Wireframe → Mockup → Prototype · Mobile-first</li>
           </ul>
-          <div class="callout"><i data-i="help"></i><p><strong class="t">เตรียมตัวสำหรับ Day 3</strong>ดาวน์โหลด <b>XAMPP</b> และ <b>VS Code</b> ไว้ล่วงหน้า (ไฟล์ใหญ่) และ Export รูปภาพจาก Mockup ที่จะใช้ในเว็บเก็บไว้ในโฟลเดอร์ <code>images</code></p></div>
+          <div class="callout"><i data-i="help"></i><p><strong class="t">เตรียมตัวสำหรับหน่วยที่ 3</strong>ดาวน์โหลด <b>XAMPP</b> และ <b>VS Code</b> ไว้ล่วงหน้า (ไฟล์ใหญ่) และ Export รูปภาพจาก Mockup ที่จะใช้ในเว็บเก็บไว้ในโฟลเดอร์ <code>images</code></p></div>
           <button class="btn mark-done" type="button" data-lesson="d2"></button>
         </div>
         <nav class="pager">
-          <a href="day-1.html"><small>← วันก่อน</small><strong>Day 1 · เว็บทำงานอย่างไร</strong></a>
-          <a class="next" href="day-3.html"><small>วันถัดไป →</small><strong>Day 3 · Web Server จำลอง &amp; HTML</strong></a>
+          <a href="unit-1.html"><small>← วันก่อน</small><strong>หน่วยที่ 1 · เว็บทำงานอย่างไร</strong></a>
+          <a class="next" href="unit-3.html"><small>วันถัดไป →</small><strong>หน่วยที่ 3 · Web Server จำลอง &amp; HTML</strong></a>
         </nav>
       </section>
     </article>

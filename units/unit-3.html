@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Day 3 Web Server จำลอง &amp; HTML · Web Dev</title>
-<meta name="description" content="วันที่ 3 ติดตั้งโปรแกรมจำลอง Web Server (XAMPP) VS Code และสร้างเว็บด้วย HTML เชิงลึก โครงสร้างเอกสาร Semantic ลิงก์และพาธ รูปภาพ ตาราง ฟอร์ม GET POST และ Meta SEO">
+<title>หน่วยที่ 3 Web Server จำลอง &amp; HTML · Web Dev</title>
+<meta name="description" content="หน่วยที่ 3 ติดตั้งโปรแกรมจำลอง Web Server (XAMPP) VS Code และสร้างเว็บด้วย HTML เชิงลึก โครงสร้างเอกสาร Semantic ลิงก์และพาธ รูปภาพ ตาราง ฟอร์ม GET POST และ Meta SEO">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec4899'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,11 +17,11 @@
 <header class="topbar">
   <nav class="pill" aria-label="เมนูหลัก">
     <a href="../index.html">Web Dev</a>
-    <a href="day-1.html">Day 1</a>
-    <a href="day-2.html">Day 2</a>
-    <a href="day-3.html" aria-current="page">Day 3</a>
-    <a href="day-4.html">Day 4</a>
-    <a href="day-5.html">Day 5</a>
+    <a href="unit-1.html">หน่วย 1</a>
+    <a href="unit-2.html">หน่วย 2</a>
+    <a href="unit-3.html" aria-current="page">หน่วย 3</a>
+    <a href="unit-4.html">หน่วย 4</a>
+    <a href="unit-5.html">หน่วย 5</a>
   </nav>
   <button class="theme-btn" type="button">auto</button>
 </header>
@@ -29,17 +29,17 @@
 <main>
 <div class="wrap">
   <section class="lesson-hero">
-    <div class="crumbs"><a href="../index.html">Web Dev</a> / Day 3</div>
-    <div class="meta"><span class="chip hot">DAY 3 / 5</span><span class="chip">หน่วยที่ 4 + 5 (HTML)</span><span class="chip">09:00–16:30</span><span class="chip c-purple">6 แอนิเมชัน + Live editor</span></div>
+    <div class="crumbs"><a href="../index.html">Web Dev</a> / หน่วยที่ 3</div>
+    <div class="meta"><span class="chip hot">หน่วยที่ 3 / 5</span><span class="chip">โปรแกรมจำลอง Web Server และการสร้างเว็บด้วย HTML</span><span class="chip c-purple">6 แอนิเมชัน + Live editor</span></div>
     <h1>Web Server จำลอง &amp; <span class="grad-text">HTML เชิงลึก</span></h1>
-    <p class="lead">วันนี้เปลี่ยนเครื่องของเราให้เป็น “เว็บเซิร์ฟเวอร์” ด้วย XAMPP ตั้งค่า VS Code แบบมือโปร แล้วเขียน HTML ตั้งแต่โครงสร้างเอกสาร แท็กเชิงความหมาย ลิงก์และพาธ (เรื่องที่ทำให้รูปไม่ขึ้นบ่อยที่สุด) รูปภาพ ตาราง สื่อ ฟอร์มที่ส่งข้อมูลไปให้ PHP จริง ไปจนถึง Meta tag สำหรับ SEO และการแชร์ — จบวันด้วยหน้าเว็บโครงงานเวอร์ชัน HTML ครบทุกหน้า</p>
+    <p class="lead">หน่วยนี้เปลี่ยนเครื่องของเราให้เป็น “เว็บเซิร์ฟเวอร์” ด้วย XAMPP ตั้งค่า VS Code แบบมือโปร แล้วเขียน HTML ตั้งแต่โครงสร้างเอกสาร แท็กเชิงความหมาย ลิงก์และพาธ (เรื่องที่ทำให้รูปไม่ขึ้นบ่อยที่สุด) รูปภาพ ตาราง สื่อ ฟอร์มที่ส่งข้อมูลไปให้ PHP จริง ไปจนถึง Meta tag สำหรับ SEO และการแชร์ — ปิดท้ายด้วยหน้าเว็บโครงงานเวอร์ชัน HTML ครบทุกหน้า</p>
   </section>
 
   <div class="lesson-grid">
     <aside class="toc">
-      <span class="toc-title">DAY 3</span>
+      <span class="toc-title">หน่วยที่ 3</span>
       <nav>
-        <a href="#plan">ตารางเรียน</a>
+        <a href="#plan">จุดประสงค์</a>
         <a href="#server">Web Server คืออะไร</a>
         <a href="#xampp">localhost ทำงานอย่างไร</a>
         <a href="#install">ติดตั้ง XAMPP</a>
@@ -55,7 +55,7 @@
         <a href="#form">ฟอร์ม GET/POST</a>
         <a href="#meta">Meta &amp; SEO</a>
         <a href="#try">Live editor</a>
-        <a href="#lab">ใบงาน Day 3</a>
+        <a href="#lab">ใบงาน หน่วยที่ 3</a>
         <a href="#quiz">แบบทดสอบ</a>
         <a href="#sum">สรุป</a>
       </nav>
@@ -63,24 +63,7 @@
 
     <article class="content">
       <section class="sec" id="plan">
-        <div class="sec-head"><span class="sec-num">00</span><div><h2>ตารางเรียน &amp; เป้าหมายวันที่ 3</h2><p>หน่วยที่ 4 + หน่วยที่ 5 ส่วน HTML (เทียบเท่าสัปดาห์ที่ 8–9)</p></div></div>
-        <div class="tbl-wrap">
-          <table class="tbl sched">
-            <thead><tr><th>เวลา</th><th>หัวข้อ</th><th>รูปแบบ</th></tr></thead>
-            <tbody>
-              <tr><td>09:00–09:30</td><td>Web Server · localhost · พอร์ต · การทำงานของ XAMPP</td><td><span class="k lec">บรรยาย</span> <span class="k demo">แอนิเมชัน</span></td></tr>
-              <tr><td>09:30–10:15</td><td>ติดตั้ง XAMPP · แก้ปัญหาพอร์ตชน · ทดสอบ PHP · phpMyAdmin</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr><td>10:15–10:45</td><td>VS Code + ส่วนขยาย + Emmet · Live Server</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr><td>10:45–12:00</td><td>โค้ด→หน้าจอ · กายวิภาคแท็ก · โครง HTML5 · ข้อความ · Semantic</td><td><span class="k demo">สาธิต</span> <span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr class="brk"><td colspan="3">12:00–13:00 พักกลางวัน</td></tr>
-              <tr><td>13:00–13:45</td><td>ลิงก์ · พาธสัมพัทธ์/สัมบูรณ์ · รูปภาพ · ชนิดไฟล์ภาพ</td><td><span class="k demo">แอนิเมชัน</span> <span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr><td>13:45–14:30</td><td>รายการ · ตาราง · วิดีโอ · ฝัง YouTube/Google Maps</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr><td>14:30–15:15</td><td>ฟอร์ม · GET vs POST · รับข้อมูลด้วย PHP บน XAMPP</td><td><span class="k demo">แอนิเมชัน</span> <span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr><td>15:15–16:15</td><td>Meta/SEO/Open Graph · ตรวจ HTML · สร้างหน้าโครงงานครบ</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr><td>16:15–16:30</td><td>แบบทดสอบ</td><td><span class="k quiz">ทดสอบ</span></td></tr>
-            </tbody>
-          </table>
-        </div>
+        <div class="sec-head"><span class="sec-num">00</span><div><h2>จุดประสงค์การเรียนรู้</h2><p>เมื่อเรียนจบหน่วยนี้ ผู้เรียนสามารถ…</p></div></div>
         <ol class="objectives">
           <li>อธิบายการทำงานของ Web Server และ localhost ได้</li>
           <li>ติดตั้งและตั้งค่า XAMPP, VS Code, Live Server และแก้ปัญหาพื้นฐานได้</li>
@@ -90,7 +73,7 @@
         </ol>
       </section>
 
-      <div class="part-label">ภาคเช้า · โปรแกรมจำลอง Web Server (หน่วยที่ 4)</div>
+      <div class="part-label">ตอนที่ 1 · โปรแกรมจำลอง Web Server</div>
 
       <section class="sec" id="server">
         <div class="sec-head"><span class="sec-num">01</span><div><h2>Web Server คืออะไร</h2><p>โปรแกรมที่ “รอฟัง” คำขอที่พอร์ต 80/443 แล้วส่งไฟล์หรือผลลัพธ์ของโปรแกรมกลับไป</p></div></div>
@@ -98,7 +81,7 @@
           <table class="tbl">
             <thead><tr><th>ซอฟต์แวร์</th><th>จุดเด่น</th><th>เจอที่ไหน</th></tr></thead>
             <tbody>
-              <tr><td><b>Nginx</b> (เอ็นจิน-เอ็กซ์)</td><td>เร็ว ใช้หน่วยความจำน้อย รับคนพร้อมกันได้มาก ทำ Reverse proxy</td><td>เซิร์ฟเวอร์จริงส่วนใหญ่ · Day 5</td></tr>
+              <tr><td><b>Nginx</b> (เอ็นจิน-เอ็กซ์)</td><td>เร็ว ใช้หน่วยความจำน้อย รับคนพร้อมกันได้มาก ทำ Reverse proxy</td><td>เซิร์ฟเวอร์จริงส่วนใหญ่ · หน่วยที่ 5</td></tr>
               <tr><td><b>Apache HTTP Server</b></td><td>เก่าแก่ ยืดหยุ่น ตั้งค่ารายโฟลเดอร์ได้ด้วย <code>.htaccess</code></td><td>XAMPP · Shared hosting</td></tr>
               <tr><td><b>LiteSpeed</b></td><td>เข้ากันกับ Apache เร็ว มี Cache สำหรับ WordPress</td><td>โฮสติ้งเชิงพาณิชย์</td></tr>
               <tr><td><b>IIS</b></td><td>ของ Microsoft ทำงานกับ ASP.NET</td><td>องค์กรที่ใช้ Windows Server</td></tr>
@@ -109,13 +92,13 @@
         <div class="vs">
           <div class="mini c-teal"><h4>โปรแกรมจำลอง (Local)</h4><ul class="clean"><li>อยู่ในเครื่องเรา <code>http://localhost</code></li><li>คนอื่นเข้าไม่ได้ (ปลอดภัย ทดลองได้เต็มที่)</li><li>ไม่ต้องมีโดเมน/เน็ต</li><li>XAMPP, Laragon, MAMP, Docker</li></ul></div>
           <div class="mid">→</div>
-          <div class="mini c-pink"><h4>เซิร์ฟเวอร์จริง (Production)</h4><ul class="clean"><li>อยู่บนอินเทอร์เน็ต มี Public IP</li><li>เข้าผ่านโดเมนของเรา + HTTPS</li><li>เปิด 24 ชม. ต้องดูแลความปลอดภัย</li><li>Linux + Nginx/Apache (Day 5)</li></ul></div>
+          <div class="mini c-pink"><h4>เซิร์ฟเวอร์จริง (Production)</h4><ul class="clean"><li>อยู่บนอินเทอร์เน็ต มี Public IP</li><li>เข้าผ่านโดเมนของเรา + HTTPS</li><li>เปิด 24 ชม. ต้องดูแลความปลอดภัย</li><li>Linux + Nginx/Apache (หน่วยที่ 5)</li></ul></div>
         </div>
         <div class="nug fun"><p>ชื่อ <b>Apache</b> มักถูกเล่าว่ามาจาก “a patchy server” เพราะยุคแรกสร้างจากการเอา <b>แพตช์ (patch)</b> หลายชิ้นมาปะรวมกัน (ผู้สร้างบอกว่าตั้งตามชื่อชนเผ่าอเมริกันพื้นเมือง แต่มุกนี้ติดปากวงการไปแล้ว)</p></div>
       </section>
 
       <section class="sec" id="xampp">
-        <div class="sec-head"><span class="sec-num">02</span><div><h2>localhost ทำงานอย่างไร (XAMPP)</h2><p>เหมือนอินเทอร์เน็ตจำลองในเครื่องเดียว — เข้าใจตรงนี้แล้ว Day 5 จะง่ายมาก</p></div></div>
+        <div class="sec-head"><span class="sec-num">02</span><div><h2>localhost ทำงานอย่างไร (XAMPP)</h2><p>เหมือนอินเทอร์เน็ตจำลองในเครื่องเดียว — เข้าใจตรงนี้แล้ว หน่วยที่ 5 จะง่ายมาก</p></div></div>
         <figure class="anim" id="anim-xampp" data-ms="4200">
           <div class="anim-title"><i data-i="server"></i>เปิด http://localhost/myweb/ แล้วเกิดอะไรขึ้น<span class="chip">7 ขั้น</span></div>
           <div class="stage">
@@ -140,7 +123,7 @@
             <div class="flyer" style="--x1:64%;--y1:76%;--x2:88%;--y2:76%;--c:var(--purple);--dur:2.6s" data-only="6">INSERT ข้อความ</div>
             <div class="flyer" style="--x1:88%;--y1:76%;--x2:64%;--y2:76%;--c:var(--blue);--dur:2.6s;--delay:1.3s" data-only="6">OK</div>
             <div class="flyer" style="--x1:64%;--y1:76%;--x2:12%;--y2:50%;--c:var(--green);--dur:2.6s" data-only="7">HTML ผลลัพธ์</div>
-            <div class="bubble ok wrap pop" style="left:40%;top:86%" data-only="7">Day 5 ย้ายไปเซิร์ฟเวอร์จริง ขั้นตอนเหมือนกันเกือบทั้งหมด!</div>
+            <div class="bubble ok wrap pop" style="left:40%;top:86%" data-only="7">หน่วยที่ 5 ย้ายไปเซิร์ฟเวอร์จริง ขั้นตอนเหมือนกันเกือบทั้งหมด!</div>
           </div>
           <ol class="anim-steps">
             <li><b>localhost</b> ถูกแปลงเป็น <code>127.0.0.1</code> (Loopback) — ข้อมูลไม่ออกจากเครื่องเลย ไม่ต้องใช้ DNS</li>
@@ -200,7 +183,7 @@
               <li><b>Auto Rename Tag</b> — แก้แท็กเปิด แท็กปิดเปลี่ยนตาม</li>
               <li><b>HTML CSS Support</b> — เติมชื่อ class อัตโนมัติ</li>
               <li><b>Thai Language Pack</b> — เมนูภาษาไทย (ถ้าต้องการ)</li>
-              <li><b>Remote - SSH</b> — แก้ไฟล์บนเซิร์ฟเวอร์จริงได้ใน VS Code (Day 5)</li>
+              <li><b>Remote - SSH</b> — แก้ไฟล์บนเซิร์ฟเวอร์จริงได้ใน VS Code (หน่วยที่ 5)</li>
             </ul>
           </div>
           <div class="panel" style="margin:0">
@@ -230,7 +213,7 @@
         </div>
       </section>
 
-      <div class="part-label">ภาคเช้า (ต่อ) · HTML พื้นฐานที่ถูกต้อง (หน่วยที่ 5)</div>
+      <div class="part-label">ตอนที่ 2 · HTML พื้นฐานที่ถูกต้อง</div>
 
       <section class="sec" id="render">
         <div class="sec-head"><span class="sec-num">05</span><div><h2>จากโค้ดสู่หน้าจอ</h2><p>วงจรการทำงานของนักพัฒนาทุกวัน: เขียน → บันทึก → ดูผล</p></div></div>
@@ -401,7 +384,7 @@
         </div>
       </section>
 
-      <div class="part-label">ภาคบ่าย · ลิงก์ สื่อ ฟอร์ม และ SEO</div>
+      <div class="part-label">ตอนที่ 3 · ลิงก์ สื่อ ฟอร์ม และ SEO</div>
 
       <section class="sec" id="paths">
         <div class="sec-head"><span class="sec-num">09</span><div><h2>ลิงก์ &amp; พาธ: ทำไมรูป “ไม่ขึ้น”</h2><p>พาธสัมพัทธ์ (Relative) vs สัมบูรณ์ (Absolute) — สาเหตุอันดับ 1 ของปัญหาหลังอัปโหลด</p></div></div>
@@ -505,7 +488,7 @@
               <li><code>colspan="2"</code> รวมคอลัมน์ · <code>rowspan="2"</code> รวมแถว</li>
               <li><code>&lt;caption&gt;</code> ชื่อตาราง (ช่วย Accessibility)</li>
               <li>รายการ: <code>&lt;ul&gt;</code> ไม่มีลำดับ · <code>&lt;ol&gt;</code> มีลำดับ (<code>type="A"</code>, <code>start="5"</code>) · <code>&lt;dl&gt;&lt;dt&gt;&lt;dd&gt;</code> คำศัพท์–คำอธิบาย</li>
-              <li>เมนูนำทางเขียนเป็น <code>&lt;nav&gt;&lt;ul&gt;&lt;li&gt;&lt;a&gt;</code> — แล้วใช้ CSS จัดเป็นแนวนอน (Day 4)</li>
+              <li>เมนูนำทางเขียนเป็น <code>&lt;nav&gt;&lt;ul&gt;&lt;li&gt;&lt;a&gt;</code> — แล้วใช้ CSS จัดเป็นแนวนอน (หน่วยที่ 4)</li>
             </ul>
             <div class="nug tech"><p>ตารางกว้างบนมือถือจะล้นจอ — ครอบด้วย <code>&lt;div style="overflow-x:auto"&gt;</code> ให้เลื่อนแนวนอนได้ (เว็บนี้ก็ใช้วิธีนี้)</p></div>
           </div>
@@ -628,7 +611,7 @@
 <span class="t-tag">&lt;/head&gt;</span></pre>
         <div class="nugs">
           <div class="nug tech"><p><b>title</b> ควรยาวราว 50–60 ตัวอักษร · <b>description</b> ราว 150–160 ตัวอักษร (เกินจะถูกตัดในผลค้นหา) · ทุกหน้าต้อง <b>ไม่ซ้ำกัน</b></p></div>
-          <div class="nug deep"><p><code>og:image</code> ต้องเป็น <b>URL เต็ม (Absolute)</b> และควรขนาด <b>1200×630px</b> — ทดสอบหน้าตาการแชร์ได้ที่ Facebook Sharing Debugger หลังเว็บขึ้นโดเมนจริง (Day 5)</p></div>
+          <div class="nug deep"><p><code>og:image</code> ต้องเป็น <b>URL เต็ม (Absolute)</b> และควรขนาด <b>1200×630px</b> — ทดสอบหน้าตาการแชร์ได้ที่ Facebook Sharing Debugger หลังเว็บขึ้นโดเมนจริง (หน่วยที่ 5)</p></div>
           <div class="nug pro"><p>ตรวจ HTML ที่ <b>validator.w3.org</b> (เลือก Validate by Direct Input แล้ววางโค้ด) — จะบอกแท็กที่ลืมปิด ซ้อนผิด หรือแอตทริบิวต์ผิด พร้อมเลขบรรทัด</p></div>
         </div>
       </section>
@@ -685,7 +668,7 @@
       </section>
 
       <section class="sec" id="lab">
-        <div class="sec-head"><span class="sec-num">16</span><div><h2>ใบงาน Day 3 · โครงงานเวอร์ชัน HTML</h2><p>งานกลุ่ม (แบ่งหน้ากันทำ) · 25 คะแนน</p></div></div>
+        <div class="sec-head"><span class="sec-num">16</span><div><h2>ใบงาน หน่วยที่ 3 · โครงงานเวอร์ชัน HTML</h2><p>งานเดี่ยว · 25 คะแนน</p></div></div>
         <div class="panel worksheet">
           <div class="ws-head"><h3><i data-i="clipboard"></i>ขั้นตอน</h3><span class="ws-progress"></span></div>
           <ul class="checklist" data-key="d3">
@@ -702,7 +685,7 @@
       </section>
 
       <section class="sec" id="quiz">
-        <div class="sec-head"><span class="sec-num">17</span><div><h2>แบบทดสอบ Day 3</h2><p>10 ข้อ</p></div></div>
+        <div class="sec-head"><span class="sec-num">17</span><div><h2>แบบทดสอบ หน่วยที่ 3</h2><p>10 ข้อ</p></div></div>
         <div class="quiz" data-quiz="d3">
           <div class="q" data-a="2"><p class="q-t">ไฟล์เว็บใน XAMPP ต้องวางไว้ที่โฟลเดอร์ใดจึงเปิดผ่าน http://localhost ได้</p><div class="opts"><button>C:\xampp\php</button><button>Desktop</button><button>C:\xampp\htdocs</button><button>C:\Windows</button></div><p class="q-ex">htdocs คือ DocumentRoot ของ Apache ใน XAMPP</p></div>
           <div class="q" data-a="0"><p class="q-t">Apache ใน XAMPP Start ไม่ได้เพราะพอร์ต 80 ถูกใช้ วิธีแก้ที่ถูกต้องคือ</p><div class="opts"><button>เปลี่ยน Listen เป็น 8080 ใน httpd.conf แล้วเข้า localhost:8080</button><button>ลบ XAMPP</button><button>เปลี่ยนชื่อโฟลเดอร์ htdocs</button><button>ปิด MySQL</button></div><p class="q-ex">หรือปิดโปรแกรมที่ใช้พอร์ต 80 อยู่</p></div>
@@ -719,7 +702,7 @@
       </section>
 
       <section class="sec" id="sum">
-        <div class="sec-head"><span class="sec-num">18</span><div><h2>สรุป Day 3</h2><p>เครื่องเราเป็นเซิร์ฟเวอร์ได้ และเว็บมี “โครง” ครบแล้ว</p></div></div>
+        <div class="sec-head"><span class="sec-num">18</span><div><h2>สรุป หน่วยที่ 3</h2><p>เครื่องเราเป็นเซิร์ฟเวอร์ได้ และเว็บมี “โครง” ครบแล้ว</p></div></div>
         <div class="panel">
           <ul class="ticks">
             <li><b>Web Server</b> รอฟังที่พอร์ต 80/443 · localhost = 127.0.0.1 · XAMPP = Apache + MariaDB + PHP · DocumentRoot = htdocs</li>
@@ -729,12 +712,12 @@
             <li><b>รูป</b>: WebP/SVG · alt · width/height · lazy · <b>ตาราง</b> ใช้กับข้อมูล · <b>ฟอร์ม</b> name + label · GET/POST · htmlspecialchars</li>
             <li><b>SEO</b>: title · description · Open Graph · favicon · validator</li>
           </ul>
-          <div class="callout"><i data-i="help"></i><p><strong class="t">พรุ่งนี้ Day 4</strong>เว็บของเรายังหน้าตาแบบ “ปี 1995” — พรุ่งนี้จะแต่งด้วย CSS ให้เหมือน Mockup ใน Figma และทำให้ Responsive บนมือถือ</p></div>
+          <div class="callout"><i data-i="help"></i><p><strong class="t">หน่วยถัดไป (หน่วยที่ 4)</strong>เว็บของเรายังหน้าตาแบบ “ปี 1995” — หน่วยถัดไปจะแต่งด้วย CSS ให้เหมือน Mockup ใน Figma และทำให้ Responsive บนมือถือ</p></div>
           <button class="btn mark-done" type="button" data-lesson="d3"></button>
         </div>
         <nav class="pager">
-          <a href="day-2.html"><small>← วันก่อน</small><strong>Day 2 · วิเคราะห์ผู้ใช้ &amp; ออกแบบ UI</strong></a>
-          <a class="next" href="day-4.html"><small>วันถัดไป →</small><strong>Day 4 · CSS, Responsive &amp; JavaScript</strong></a>
+          <a href="unit-2.html"><small>← วันก่อน</small><strong>หน่วยที่ 2 · วิเคราะห์ผู้ใช้ &amp; ออกแบบ UI</strong></a>
+          <a class="next" href="unit-4.html"><small>วันถัดไป →</small><strong>หน่วยที่ 4 · CSS, Responsive &amp; JavaScript</strong></a>
         </nav>
       </section>
     </article>

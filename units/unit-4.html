@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Day 4 CSS, Responsive &amp; JavaScript · Web Dev</title>
-<meta name="description" content="วันที่ 4 ตกแต่งเว็บด้วย CSS Selector Specificity Box Model Flexbox Grid Responsive Media Query CSS Variables และ JavaScript DOM Events พร้อมเครื่องมือทดลองสด">
+<title>หน่วยที่ 4 CSS, Responsive &amp; JavaScript · Web Dev</title>
+<meta name="description" content="หน่วยที่ 4 ตกแต่งเว็บด้วย CSS Selector Specificity Box Model Flexbox Grid Responsive Media Query CSS Variables และ JavaScript DOM Events พร้อมเครื่องมือทดลองสด">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec4899'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,11 +17,11 @@
 <header class="topbar">
   <nav class="pill" aria-label="เมนูหลัก">
     <a href="../index.html">Web Dev</a>
-    <a href="day-1.html">Day 1</a>
-    <a href="day-2.html">Day 2</a>
-    <a href="day-3.html">Day 3</a>
-    <a href="day-4.html" aria-current="page">Day 4</a>
-    <a href="day-5.html">Day 5</a>
+    <a href="unit-1.html">หน่วย 1</a>
+    <a href="unit-2.html">หน่วย 2</a>
+    <a href="unit-3.html">หน่วย 3</a>
+    <a href="unit-4.html" aria-current="page">หน่วย 4</a>
+    <a href="unit-5.html">หน่วย 5</a>
   </nav>
   <button class="theme-btn" type="button">auto</button>
 </header>
@@ -29,17 +29,17 @@
 <main>
 <div class="wrap">
   <section class="lesson-hero">
-    <div class="crumbs"><a href="../index.html">Web Dev</a> / Day 4</div>
-    <div class="meta"><span class="chip hot">DAY 4 / 5</span><span class="chip">หน่วยที่ 5 (CSS + JS)</span><span class="chip">09:00–16:30</span><span class="chip c-purple">2 แอนิเมชัน + 4 แล็บทดลองสด</span></div>
+    <div class="crumbs"><a href="../index.html">Web Dev</a> / หน่วยที่ 4</div>
+    <div class="meta"><span class="chip hot">หน่วยที่ 4 / 5</span><span class="chip">การตกแต่งเว็บด้วย CSS, Responsive และ JavaScript</span><span class="chip c-purple">2 แอนิเมชัน + 4 แล็บทดลองสด</span></div>
     <h1>CSS · <span class="grad-text">Responsive</span> · JavaScript</h1>
-    <p class="lead">วันนี้เปลี่ยนหน้าเว็บ HTML เปล่า ๆ ให้เหมือน Mockup ใน Figma: เข้าใจว่า CSS “เลือก” และ “ตัดสิน” กฎอย่างไร (Specificity — เรื่องที่ทำให้มือใหม่งงที่สุด) กล่อง Box Model จัดวางด้วย Flexbox/Grid ทำให้ Responsive ทุกจอ ใช้ CSS Variables จาก Style guide และปิดท้ายด้วย JavaScript ทำเมนูมือถือที่กดได้จริง</p>
+    <p class="lead">หน่วยนี้เปลี่ยนหน้าเว็บ HTML เปล่า ๆ ให้เหมือน Mockup ใน Figma: เข้าใจว่า CSS “เลือก” และ “ตัดสิน” กฎอย่างไร (Specificity — เรื่องที่ทำให้มือใหม่งงที่สุด) กล่อง Box Model จัดวางด้วย Flexbox/Grid ทำให้ Responsive ทุกจอ ใช้ CSS Variables จาก Style guide และปิดท้ายด้วย JavaScript ทำเมนูมือถือที่กดได้จริง</p>
   </section>
 
   <div class="lesson-grid">
     <aside class="toc">
-      <span class="toc-title">DAY 4</span>
+      <span class="toc-title">หน่วยที่ 4</span>
       <nav>
-        <a href="#plan">ตารางเรียน</a>
+        <a href="#plan">จุดประสงค์</a>
         <a href="#intro">CSS คืออะไร</a>
         <a href="#selectors">Selector</a>
         <a href="#cascade">Cascade &amp; Specificity</a>
@@ -54,7 +54,7 @@
         <a href="#js">JavaScript</a>
         <a href="#arch">จัดระเบียบ CSS</a>
         <a href="#devtools">DevTools สำหรับ CSS</a>
-        <a href="#lab">ใบงาน Day 4</a>
+        <a href="#lab">ใบงาน หน่วยที่ 4</a>
         <a href="#quiz">แบบทดสอบ</a>
         <a href="#sum">สรุป</a>
       </nav>
@@ -62,25 +62,7 @@
 
     <article class="content">
       <section class="sec" id="plan">
-        <div class="sec-head"><span class="sec-num">00</span><div><h2>ตารางเรียน &amp; เป้าหมายวันที่ 4</h2><p>หน่วยที่ 5 ส่วน CSS/JS (เทียบเท่าสัปดาห์ที่ 10–11)</p></div></div>
-        <div class="tbl-wrap">
-          <table class="tbl sched">
-            <thead><tr><th>เวลา</th><th>หัวข้อ</th><th>รูปแบบ</th></tr></thead>
-            <tbody>
-              <tr><td>09:00–09:30</td><td>CSS 3 วิธี · โครงสร้างคำสั่ง · Selector</td><td><span class="k lec">บรรยาย</span></td></tr>
-              <tr><td>09:30–10:15</td><td>Cascade · Specificity (แล็บทดลอง) · Inheritance</td><td><span class="k lab">แล็บ</span></td></tr>
-              <tr><td>10:15–11:00</td><td>สี หน่วย ฟอนต์ไทยจาก Google Fonts</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr><td>11:00–12:00</td><td>Box Model · box-sizing · display · position</td><td><span class="k demo">แอนิเมชัน</span> <span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr class="brk"><td colspan="3">12:00–13:00 พักกลางวัน</td></tr>
-              <tr><td>13:00–13:45</td><td>Flexbox (แล็บทดลอง) · ทำ Navbar</td><td><span class="k lab">แล็บ</span></td></tr>
-              <tr><td>13:45–14:15</td><td>CSS Grid · การ์ดสินค้า/แกลเลอรี</td><td><span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr><td>14:15–15:00</td><td>Responsive · Media Query · Mobile-first (แล็บลากความกว้าง)</td><td><span class="k lab">แล็บ</span></td></tr>
-              <tr><td>15:00–15:30</td><td>CSS Variables · Transition · Dark mode</td><td><span class="k demo">สาธิต</span></td></tr>
-              <tr><td>15:30–16:15</td><td>JavaScript: DOM · Event · เมนูมือถือ</td><td><span class="k demo">แอนิเมชัน</span> <span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr><td>16:15–16:30</td><td>แบบทดสอบ</td><td><span class="k quiz">ทดสอบ</span></td></tr>
-            </tbody>
-          </table>
-        </div>
+        <div class="sec-head"><span class="sec-num">00</span><div><h2>จุดประสงค์การเรียนรู้</h2><p>เมื่อเรียนจบหน่วยนี้ ผู้เรียนสามารถ…</p></div></div>
         <ol class="objectives">
           <li>เขียน CSS แบบไฟล์ภายนอก และเลือก Selector ได้เหมาะสม</li>
           <li>อธิบายลำดับการตัดสินกฎ CSS (Cascade, Specificity, Inheritance) ได้</li>
@@ -90,7 +72,7 @@
         </ol>
       </section>
 
-      <div class="part-label">ภาคเช้า · พื้นฐาน CSS ที่ต้องแน่น</div>
+      <div class="part-label">ตอนที่ 1 · พื้นฐาน CSS ที่ต้องแน่น</div>
 
       <section class="sec" id="intro">
         <div class="sec-head"><span class="sec-num">01</span><div><h2>CSS คืออะไร &amp; ใส่ได้ 3 วิธี</h2><p>CSS (Cascading Style Sheets) = ภาษากำหนดหน้าตา</p></div></div>
@@ -191,7 +173,7 @@
       </section>
 
       <section class="sec" id="font">
-        <div class="sec-head"><span class="sec-num">05</span><div><h2>ฟอนต์ไทยจาก Google Fonts &amp; ข้อความ</h2><p>นำค่าจาก Style guide (Day 2) มาใช้จริง</p></div></div>
+        <div class="sec-head"><span class="sec-num">05</span><div><h2>ฟอนต์ไทยจาก Google Fonts &amp; ข้อความ</h2><p>นำค่าจาก Style guide (หน่วยที่ 2) มาใช้จริง</p></div></div>
         <div class="code-head"><i></i><i></i><i></i>ใน &lt;head&gt; ของทุกหน้า</div>
 <pre class="code"><span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"preconnect"</span> <span class="t-attr">href</span>=<span class="t-val">"https://fonts.googleapis.com"</span><span class="t-tag">&gt;</span>
 <span class="t-tag">&lt;link</span> <span class="t-attr">rel</span>=<span class="t-val">"preconnect"</span> <span class="t-attr">href</span>=<span class="t-val">"https://fonts.gstatic.com"</span> <span class="t-attr">crossorigin</span><span class="t-tag">&gt;</span>
@@ -282,7 +264,7 @@
         <div class="nug tech"><p><code>z-index</code> (ใครอยู่บน) ทำงานกับองค์ประกอบที่มี position ไม่ใช่ static เท่านั้น — ถ้าตั้ง z-index แล้วไม่มีผล ให้ตรวจ position ก่อน</p></div>
       </section>
 
-      <div class="part-label">ภาคบ่าย · จัดวาง Layout และทำให้ Responsive</div>
+      <div class="part-label">ตอนที่ 2 · จัดวาง Layout และทำให้ Responsive</div>
 
       <section class="sec" id="flex">
         <div class="sec-head"><span class="sec-num">08</span><div><h2>Flexbox — แล็บทดลองสด</h2><p>จัดของ “แถวเดียว” (แนวนอนหรือแนวตั้ง) · กดปุ่มแล้วดูกล่องเปลี่ยน + โค้ดที่ได้</p></div></div>
@@ -411,7 +393,7 @@
 <span class="t-sel">.btn:focus-visible</span> { <span class="t-prop">outline</span>: <span class="t-num">3px</span> <span class="t-val">solid</span> <span class="t-val">var</span>(<span class="t-prop">--brand</span>); }  <span class="t-com">/* Accessibility */</span></pre>
         <div class="nugs">
           <div class="nug pro"><p>เปลี่ยนธีมทั้งเว็บด้วยการแก้ตัวแปรที่เดียว — เว็บที่คุณกำลังดูอยู่นี้ใช้เทคนิคนี้ทำปุ่ม auto/light/dark มุมขวาบน (ลองกดดู!)</p></div>
-          <div class="nug deep"><p>แอนิเมชันที่ลื่นที่สุดคือการเปลี่ยน <code>transform</code> และ <code>opacity</code> เพราะทำที่ขั้น Composite ด้วย GPU (Day 1) · ถ้าเปลี่ยน <code>width</code> <code>top</code> <code>margin</code> จะต้อง Layout ใหม่ทุกเฟรม → กระตุก</p></div>
+          <div class="nug deep"><p>แอนิเมชันที่ลื่นที่สุดคือการเปลี่ยน <code>transform</code> และ <code>opacity</code> เพราะทำที่ขั้น Composite ด้วย GPU (หน่วยที่ 1) · ถ้าเปลี่ยน <code>width</code> <code>top</code> <code>margin</code> จะต้อง Layout ใหม่ทุกเฟรม → กระตุก</p></div>
           <div class="nug tech"><p>เคารพผู้ใช้ที่เวียนหัวกับการเคลื่อนไหว: <code>@media (prefers-reduced-motion: reduce) { * { animation: none; transition: none; } }</code></p></div>
         </div>
       </section>
@@ -485,7 +467,7 @@ btn.<span class="t-prop">addEventListener</span>(<span class="t-str">'click'</sp
       </section>
 
       <section class="sec" id="arch">
-        <div class="sec-head"><span class="sec-num">13</span><div><h2>จัดระเบียบไฟล์ CSS &amp; เฟรมเวิร์ก</h2><p>โค้ดที่ทีมอ่านง่าย = แก้เร็ว บั๊กน้อย</p></div></div>
+        <div class="sec-head"><span class="sec-num">13</span><div><h2>จัดระเบียบไฟล์ CSS &amp; เฟรมเวิร์ก</h2><p>โค้ดที่อ่านง่าย (ทั้งสำหรับตัวเราในอนาคตและคนอื่น) = แก้เร็ว บั๊กน้อย</p></div></div>
         <div class="g2">
           <div class="panel" style="margin:0">
             <h3><i data-i="list"></i>ลำดับหมวดใน style.css</h3>
@@ -523,7 +505,7 @@ btn.<span class="t-prop">addEventListener</span>(<span class="t-str">'click'</sp
       </section>
 
       <section class="sec" id="lab">
-        <div class="sec-head"><span class="sec-num">15</span><div><h2>ใบงาน Day 4 · แต่งเว็บโครงงานให้เหมือน Mockup</h2><p>งานกลุ่ม · 30 คะแนน · พรุ่งนี้จะนำขึ้นโดเมนจริง</p></div></div>
+        <div class="sec-head"><span class="sec-num">15</span><div><h2>ใบงาน หน่วยที่ 4 · แต่งเว็บโครงงานให้เหมือน Mockup</h2><p>งานเดี่ยว · 30 คะแนน · หน่วยถัดไปจะนำขึ้นโดเมนจริง</p></div></div>
         <div class="panel worksheet">
           <div class="ws-head"><h3><i data-i="clipboard"></i>ขั้นตอน</h3><span class="ws-progress"></span></div>
           <ul class="checklist" data-key="d4">
@@ -540,7 +522,7 @@ btn.<span class="t-prop">addEventListener</span>(<span class="t-str">'click'</sp
       </section>
 
       <section class="sec" id="quiz">
-        <div class="sec-head"><span class="sec-num">16</span><div><h2>แบบทดสอบ Day 4</h2><p>10 ข้อ</p></div></div>
+        <div class="sec-head"><span class="sec-num">16</span><div><h2>แบบทดสอบ หน่วยที่ 4</h2><p>10 ข้อ</p></div></div>
         <div class="quiz" data-quiz="d4">
           <div class="q" data-a="2"><p class="q-t">วิธีใส่ CSS ใดเหมาะที่สุดสำหรับเว็บหลายหน้า</p><div class="opts"><button>Inline style ทุกแท็ก</button><button>&lt;style&gt; ในทุกหน้า</button><button>ไฟล์ภายนอก + &lt;link&gt;</button><button>ใช้ &lt;font&gt;</button></div><p class="q-ex">แก้ที่เดียวเปลี่ยนทั้งเว็บ และเบราว์เซอร์ Cache ได้</p></div>
           <div class="q" data-a="1"><p class="q-t">Selector ใดมี Specificity สูงที่สุด</p><div class="opts"><button>nav ul li a</button><button>#menu a</button><button>.nav .link</button><button>a</button></div><p class="q-ex">#menu a = (1,0,1) ชนะทุกตัวที่ไม่มี ID</p></div>
@@ -557,7 +539,7 @@ btn.<span class="t-prop">addEventListener</span>(<span class="t-str">'click'</sp
       </section>
 
       <section class="sec" id="sum">
-        <div class="sec-head"><span class="sec-num">17</span><div><h2>สรุป Day 4</h2><p>เว็บของเราสวยและใช้ได้ทุกจอแล้ว</p></div></div>
+        <div class="sec-head"><span class="sec-num">17</span><div><h2>สรุป หน่วยที่ 4</h2><p>เว็บของเราสวยและใช้ได้ทุกจอแล้ว</p></div></div>
         <div class="panel">
           <ul class="ticks">
             <li><b>CSS</b> ไฟล์ภายนอก · Selector (เน้น class) · Cascade = !important → Specificity (ID, Class, Tag) → ลำดับ · Inheritance</li>
@@ -567,12 +549,12 @@ btn.<span class="t-prop">addEventListener</span>(<span class="t-str">'click'</sp
             <li><b>Responsive</b> viewport + Mobile-first min-width · ทดสอบมือถือจริง</li>
             <li><b>Modern</b> CSS Variables · transition (transform/opacity) · dark mode · <b>JS</b> querySelector + addEventListener + classList</li>
           </ul>
-          <div class="callout"><i data-i="help"></i><p><strong class="t">พรุ่งนี้ Day 5 (วันสุดท้าย!)</strong>เตรียมข้อมูลเข้าเซิร์ฟเวอร์ (IP, ชื่อผู้ใช้ SSH หรือบัญชี SFTP) และโดเมน/ซับโดเมนที่ครูแจก — เราจะติดตั้ง WordPress ทดสอบ และนำเว็บขึ้นออนไลน์พร้อม HTTPS</p></div>
+          <div class="callout"><i data-i="help"></i><p><strong class="t">หน่วยถัดไป (หน่วยที่ 5 — หน่วยสุดท้าย!)</strong>เตรียมข้อมูลเข้าเซิร์ฟเวอร์ (IP, ชื่อผู้ใช้ SSH หรือบัญชี SFTP) และโดเมน/ซับโดเมนที่ครูแจก — เราจะติดตั้ง WordPress ทดสอบ และนำเว็บขึ้นออนไลน์พร้อม HTTPS</p></div>
           <button class="btn mark-done" type="button" data-lesson="d4"></button>
         </div>
         <nav class="pager">
-          <a href="day-3.html"><small>← วันก่อน</small><strong>Day 3 · Web Server จำลอง &amp; HTML</strong></a>
-          <a class="next" href="day-5.html"><small>วันถัดไป →</small><strong>Day 5 · CMS &amp; เผยแพร่บนโดเมนจริง</strong></a>
+          <a href="unit-3.html"><small>← วันก่อน</small><strong>หน่วยที่ 3 · Web Server จำลอง &amp; HTML</strong></a>
+          <a class="next" href="unit-5.html"><small>วันถัดไป →</small><strong>หน่วยที่ 5 · CMS &amp; เผยแพร่บนโดเมนจริง</strong></a>
         </nav>
       </section>
     </article>

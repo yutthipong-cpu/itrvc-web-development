@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Web Dev · การสร้างเว็บไซต์ 5 วัน</title>
-<meta name="description" content="สื่อการเรียนรู้แบบแอนิเมชัน รายวิชา 31900-0001 การสร้างเว็บไซต์ หลักสูตรเข้มข้น 5 วัน ตั้งแต่เว็บทำงานอย่างไร จนเผยแพร่บนเซิร์ฟเวอร์และโดเมนของตนเอง">
+<title>Web Dev · การสร้างเว็บไซต์</title>
+<meta name="description" content="สื่อการเรียนรู้แบบแอนิเมชัน รายวิชา 31900-0001 การสร้างเว็บไซต์ 5 หน่วยการเรียน ตั้งแต่เว็บทำงานอย่างไร จนเผยแพร่บนเซิร์ฟเวอร์และโดเมนของตนเอง">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%23f97316'/%3E%3Cstop offset='.5' stop-color='%23ec4899'/%3E%3Cstop offset='1' stop-color='%23a855f7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,58 +18,58 @@
 <header class="topbar">
   <nav class="pill" aria-label="เมนูหลัก">
     <a href="index.html" aria-current="page">Web Dev</a>
-    <a href="days/day-1.html">Day 1</a>
-    <a href="days/day-2.html">Day 2</a>
-    <a href="days/day-3.html">Day 3</a>
-    <a href="days/day-4.html">Day 4</a>
-    <a href="days/day-5.html">Day 5</a>
+    <a href="units/unit-1.html">หน่วย 1</a>
+    <a href="units/unit-2.html">หน่วย 2</a>
+    <a href="units/unit-3.html">หน่วย 3</a>
+    <a href="units/unit-4.html">หน่วย 4</a>
+    <a href="units/unit-5.html">หน่วย 5</a>
     <a href="course.html">วิเคราะห์รายวิชา</a>
   </nav>
-  <button class="theme-btn" type="button">auto</button>
+  <button class="theme-btn" type="button">โหมด</button>
 </header>
 
 <main>
   <div class="wrap">
     <section class="hero">
-      <span class="badge"><span class="dot"></span>5-day intensive · all systems online</span>
+      <span class="badge"><span class="dot"></span>5 units · all systems online</span>
       <h1>Web <span class="grad-text">Dev</span></h1>
-      <p class="sub">31900-0001 การสร้างเว็บไซต์ — 5 วันจบทั้งวิชา ตั้งแต่ “เว็บทำงานอย่างไร” จนเว็บของเราขึ้นโดเมนจริง</p>
+      <p class="sub">31900-0001 การสร้างเว็บไซต์ — 5 หน่วย ตั้งแต่ “เว็บทำงานอย่างไร” จนเว็บของเราขึ้นโดเมนจริง</p>
       <div class="term-line"><i data-i="terminal"></i><span class="prompt">~$</span><span class="typer" data-typer="nslookup student01.example.ac.th|ssh student01@203.0.113.50|sudo nginx -t &amp;&amp; sudo systemctl reload nginx|sudo certbot --nginx -d student01.example.ac.th|curl -I https://student01.example.ac.th"></span></div>
     </section>
 
-    <section class="cards" aria-label="บทเรียน 5 วัน">
-      <a class="card reveal" href="days/day-1.html" data-done-id="d1">
+    <section class="cards" aria-label="หน่วยการเรียน">
+      <a class="card reveal" href="units/unit-1.html" data-done-id="d1">
         <span class="ic-wrap"><i data-i="globe"></i></span><span class="go"><i data-i="arrow"></i></span><span class="done-mark"><i data-i="check"></i>จบแล้ว</span>
-        <span class="day-no">DAY 1 · หน่วยที่ 1</span>
-        <h3>เว็บทำงานอย่างไร</h3>
+        <span class="day-no">หน่วยที่ 1</span>
+        <h3>หลักการและโครงสร้างการทำงานของเว็บไซต์</h3>
         <p>อินเทอร์เน็ต URL IP DNS HTTP HTTPS · เบราว์เซอร์วาดหน้าเว็บ · Static/Dynamic · วงจรพัฒนาเว็บ</p>
         <div class="meta"><span class="chip c-orange">10 แอนิเมชัน</span><span class="chip">curl · nslookup</span></div>
       </a>
-      <a class="card reveal" href="days/day-2.html" data-done-id="d2">
+      <a class="card reveal" href="units/unit-2.html" data-done-id="d2">
         <span class="ic-wrap"><i data-i="palette"></i></span><span class="go"><i data-i="arrow"></i></span><span class="done-mark"><i data-i="check"></i>จบแล้ว</span>
-        <span class="day-no">DAY 2 · หน่วยที่ 2–3</span>
-        <h3>วิเคราะห์ผู้ใช้ &amp; ออกแบบ UI</h3>
+        <span class="day-no">หน่วยที่ 2</span>
+        <h3>การวิเคราะห์ความต้องการผู้ใช้และการออกแบบส่วนติดต่อผู้ใช้</h3>
         <p>Persona · MoSCoW · Card sorting · UX laws · ลำดับสายตา · Grid · สี · ฟอนต์ไทย · Figma</p>
         <div class="meta"><span class="chip c-pink">วัดคอนทราสต์สด</span><span class="chip">Figma</span></div>
       </a>
-      <a class="card reveal" href="days/day-3.html" data-done-id="d3">
+      <a class="card reveal" href="units/unit-3.html" data-done-id="d3">
         <span class="ic-wrap"><i data-i="server"></i></span><span class="go"><i data-i="arrow"></i></span><span class="done-mark"><i data-i="check"></i>จบแล้ว</span>
-        <span class="day-no">DAY 3 · หน่วยที่ 4–5</span>
-        <h3>Web Server จำลอง &amp; HTML</h3>
+        <span class="day-no">หน่วยที่ 3</span>
+        <h3>โปรแกรมจำลอง Web Server และการสร้างเว็บด้วย HTML</h3>
         <p>XAMPP · localhost · VS Code + Emmet · Semantic HTML · พาธ · รูป · ฟอร์ม GET/POST + PHP · SEO meta</p>
         <div class="meta"><span class="chip c-purple">Live editor</span><span class="chip">XAMPP</span></div>
       </a>
-      <a class="card reveal" href="days/day-4.html" data-done-id="d4">
+      <a class="card reveal" href="units/unit-4.html" data-done-id="d4">
         <span class="ic-wrap"><i data-i="code"></i></span><span class="go"><i data-i="arrow"></i></span><span class="done-mark"><i data-i="check"></i>จบแล้ว</span>
-        <span class="day-no">DAY 4 · หน่วยที่ 5</span>
-        <h3>CSS · Responsive · JavaScript</h3>
+        <span class="day-no">หน่วยที่ 4</span>
+        <h3>การตกแต่งเว็บด้วย CSS, Responsive และ JavaScript</h3>
         <p>Specificity · Box model · Flexbox · Grid · Mobile-first · CSS Variables · DOM events</p>
         <div class="meta"><span class="chip c-teal">4 แล็บทดลองสด</span></div>
       </a>
-      <a class="card reveal" href="days/day-5.html" data-done-id="d5">
+      <a class="card reveal" href="units/unit-5.html" data-done-id="d5">
         <span class="ic-wrap"><i data-i="rocket"></i></span><span class="go"><i data-i="arrow"></i></span><span class="done-mark"><i data-i="check"></i>จบแล้ว</span>
-        <span class="day-no">DAY 5 · หน่วยที่ 6–7</span>
-        <h3>CMS &amp; ขึ้นโดเมนจริง</h3>
+        <span class="day-no">หน่วยที่ 5</span>
+        <h3>การสร้างเว็บด้วย CMS การทดสอบ และการเผยแพร่เว็บไซต์</h3>
         <p>WordPress · ทดสอบ · DNS · SSH/SFTP · Nginx · HTTPS Let's Encrypt · SEO · ดูแลรักษา</p>
         <div class="meta"><span class="chip hot">server ของเราเอง</span></div>
       </a>
@@ -77,47 +77,47 @@
         <span class="ic-wrap"><i data-i="clipboard"></i></span><span class="go"><i data-i="arrow"></i></span>
         <span class="day-no">เอกสารรายวิชา</span>
         <h3>วิเคราะห์รายวิชา 15 สัปดาห์</h3>
-        <p>แตกคำอธิบายรายวิชาเป็น 7 หน่วย · แผนการสอน 15 สัปดาห์ · เทียบกับคอร์ส 5 วัน · การวัดผล</p>
+        <p>แตกคำอธิบายรายวิชาเป็น 5 หน่วย · สมรรถนะประจำหน่วย · แผนการสอน 15 สัปดาห์ · การวัดผล</p>
         <div class="meta"><span class="chip">ท1-ป4-น3</span><span class="chip">หลักสูตร 2567</span></div>
       </a>
     </section>
 
     <section class="sec">
-      <div class="sec-head"><span class="sec-num"><i data-i="flag"></i></span><div><h2>ความก้าวหน้าของฉัน</h2><p>กด “ทำเครื่องหมายว่าเรียนจบ” ท้ายแต่ละวัน (บันทึกในเบราว์เซอร์เครื่องนี้)</p></div></div>
+      <div class="sec-head"><span class="sec-num"><i data-i="flag"></i></span><div><h2>ความก้าวหน้าของฉัน</h2><p>กด “ทำเครื่องหมายว่าเรียนจบ” ท้ายแต่ละหน่วย (บันทึกในเบราว์เซอร์เครื่องนี้)</p></div></div>
       <div class="panel" data-progress="d1,d2,d3,d4,d5">
-        <div style="display:flex;justify-content:space-between;font:600 13px/1 var(--mono);color:var(--muted);margin-bottom:10px"><span>5-DAY PROGRESS</span><span class="progress-txt">0/5</span></div>
+        <div style="display:flex;justify-content:space-between;font:600 13px/1 var(--mono);color:var(--muted);margin-bottom:10px"><span>เรียนจบแล้ว</span><span class="progress-txt">0/5</span></div>
         <div class="progress"><span></span></div>
       </div>
     </section>
 
     <section class="sec">
-      <div class="sec-head"><span class="sec-num"><i data-i="map"></i></span><div><h2>เส้นทาง 5 วัน = วงจรพัฒนาเว็บไซต์จริง</h2><p>ทุกวันต่อยอดโครงงานเดียวกัน จนวันสุดท้ายเว็บออนไลน์บนโดเมนของเราเอง</p></div></div>
+      <div class="sec-head"><span class="sec-num"><i data-i="map"></i></span><div><h2>5 หน่วย = วงจรพัฒนาเว็บไซต์จริง</h2><p>ทุกหน่วยต่อยอดโครงงานเว็บไซต์ของตัวเองชิ้นเดียว จนหน่วยสุดท้ายเว็บออนไลน์บนโดเมนจริง</p></div></div>
       <div class="panel">
         <ol class="timeline">
-          <li><span class="yr">Day 1 · เข้าใจระบบ</span><p>วางแผนโครงงาน ตั้งทีม — ผลลัพธ์: แผนโครงการ</p></li>
-          <li><span class="yr">Day 2 · วิเคราะห์ + ออกแบบ</span><p>Persona, Requirements, Sitemap, Wireframe, Mockup — ผลลัพธ์: ลิงก์ Figma</p></li>
-          <li><span class="yr">Day 3 · พัฒนา (โครงสร้าง)</span><p>เว็บทุกหน้าด้วย HTML บน XAMPP + ฟอร์ม PHP — ผลลัพธ์: เว็บบน localhost</p></li>
-          <li><span class="yr">Day 4 · พัฒนา (หน้าตา + การโต้ตอบ)</span><p>CSS ตาม Mockup, Responsive, เมนู JS — ผลลัพธ์: เว็บพร้อมเผยแพร่</p></li>
-          <li><span class="yr">Day 5 · CMS + ทดสอบ + เผยแพร่ + ดูแลรักษา</span><p>WordPress, ทดสอบ, DNS, SSH, Nginx, HTTPS — ผลลัพธ์: <b>https://ซับโดเมนของคุณ</b> 🎉</p></li>
+          <li><span class="yr">หน่วยที่ 1 · เข้าใจระบบ + วางแผน</span><p>เลือกหัวข้อเว็บและวางแผนโครงงาน — ผลลัพธ์: แผนโครงการ</p></li>
+          <li><span class="yr">หน่วยที่ 2 · วิเคราะห์ + ออกแบบ</span><p>Persona, Requirements, Sitemap, Wireframe, Mockup — ผลลัพธ์: ลิงก์ Figma</p></li>
+          <li><span class="yr">หน่วยที่ 3 · พัฒนา (โครงสร้าง)</span><p>เว็บทุกหน้าด้วย HTML บน XAMPP + ฟอร์ม PHP — ผลลัพธ์: เว็บบน localhost</p></li>
+          <li><span class="yr">หน่วยที่ 4 · พัฒนา (หน้าตา + การโต้ตอบ)</span><p>CSS ตาม Mockup, Responsive, เมนู JS — ผลลัพธ์: เว็บพร้อมเผยแพร่</p></li>
+          <li><span class="yr">หน่วยที่ 5 · CMS + ทดสอบ + เผยแพร่ + ดูแลรักษา</span><p>WordPress, ทดสอบ, DNS, SSH, Nginx, HTTPS — ผลลัพธ์: <b>https://ซับโดเมนของคุณ</b> 🎉</p></li>
         </ol>
       </div>
     </section>
 
     <section class="sec">
-      <div class="sec-head"><span class="sec-num"><i data-i="box"></i></span><div><h2>สิ่งที่ต้องเตรียม</h2><p>ติดตั้งก่อนเริ่ม Day 1 จะเรียนได้ลื่นไหล</p></div></div>
+      <div class="sec-head"><span class="sec-num"><i data-i="box"></i></span><div><h2>สิ่งที่ต้องเตรียม</h2><p>ติดตั้งไว้ก่อนเริ่มเรียนจะลื่นไหล</p></div></div>
       <div class="g3">
         <div class="mini c-blue"><span class="ic-wrap"><i data-i="globe"></i></span><h4>เบราว์เซอร์ + DevTools</h4><p>Chrome หรือ Edge รุ่นล่าสุด · ส่วนขยาย Wappalyzer</p></div>
-        <div class="mini c-pink"><span class="ic-wrap"><i data-i="palette"></i></span><h4>Figma</h4><p>สมัครบัญชีฟรีด้วยอีเมล (ใช้ Day 2)</p></div>
-        <div class="mini c-purple"><span class="ic-wrap"><i data-i="code"></i></span><h4>VS Code + XAMPP</h4><p>ดาวน์โหลดไว้ล่วงหน้า (ใช้ Day 3–5)</p></div>
-        <div class="mini c-teal"><span class="ic-wrap"><i data-i="upload"></i></span><h4>FileZilla / Terminal</h4><p>สำหรับ SFTP และ SSH (Day 5) · Windows 10/11 มี <code>ssh</code> ในตัวแล้ว</p></div>
-        <div class="mini"><span class="ic-wrap"><i data-i="server"></i></span><h4>เซิร์ฟเวอร์ &amp; โดเมน</h4><p>IP เซิร์ฟเวอร์ · บัญชี SSH · ซับโดเมนของแต่ละคน (ครูแจก) — กรอกได้ที่ <a href="days/day-5.html#vars">Day 5</a></p></div>
-        <div class="mini c-pink"><span class="ic-wrap"><i data-i="users"></i></span><h4>ทีม 3–4 คน</h4><p>หัวข้อเว็บที่ใช้ในงานอาชีพจริง + ผู้ใช้จริงที่สัมภาษณ์ได้</p></div>
+        <div class="mini c-pink"><span class="ic-wrap"><i data-i="palette"></i></span><h4>Figma</h4><p>สมัครบัญชีฟรีด้วยอีเมล (ใช้หน่วยที่ 2)</p></div>
+        <div class="mini c-purple"><span class="ic-wrap"><i data-i="code"></i></span><h4>VS Code + XAMPP</h4><p>ดาวน์โหลดไว้ล่วงหน้า (ใช้หน่วยที่ 3–5)</p></div>
+        <div class="mini c-teal"><span class="ic-wrap"><i data-i="upload"></i></span><h4>FileZilla / Terminal</h4><p>สำหรับ SFTP และ SSH (หน่วยที่ 5) · Windows 10/11 มี <code>ssh</code> ในตัวแล้ว</p></div>
+        <div class="mini"><span class="ic-wrap"><i data-i="server"></i></span><h4>เซิร์ฟเวอร์ &amp; โดเมน</h4><p>IP เซิร์ฟเวอร์ · บัญชี SSH · ซับโดเมนของตัวเอง — กรอกได้ที่ <a href="units/unit-5.html#vars">หน่วยที่ 5</a></p></div>
+        <div class="mini c-pink"><span class="ic-wrap"><i data-i="users"></i></span><h4>ผู้ใช้จริง 3 คน</h4><p>หัวข้อเว็บที่ใช้ในงานอาชีพจริง และคนที่จะใช้เว็บนั้นซึ่งเราสัมภาษณ์ได้</p></div>
       </div>
     </section>
   </div>
 </main>
 
-<a class="cta-float" href="days/day-1.html">เริ่ม Day 1 <i data-i="arrow"></i></a>
+<a class="cta-float" href="units/unit-1.html">เริ่มหน่วยที่ 1 <i data-i="arrow"></i></a>
 
 <footer class="site-foot">made with <i data-i="heart" class="heart"></i> &amp; <i data-i="coffee" class="cup"></i> by IT RVC · 2026</footer>
 <script src="assets/js/main.js"></script>

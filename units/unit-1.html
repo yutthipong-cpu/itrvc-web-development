@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Day 1 เว็บทำงานอย่างไร · Web Dev</title>
-<meta name="description" content="วันที่ 1 หลักการและโครงสร้างการทำงานของเว็บไซต์ อินเทอร์เน็ต URL IP DNS HTTP HTTPS การเรนเดอร์ Static Dynamic และกระบวนการพัฒนาเว็บไซต์ แบบแอนิเมชันทีละขั้น">
+<title>หน่วยที่ 1 เว็บทำงานอย่างไร · Web Dev</title>
+<meta name="description" content="หน่วยที่ 1 หลักการและโครงสร้างการทำงานของเว็บไซต์ อินเทอร์เน็ต URL IP DNS HTTP HTTPS การเรนเดอร์ Static Dynamic และกระบวนการพัฒนาเว็บไซต์ แบบแอนิเมชันทีละขั้น">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec4899'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,11 +17,11 @@
 <header class="topbar">
   <nav class="pill" aria-label="เมนูหลัก">
     <a href="../index.html">Web Dev</a>
-    <a href="day-1.html" aria-current="page">Day 1</a>
-    <a href="day-2.html">Day 2</a>
-    <a href="day-3.html">Day 3</a>
-    <a href="day-4.html">Day 4</a>
-    <a href="day-5.html">Day 5</a>
+    <a href="unit-1.html" aria-current="page">หน่วย 1</a>
+    <a href="unit-2.html">หน่วย 2</a>
+    <a href="unit-3.html">หน่วย 3</a>
+    <a href="unit-4.html">หน่วย 4</a>
+    <a href="unit-5.html">หน่วย 5</a>
   </nav>
   <button class="theme-btn" type="button">auto</button>
 </header>
@@ -29,21 +29,21 @@
 <main>
 <div class="wrap">
   <section class="lesson-hero">
-    <div class="crumbs"><a href="../index.html">Web Dev</a> / Day 1</div>
-    <div class="meta"><span class="chip hot">DAY 1 / 5</span><span class="chip">หน่วยที่ 1</span><span class="chip">09:00–16:30</span><span class="chip c-purple">10 แอนิเมชัน</span></div>
+    <div class="crumbs"><a href="../index.html">Web Dev</a> / หน่วยที่ 1</div>
+    <div class="meta"><span class="chip hot">หน่วยที่ 1 / 5</span><span class="chip">หลักการและโครงสร้างการทำงานของเว็บไซต์</span><span class="chip c-purple">10 แอนิเมชัน</span></div>
     <h1>เว็บ<span class="grad-text">ทำงานอย่างไร</span> — ผ่าทุกชั้นตั้งแต่สายเคเบิลถึงพิกเซล</h1>
-    <p class="lead">วันแรกเราจะ “สโลว์โมชัน” ทุกสิ่งที่เกิดขึ้นเมื่อเปิดเว็บ: อินเทอร์เน็ตต่อกันยังไง URL มีอะไรซ่อนอยู่ IP กับ DNS ทำงานคู่กันอย่างไร เบราว์เซอร์คุยกับเซิร์ฟเวอร์ด้วย HTTP แบบไหน HTTPS ปลอดภัยเพราะอะไร เบราว์เซอร์วาดหน้าเว็บอย่างไร และมืออาชีพพัฒนาเว็บกันกี่ขั้น — จบวันด้วยการตั้งทีมและวางแผนโครงงานที่จะขึ้นออนไลน์บนโดเมนจริงในวันที่ 5</p>
+    <p class="lead">หน่วยนี้จะ “สโลว์โมชัน” ทุกสิ่งที่เกิดขึ้นเมื่อเปิดเว็บ: อินเทอร์เน็ตต่อกันยังไง URL มีอะไรซ่อนอยู่ IP กับ DNS ทำงานคู่กันอย่างไร เบราว์เซอร์คุยกับเซิร์ฟเวอร์ด้วย HTTP แบบไหน HTTPS ปลอดภัยเพราะอะไร เบราว์เซอร์วาดหน้าเว็บอย่างไร และมืออาชีพพัฒนาเว็บกันกี่ขั้น — ปิดท้ายด้วยการวางแผนโครงงานเว็บไซต์ของตัวเอง ซึ่งจะพัฒนาต่อทุกหน่วยจนขึ้นออนไลน์บนโดเมนจริงในหน่วยที่ 5</p>
     <div data-progress="d1,d2,d3,d4,d5" style="max-width:520px;margin-top:18px">
-      <div style="display:flex;justify-content:space-between;font:600 13px/1 var(--mono);color:var(--muted);margin-bottom:8px"><span>ความก้าวหน้า 5 วัน</span><span class="progress-txt">0/5</span></div>
+      <div style="display:flex;justify-content:space-between;font:600 13px/1 var(--mono);color:var(--muted);margin-bottom:8px"><span>ความก้าวหน้า 5 หน่วย</span><span class="progress-txt">0/5</span></div>
       <div class="progress"><span></span></div>
     </div>
   </section>
 
   <div class="lesson-grid">
     <aside class="toc">
-      <span class="toc-title">DAY 1</span>
+      <span class="toc-title">หน่วยที่ 1</span>
       <nav>
-        <a href="#plan">ตารางเรียน &amp; เป้าหมาย</a>
+        <a href="#plan">จุดประสงค์</a>
         <a href="#internet">อินเทอร์เน็ต</a>
         <a href="#history">ประวัติย่อ</a>
         <a href="#www">Internet ≠ Web</a>
@@ -60,7 +60,7 @@
         <a href="#sd">Static vs Dynamic</a>
         <a href="#structure">โครงสร้างเว็บไซต์</a>
         <a href="#wdlc">กระบวนการพัฒนาเว็บ</a>
-        <a href="#lab">ใบงาน Day 1</a>
+        <a href="#lab">ใบงาน หน่วยที่ 1</a>
         <a href="#quiz">แบบทดสอบ</a>
         <a href="#sum">สรุป</a>
       </nav>
@@ -69,34 +69,18 @@
     <article class="content">
       <!-- ================= PLAN ================= -->
       <section class="sec" id="plan">
-        <div class="sec-head"><span class="sec-num">00</span><div><h2>ตารางเรียน &amp; เป้าหมายวันที่ 1</h2><p>ครอบคลุมหน่วยที่ 1 (เทียบเท่าสัปดาห์ที่ 1–3 ของแผน 15 สัปดาห์)</p></div></div>
-        <div class="tbl-wrap">
-          <table class="tbl sched">
-            <thead><tr><th>เวลา</th><th>หัวข้อ</th><th>รูปแบบ</th></tr></thead>
-            <tbody>
-              <tr><td>09:00–09:15</td><td>ปฐมนิเทศ 5 วัน · แบ่งทีมโครงงาน · ตรวจบัญชี server/โดเมน</td><td><span class="k lec">บรรยาย</span></td></tr>
-              <tr><td>09:15–10:00</td><td>อินเทอร์เน็ต ประวัติ Internet vs Web คำศัพท์</td><td><span class="k lec">บรรยาย</span> <span class="k demo">แอนิเมชัน</span></td></tr>
-              <tr><td>10:00–10:45</td><td>ผ่า URL · IP Address · Port · DNS</td><td><span class="k demo">สาธิต</span> <span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr><td>10:45–12:00</td><td>กด Enter แล้วเกิดอะไรขึ้น · HTTP Request/Response · Status Code</td><td><span class="k demo">สาธิต</span> <span class="k lab">DevTools</span></td></tr>
-              <tr class="brk"><td colspan="3">12:00–13:00 พักกลางวัน</td></tr>
-              <tr><td>13:00–13:45</td><td>HTTPS/TLS · เบราว์เซอร์วาดหน้าเว็บ (Rendering pipeline)</td><td><span class="k lec">บรรยาย</span> <span class="k demo">แอนิเมชัน</span></td></tr>
-              <tr><td>13:45–14:45</td><td>HTML/CSS/JS · Frontend/Backend · Static vs Dynamic · โครงสร้างเว็บไซต์</td><td><span class="k demo">สาธิต</span> <span class="k lab">ปฏิบัติ</span></td></tr>
-              <tr><td>14:45–15:45</td><td>วงจรการพัฒนาเว็บไซต์ · บทบาททีม · วางแผนโครงงาน</td><td><span class="k lab">งานกลุ่ม</span></td></tr>
-              <tr><td>15:45–16:30</td><td>ใบงาน Day 1 (คำสั่ง nslookup/curl/tracert) · แบบทดสอบ</td><td><span class="k lab">ปฏิบัติ</span> <span class="k quiz">ทดสอบ</span></td></tr>
-            </tbody>
-          </table>
-        </div>
+        <div class="sec-head"><span class="sec-num">00</span><div><h2>จุดประสงค์การเรียนรู้</h2><p>เมื่อเรียนจบหน่วยนี้ ผู้เรียนสามารถ…</p></div></div>
         <ol class="objectives">
           <li>อธิบายการทำงานของอินเทอร์เน็ต ความต่างของ Internet กับ WWW และคำศัพท์พื้นฐานได้</li>
           <li>แยกส่วนประกอบของ URL, อธิบาย IP Address, Port และระบบ DNS ได้</li>
           <li>เรียงลำดับเหตุการณ์ตั้งแต่พิมพ์ URL จนเห็นหน้าเว็บ (DNS → TCP/TLS → HTTP → Render) ได้</li>
           <li>อ่าน HTTP Request/Response, Header และ Status Code ด้วย DevTools และ curl ได้</li>
           <li>จำแนก HTML/CSS/JS, Frontend/Backend, Static/Dynamic และโครงสร้างเว็บไซต์ได้</li>
-          <li>อธิบายวงจรการพัฒนาเว็บไซต์ 7 ขั้น และวางแผนโครงงานร่วมกับทีมได้</li>
+          <li>อธิบายวงจรการพัฒนาเว็บไซต์ 7 ขั้น และวางแผนโครงงานของตนเองได้</li>
         </ol>
       </section>
 
-      <div class="part-label">ภาคเช้า · เครือข่ายและการเดินทางของข้อมูล</div>
+      <div class="part-label">ตอนที่ 1 · เครือข่ายและการเดินทางของข้อมูล</div>
 
       <!-- ================= INTERNET ================= -->
       <section class="sec" id="internet">
@@ -194,7 +178,7 @@
           <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Browser</span><small>เว็บเบราว์เซอร์</small></div><div class="flip-b"><p><b>เบราว์เซอร์</b> = โปรแกรมฝั่งผู้ใช้ที่ขอและแสดงผลเว็บ ภายในมี “Rendering Engine” เช่น Blink (Chrome/Edge), Gecko (Firefox), WebKit (Safari)</p></div></div></button>
           <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Web Server</span><small>เว็บเซิร์ฟเวอร์</small></div><div class="flip-b"><p>มี 2 ความหมาย: <b>เครื่อง</b> ที่เปิด 24 ชม. และ <b>โปรแกรม</b> ที่ให้บริการเว็บบนเครื่องนั้น เช่น Nginx, Apache, LiteSpeed</p></div></div></button>
           <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Domain</span><small>ชื่อโดเมน</small></div><div class="flip-b"><p><b>โดเมน</b> = ชื่อจำง่ายแทนเลข IP ต้อง <b>จดทะเบียน</b> และ <b>ต่ออายุรายปี</b> กับผู้รับจดทะเบียน (Registrar)</p></div></div></button>
-          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Hosting</span><small>เว็บโฮสติ้ง</small></div><div class="flip-b"><p><b>โฮสติ้ง</b> = พื้นที่บนเซิร์ฟเวอร์สำหรับวางเว็บ มีแบบ Shared hosting, VPS, Cloud, Dedicated (Day 5)</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Hosting</span><small>เว็บโฮสติ้ง</small></div><div class="flip-b"><p><b>โฮสติ้ง</b> = พื้นที่บนเซิร์ฟเวอร์สำหรับวางเว็บ มีแบบ Shared hosting, VPS, Cloud, Dedicated (หน่วยที่ 5)</p></div></div></button>
           <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big grad-text">Protocol</span><small>โปรโตคอล</small></div><div class="flip-b"><p><b>โปรโตคอล</b> = ข้อตกลงในการสื่อสาร เช่น HTTP (เว็บ), SMTP (อีเมล), FTP/SFTP (ส่งไฟล์), SSH (ควบคุมเซิร์ฟเวอร์)</p></div></div></button>
         </div>
       </section>
@@ -211,7 +195,7 @@
             <div class="stack" style="margin-top:18px">
               <div class="mini rise" data-only="0"><h4>▶ กดเล่นเพื่อเริ่มผ่า URL</h4><p>แต่ละขั้นไฮไลต์ 1 ส่วนพร้อมคำอธิบาย</p></div>
               <div class="mini rise" data-only="1"><h4 style="color:var(--blue)">① Protocol / Scheme</h4><p>วิธีสื่อสาร · <code>http://</code> ธรรมดา · <code>https://</code> เข้ารหัส (S = Secure) · อื่น ๆ เช่น <code>ftp://</code> <code>mailto:</code> <code>tel:</code> <code>file:///</code></p></div>
-              <div class="mini rise" data-only="2"><h4 style="color:var(--teal)">② Subdomain</h4><p>ชื่อย่อยหน้าโดเมน ใช้แยกบริการ เช่น <code>www</code> <code>mail</code> <code>reg</code> — ในวันที่ 5 แต่ละคนจะได้ซับโดเมนของตัวเอง เช่น <code>student01.<span class="v" data-v="domain">example.ac.th</span></code></p></div>
+              <div class="mini rise" data-only="2"><h4 style="color:var(--teal)">② Subdomain</h4><p>ชื่อย่อยหน้าโดเมน ใช้แยกบริการ เช่น <code>www</code> <code>mail</code> <code>reg</code> — ในหน่วยที่ 5 เราจะได้ซับโดเมนของตัวเอง เช่น <code>student01.<span class="v" data-v="domain">example.ac.th</span></code></p></div>
               <div class="mini rise" data-only="3"><h4 style="color:var(--pink)">③ Domain name</h4><p>ชื่อเว็บไซต์ที่ <b>จดทะเบียน</b> ไม่ซ้ำใครในโลก (ตัวพิมพ์เล็ก-ใหญ่ไม่มีผล <code>EXAMPLE</code> = <code>example</code>)</p></div>
               <div class="mini rise" data-only="4"><h4 style="color:var(--purple)">④ TLD (Top-Level Domain)</h4><p>นามสกุลโดเมน · <code>.th</code> = ccTLD (ประเทศ) · <code>.com</code> <code>.org</code> = gTLD · <code>.ac.th</code> = สถาบันการศึกษาไทย (<code>ac</code> เป็น Second-level)</p></div>
               <div class="mini rise" data-only="5"><h4 style="color:var(--amber)">⑤ Port</h4><p>“ประตู” ของบริการ · HTTP = <b>80</b> · HTTPS = <b>443</b> ถ้าเป็นค่าเริ่มต้นไม่ต้องพิมพ์ · ตอนพัฒนาจะเห็น <code>localhost:5500</code>, <code>:8080</code></p></div>
@@ -259,12 +243,12 @@
 
       <!-- ================= IP ================= -->
       <section class="sec" id="ip">
-        <div class="sec-head"><span class="sec-num">05</span><div><h2>IP Address &amp; Port</h2><p>“บ้านเลขที่” และ “ประตู” — ต้องเข้าใจก่อนจะตั้งค่าโดเมนและเซิร์ฟเวอร์ของตัวเองในวันที่ 5</p></div></div>
+        <div class="sec-head"><span class="sec-num">05</span><div><h2>IP Address &amp; Port</h2><p>“บ้านเลขที่” และ “ประตู” — ต้องเข้าใจก่อนจะตั้งค่าโดเมนและเซิร์ฟเวอร์ของตัวเองในหน่วยที่ 5</p></div></div>
         <div class="g2">
           <div class="mini c-blue"><h4>IPv4</h4><p>32 บิต เขียนเป็นเลข 4 ชุด ชุดละ 0–255 เช่น <code>203.0.113.10</code> · มีได้ราว <b>4,300 ล้าน</b> หมายเลข → ไม่พอใช้แล้ว!</p></div>
           <div class="mini c-purple"><h4>IPv6</h4><p>128 บิต เลขฐาน 16 เช่น <code>2001:db8::1</code> · มีได้ 3.4×10<sup>38</sup> หมายเลข (มากพอให้ทรายทุกเม็ดบนโลกมี IP)</p></div>
           <div class="mini c-teal"><h4>Public IP vs Private IP</h4><p><b>Public</b> ใช้บนอินเทอร์เน็ต ไม่ซ้ำทั้งโลก (เซิร์ฟเวอร์ของเราต้องมี) · <b>Private</b> ใช้ในวง LAN: <code>192.168.x.x</code> <code>10.x.x.x</code> <code>172.16–31.x.x</code> · Router ใช้ <b>NAT</b> แปลงให้หลายเครื่องใช้ Public IP เดียวกัน</p></div>
-          <div class="mini c-pink"><h4>Localhost</h4><p><code>127.0.0.1</code> (หรือชื่อ <code>localhost</code>) = “เครื่องตัวเอง” ข้อมูลไม่ออกนอกเครื่องเลย — ใช้ตอนพัฒนาเว็บด้วย XAMPP/Live Server (Day 3)</p></div>
+          <div class="mini c-pink"><h4>Localhost</h4><p><code>127.0.0.1</code> (หรือชื่อ <code>localhost</code>) = “เครื่องตัวเอง” ข้อมูลไม่ออกนอกเครื่องเลย — ใช้ตอนพัฒนาเว็บด้วย XAMPP/Live Server (หน่วยที่ 3)</p></div>
         </div>
         <h3 style="margin-top:22px">Port ที่นักพัฒนาเว็บต้องรู้</h3>
         <div class="tbl-wrap">
@@ -273,7 +257,7 @@
             <tbody>
               <tr><td><code>80</code></td><td>HTTP</td><td>เว็บแบบไม่เข้ารหัส (ควร redirect ไป 443)</td></tr>
               <tr class="hl"><td><code>443</code></td><td>HTTPS</td><td>เว็บแบบเข้ารหัส — มาตรฐานปัจจุบัน</td></tr>
-              <tr class="hl"><td><code>22</code></td><td>SSH / SFTP</td><td>ควบคุมเซิร์ฟเวอร์และอัปโหลดไฟล์อย่างปลอดภัย (Day 5)</td></tr>
+              <tr class="hl"><td><code>22</code></td><td>SSH / SFTP</td><td>ควบคุมเซิร์ฟเวอร์และอัปโหลดไฟล์อย่างปลอดภัย (หน่วยที่ 5)</td></tr>
               <tr><td><code>21</code></td><td>FTP</td><td>อัปโหลดไฟล์แบบเก่า ไม่เข้ารหัส (ไม่แนะนำ)</td></tr>
               <tr><td><code>53</code></td><td>DNS</td><td>ถาม-ตอบชื่อโดเมน</td></tr>
               <tr><td><code>3306</code></td><td>MySQL/MariaDB</td><td>ฐานข้อมูลของ WordPress (ไม่ควรเปิดสู่อินเทอร์เน็ต)</td></tr>
@@ -323,7 +307,7 @@
             <li><b>Resolver ส่ง IP ให้ Browser</b> และ <b>จำไว้ใน Cache</b> ตามเวลา <b>TTL</b> (Time To Live) ครั้งหน้าตอบได้ในเสี้ยววินาที</li>
           </ol>
         </figure>
-        <h3>DNS Record ที่ต้องใช้จริงในวันที่ 5</h3>
+        <h3>DNS Record ที่ต้องใช้จริงในหน่วยที่ 5</h3>
         <div class="tbl-wrap">
           <table class="tbl">
             <thead><tr><th>ชนิด</th><th>หน้าที่</th><th>ตัวอย่าง</th></tr></thead>
@@ -347,7 +331,7 @@
 
       <!-- ================= ENTER ================= -->
       <section class="sec" id="enter">
-        <div class="sec-head"><span class="sec-num">07</span><div><h2>กด Enter แล้วเกิดอะไรขึ้น? (หัวใจของ Day 1)</h2><p>สโลว์โมชัน 10 ขั้น · คลิกหมายเลขขั้นเพื่อดูซ้ำ</p></div></div>
+        <div class="sec-head"><span class="sec-num">07</span><div><h2>กด Enter แล้วเกิดอะไรขึ้น? (หัวใจของหน่วยนี้)</h2><p>สโลว์โมชัน 10 ขั้น · คลิกหมายเลขขั้นเพื่อดูซ้ำ</p></div></div>
         <figure class="anim" id="anim-enter" data-ms="4300">
           <div class="anim-title"><i data-i="zap"></i>จากพิมพ์ URL → จนเห็นหน้าเว็บ<span class="chip">10 ขั้น</span></div>
           <div class="stage">
@@ -488,7 +472,7 @@
           <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--blue)">301</span><small>Moved Permanently</small></div><div class="flip-b"><p><b>ย้ายถาวร</b> เช่น http → https หรือเปลี่ยนโดเมน · Google โอนคะแนน SEO ไปที่อยู่ใหม่</p></div></div></button>
           <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--blue)">302</span><small>Found (ชั่วคราว)</small></div><div class="flip-b"><p><b>ย้ายชั่วคราว</b> เช่น พาไปหน้าล็อกอินก่อน แล้วค่อยกลับมา</p></div></div></button>
           <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--blue)">304</span><small>Not Modified</small></div><div class="flip-b"><p><b>ไม่เปลี่ยน</b> ใช้ไฟล์ใน Cache ได้เลย ไม่ต้องโหลดใหม่ → เร็ว</p></div></div></button>
-          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--amber)">403</span><small>Forbidden</small></div><div class="flip-b"><p><b>ไม่มีสิทธิ์</b> มักเกิดจาก <b>สิทธิ์ไฟล์ (permission) บนเซิร์ฟเวอร์ผิด</b> หรือไม่มี index.html ในโฟลเดอร์ — เจอบ่อยตอน Deploy วันที่ 5!</p></div></div></button>
+          <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--amber)">403</span><small>Forbidden</small></div><div class="flip-b"><p><b>ไม่มีสิทธิ์</b> มักเกิดจาก <b>สิทธิ์ไฟล์ (permission) บนเซิร์ฟเวอร์ผิด</b> หรือไม่มี index.html ในโฟลเดอร์ — เจอบ่อยตอน Deploy ในหน่วยที่ 5!</p></div></div></button>
           <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--red)">404</span><small>Not Found</small></div><div class="flip-b"><p><b>ไม่พบไฟล์</b> URL ผิด ลิงก์เสีย หรือ <b>ตัวพิมพ์เล็ก-ใหญ่ไม่ตรง</b> บน Linux</p></div></div></button>
           <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--red)">500</span><small>Internal Server Error</small></div><div class="flip-b"><p><b>เซิร์ฟเวอร์ผิดพลาด</b> โค้ด PHP มีบั๊ก หรือเชื่อมฐานข้อมูลไม่ได้ → ดู error log</p></div></div></button>
           <button class="flip"><div class="flip-in"><div class="flip-f"><span class="big" style="color:var(--red)">502</span><small>Bad Gateway</small></div><div class="flip-b"><p>Nginx ส่งต่อคำขอไปโปรแกรมหลังบ้าน (เช่น PHP-FPM) แล้ว <b>โปรแกรมนั้นไม่ตอบ</b></p></div></div></button>
@@ -497,7 +481,7 @@
         <div class="nug fun"><p>มีรหัส <b>418 I'm a teapot</b> (“ฉันเป็นกาน้ำชา ชงกาแฟไม่ได้”) มาจากมาตรฐานมุกวันโกหกเดือนเมษายน ปี 1998 — เว็บดังหลายแห่งยังทำหน้า 418 ไว้เป็นอีสเตอร์เอ้ก ☕</p></div>
       </section>
 
-      <div class="part-label">ภาคบ่าย · ความปลอดภัย การแสดงผล และโครงสร้างเว็บ</div>
+      <div class="part-label">ตอนที่ 2 · ความปลอดภัย การแสดงผล และโครงสร้างเว็บ</div>
 
       <!-- ================= HTTPS ================= -->
       <section class="sec" id="https">
@@ -530,7 +514,7 @@
             <li><b>TLS ขั้นที่ 1</b> เซิร์ฟเวอร์ส่ง <b>ใบรับรอง (Certificate)</b> ที่มี Public key มาให้ เบราว์เซอร์ตรวจว่าออกโดย <b>CA</b> (Certificate Authority) ที่เชื่อถือได้และตรงกับโดเมน</li>
             <li><b>TLS ขั้นที่ 2</b> ใช้การเข้ารหัสแบบกุญแจคู่ (Asymmetric) ตกลง <b>Session key</b> ร่วมกัน</li>
             <li><b>ส่งข้อมูลเข้ารหัส</b> ด้วย Session key (Symmetric ซึ่งเร็วกว่า) ผู้ดักฟังเห็นแต่ตัวอักษรมั่ว</li>
-            <li><b>เซิร์ฟเวอร์ถอดรหัส</b> ได้ข้อมูลจริงอย่างปลอดภัย — วันที่ 5 เราจะติดตั้งใบรับรองฟรีจาก Let's Encrypt บนเซิร์ฟเวอร์ของเราเอง</li>
+            <li><b>เซิร์ฟเวอร์ถอดรหัส</b> ได้ข้อมูลจริงอย่างปลอดภัย — หน่วยที่ 5 เราจะติดตั้งใบรับรองฟรีจาก Let's Encrypt บนเซิร์ฟเวอร์ของเราเอง</li>
           </ol>
         </figure>
         <div class="nugs">
@@ -667,14 +651,14 @@ btn.<span class="t-prop">addEventListener</span>(<span class="t-str">'click'</sp
           <table class="tbl">
             <thead><tr><th>Stack ยอดนิยม</th><th>ประกอบด้วย</th><th>ตัวอย่างการใช้</th></tr></thead>
             <tbody>
-              <tr class="hl"><td><b>LAMP / LEMP</b></td><td>Linux + Apache/Nginx (E = “Engine-x”) + MySQL + PHP</td><td>WordPress, ระบบในสถานศึกษาจำนวนมาก (Day 5)</td></tr>
-              <tr><td><b>XAMPP</b></td><td>Apache + MariaDB + PHP + Perl (ทุก OS)</td><td>จำลองเซิร์ฟเวอร์บนเครื่องตัวเอง (Day 3)</td></tr>
+              <tr class="hl"><td><b>LAMP / LEMP</b></td><td>Linux + Apache/Nginx (E = “Engine-x”) + MySQL + PHP</td><td>WordPress, ระบบในสถานศึกษาจำนวนมาก (หน่วยที่ 5)</td></tr>
+              <tr><td><b>XAMPP</b></td><td>Apache + MariaDB + PHP + Perl (ทุก OS)</td><td>จำลองเซิร์ฟเวอร์บนเครื่องตัวเอง (หน่วยที่ 3)</td></tr>
               <tr><td><b>MERN</b></td><td>MongoDB + Express + React + Node.js</td><td>เว็บแอปสมัยใหม่ (JavaScript ทั้งระบบ)</td></tr>
               <tr><td><b>JAMstack / Static</b></td><td>HTML/CSS/JS + CDN</td><td>เว็บแนะนำตัว Portfolio โหลดเร็วมาก</td></tr>
             </tbody>
           </table>
         </div>
-        <div class="nug pro"><p>อยากรู้ว่าเว็บไหนใช้เทคโนโลยีอะไร ติดตั้งส่วนขยาย <b>Wappalyzer</b> ในเบราว์เซอร์ — จะบอกทันทีว่าใช้ WordPress? React? Nginx? Cloudflare? (ใช้ในใบงาน Day 1)</p></div>
+        <div class="nug pro"><p>อยากรู้ว่าเว็บไหนใช้เทคโนโลยีอะไร ติดตั้งส่วนขยาย <b>Wappalyzer</b> ในเบราว์เซอร์ — จะบอกทันทีว่าใช้ WordPress? React? Nginx? Cloudflare? (ใช้ในใบงาน หน่วยที่ 1)</p></div>
       </section>
 
       <!-- ================= STATIC / DYNAMIC ================= -->
@@ -723,7 +707,7 @@ btn.<span class="t-prop">addEventListener</span>(<span class="t-str">'click'</sp
               <tr><td>แก้ไขเนื้อหา</td><td>แก้ไฟล์โค้ด</td><td>แก้ผ่านหน้าแอดมิน (เช่น WordPress)</td></tr>
               <tr><td>เทคโนโลยี</td><td>HTML, CSS, JS</td><td>+ PHP/Node + ฐานข้อมูล</td></tr>
               <tr><td>ความเร็ว / ความปลอดภัย</td><td>เร็วมาก ช่องโหว่น้อย</td><td>ช้ากว่า ต้องอัปเดตความปลอดภัยสม่ำเสมอ</td></tr>
-              <tr><td>ในคอร์สนี้</td><td>เว็บที่เขียนเอง Day 3–4</td><td>WordPress Day 5</td></tr>
+              <tr><td>ในคอร์สนี้</td><td>เว็บที่เขียนเอง หน่วยที่ 3–4</td><td>WordPress หน่วยที่ 5</td></tr>
             </tbody>
           </table>
         </div>
@@ -731,7 +715,7 @@ btn.<span class="t-prop">addEventListener</span>(<span class="t-str">'click'</sp
 
       <!-- ================= STRUCTURE ================= -->
       <section class="sec" id="structure">
-        <div class="sec-head"><span class="sec-num">15</span><div><h2>โครงสร้างเว็บไซต์ (Site Structure) 4 แบบ</h2><p>แสดงด้วยแผนผังเว็บไซต์ (Sitemap) — จะใช้จริงตอนออกแบบโครงงานใน Day 2</p></div></div>
+        <div class="sec-head"><span class="sec-num">15</span><div><h2>โครงสร้างเว็บไซต์ (Site Structure) 4 แบบ</h2><p>แสดงด้วยแผนผังเว็บไซต์ (Sitemap) — จะใช้จริงตอนออกแบบโครงงานใน หน่วยที่ 2</p></div></div>
         <div class="tabs">
           <div role="tablist"><button role="tab" data-tab="s1">1. เชิงเส้น</button><button role="tab" data-tab="s2">2. ลำดับชั้น</button><button role="tab" data-tab="s3">3. เครือข่าย</button><button role="tab" data-tab="s4">4. แบบผสม</button></div>
           <div class="tab-panel panel" data-panel="s1">
@@ -790,7 +774,7 @@ btn.<span class="t-prop">addEventListener</span>(<span class="t-str">'click'</sp
 
       <!-- ================= WDLC ================= -->
       <section class="sec" id="wdlc">
-        <div class="sec-head"><span class="sec-num">16</span><div><h2>วงจรการพัฒนาเว็บไซต์ (WDLC) 7 ขั้น</h2><p>แผนที่ของคอร์ส 5 วัน — Day 2 = วิเคราะห์ + ออกแบบ · Day 3–4 = พัฒนา · Day 5 = CMS + ทดสอบ + เผยแพร่</p></div></div>
+        <div class="sec-head"><span class="sec-num">16</span><div><h2>วงจรการพัฒนาเว็บไซต์ (WDLC) 7 ขั้น</h2><p>แผนที่ของทั้งรายวิชา — หน่วยที่ 2 = วิเคราะห์ + ออกแบบ · หน่วยที่ 3–4 = พัฒนา · หน่วยที่ 5 = CMS + ทดสอบ + เผยแพร่</p></div></div>
         <figure class="anim" id="anim-cycle" data-ms="5000">
           <div class="anim-title"><i data-i="restart"></i>WDLC ทีละขั้น<span class="chip">8 ขั้น</span></div>
           <div class="stage auto">
@@ -808,21 +792,22 @@ btn.<span class="t-prop">addEventListener</span>(<span class="t-str">'click'</sp
               </div>
               <div class="stack">
                 <div class="cyc-card rise" data-only="0"><h4>▶ กดเล่นเพื่อดูทีละขั้น</h4><p>แต่ละขั้นบอก <b>คำถามหลัก · กิจกรรม · ผลลัพธ์</b> และเรียนวันไหน</p></div>
-                <div class="cyc-card rise" data-only="1" style="--c:var(--orange)"><span class="tag">ขั้นที่ 1 · Planning</span><h4>วางแผน</h4><p><b>คำถาม:</b> ทำเว็บไปทำไม ใครใช้ มีเวลา งบ คนเท่าไร?</p><p><b>ผลลัพธ์:</b> เอกสารโครงการ · ขอบเขต · Gantt Chart</p><span class="unit">📅 Day 1 (วันนี้)</span></div>
-                <div class="cyc-card rise" data-only="2" style="--c:var(--pink)"><span class="tag">ขั้นที่ 2 · Analysis</span><h4>วิเคราะห์ความต้องการ</h4><p><b>คำถาม:</b> ผู้ใช้ต้องการอะไร ต้องมีเนื้อหา/ฟังก์ชันอะไร?</p><p><b>ผลลัพธ์:</b> Requirements · Persona · Content inventory</p><span class="unit">📅 Day 2</span></div>
-                <div class="cyc-card rise" data-only="3" style="--c:var(--purple)"><span class="tag">ขั้นที่ 3 · Design</span><h4>ออกแบบ</h4><p><b>คำถาม:</b> มีกี่หน้า เชื่อมกันอย่างไร หน้าตาแบบไหน?</p><p><b>ผลลัพธ์:</b> Sitemap · Wireframe · Mockup (Figma)</p><span class="unit">📅 Day 2</span></div>
-                <div class="cyc-card rise" data-only="4" style="--c:var(--blue)"><span class="tag">ขั้นที่ 4 · Development</span><h4>พัฒนา</h4><p><b>คำถาม:</b> เขียนโค้ดเอง หรือใช้ CMS?</p><p><b>ผลลัพธ์:</b> เว็บที่ทำงานได้บน localhost</p><span class="unit">📅 Day 3–4 (+ CMS Day 5)</span></div>
-                <div class="cyc-card rise" data-only="5" style="--c:var(--amber)"><span class="tag">ขั้นที่ 5 · Testing</span><h4>ทดสอบ</h4><p><b>คำถาม:</b> ใช้งานได้จริงไหม ช้าไหม มือถือดูได้ไหม?</p><p><b>ผลลัพธ์:</b> รายงานผลทดสอบ · คะแนน Lighthouse</p><span class="unit">📅 Day 5</span></div>
-                <div class="cyc-card rise" data-only="6" style="--c:var(--green)"><span class="tag">ขั้นที่ 6 · Deployment</span><h4>เผยแพร่</h4><p><b>คำถาม:</b> จะขึ้นเซิร์ฟเวอร์และโดเมนจริงอย่างไร?</p><p><b>ผลลัพธ์:</b> เว็บออนไลน์บน <code>student.<span class="v" data-v="domain">example.ac.th</span></code> พร้อม HTTPS</p><span class="unit">📅 Day 5</span></div>
-                <div class="cyc-card rise" data-only="7" style="--c:var(--teal)"><span class="tag">ขั้นที่ 7 · Maintenance</span><h4>ดูแลรักษา</h4><p><b>กิจกรรม:</b> อัปเดตเนื้อหา สำรองข้อมูล อัปเดตความปลอดภัย ต่ออายุโดเมน ดูสถิติ</p><span class="unit">📅 Day 5</span></div>
+                <div class="cyc-card rise" data-only="1" style="--c:var(--orange)"><span class="tag">ขั้นที่ 1 · Planning</span><h4>วางแผน</h4><p><b>คำถาม:</b> ทำเว็บไปทำไม ใครใช้ มีเวลาและงบเท่าไร?</p><p><b>ผลลัพธ์:</b> เอกสารโครงการ · ขอบเขต · Gantt Chart</p><span class="unit">📅 หน่วยที่ 1 (หน่วยนี้)</span></div>
+                <div class="cyc-card rise" data-only="2" style="--c:var(--pink)"><span class="tag">ขั้นที่ 2 · Analysis</span><h4>วิเคราะห์ความต้องการ</h4><p><b>คำถาม:</b> ผู้ใช้ต้องการอะไร ต้องมีเนื้อหา/ฟังก์ชันอะไร?</p><p><b>ผลลัพธ์:</b> Requirements · Persona · Content inventory</p><span class="unit">📅 หน่วยที่ 2</span></div>
+                <div class="cyc-card rise" data-only="3" style="--c:var(--purple)"><span class="tag">ขั้นที่ 3 · Design</span><h4>ออกแบบ</h4><p><b>คำถาม:</b> มีกี่หน้า เชื่อมกันอย่างไร หน้าตาแบบไหน?</p><p><b>ผลลัพธ์:</b> Sitemap · Wireframe · Mockup (Figma)</p><span class="unit">📅 หน่วยที่ 2</span></div>
+                <div class="cyc-card rise" data-only="4" style="--c:var(--blue)"><span class="tag">ขั้นที่ 4 · Development</span><h4>พัฒนา</h4><p><b>คำถาม:</b> เขียนโค้ดเอง หรือใช้ CMS?</p><p><b>ผลลัพธ์:</b> เว็บที่ทำงานได้บน localhost</p><span class="unit">📅 หน่วยที่ 3–4 (+ CMS หน่วยที่ 5)</span></div>
+                <div class="cyc-card rise" data-only="5" style="--c:var(--amber)"><span class="tag">ขั้นที่ 5 · Testing</span><h4>ทดสอบ</h4><p><b>คำถาม:</b> ใช้งานได้จริงไหม ช้าไหม มือถือดูได้ไหม?</p><p><b>ผลลัพธ์:</b> รายงานผลทดสอบ · คะแนน Lighthouse</p><span class="unit">📅 หน่วยที่ 5</span></div>
+                <div class="cyc-card rise" data-only="6" style="--c:var(--green)"><span class="tag">ขั้นที่ 6 · Deployment</span><h4>เผยแพร่</h4><p><b>คำถาม:</b> จะขึ้นเซิร์ฟเวอร์และโดเมนจริงอย่างไร?</p><p><b>ผลลัพธ์:</b> เว็บออนไลน์บน <code>student.<span class="v" data-v="domain">example.ac.th</span></code> พร้อม HTTPS</p><span class="unit">📅 หน่วยที่ 5</span></div>
+                <div class="cyc-card rise" data-only="7" style="--c:var(--teal)"><span class="tag">ขั้นที่ 7 · Maintenance</span><h4>ดูแลรักษา</h4><p><b>กิจกรรม:</b> อัปเดตเนื้อหา สำรองข้อมูล อัปเดตความปลอดภัย ต่ออายุโดเมน ดูสถิติ</p><span class="unit">📅 หน่วยที่ 5</span></div>
                 <div class="cyc-card rise" data-only="8" style="--c:var(--pink)"><span class="tag">Iteration</span><h4>ทำไมเป็น “วงจร”?</h4><p>ข้อมูลจากการดูแลรักษา (สถิติ คำติชม) กลายเป็นจุดเริ่มของการ <b>วางแผนรอบใหม่</b> และขั้นตอนอาจ <b>ย้อนกลับ</b> ได้ เช่น ทดสอบแล้วพบปัญหา → กลับไปแก้</p></div>
               </div>
             </div>
           </div>
           <ol class="anim-steps compact">
-            <li><b>วางแผน</b> — เป้าหมาย ขอบเขต เวลา ทีม</li><li><b>วิเคราะห์</b> — ผู้ใช้และความต้องการ</li><li><b>ออกแบบ</b> — Sitemap, Wireframe, Mockup</li><li><b>พัฒนา</b> — โค้ด / CMS</li><li><b>ทดสอบ</b> — หาข้อผิดพลาด</li><li><b>เผยแพร่</b> — โดเมน เซิร์ฟเวอร์ HTTPS</li><li><b>ดูแลรักษา</b> — อัปเดต สำรอง ป้องกัน</li><li><b>วนกลับ</b> — ปรับปรุงต่อเนื่อง</li>
+            <li><b>วางแผน</b> — เป้าหมาย ขอบเขต เวลา</li><li><b>วิเคราะห์</b> — ผู้ใช้และความต้องการ</li><li><b>ออกแบบ</b> — Sitemap, Wireframe, Mockup</li><li><b>พัฒนา</b> — โค้ด / CMS</li><li><b>ทดสอบ</b> — หาข้อผิดพลาด</li><li><b>เผยแพร่</b> — โดเมน เซิร์ฟเวอร์ HTTPS</li><li><b>ดูแลรักษา</b> — อัปเดต สำรอง ป้องกัน</li><li><b>วนกลับ</b> — ปรับปรุงต่อเนื่อง</li>
           </ol>
         </figure>
+        <p class="muted" style="font-size:15px">บทบาทในทีมพัฒนาเว็บไซต์จริง — ในโครงงานของรายวิชานี้ <b>นักเรียนสวมทุกบทบาทเอง</b> ทีละขั้น</p>
         <div class="g4">
           <div class="mini"><span class="ic-wrap"><i data-i="flag"></i></span><h4>Project Manager</h4><p>วางแผน แบ่งงาน คุมเวลา</p></div>
           <div class="mini c-pink"><span class="ic-wrap"><i data-i="palette"></i></span><h4>UX/UI Designer</h4><p>วิเคราะห์ผู้ใช้ Wireframe Mockup</p></div>
@@ -830,11 +815,11 @@ btn.<span class="t-prop">addEventListener</span>(<span class="t-str">'click'</sp
           <div class="mini c-teal"><span class="ic-wrap"><i data-i="server"></i></span><h4>DevOps / Admin</h4><p>เซิร์ฟเวอร์ โดเมน SSL สำรองข้อมูล</p></div>
         </div>
         <div class="panel worksheet planner" data-plan="project" style="margin-top:18px">
-          <div class="ws-head"><h3><i data-i="clipboard"></i>วางแผนโครงงาน (ใช้ต่อเนื่องทั้ง 5 วัน)</h3><span class="chip c-teal">บันทึกอัตโนมัติในเครื่องนี้</span></div>
+          <div class="ws-head"><h3><i data-i="clipboard"></i>วางแผนโครงงาน (ใช้ต่อเนื่องทุกหน่วย)</h3><span class="chip c-teal">บันทึกอัตโนมัติในเครื่องนี้</span></div>
           <p class="muted" style="font-size:15px">ตัวอย่างหัวข้อ: เว็บร้านค้าชุมชน · แหล่งท่องเที่ยวในจังหวัด · เว็บแผนกวิชา · รับซ่อมคอมพิวเตอร์ · Portfolio ส่วนตัว</p>
           <div class="form-grid">
             <label>ชื่อโครงงาน / ซับโดเมนที่จะใช้<input type="text" data-field="name" placeholder="เช่น coffee — coffee.example.ac.th"></label>
-            <label>สมาชิกและบทบาท<textarea data-field="team" rows="3" placeholder="1. ……… — PM&#10;2. ……… — Designer"></textarea></label>
+            <label>ผู้ใช้จริงที่จะสัมภาษณ์ (อย่างน้อย 3 คน)<textarea data-field="team" rows="3" placeholder="1. เจ้าของร้าน&#10;2. ลูกค้าประจำ&#10;3. เพื่อน"></textarea></label>
             <label>วัตถุประสงค์ (SMART อย่างน้อย 2 ข้อ)<textarea data-field="goal" rows="3"></textarea></label>
             <label>กลุ่มผู้ใช้ และสิ่งที่เขาต้องการ<textarea data-field="user" rows="3"></textarea></label>
             <label>รายชื่อหน้า (Sitemap คร่าว ๆ)<textarea data-field="pages" rows="3" placeholder="หน้าแรก › เกี่ยวกับ › สินค้า › รีวิว › ติดต่อ"></textarea></label>
@@ -846,7 +831,7 @@ btn.<span class="t-prop">addEventListener</span>(<span class="t-str">'click'</sp
 
       <!-- ================= LAB ================= -->
       <section class="sec" id="lab">
-        <div class="sec-head"><span class="sec-num">17</span><div><h2>ใบงาน Day 1 · สืบหลังบ้านเว็บด้วยเครื่องมือจริง</h2><p>งานคู่ · ส่งเป็นเอกสาร/ภาพหน้าจอ · 20 คะแนน</p></div></div>
+        <div class="sec-head"><span class="sec-num">17</span><div><h2>ใบงาน หน่วยที่ 1 · สืบหลังบ้านเว็บด้วยเครื่องมือจริง</h2><p>งานเดี่ยว · ส่งเป็นเอกสาร/ภาพหน้าจอ · 20 คะแนน</p></div></div>
         <div class="panel worksheet">
           <div class="ws-head"><h3><i data-i="clipboard"></i>ขั้นตอน</h3><span class="ws-progress"></span></div>
           <ul class="checklist" data-key="d1">
@@ -870,13 +855,13 @@ tracert <span class="v" data-v="domain">example.ac.th</span>
 <span class="t-com"># 3) ดู HTTP Header (ดูการ redirect ด้วย -L)</span>
 curl -I http://<span class="v" data-v="domain">example.ac.th</span>
 curl -IL http://<span class="v" data-v="domain">example.ac.th</span></pre>
-          <div class="callout tip"><i data-i="bulb"></i><p><strong class="t">ใส่โดเมนของตัวเอง</strong>กรอกโดเมนในกล่อง “ข้อมูลเซิร์ฟเวอร์ของฉัน” ที่หน้า <a href="day-5.html#vars">Day 5</a> แล้วคำสั่งทุกหน้าจะเปลี่ยนเป็นโดเมนของคุณอัตโนมัติ</p></div>
+          <div class="callout tip"><i data-i="bulb"></i><p><strong class="t">ใส่โดเมนของตัวเอง</strong>กรอกโดเมนในกล่อง “ข้อมูลเซิร์ฟเวอร์ของฉัน” ที่หน้า <a href="unit-5.html#vars">หน่วยที่ 5</a> แล้วคำสั่งทุกหน้าจะเปลี่ยนเป็นโดเมนของคุณอัตโนมัติ</p></div>
         </div>
       </section>
 
       <!-- ================= QUIZ ================= -->
       <section class="sec" id="quiz">
-        <div class="sec-head"><span class="sec-num">18</span><div><h2>แบบทดสอบ Day 1</h2><p>12 ข้อ · เฉลยทันที</p></div></div>
+        <div class="sec-head"><span class="sec-num">18</span><div><h2>แบบทดสอบ หน่วยที่ 1</h2><p>12 ข้อ · เฉลยทันที</p></div></div>
         <div class="quiz" data-quiz="d1">
           <div class="q" data-a="2"><p class="q-t">ข้อใดอธิบายความสัมพันธ์ของ Internet กับ WWW ได้ถูกต้อง</p><div class="opts"><button>เป็นสิ่งเดียวกัน</button><button>WWW เกิดก่อน Internet</button><button>WWW เป็นบริการหนึ่งบน Internet</button><button>Internet เป็นบริการของ WWW</button></div><p class="q-ex">Internet = โครงสร้างเครือข่าย (ถนน) · WWW = บริการเอกสารเว็บที่วิ่งบนเครือข่าย</p></div>
           <div class="q" data-a="3"><p class="q-t">ใน <code>https://shop.example.co.th/products/list.html?cat=shirt#top</code> ส่วนใดคือ Path</p><div class="opts"><button>shop</button><button>.co.th</button><button>?cat=shirt</button><button>/products/list.html</button></div><p class="q-ex">Path คือตำแหน่งโฟลเดอร์/ไฟล์ต่อจากชื่อโดเมน</p></div>
@@ -889,14 +874,14 @@ curl -IL http://<span class="v" data-v="domain">example.ac.th</span></pre>
           <div class="q" data-a="2"><p class="q-t">ในการ Render ข้อใดคือขั้น “คำนวณตำแหน่งและขนาดของทุกกล่อง”</p><div class="opts"><button>Parse</button><button>Paint</button><button>Layout</button><button>Composite</button></div><p class="q-ex">Layout (Reflow) คำนวณเรขาคณิต · Paint ลงสี · Composite รวมเลเยอร์</p></div>
           <div class="q" data-a="1"><p class="q-t">ข้อใดจับคู่ภาษากับหน้าที่ถูกต้อง</p><div class="opts"><button>HTML – การโต้ตอบ</button><button>CSS – การนำเสนอ/หน้าตา</button><button>JS – โครงสร้าง</button><button>PHP – ทำงานในเบราว์เซอร์</button></div><p class="q-ex">HTML โครงสร้าง · CSS หน้าตา · JS พฤติกรรม · PHP ทำงานฝั่งเซิร์ฟเวอร์</p></div>
           <div class="q" data-a="3"><p class="q-t">“LEMP stack” ประกอบด้วยอะไร</p><div class="opts"><button>Linux, Excel, MySQL, Python</button><button>Laravel, Express, Mongo, PHP</button><button>Linux, Edge, MariaDB, Perl</button><button>Linux, Nginx, MySQL/MariaDB, PHP</button></div><p class="q-ex">E มาจากการอ่าน Nginx ว่า “Engine-x”</p></div>
-          <div class="q" data-a="2"><p class="q-t">ขั้นใดของ WDLC ที่ผลลัพธ์คือ Sitemap, Wireframe และ Mockup</p><div class="opts"><button>วางแผน</button><button>วิเคราะห์</button><button>ออกแบบ</button><button>ทดสอบ</button></div><p class="q-ex">ขั้นออกแบบ (Design) — เรียนใน Day 2</p></div>
+          <div class="q" data-a="2"><p class="q-t">ขั้นใดของ WDLC ที่ผลลัพธ์คือ Sitemap, Wireframe และ Mockup</p><div class="opts"><button>วางแผน</button><button>วิเคราะห์</button><button>ออกแบบ</button><button>ทดสอบ</button></div><p class="q-ex">ขั้นออกแบบ (Design) — เรียนใน หน่วยที่ 2</p></div>
           <div class="quiz-foot"><span class="quiz-score"></span><button class="btn sm quiz-reset" type="button">ทำใหม่</button></div>
         </div>
       </section>
 
       <!-- ================= SUM ================= -->
       <section class="sec" id="sum">
-        <div class="sec-head"><span class="sec-num">19</span><div><h2>สรุป Day 1</h2><p>ภาพใหญ่ในประโยคเดียว: “ถามที่อยู่ → เคาะประตู → ขอของ → ได้ของ → ประกอบร่าง”</p></div></div>
+        <div class="sec-head"><span class="sec-num">19</span><div><h2>สรุป หน่วยที่ 1</h2><p>ภาพใหญ่ในประโยคเดียว: “ถามที่อยู่ → เคาะประตู → ขอของ → ได้ของ → ประกอบร่าง”</p></div></div>
         <div class="panel">
           <ul class="ticks">
             <li><b>Internet</b> = เครือข่ายของเครือข่าย (TCP/IP, IP, Port) · <b>WWW</b> = บริการเอกสารบนอินเทอร์เน็ต (HTML + HTTP + URL)</li>
@@ -904,14 +889,14 @@ curl -IL http://<span class="v" data-v="domain">example.ac.th</span></pre>
             <li><b>ลำดับ</b>: DNS → TCP/TLS → HTTP Request → ประมวลผล → Response → ไฟล์ประกอบ → Render (DOM, CSSOM, Layout, Paint, Composite)</li>
             <li><b>HTTP</b> Method · Header · Status (2xx/3xx/4xx/5xx) · Stateless → Cookie · <b>HTTPS</b> = TLS + Certificate</li>
             <li><b>HTML/CSS/JS</b> · Frontend/Backend/Database/Server · Static vs Dynamic · โครงสร้างเว็บ 4 แบบ</li>
-            <li><b>WDLC 7 ขั้น</b> = แผนที่ของ 5 วันนี้</li>
+            <li><b>WDLC 7 ขั้น</b> = แผนที่ของ 5 หน่วยในรายวิชานี้</li>
           </ul>
-          <div class="callout"><i data-i="help"></i><p><strong class="t">เตรียมตัวสำหรับ Day 2</strong>แต่ละทีมคุยกับ “ผู้ใช้จริง” ของโครงงานอย่างน้อย 3 คน (เพื่อน ครอบครัว เจ้าของร้าน) ถามว่าเขาอยากเห็นอะไรในเว็บ — พรุ่งนี้จะใช้ข้อมูลนี้สร้าง Persona</p></div>
+          <div class="callout"><i data-i="help"></i><p><strong class="t">เตรียมตัวสำหรับ หน่วยที่ 2</strong>คุยกับ “ผู้ใช้จริง” ของโครงงานอย่างน้อย 3 คน (เพื่อน ครอบครัว เจ้าของร้าน) ถามว่าเขาอยากเห็นอะไรในเว็บ — หน่วยถัดไปจะใช้ข้อมูลนี้สร้าง Persona</p></div>
           <button class="btn mark-done" type="button" data-lesson="d1"></button>
         </div>
         <nav class="pager">
           <a href="../index.html"><small>← กลับ</small><strong>หน้าแรก</strong></a>
-          <a class="next" href="day-2.html"><small>วันถัดไป →</small><strong>Day 2 · วิเคราะห์ผู้ใช้ &amp; ออกแบบ UI</strong></a>
+          <a class="next" href="unit-2.html"><small>วันถัดไป →</small><strong>หน่วยที่ 2 · วิเคราะห์ผู้ใช้ &amp; ออกแบบ UI</strong></a>
         </nav>
       </section>
     </article>
