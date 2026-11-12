@@ -1088,6 +1088,13 @@ mark { background: rgba(236, 72, 153, .16); color: inherit; padding: .05em .2em;
 .grid-live div { padding: 18px 10px; border-radius: 10px; color: #fff; font: 700 13px/1 var(--mono); text-align: center; background: linear-gradient(135deg, #f97316, #ec4899); }
 .grid-live div:nth-child(even) { background: linear-gradient(135deg, #a855f7, #3b82f6); }
 
+/* glossary */
+.gloss { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); margin-top: 14px; }
+.gl { padding: 12px 14px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--border); font-size: 14.5px; line-height: 1.55; }
+.gl b { display: block; color: var(--pink); font-family: var(--mono); font-size: 13.5px; margin-bottom: 3px; }
+.gl span { color: var(--muted); }
+.gl[hidden] { display: none; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
   .lesson-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }

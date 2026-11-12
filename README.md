@@ -12,13 +12,14 @@
 | [4](units/unit-4.html) | การตกแต่งเว็บด้วย CSS, Responsive และ JavaScript | CSS Specificity · Box model · Flexbox · Grid · Responsive · CSS Variables · JavaScript DOM | 10–12 |
 | [5](units/unit-5.html) | การสร้างเว็บด้วย CMS การทดสอบ และการเผยแพร่เว็บไซต์ | WordPress · ทดสอบ · DNS · Linux/SSH · SFTP · Nginx · Let's Encrypt · SEO · ดูแลรักษา | 13–15 |
 
-แต่ละหน่วยมี: จุดประสงค์ · แอนิเมชันทีละขั้น · กล่อง “เทคนิค / เจาะลึก Technical / เกร็ดความรู้ / พลาดบ่อย / ทริกมือโปร” · ใบงานแบบเช็กลิสต์ · แบบทดสอบเฉลยทันที · สรุป
+แต่ละหน่วยมี: จุดประสงค์ · แบบทดสอบก่อนเรียน · แอนิเมชันทีละขั้น · กล่อง “เทคนิค / เจาะลึก Technical / เกร็ดความรู้ / พลาดบ่อย / ทริกมือโปร” · ใบงานแบบเช็กลิสต์ · แบบทดสอบเฉลยทันที · สรุป
 
 ## โครงสร้างไฟล์
 
 ```
 index.html              หน้าแรก (การ์ด 5 หน่วย + ความก้าวหน้า + สิ่งที่ต้องเตรียม)
-course.html             วิเคราะห์รายวิชา: 5 หน่วย · สมรรถนะประจำหน่วย · แผน 15 สัปดาห์ · การวัดผล
+course.html             วิเคราะห์รายวิชา: 5 หน่วย · สมรรถนะประจำหน่วย · แผน 15 สัปดาห์ · แนวการจัดการเรียนรู้ · เศรษฐกิจพอเพียง · การวัดผล
+resources.html          คลังความรู้เสริม: อภิธานศัพท์ 114 คำ (ค้นหาได้) · แก้ปัญหา · Cheat sheet · คีย์ลัด · เช็กลิสต์ · แหล่งเรียนรู้
 units/unit-1.html … unit-5.html
 assets/css/style.css    ธีม auto/light/dark และคอมโพเนนต์ทั้งหมด
 assets/js/main.js       เครื่องเล่นแอนิเมชัน แบบทดสอบ ใบงาน และแล็บโต้ตอบ (ไม่ใช้ไลบรารีภายนอก)
@@ -50,7 +51,7 @@ server {
     root /var/www/webdev;
     index index.html;
     location / { try_files $uri $uri/ =404; }
-    location ~ /\. { deny all; }        # ซ่อน .git
+    location ~ /\.(?!well-known) { deny all; }   # ซ่อน .git แต่เว้น .well-known ให้ certbot
 }
 ```
 

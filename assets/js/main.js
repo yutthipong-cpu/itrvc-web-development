@@ -629,7 +629,7 @@
 
   /* ---------- CSS specificity calculator ---------- */
   const specificity = sel => {
-    let s = sel.replace(/"[^"]*"|'[^']*'/g, '').replace(/:(not|is|has|where)\(/g, '(');
+    let s = sel.replace(/"[^"]*"|'[^']*'/g, '').replace(/:where\([^)]*\)/g, '').replace(/:(not|is|has)\(/g, '(');
     const a = (s.match(/#[\w-]+/g) || []).length;
     const b = (s.match(/\.[\w-]+/g) || []).length + (s.match(/\[[^\]]*\]/g) || []).length + (s.match(/(^|[^:]):(?!:)[\w-]+/g) || []).length;
     const pe = (s.match(/::[\w-]+/g) || []).length;
@@ -699,6 +699,18 @@
       n++;
       if (log) log.textContent = `#${n} click → classList.toggle('open') → ${open ? 'เปิดเมนู' : 'ปิดเมนู'}`;
     });
+  });
+
+  /* ---------- Glossary search ---------- */
+  document.querySelectorAll('.gloss-wrap').forEach(w => {
+    const inp = w.querySelector('.gl-search'), items = [...w.querySelectorAll('.gl')], cnt = w.querySelector('.gl-count');
+    const run = () => {
+      const q = inp.value.trim().toLowerCase();
+      let n = 0;
+      items.forEach(it => { const ok = !q || it.textContent.toLowerCase().includes(q); it.hidden = !ok; if (ok) n++; });
+      if (cnt) cnt.textContent = q ? `พบ ${n} คำ จาก ${items.length} คำ` : `ทั้งหมด ${items.length} คำ`;
+    };
+    inp.addEventListener('input', run); run();
   });
 
   /* ---------- Keep current nav item visible in the pill ---------- */

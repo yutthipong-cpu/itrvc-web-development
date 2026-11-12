@@ -22,6 +22,7 @@
     <a href="unit-3.html">หน่วย 3</a>
     <a href="unit-4.html" aria-current="page">หน่วย 4</a>
     <a href="unit-5.html">หน่วย 5</a>
+    <a href="../resources.html">คลังความรู้</a>
   </nav>
   <button class="theme-btn" type="button">auto</button>
 </header>
@@ -40,6 +41,7 @@
       <span class="toc-title">หน่วยที่ 4</span>
       <nav>
         <a href="#plan">จุดประสงค์</a>
+        <a href="#pretest">ทดสอบก่อนเรียน</a>
         <a href="#intro">CSS คืออะไร</a>
         <a href="#selectors">Selector</a>
         <a href="#cascade">Cascade &amp; Specificity</a>
@@ -70,6 +72,18 @@
           <li>จัดวางด้วย Flexbox และ Grid และทำเว็บ Responsive แบบ Mobile-first ได้</li>
           <li>ใช้ CSS Variables, Transition และ JavaScript จัดการ Event/DOM เบื้องต้นได้</li>
         </ol>
+      </section>
+
+      <section class="sec" id="pretest">
+        <div class="sec-head"><span class="sec-num"><i data-i="help"></i></span><div><h2>แบบทดสอบก่อนเรียน</h2><p>5 ข้อ · วัดความรู้เดิมก่อนเริ่ม ไม่มีผลต่อคะแนน — ตอบตามที่รู้ แล้วเทียบกับแบบทดสอบท้ายหน่วย</p></div></div>
+        <div class="quiz" data-quiz="pre-u4">
+          <div class="q" data-a="2"><p class="q-t">CSS ใช้ทำอะไรในการสร้างเว็บ</p><div class="opts"><button>เก็บข้อมูล</button><button>ส่งอีเมล</button><button>กำหนดหน้าตาและการจัดวาง</button><button>ตั้งชื่อโดเมน</button></div><p class="q-ex">CSS = Cascading Style Sheets</p></div>
+          <div class="q" data-a="0"><p class="q-t">รหัสสี #FFFFFF คือสีใด</p><div class="opts"><button>ขาว</button><button>ดำ</button><button>แดง</button><button>น้ำเงิน</button></div><p class="q-ex">FF สูงสุดทั้ง แดง เขียว น้ำเงิน = ขาว</p></div>
+          <div class="q" data-a="3"><p class="q-t">ข้อใดเขียน CSS ได้ถูกต้อง</p><div class="opts"><button>p = color red</button><button>&lt;p color=red&gt;</button><button>p(color:red)</button><button>p { color: red; }</button></div><p class="q-ex">selector { property: value; }</p></div>
+          <div class="q" data-a="1"><p class="q-t">ภาษาใดทำให้หน้าเว็บตอบสนองเมื่อผู้ใช้คลิก</p><div class="opts"><button>HTML</button><button>JavaScript</button><button>CSS</button><button>SQL</button></div><p class="q-ex">JavaScript จัดการเหตุการณ์ (Event)</p></div>
+          <div class="q" data-a="2"><p class="q-t">หน่วย px ใน CSS หมายถึง</p><div class="opts"><button>เปอร์เซ็นต์</button><button>จุดของตัวพิมพ์</button><button>พิกเซล</button><button>จำนวนหน้า</button></div><p class="q-ex">px = pixel</p></div>
+          <div class="quiz-foot"><span class="quiz-score"></span><button class="btn sm quiz-reset" type="button">ทำใหม่</button></div>
+        </div>
       </section>
 
       <div class="part-label">ตอนที่ 1 · พื้นฐาน CSS ที่ต้องแน่น</div>
@@ -261,7 +275,7 @@
         </div>
         <div class="code-head" style="margin-top:16px"><i></i><i></i><i></i>เมนูติดด้านบนเมื่อเลื่อน (1 บรรทัดที่สำคัญ)</div>
 <pre class="code"><span class="t-sel">.site-header</span> { <span class="t-prop">position</span>: <span class="t-val">sticky</span>; <span class="t-prop">top</span>: <span class="t-num">0</span>; <span class="t-prop">z-index</span>: <span class="t-num">100</span>; <span class="t-prop">background</span>: <span class="t-val">white</span>; }</pre>
-        <div class="nug tech"><p><code>z-index</code> (ใครอยู่บน) ทำงานกับองค์ประกอบที่มี position ไม่ใช่ static เท่านั้น — ถ้าตั้ง z-index แล้วไม่มีผล ให้ตรวจ position ก่อน</p></div>
+        <div class="nug tech"><p><code>z-index</code> (ใครอยู่บน) ทำงานกับองค์ประกอบที่มี position ไม่ใช่ static (หรือเป็นลูกของ flex/grid) — ถ้าตั้ง z-index แล้วไม่มีผล ให้ตรวจ position ก่อน และระวัง “stacking context” ของกล่องแม่ที่ครอบอยู่</p></div>
       </section>
 
       <div class="part-label">ตอนที่ 2 · จัดวาง Layout และทำให้ Responsive</div>

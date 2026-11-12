@@ -22,6 +22,7 @@
     <a href="unit-3.html">หน่วย 3</a>
     <a href="unit-4.html">หน่วย 4</a>
     <a href="unit-5.html" aria-current="page">หน่วย 5</a>
+    <a href="../resources.html">คลังความรู้</a>
   </nav>
   <button class="theme-btn" type="button">auto</button>
 </header>
@@ -40,6 +41,7 @@
       <span class="toc-title">หน่วยที่ 5</span>
       <nav>
         <a href="#plan">จุดประสงค์</a>
+        <a href="#pretest">ทดสอบก่อนเรียน</a>
         <a href="#vars">ข้อมูลเซิร์ฟเวอร์ของฉัน</a>
         <a href="#cms">CMS คืออะไร</a>
         <a href="#wpflow">WordPress ทำงานอย่างไร</a>
@@ -72,6 +74,18 @@
           <li>อัปโหลดเว็บขึ้นเซิร์ฟเวอร์ผ่าน SSH/SFTP ตั้งค่า Nginx และติดตั้ง HTTPS ได้</li>
           <li>ทำ SEO เบื้องต้น และวางแผนดูแลรักษาเว็บไซต์อย่างมีความรับผิดชอบได้</li>
         </ol>
+      </section>
+
+      <section class="sec" id="pretest">
+        <div class="sec-head"><span class="sec-num"><i data-i="help"></i></span><div><h2>แบบทดสอบก่อนเรียน</h2><p>5 ข้อ · วัดความรู้เดิมก่อนเริ่ม ไม่มีผลต่อคะแนน — ตอบตามที่รู้ แล้วเทียบกับแบบทดสอบท้ายหน่วย</p></div></div>
+        <div class="quiz" data-quiz="pre-u5">
+          <div class="q" data-a="0"><p class="q-t">WordPress คืออะไร</p><div class="opts"><button>โปรแกรมสำเร็จรูปสร้างเว็บ (CMS)</button><button>เบราว์เซอร์</button><button>ภาษาโปรแกรม</button><button>โดเมน</button></div><p class="q-ex">CMS ที่นิยมที่สุดในโลก</p></div>
+          <div class="q" data-a="1"><p class="q-t">การนำไฟล์เว็บจากเครื่องเราขึ้นเซิร์ฟเวอร์ เรียกว่า</p><div class="opts"><button>ดาวน์โหลด</button><button>อัปโหลด</button><button>ฟอร์แมต</button><button>รีสตาร์ต</button></div><p class="q-ex">Upload = ส่งขึ้น</p></div>
+          <div class="q" data-a="3"><p class="q-t">ข้อใดถูกต้องเกี่ยวกับโดเมนเนม</p><div class="opts"><button>ใช้ฟรีตลอดไปไม่ต้องจด</button><button>เปลี่ยนชื่อทุกวัน</button><button>ใช้ได้เฉพาะในเครื่อง</button><button>ต้องจดทะเบียนและต่ออายุเป็นระยะ</button></div><p class="q-ex">โดเมนหมดอายุ = เว็บเข้าไม่ได้</p></div>
+          <div class="q" data-a="2"><p class="q-t">รูปกุญแจ 🔒 ที่แถบที่อยู่เว็บแสดงว่า</p><div class="opts"><button>เว็บนี้ไม่มีไวรัสแน่นอน</button><button>ต้องใส่รหัสผ่าน</button><button>การเชื่อมต่อเข้ารหัสด้วย HTTPS</button><button>เว็บปิดปรับปรุง</button></div><p class="q-ex">HTTPS ปกป้องข้อมูลระหว่างทาง (ไม่ได้รับรองว่าเว็บน่าเชื่อถือ)</p></div>
+          <div class="q" data-a="0"><p class="q-t">ก่อนเปิดใช้เว็บไซต์จริง ควรทำสิ่งใด</p><div class="opts"><button>ทดสอบลิงก์และการแสดงผลบนมือถือ</button><button>ลบไฟล์ CSS</button><button>ปิดเซิร์ฟเวอร์</button><button>เปลี่ยนชื่อโดเมน</button></div><p class="q-ex">ขั้นทดสอบของวงจรพัฒนาเว็บ</p></div>
+          <div class="quiz-foot"><span class="quiz-score"></span><button class="btn sm quiz-reset" type="button">ทำใหม่</button></div>
+        </div>
       </section>
 
       <section class="sec" id="vars">
@@ -200,7 +214,7 @@ sudo wget https://wordpress.org/latest.tar.gz
 sudo tar -xzf latest.tar.gz
 sudo mv wordpress wp-<span class="v" data-v="sub">student01</span>
 sudo chown -R www-data:www-data /var/www/wp-<span class="v" data-v="sub">student01</span></pre>
-            <p style="margin:0">จากนั้นตั้งค่า Nginx ให้รัน PHP (ดูบล็อก WordPress ในหัวข้อ Deploy) แล้วเปิดโดเมนเพื่อติดตั้งต่อเหมือนทางเลือก A</p>
+            <p style="margin:0">จากนั้นตั้งค่า Nginx ให้รัน PHP (ดูบล็อก WordPress ในหัวข้อ Deploy โดยตั้ง <code>root /var/www/wp-<span class="v" data-v="sub">student01</span>;</code>) แล้วเปิดโดเมนเพื่อติดตั้งต่อเหมือนทางเลือก A</p>
           </div>
         </div>
         <div class="nug pro"><p>ย้าย WordPress จาก localhost ขึ้นเซิร์ฟเวอร์จริงแบบง่าย: ใช้ปลั๊กอิน <b>All-in-One WP Migration</b> หรือ <b>Duplicator</b> — Export เป็นไฟล์เดียว แล้ว Import ที่ปลายทาง (ระบบแก้ URL ในฐานข้อมูลให้เอง)</p></div>
@@ -234,7 +248,7 @@ sudo chown -R www-data:www-data /var/www/wp-<span class="v" data-v="sub">student
               <tr><td>Wordfence / Solid Security</td><td>ความปลอดภัย ไฟร์วอลล์ จำกัดการล็อกอินผิด</td></tr>
               <tr><td>UpdraftPlus</td><td>สำรองข้อมูลอัตโนมัติไป Google Drive</td></tr>
               <tr><td>WPForms / Contact Form 7</td><td>ฟอร์มติดต่อ</td></tr>
-              <tr><td>LiteSpeed Cache / WP Super Cache</td><td>เร่งความเร็ว</td></tr>
+              <tr><td>WP Super Cache (Nginx/Apache) · LiteSpeed Cache (เซิร์ฟเวอร์ LiteSpeed)</td><td>เร่งความเร็ว</td></tr>
             </tbody>
           </table></div>
           <div class="tbl-wrap" style="margin:0"><table class="tbl" style="min-width:0">
@@ -457,7 +471,7 @@ ssh <span class="v" data-v="user">student01</span>@<span class="v" data-v="ip">2
 <span class="t-com"># อัปโหลดทั้งโฟลเดอร์ (รันบนเครื่องเรา ในโฟลเดอร์โครงงาน)</span>
 scp -r ./* <span class="v" data-v="user">student01</span>@<span class="v" data-v="ip">203.0.113.50</span>:/var/www/<span class="v" data-v="sub">student01</span>/
 
-<span class="t-com"># หรือ rsync: ส่งเฉพาะไฟล์ที่เปลี่ยน (เร็วกว่ามากเมื่ออัปเดตครั้งต่อไป)</span>
+<span class="t-com"># หรือ rsync: ส่งเฉพาะไฟล์ที่เปลี่ยน (เร็วกว่ามากเมื่ออัปเดตครั้งต่อไป) — ใช้บน Linux/macOS หรือ WSL บน Windows</span>
 rsync -avz --delete ./ <span class="v" data-v="user">student01</span>@<span class="v" data-v="ip">203.0.113.50</span>:/var/www/<span class="v" data-v="sub">student01</span>/
 
 <span class="t-com"># ตั้งสิทธิ์บนเซิร์ฟเวอร์</span>
@@ -493,7 +507,7 @@ cd /var/www/<span class="v" data-v="sub">student01</span> &amp;&amp; git pull</p
     <span class="t-com">#     fastcgi_pass unix:/run/php/php8.3-fpm.sock;</span>
     <span class="t-com"># }</span>
 
-    <span class="t-kw">location</span> ~ /\. { <span class="t-prop">deny</span> all; }                 <span class="t-com"># ซ่อนไฟล์ .git .env</span>
+    <span class="t-kw">location</span> ~ /\.(?!well-known) { <span class="t-prop">deny</span> all; }   <span class="t-com"># ซ่อน .git .env แต่เว้น /.well-known ให้ certbot</span>
 }</pre>
         <div class="code-head"><i></i><i></i><i></i>เปิดใช้งาน (ต้องใช้ sudo)</div>
 <pre class="code">sudo ln -s /etc/nginx/sites-available/<span class="v" data-v="sub">student01</span> /etc/nginx/sites-enabled/

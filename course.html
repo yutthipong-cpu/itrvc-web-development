@@ -22,6 +22,7 @@
     <a href="units/unit-3.html">หน่วย 3</a>
     <a href="units/unit-4.html">หน่วย 4</a>
     <a href="units/unit-5.html">หน่วย 5</a>
+    <a href="resources.html">คลังความรู้</a>
     <a href="course.html" aria-current="page">วิเคราะห์รายวิชา</a>
   </nav>
   <button class="theme-btn" type="button">โหมด</button>
@@ -207,6 +208,51 @@
           <li><b>จริยธรรม</b> เคารพลิขสิทธิ์ภาพ/ธีม · PDPA · พ.ร.บ.คอมพิวเตอร์ · ใช้เซิร์ฟเวอร์ส่วนรวมอย่างปลอดภัย</li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <section class="sec" id="teach">
+    <div class="sec-head"><span class="sec-num">07</span><div><h2>แนวการจัดการเรียนรู้รายหน่วย</h2><p>ขั้นนำ → ขั้นสอน/ปฏิบัติ → ขั้นสรุป → ขั้นประเมิน (ใช้ร่วมกับสื่อในแต่ละหน่วย)</p></div></div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>หน่วย</th><th>ขั้นนำ</th><th>ขั้นสอน / ปฏิบัติ</th><th>ขั้นสรุป</th><th>ขั้นประเมิน (เครื่องมือ)</th></tr></thead>
+        <tbody>
+          <tr><td><b>1</b></td><td>แบบทดสอบก่อนเรียน · ถาม “เช้านี้ใช้อินเทอร์เน็ตทำอะไรบ้าง” แล้วแยกว่าอะไรคือเว็บ</td><td>ดูแอนิเมชันทีละขั้น (DNS, HTTP, HTTPS, Rendering) · ใช้ nslookup, curl, DevTools ตรวจเว็บจริง · วางแผนโครงงาน</td><td>วาดแผนภาพ 10 ขั้น “กด Enter แล้วเกิดอะไรขึ้น” ด้วยคำพูดตนเอง</td><td>ใบงานหน่วยที่ 1 (20 คะแนน) · แบบทดสอบท้ายหน่วย · แบบฟอร์มแผนโครงงาน</td></tr>
+          <tr><td><b>2</b></td><td>แบบทดสอบก่อนเรียน · เปรียบเทียบเว็บที่ใช้ง่ายกับใช้ยาก</td><td>สัมภาษณ์ผู้ใช้จริง · สร้าง Persona, MoSCoW · Card sorting · วัดคอนทราสต์ · Wireframe/Mockup ใน Figma</td><td>นำเสนอ Sitemap และ Mockup พร้อมเหตุผลการออกแบบ</td><td>ใบงานหน่วยที่ 2 (25 คะแนน) · ลิงก์ Figma · แบบทดสอบท้ายหน่วย</td></tr>
+          <tr><td><b>3</b></td><td>แบบทดสอบก่อนเรียน · Ctrl+U ดูซอร์สโค้ดเว็บจริง</td><td>ติดตั้ง XAMPP · Live editor · เขียนหน้าเว็บโครงงานด้วย HTML Semantic · ฟอร์ม + PHP · ตรวจด้วย validator</td><td>ทบทวนข้อผิดพลาดที่พบบ่อย (พาธ, แท็กไม่ปิด, charset)</td><td>ใบงานหน่วยที่ 3 (25 คะแนน) · ผล validator · แบบทดสอบท้ายหน่วย</td></tr>
+          <tr><td><b>4</b></td><td>แบบทดสอบก่อนเรียน · ถอด CSS ออกจากเว็บจริงดูผล</td><td>แล็บ Specificity, Flexbox, Responsive · ตกแต่งเว็บตาม Mockup · เมนูมือถือ JS · Lighthouse</td><td>เทียบเว็บของตนกับ Mockup และคะแนน Lighthouse</td><td>ใบงานหน่วยที่ 4 (30 คะแนน) · ทดสอบบนมือถือจริง · แบบทดสอบท้ายหน่วย</td></tr>
+          <tr><td><b>5</b></td><td>แบบทดสอบก่อนเรียน · ถามว่า “ทำไมเว็บบางเว็บถึงหายไป” (โดเมนหมดอายุ/ถูกแฮก)</td><td>ติดตั้ง/ใช้ WordPress · ทดสอบเว็บ · ตั้ง DNS · SSH/SFTP · Nginx · certbot · SEO</td><td>นำเสนอเว็บจากโดเมนจริงบนมือถือ · สะท้อนสิ่งที่เรียนรู้</td><td>ใบงานหน่วยที่ 5 · เกณฑ์ประเมินโครงงาน (100 คะแนน) · แบบทดสอบหลังเรียนทั้งรายวิชา</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout tip"><i data-i="bulb"></i><p><strong class="t">การใช้ผลแบบทดสอบก่อน–หลังเรียน</strong>เปรียบเทียบคะแนนก่อนเรียน (5 ข้อ) กับแบบทดสอบท้ายหน่วยเพื่อดูพัฒนาการ ถ้าคะแนนก่อนเรียนสูงอยู่แล้วให้เน้นส่วน “เจาะลึก Technical” และ “ทริกมือโปร” ถ้าต่ำให้ใช้แอนิเมชันทบทวนซ้ำทีละขั้น</p></div>
+  </section>
+
+  <section class="sec" id="sep">
+    <div class="sec-head"><span class="sec-num">08</span><div><h2>บูรณาการหลักปรัชญาของเศรษฐกิจพอเพียง</h2><p>3 ห่วง 2 เงื่อนไข กับงานพัฒนาเว็บไซต์</p></div></div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>หลัก</th><th>การประยุกต์ในรายวิชา</th></tr></thead>
+        <tbody>
+          <tr><td><b>ความพอประมาณ</b></td><td>กำหนดขอบเขตโครงงานด้วย MoSCoW ให้พอดีกับเวลาและความสามารถ · เลือกโฮสติ้ง/เครื่องมือฟรีที่เหมาะกับขนาดงาน · ใช้ปลั๊กอินเท่าที่จำเป็น</td></tr>
+          <tr><td><b>ความมีเหตุผล</b></td><td>ตัดสินใจออกแบบจากข้อมูลผู้ใช้จริง (Persona, แบบสอบถาม) ไม่ใช่ความชอบส่วนตัว · เลือก Static หรือ Dynamic ตามความต้องการจริง</td></tr>
+          <tr><td><b>การมีภูมิคุ้มกันที่ดี</b></td><td>ทดสอบก่อนเผยแพร่ · สำรองข้อมูลแบบ 3-2-1 · ใช้ HTTPS, SSH key, อัปเดตความปลอดภัย · ต่ออายุโดเมนล่วงหน้า</td></tr>
+          <tr><td><b>เงื่อนไขความรู้</b></td><td>ศึกษาหลักการทำงานของเว็บให้เข้าใจก่อนลงมือ · ใช้เอกสารอ้างอิงที่ถูกต้อง (MDN, WCAG) · รอบคอบในการพิมพ์คำสั่งบนเซิร์ฟเวอร์</td></tr>
+          <tr><td><b>เงื่อนไขคุณธรรม</b></td><td>เคารพลิขสิทธิ์ภาพ/ฟอนต์/ธีม · ไม่ใช้ธีมเถื่อน · คุ้มครองข้อมูลส่วนบุคคลตาม PDPA · ใช้เซิร์ฟเวอร์ส่วนรวมอย่างรับผิดชอบ</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sec" id="media">
+    <div class="sec-head"><span class="sec-num">09</span><div><h2>สื่อและแหล่งเรียนรู้</h2><p>สิ่งที่มีให้ในเว็บนี้</p></div></div>
+    <div class="g3">
+      <div class="mini c-blue"><span class="ic-wrap"><i data-i="play"></i></span><h4>แอนิเมชันทีละขั้น 27 ชุด</h4><p>หยุด ย้อน ปรับความเร็ว และกดดูขั้นใดก็ได้</p></div>
+      <div class="mini c-pink"><span class="ic-wrap"><i data-i="zap"></i></span><h4>แล็บโต้ตอบ</h4><p>ตัวแยก URL · วัดคอนทราสต์ · Live editor · Specificity · Flexbox · Responsive · เมนู JS</p></div>
+      <div class="mini c-purple"><span class="ic-wrap"><i data-i="help"></i></span><h4>แบบทดสอบ 92 ข้อ</h4><p>ก่อนเรียน 25 ข้อ · ท้ายหน่วย 52 ข้อ · หลังเรียนทั้งรายวิชา 15 ข้อ เฉลยพร้อมคำอธิบายทันที</p></div>
+      <div class="mini c-teal"><span class="ic-wrap"><i data-i="clipboard"></i></span><h4>ใบงาน + เกณฑ์ให้คะแนน</h4><p>เช็กลิสต์ติ๊กได้ทุกหน่วย และแบบฟอร์มวางแผนโครงงาน</p></div>
+      <div class="mini"><span class="ic-wrap"><i data-i="book"></i></span><h4><a href="resources.html">คลังความรู้เสริม</a></h4><p>อภิธานศัพท์ · แก้ปัญหา · Cheat sheet · คีย์ลัด · เช็กลิสต์ก่อนส่งงาน</p></div>
+      <div class="mini c-pink"><span class="ic-wrap"><i data-i="server"></i></span><h4>เซิร์ฟเวอร์และโดเมนของสถานศึกษา</h4><p>ใช้เผยแพร่โครงงานจริง ผู้เรียนกรอกข้อมูลแล้วคำสั่งในบทเรียนปรับตามอัตโนมัติ</p></div>
     </div>
   </section>
 </div>

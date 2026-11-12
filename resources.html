@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>คลังความรู้เสริม · Web Dev</title>
+<meta name="description" content="อภิธานศัพท์การสร้างเว็บไซต์ ตารางแก้ปัญหาที่พบบ่อย สรุปคำสั่ง HTML CSS Linux Nginx Git คีย์ลัด และแหล่งเรียนรู้เพิ่มเติม">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec4899'/%3E%3Cpath d='M24 22l-10 10 10 10M40 22l10 10-10 10' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>try{var t=JSON.parse(localStorage.getItem('wd-theme'));if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid"></div><div class="floaters"></div></div>
+<header class="topbar">
+  <nav class="pill" aria-label="เมนูหลัก">
+    <a href="index.html">Web Dev</a>
+    <a href="units/unit-1.html">หน่วย 1</a>
+    <a href="units/unit-2.html">หน่วย 2</a>
+    <a href="units/unit-3.html">หน่วย 3</a>
+    <a href="units/unit-4.html">หน่วย 4</a>
+    <a href="units/unit-5.html">หน่วย 5</a>
+    <a href="resources.html" aria-current="page">คลังความรู้</a>
+    <a href="course.html">วิเคราะห์รายวิชา</a>
+  </nav>
+  <button class="theme-btn" type="button">โหมด</button>
+</header>
+
+<main>
+<div class="wrap">
+  <section class="lesson-hero">
+    <div class="crumbs"><a href="index.html">Web Dev</a> / คลังความรู้เสริม</div>
+    <div class="meta"><span class="chip hot">ใช้ได้ทุกหน่วย</span><span class="chip">อภิธานศัพท์</span><span class="chip">แก้ปัญหา</span><span class="chip">Cheat sheet</span></div>
+    <h1>คลัง<span class="grad-text">ความรู้เสริม</span></h1>
+    <p class="lead">รวมทุกอย่างที่ต้องเปิดดูบ่อยระหว่างเรียนและทำโครงงาน: ความหมายของคำศัพท์ วิธีแก้เมื่อเว็บมีปัญหา สรุปคำสั่ง คีย์ลัด และแหล่งเรียนรู้ต่อยอด — แต่ละรายการบอกไว้ว่าเรียนละเอียดในหน่วยไหน</p>
+  </section>
+
+  <div class="lesson-grid">
+    <aside class="toc">
+      <span class="toc-title">คลังความรู้</span>
+      <nav>
+        <a href="#glossary">อภิธานศัพท์</a>
+        <a href="#trouble">แก้ปัญหาที่พบบ่อย</a>
+        <a href="#cheat-html">สรุป HTML</a>
+        <a href="#cheat-css">สรุป CSS</a>
+        <a href="#cheat-linux">สรุป Linux · SSH · Nginx</a>
+        <a href="#cheat-git">สรุป Git</a>
+        <a href="#keys">คีย์ลัด</a>
+        <a href="#checklist">เช็กลิสต์ก่อนส่งงาน</a>
+        <a href="#links">แหล่งเรียนรู้เพิ่มเติม</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+      <section class="sec" id="glossary">
+        <div class="sec-head"><span class="sec-num">01</span><div><h2>อภิธานศัพท์</h2><p>พิมพ์คำที่อยากรู้ (ไทยหรืออังกฤษ) เพื่อกรองรายการ · ตัวเลขในวงเล็บ = หน่วยที่เรียน</p></div></div>
+        <div class="panel gloss-wrap">
+          <input class="lab-input gl-search" type="search" placeholder="ค้นหาคำศัพท์ เช่น DNS, พอร์ต, คุกกี้…" aria-label="ค้นหาคำศัพท์">
+          <p class="gl-count muted" style="font-size:13px;margin:10px 0 0"></p>
+          <div class="gloss">
+            <div class="gl"><b>A record</b><span>DNS record ที่ชี้ชื่อโดเมนไปยัง IPv4 (หน่วย 1, 5)</span></div>
+            <div class="gl"><b>AAAA record</b><span>DNS record ที่ชี้ชื่อโดเมนไปยัง IPv6 (หน่วย 1)</span></div>
+            <div class="gl"><b>Accessibility (a11y)</b><span>การออกแบบให้ทุกคนใช้ได้ รวมผู้พิการ ตามหลัก WCAG — POUR (หน่วย 2)</span></div>
+            <div class="gl"><b>alt text</b><span>ข้อความอธิบายรูปในแท็ก &lt;img&gt; สำหรับโปรแกรมอ่านหน้าจอและเมื่อรูปโหลดไม่ขึ้น (หน่วย 3)</span></div>
+            <div class="gl"><b>Apache</b><span>โปรแกรมเว็บเซิร์ฟเวอร์ยอดนิยม อยู่ใน XAMPP ตั้งค่ารายโฟลเดอร์ด้วย .htaccess ได้ (หน่วย 3)</span></div>
+            <div class="gl"><b>Attribute (แอตทริบิวต์)</b><span>คุณสมบัติเพิ่มเติมในแท็กเปิด เช่น href, src, alt (หน่วย 3)</span></div>
+            <div class="gl"><b>Backend (หลังบ้าน)</b><span>ส่วนประมวลผลฝั่งเซิร์ฟเวอร์ที่ผู้ใช้มองไม่เห็น เช่น PHP, Node.js (หน่วย 1)</span></div>
+            <div class="gl"><b>Bandwidth (แบนด์วิดท์)</b><span>ปริมาณข้อมูลที่ส่งผ่านได้ต่อหน่วยเวลา / ปริมาณรับส่งที่โฮสติ้งอนุญาต (หน่วย 5)</span></div>
+            <div class="gl"><b>Box Model</b><span>ทุกองค์ประกอบคือกล่อง: content → padding → border → margin (หน่วย 4)</span></div>
+            <div class="gl"><b>Breakpoint</b><span>ความกว้างจอที่ Layout เปลี่ยนรูปแบบ เช่น 768px, 992px (หน่วย 2, 4)</span></div>
+            <div class="gl"><b>Browser (เบราว์เซอร์)</b><span>โปรแกรมขอและแสดงผลเว็บ เช่น Chrome, Edge, Firefox, Safari (หน่วย 1)</span></div>
+            <div class="gl"><b>Cache (แคช)</b><span>การเก็บสำเนาข้อมูลไว้ใช้ซ้ำให้เร็วขึ้น มีทั้งในเบราว์เซอร์ DNS และเซิร์ฟเวอร์ (หน่วย 1, 5)</span></div>
+            <div class="gl"><b>CDN</b><span>Content Delivery Network — เครือข่ายเซิร์ฟเวอร์ทั่วโลกที่เก็บสำเนาไฟล์เว็บไว้ใกล้ผู้ใช้ (หน่วย 1)</span></div>
+            <div class="gl"><b>Certificate (ใบรับรอง SSL/TLS)</b><span>เอกสารดิจิทัลยืนยันตัวตนของเว็บไซต์ ออกโดย CA ใช้ในการเชื่อมต่อ HTTPS (หน่วย 1, 5)</span></div>
+            <div class="gl"><b>certbot</b><span>โปรแกรมขอและต่ออายุใบรับรองจาก Let's Encrypt อัตโนมัติ (หน่วย 5)</span></div>
+            <div class="gl"><b>Client (ไคลเอนต์)</b><span>ฝ่ายผู้ขอบริการ เช่น เบราว์เซอร์บนเครื่องผู้ใช้ (หน่วย 1)</span></div>
+            <div class="gl"><b>CLS</b><span>Cumulative Layout Shift — ค่าวัดการ “กระโดด” ของเนื้อหาระหว่างโหลด ควร ≤ 0.1 (หน่วย 3, 5)</span></div>
+            <div class="gl"><b>CMS</b><span>Content Management System — ระบบจัดการเนื้อหาผ่านหน้าแอดมิน เช่น WordPress (หน่วย 5)</span></div>
+            <div class="gl"><b>CNAME record</b><span>DNS record ที่ทำให้ชื่อหนึ่งเป็น “ชื่อเล่น” ของอีกชื่อ เช่น www → โดเมนหลัก (หน่วย 1, 5)</span></div>
+            <div class="gl"><b>Container query</b><span>CSS ที่ปรับรูปแบบตามขนาดกล่องแม่แทนขนาดจอ (@container) (หน่วย 4)</span></div>
+            <div class="gl"><b>Cookie (คุกกี้)</b><span>ข้อมูลเล็ก ๆ ที่เซิร์ฟเวอร์ฝากไว้ในเบราว์เซอร์ ใช้จำการล็อกอิน/การตั้งค่า (หน่วย 1)</span></div>
+            <div class="gl"><b>CSS</b><span>Cascading Style Sheets — ภาษากำหนดหน้าตาและการจัดวาง (หน่วย 1, 4)</span></div>
+            <div class="gl"><b>CSSOM</b><span>โครงสร้างต้นไม้ของกฎ CSS ที่เบราว์เซอร์สร้างระหว่างการแสดงผล (หน่วย 1)</span></div>
+            <div class="gl"><b>CTA (Call to Action)</b><span>ปุ่มหรือข้อความที่ชวนให้ผู้ใช้ทำสิ่งสำคัญ เช่น “สมัครเรียน” (หน่วย 2)</span></div>
+            <div class="gl"><b>Database (ฐานข้อมูล)</b><span>ที่เก็บข้อมูลอย่างเป็นระบบ เช่น MySQL/MariaDB (หน่วย 1, 5)</span></div>
+            <div class="gl"><b>DevTools</b><span>เครื่องมือนักพัฒนาในเบราว์เซอร์ (กด F12) ดูโค้ด Network Console ฯลฯ (ทุกหน่วย)</span></div>
+            <div class="gl"><b>DNS</b><span>Domain Name System — ระบบแปลงชื่อโดเมนเป็น IP Address (หน่วย 1, 5)</span></div>
+            <div class="gl"><b>DocumentRoot</b><span>โฟลเดอร์ที่เว็บเซิร์ฟเวอร์ใช้เป็นราก (/) ของเว็บ เช่น htdocs, /var/www/… (หน่วย 3, 5)</span></div>
+            <div class="gl"><b>DOM</b><span>Document Object Model — โครงสร้างต้นไม้ของหน้าเว็บที่ JavaScript อ่าน/แก้ไขได้ (หน่วย 1, 4)</span></div>
+            <div class="gl"><b>Domain name (โดเมนเนม)</b><span>ชื่อเว็บที่จดทะเบียน ไม่ซ้ำกันทั้งโลก ต้องต่ออายุ (หน่วย 1, 5)</span></div>
+            <div class="gl"><b>Element (อิลิเมนต์)</b><span>แท็กเปิด + เนื้อหา + แท็กปิด รวมเป็นหนึ่งชิ้นของหน้าเว็บ (หน่วย 3)</span></div>
+            <div class="gl"><b>Emmet</b><span>ตัวย่อสร้างโค้ดเร็วใน VS Code เช่น ! หรือ ul&gt;li*5 แล้วกด Tab (หน่วย 3)</span></div>
+            <div class="gl"><b>Event (เหตุการณ์)</b><span>สิ่งที่เกิดขึ้นบนหน้าเว็บ เช่น click, input, submit ที่ JavaScript รอฟังได้ (หน่วย 4)</span></div>
+            <div class="gl"><b>Favicon</b><span>ไอคอนเล็กบนแท็บเบราว์เซอร์ (หน่วย 3)</span></div>
+            <div class="gl"><b>Firewall (ไฟร์วอลล์)</b><span>ระบบกั้นการเชื่อมต่อที่ไม่อนุญาต เช่น ufw บน Linux (หน่วย 5)</span></div>
+            <div class="gl"><b>Flexbox</b><span>ระบบจัดวาง CSS แบบ 1 มิติ (แถวหรือคอลัมน์) (หน่วย 4)</span></div>
+            <div class="gl"><b>Fragment (#)</b><span>ส่วนท้าย URL ที่ใช้กระโดดไปยัง id ในหน้า ไม่ถูกส่งไปเซิร์ฟเวอร์ (หน่วย 1)</span></div>
+            <div class="gl"><b>Frontend (หน้าบ้าน)</b><span>ส่วนที่ผู้ใช้เห็นและโต้ตอบในเบราว์เซอร์: HTML, CSS, JS (หน่วย 1)</span></div>
+            <div class="gl"><b>FTP / SFTP</b><span>โปรโตคอลส่งไฟล์ · FTP (พอร์ต 21) ไม่เข้ารหัส · SFTP (พอร์ต 22 ผ่าน SSH) เข้ารหัส (หน่วย 5)</span></div>
+            <div class="gl"><b>GET / POST</b><span>HTTP Method · GET ส่งข้อมูลใน URL · POST ส่งข้อมูลใน Body (หน่วย 1, 3)</span></div>
+            <div class="gl"><b>Git</b><span>ระบบควบคุมเวอร์ชันของโค้ด บันทึกประวัติทุกการแก้ไข (หน่วย 5)</span></div>
+            <div class="gl"><b>Grid (CSS Grid)</b><span>ระบบจัดวาง CSS แบบ 2 มิติ (แถวและคอลัมน์) (หน่วย 4)</span></div>
+            <div class="gl"><b>Header (HTTP)</b><span>ข้อมูลประกอบในคำขอ/คำตอบ HTTP เช่น Host, Content-Type (หน่วย 1)</span></div>
+            <div class="gl"><b>Hosting (โฮสติ้ง)</b><span>พื้นที่บนเซิร์ฟเวอร์สำหรับวางเว็บ: Shared, VPS, Cloud, Dedicated (หน่วย 5)</span></div>
+            <div class="gl"><b>HSTS</b><span>Header ที่สั่งให้เบราว์เซอร์ใช้ HTTPS กับเว็บนี้เสมอ (หน่วย 1)</span></div>
+            <div class="gl"><b>HTML</b><span>HyperText Markup Language — ภาษากำหนดโครงสร้างเนื้อหาเว็บเพจ (หน่วย 1, 3)</span></div>
+            <div class="gl"><b>HTTP / HTTPS</b><span>โปรโตคอลรับส่งเว็บ · HTTPS = HTTP + การเข้ารหัส TLS (หน่วย 1)</span></div>
+            <div class="gl"><b>Hyperlink (ไฮเปอร์ลิงก์)</b><span>ข้อความ/รูปที่คลิกแล้วไปยังที่อื่น สร้างด้วย &lt;a href&gt; (หน่วย 1, 3)</span></div>
+            <div class="gl"><b>INP</b><span>Interaction to Next Paint — ค่าวัดความไวในการตอบสนองเมื่อผู้ใช้กด ควร ≤ 200 ms (หน่วย 5)</span></div>
+            <div class="gl"><b>IP Address</b><span>หมายเลขประจำอุปกรณ์บนเครือข่าย IPv4/IPv6 (หน่วย 1)</span></div>
+            <div class="gl"><b>ISP</b><span>Internet Service Provider — ผู้ให้บริการอินเทอร์เน็ต (หน่วย 1)</span></div>
+            <div class="gl"><b>JavaScript</b><span>ภาษาโปรแกรมที่ทำให้หน้าเว็บโต้ตอบได้ ทำงานในเบราว์เซอร์ (หน่วย 1, 4)</span></div>
+            <div class="gl"><b>LAN</b><span>Local Area Network — เครือข่ายในพื้นที่จำกัด เช่น ห้องเรียน อาคาร (หน่วย 1)</span></div>
+            <div class="gl"><b>Latency (เลเทนซี)</b><span>เวลาที่ข้อมูลใช้เดินทางไป-กลับ ดูได้จาก ping (หน่วย 1)</span></div>
+            <div class="gl"><b>LCP</b><span>Largest Contentful Paint — เวลาที่เนื้อหาหลักแสดง ควร ≤ 2.5 วินาที (หน่วย 5)</span></div>
+            <div class="gl"><b>Let's Encrypt</b><span>หน่วยงานออกใบรับรอง HTTPS ฟรีแบบอัตโนมัติ (หน่วย 5)</span></div>
+            <div class="gl"><b>localhost (127.0.0.1)</b><span>ชื่อที่หมายถึงเครื่องของเราเอง ใช้ทดสอบเว็บก่อนเผยแพร่ (หน่วย 3)</span></div>
+            <div class="gl"><b>Media query</b><span>เงื่อนไข CSS ตามลักษณะจอ เช่น @media (min-width: 768px) (หน่วย 4)</span></div>
+            <div class="gl"><b>Meta tag</b><span>แท็กใน &lt;head&gt; ให้ข้อมูลเกี่ยวกับหน้า เช่น charset, viewport, description (หน่วย 3)</span></div>
+            <div class="gl"><b>MIME type</b><span>ชนิดของไฟล์ที่ส่งใน Content-Type เช่น text/html, image/webp (หน่วย 1)</span></div>
+            <div class="gl"><b>Mobile-first</b><span>แนวทางออกแบบ/เขียน CSS สำหรับมือถือก่อนแล้วค่อยขยาย (หน่วย 2, 4)</span></div>
+            <div class="gl"><b>Mockup</b><span>ภาพออกแบบหน้าเว็บที่เหมือนจริง มีสี ฟอนต์ ภาพ (หน่วย 2)</span></div>
+            <div class="gl"><b>MoSCoW</b><span>วิธีจัดลำดับความต้องการ: Must, Should, Could, Won't (หน่วย 2)</span></div>
+            <div class="gl"><b>MySQL / MariaDB</b><span>ระบบจัดการฐานข้อมูลเชิงสัมพันธ์ ใช้กับ WordPress (หน่วย 3, 5)</span></div>
+            <div class="gl"><b>Name Server (NS)</b><span>เซิร์ฟเวอร์ที่เก็บ DNS record ของโดเมน (หน่วย 1, 5)</span></div>
+            <div class="gl"><b>NAT</b><span>การแปลง Private IP หลายเครื่องให้ออกอินเทอร์เน็ตด้วย Public IP เดียว (หน่วย 1)</span></div>
+            <div class="gl"><b>Nginx</b><span>โปรแกรมเว็บเซิร์ฟเวอร์ประสิทธิภาพสูง อ่านว่า “เอ็นจิน-เอ็กซ์” (หน่วย 3, 5)</span></div>
+            <div class="gl"><b>Open Graph</b><span>meta tag กำหนดชื่อ คำอธิบาย และภาพเมื่อแชร์ลิงก์ในโซเชียล (หน่วย 3)</span></div>
+            <div class="gl"><b>Packet (แพ็กเก็ต)</b><span>ข้อมูลชิ้นเล็กที่ถูกแบ่งเพื่อส่งผ่านเครือข่าย (หน่วย 1)</span></div>
+            <div class="gl"><b>Path (พาธ)</b><span>ตำแหน่งไฟล์/โฟลเดอร์ · Relative, Root-relative, Absolute (หน่วย 1, 3)</span></div>
+            <div class="gl"><b>PDPA</b><span>พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล — ต้องแจ้งวัตถุประสงค์และเก็บข้อมูลเท่าที่จำเป็น (หน่วย 5)</span></div>
+            <div class="gl"><b>Permalink</b><span>รูปแบบ URL ถาวรของหน้า/โพสต์ใน WordPress เช่น /about-us/ (หน่วย 5)</span></div>
+            <div class="gl"><b>Persona</b><span>ตัวแทนผู้ใช้สมมติที่สร้างจากข้อมูลจริง (หน่วย 2)</span></div>
+            <div class="gl"><b>PHP</b><span>ภาษาฝั่งเซิร์ฟเวอร์ สร้างหน้าเว็บแบบไดนามิก WordPress เขียนด้วย PHP (หน่วย 3, 5)</span></div>
+            <div class="gl"><b>Plugin (ปลั๊กอิน)</b><span>ส่วนเสริมเพิ่มความสามารถให้ WordPress (หน่วย 5)</span></div>
+            <div class="gl"><b>Port (พอร์ต)</b><span>“ประตู” ของบริการบนเครื่อง เช่น 80 HTTP, 443 HTTPS, 22 SSH (หน่วย 1)</span></div>
+            <div class="gl"><b>Propagation</b><span>ช่วงเวลาที่การเปลี่ยน DNS กระจายไปทั่วโลก ขึ้นกับ TTL (หน่วย 5)</span></div>
+            <div class="gl"><b>Prototype</b><span>Mockup ที่เชื่อมลิงก์ให้กดทดลองใช้ได้ (หน่วย 2)</span></div>
+            <div class="gl"><b>Query string (?)</b><span>ส่วนของ URL หลัง ? ใช้ส่งข้อมูลแบบ key=value (หน่วย 1, 3)</span></div>
+            <div class="gl"><b>Redirect (301/302)</b><span>การส่งผู้ใช้ไปยังที่อยู่ใหม่ · 301 ถาวร · 302 ชั่วคราว (หน่วย 1, 5)</span></div>
+            <div class="gl"><b>Render (เรนเดอร์)</b><span>กระบวนการที่เบราว์เซอร์วาดหน้าเว็บลงจอ (หน่วย 1)</span></div>
+            <div class="gl"><b>Resolver</b><span>DNS เซิร์ฟเวอร์ที่ถามต่อแทนเราจนได้คำตอบ เช่น ของ ISP, 1.1.1.1 (หน่วย 1)</span></div>
+            <div class="gl"><b>Responsive design</b><span>การออกแบบให้เว็บปรับตามขนาดจอทุกอุปกรณ์ (หน่วย 2, 4)</span></div>
+            <div class="gl"><b>robots.txt</b><span>ไฟล์บอกเสิร์ชเอนจินว่าเก็บข้อมูลส่วนไหนได้ (หน่วย 5)</span></div>
+            <div class="gl"><b>Root server</b><span>เซิร์ฟเวอร์ DNS ระดับบนสุด มี 13 ชื่อ กระจายกว่า 1,000 จุดทั่วโลก (หน่วย 1)</span></div>
+            <div class="gl"><b>Semantic HTML</b><span>การใช้แท็กตามความหมาย เช่น header, nav, main, footer (หน่วย 3)</span></div>
+            <div class="gl"><b>SEO</b><span>Search Engine Optimization — การทำให้เว็บถูกค้นเจอใน Google (หน่วย 3, 5)</span></div>
+            <div class="gl"><b>Server block / Virtual host</b><span>การตั้งค่าที่ให้เซิร์ฟเวอร์เดียวให้บริการหลายเว็บ แยกด้วยชื่อโดเมน (หน่วย 5)</span></div>
+            <div class="gl"><b>Session</b><span>การจำสถานะผู้ใช้ฝั่งเซิร์ฟเวอร์ โดยอ้างอิงผ่าน Cookie (หน่วย 1)</span></div>
+            <div class="gl"><b>Sitemap</b><span>แผนผังโครงสร้างหน้าเว็บทั้งหมด (และไฟล์ sitemap.xml สำหรับ Google) (หน่วย 2, 5)</span></div>
+            <div class="gl"><b>Specificity</b><span>ค่าความเฉพาะเจาะจงของ CSS selector ใช้ตัดสินว่ากฎไหนชนะ (หน่วย 4)</span></div>
+            <div class="gl"><b>SSH / SSH key</b><span>การเชื่อมต่อควบคุมเซิร์ฟเวอร์แบบเข้ารหัส (พอร์ต 22) · key ปลอดภัยกว่ารหัสผ่าน (หน่วย 5)</span></div>
+            <div class="gl"><b>Static / Dynamic</b><span>เว็บที่ส่งไฟล์สำเร็จรูป / เว็บที่สร้างหน้าใหม่จากโปรแกรมและฐานข้อมูล (หน่วย 1)</span></div>
+            <div class="gl"><b>Status code</b><span>รหัส 3 หลักบอกผลของคำขอ HTTP เช่น 200, 301, 404, 500 (หน่วย 1)</span></div>
+            <div class="gl"><b>Subdomain (ซับโดเมน)</b><span>ชื่อย่อยหน้าโดเมนหลัก เช่น student01.example.ac.th (หน่วย 1, 5)</span></div>
+            <div class="gl"><b>TCP/IP</b><span>ชุดโปรโตคอลพื้นฐานของอินเทอร์เน็ต (หน่วย 1)</span></div>
+            <div class="gl"><b>Theme (ธีม)</b><span>ชุดแม่แบบหน้าตาของ WordPress เปลี่ยนได้โดยเนื้อหาไม่หาย (หน่วย 5)</span></div>
+            <div class="gl"><b>TLD</b><span>Top-Level Domain — โดเมนระดับบนสุด เช่น .com, .th (หน่วย 1)</span></div>
+            <div class="gl"><b>TLS</b><span>โปรโตคอลเข้ารหัสที่ใช้ใน HTTPS (เดิมเรียก SSL) (หน่วย 1, 5)</span></div>
+            <div class="gl"><b>TTL</b><span>Time To Live — ระยะเวลาที่ DNS record ถูกจำไว้ใน cache (หน่วย 1, 5)</span></div>
+            <div class="gl"><b>UI / UX</b><span>UI = สิ่งที่มองเห็นและกดได้ · UX = ประสบการณ์ทั้งหมดของผู้ใช้ (หน่วย 2)</span></div>
+            <div class="gl"><b>URL</b><span>Uniform Resource Locator — ที่อยู่ของทรัพยากรบนเว็บ (หน่วย 1)</span></div>
+            <div class="gl"><b>URL encoding</b><span>การแปลงอักขระพิเศษ/ภาษาไทยใน URL เป็นรหัส % (หน่วย 1)</span></div>
+            <div class="gl"><b>UTF-8</b><span>การเข้ารหัสอักขระที่รองรับทุกภาษารวมภาษาไทย (หน่วย 3)</span></div>
+            <div class="gl"><b>Viewport</b><span>พื้นที่แสดงผลของเบราว์เซอร์ · meta viewport ทำให้มือถือแสดงผลถูกขนาด (หน่วย 3, 4)</span></div>
+            <div class="gl"><b>VPS</b><span>Virtual Private Server — เซิร์ฟเวอร์เสมือนที่ได้สิทธิ์ผู้ดูแลเต็ม (หน่วย 5)</span></div>
+            <div class="gl"><b>WCAG</b><span>มาตรฐานสากลด้านการเข้าถึงเว็บ เช่น คอนทราสต์ 4.5:1 (หน่วย 2)</span></div>
+            <div class="gl"><b>Web server</b><span>เครื่องหรือโปรแกรมที่ให้บริการเว็บ เช่น Nginx, Apache (หน่วย 1, 3, 5)</span></div>
+            <div class="gl"><b>WebP</b><span>ชนิดไฟล์ภาพสำหรับเว็บ ขนาดเล็กกว่า JPG/PNG (หน่วย 3)</span></div>
+            <div class="gl"><b>Wildcard DNS</b><span>record *.โดเมน ที่ทำให้ทุกซับโดเมนชี้ไปที่เดียวกัน (หน่วย 5)</span></div>
+            <div class="gl"><b>Wireframe</b><span>โครงร่างหน้าเว็บขาว–เทา แสดงตำแหน่งองค์ประกอบ (หน่วย 2)</span></div>
+            <div class="gl"><b>WordPress</b><span>CMS แบบโอเพนซอร์สที่นิยมที่สุดในโลก (PHP + MySQL) (หน่วย 5)</span></div>
+            <div class="gl"><b>XAMPP</b><span>ชุดโปรแกรมจำลองเซิร์ฟเวอร์: Apache + MariaDB + PHP + Perl (หน่วย 3)</span></div>
+            <div class="gl"><b>XSS</b><span>Cross-Site Scripting — การแอบใส่สคริปต์อันตรายผ่านข้อมูลผู้ใช้ ป้องกันด้วย htmlspecialchars() (หน่วย 3)</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="trouble">
+        <div class="sec-head"><span class="sec-num">02</span><div><h2>แก้ปัญหาที่พบบ่อย</h2><p>อาการ → สาเหตุที่เป็นไปได้ → วิธีแก้ · หลักคิด: ไล่ตามลำดับการทำงานของเว็บ (DNS → เชื่อมต่อ → HTTP → แสดงผล)</p></div></div>
+        <div class="tabs">
+          <div role="tablist"><button role="tab" data-tab="t1">เว็บเปิดไม่ขึ้น</button><button role="tab" data-tab="t2">XAMPP / localhost</button><button role="tab" data-tab="t3">HTML / รูป / ลิงก์</button><button role="tab" data-tab="t4">CSS / JS</button><button role="tab" data-tab="t5">เซิร์ฟเวอร์ / HTTPS</button><button role="tab" data-tab="t6">WordPress</button></div>
+          <div class="tab-panel" data-panel="t1"><div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th>อาการ</th><th>สาเหตุที่เป็นไปได้</th><th>วิธีแก้ / ตรวจสอบ</th></tr></thead>
+            <tbody>
+              <tr><td>DNS_PROBE_FINISHED_NXDOMAIN</td><td>สะกดโดเมนผิด · ยังไม่ได้สร้าง DNS record · โดเมนหมดอายุ</td><td><code>nslookup ชื่อโดเมน</code> · ตรวจ record ที่ผู้ให้บริการ DNS · ตรวจวันหมดอายุโดเมน</td></tr>
+              <tr><td>เพิ่งแก้ DNS แล้วยังไปที่เก่า</td><td>ค่าเก่ายังอยู่ใน cache (TTL ยังไม่หมด)</td><td>รอตาม TTL · <code>ipconfig /flushdns</code> · ทดสอบ <code>nslookup โดเมน 1.1.1.1</code></td></tr>
+              <tr><td>ERR_CONNECTION_REFUSED</td><td>เซิร์ฟเวอร์ไม่ได้เปิดบริการที่พอร์ตนั้น</td><td><code>systemctl status nginx</code> · ตรวจ firewall (<code>sudo ufw status</code>)</td></tr>
+              <tr><td>ERR_CONNECTION_TIMED_OUT</td><td>IP ผิด · firewall บล็อก · เซิร์ฟเวอร์ล่ม</td><td><code>ping</code> / <code>tracert</code> · เปิดพอร์ต 80/443</td></tr>
+              <tr><td>เปิดได้ในเครื่องเรา แต่คนอื่นเปิดไม่ได้</td><td>ยังเป็น localhost/ไฟล์ hosts · DNS ยังไม่กระจาย</td><td>ทดสอบด้วยมือถือ (ปิด Wi-Fi) · ลบบรรทัดทดสอบในไฟล์ hosts</td></tr>
+            </tbody></table></div></div>
+          <div class="tab-panel" data-panel="t2"><div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th>อาการ</th><th>สาเหตุที่เป็นไปได้</th><th>วิธีแก้ / ตรวจสอบ</th></tr></thead>
+            <tbody>
+              <tr><td>Apache กด Start แล้วดับ</td><td>พอร์ต 80/443 ถูกโปรแกรมอื่นใช้</td><td><code>netstat -ano | findstr :80</code> · ปิดโปรแกรมนั้น หรือเปลี่ยน <code>Listen 8080</code></td></tr>
+              <tr><td>MySQL Start ไม่ได้</td><td>พอร์ต 3306 ชน · ปิดเครื่องไม่ปกติทำให้ไฟล์ข้อมูลเสีย</td><td>ปิด MySQL ตัวอื่นใน services.msc · ดู Logs ใน XAMPP Control Panel</td></tr>
+              <tr><td>เห็นโค้ด PHP เป็นตัวหนังสือ</td><td>เปิดไฟล์ด้วยการดับเบิลคลิก (file:///)</td><td>เปิดผ่าน <code>http://localhost/…</code> เสมอ</td></tr>
+              <tr><td>localhost แล้วเจอ 404</td><td>ไฟล์ไม่ได้อยู่ใน htdocs · พิมพ์ชื่อโฟลเดอร์ผิด</td><td>ตรวจตำแหน่ง <code>C:\xampp\htdocs\ชื่อโฟลเดอร์</code></td></tr>
+            </tbody></table></div></div>
+          <div class="tab-panel" data-panel="t3"><div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th>อาการ</th><th>สาเหตุที่เป็นไปได้</th><th>วิธีแก้ / ตรวจสอบ</th></tr></thead>
+            <tbody>
+              <tr><td>ภาษาไทยเป็นตัวอักษรแปลก</td><td>ไม่มี <code>&lt;meta charset="UTF-8"&gt;</code> · ไฟล์ไม่ได้บันทึกเป็น UTF-8</td><td>เพิ่ม meta charset ต้น head · VS Code มุมขวาล่าง Save with Encoding → UTF-8</td></tr>
+              <tr><td>รูปไม่ขึ้น (ไอคอนรูปแตก)</td><td>พาธผิด · ตัวพิมพ์เล็ก-ใหญ่ไม่ตรง · ใช้ <code>C:\…</code></td><td>DevTools → Network ดูไฟล์ที่ 404 · ใช้พาธสัมพัทธ์ · ชื่อไฟล์ตัวเล็กทั้งหมด</td></tr>
+              <tr><td>ตัวหนา/ลิงก์ “ลาม” ทั้งหน้า</td><td>ลืมปิดแท็ก</td><td>ตรวจที่ validator.w3.org · VS Code เน้นคู่แท็กให้</td></tr>
+              <tr><td>มือถือแสดงหน้าเว็บตัวเล็กมาก</td><td>ไม่มี meta viewport</td><td>เพิ่ม <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></td></tr>
+              <tr><td>ลิงก์ไปหน้าอื่นได้ 404 หลังอัปโหลด</td><td>บนเครื่องเป็น Windows (ไม่สนตัวพิมพ์) แต่เซิร์ฟเวอร์เป็น Linux (สนตัวพิมพ์)</td><td>ให้ชื่อไฟล์ในลิงก์ตรงกับชื่อไฟล์จริงทุกตัวอักษร</td></tr>
+            </tbody></table></div></div>
+          <div class="tab-panel" data-panel="t4"><div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th>อาการ</th><th>สาเหตุที่เป็นไปได้</th><th>วิธีแก้ / ตรวจสอบ</th></tr></thead>
+            <tbody>
+              <tr><td>แก้ CSS แล้วหน้าเว็บไม่เปลี่ยน</td><td>เบราว์เซอร์ใช้ไฟล์ใน cache · ลิงก์ไฟล์ CSS ผิด</td><td><kbd>Ctrl</kbd>+<kbd>F5</kbd> · Network ดูว่า style.css โหลดได้ (200) หรือไม่</td></tr>
+              <tr><td>สั่งสีแล้วไม่เปลี่ยน</td><td>แพ้ Specificity · พิมพ์ property/value ผิด</td><td>DevTools → Styles ดูกฎที่ถูกขีดฆ่า / มีเครื่องหมายเตือน</td></tr>
+              <tr><td>กล่องล้นจอ/มีแถบเลื่อนแนวนอน</td><td>ขาด box-sizing: border-box · ใช้ width คงที่ · รูปไม่มี max-width</td><td>เพิ่ม CSS Reset · ใช้ % / max-width · <code>img { max-width:100% }</code></td></tr>
+              <tr><td>Media query ไม่ทำงานบนมือถือจริง</td><td>ไม่มี meta viewport · เขียนวงเล็บผิด</td><td>ตรวจ meta viewport ทุกหน้า</td></tr>
+              <tr><td>ปุ่ม JS กดแล้วไม่มีอะไรเกิดขึ้น</td><td>selector สะกดผิด (ได้ null) · script โหลดก่อน HTML</td><td>Console ดู error สีแดง · ใส่ <code>defer</code> ที่ &lt;script&gt;</td></tr>
+            </tbody></table></div></div>
+          <div class="tab-panel" data-panel="t5"><div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th>อาการ</th><th>สาเหตุที่เป็นไปได้</th><th>วิธีแก้ / ตรวจสอบ</th></tr></thead>
+            <tbody>
+              <tr><td>Permission denied (publickey)</td><td>เซิร์ฟเวอร์ยังไม่มี public key ของเรา · ใช้ชื่อผู้ใช้ผิด</td><td>ส่งไฟล์ <code>~/.ssh/id_ed25519.pub</code> ให้ผู้ดูแล · <code>ssh -v</code> ดูรายละเอียด</td></tr>
+              <tr><td>เจอ “Welcome to nginx!”</td><td>server_name ไม่ตรง · ยังไม่ ln ไป sites-enabled · ยังไม่ reload</td><td><code>sudo nginx -t</code> แล้ว <code>sudo systemctl reload nginx</code></td></tr>
+              <tr><td>403 Forbidden</td><td>สิทธิ์ไฟล์/โฟลเดอร์ผิด · ไม่มี index.html</td><td>โฟลเดอร์ 755 ไฟล์ 644 · ตรวจชื่อ index.html</td></tr>
+              <tr><td>502 Bad Gateway</td><td>PHP-FPM ไม่ทำงาน · พาธ sock ผิด</td><td><code>ls /run/php/</code> · <code>systemctl status php8.3-fpm</code> (เลขเวอร์ชันตามเครื่อง)</td></tr>
+              <tr><td>certbot ล้มเหลว (challenge failed)</td><td>DNS ยังไม่ชี้มาเครื่องนี้ · พอร์ต 80 ปิด · บล็อก /.well-known</td><td>ตรวจ nslookup · เปิด 80 ใน firewall · ใช้ <code>location ~ /\.(?!well-known)</code></td></tr>
+              <tr><td>“ไม่ปลอดภัย” แม้มี HTTPS (Mixed content)</td><td>หน้าเว็บโหลดรูป/สคริปต์ผ่าน http://</td><td>Console ดูคำเตือน Mixed Content · เปลี่ยนเป็น https:// หรือพาธสัมพัทธ์</td></tr>
+            </tbody></table></div></div>
+          <div class="tab-panel" data-panel="t6"><div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th>อาการ</th><th>สาเหตุที่เป็นไปได้</th><th>วิธีแก้ / ตรวจสอบ</th></tr></thead>
+            <tbody>
+              <tr><td>Error establishing a database connection</td><td>ชื่อฐานข้อมูล/ผู้ใช้/รหัสใน wp-config.php ผิด · MySQL ไม่ทำงาน</td><td>ตรวจ DB_NAME, DB_USER, DB_PASSWORD, DB_HOST ใน wp-config.php</td></tr>
+              <tr><td>หน้าอื่นนอกจากหน้าแรก 404</td><td>Nginx ไม่มี <code>try_files … /index.php?$args</code></td><td>แก้ server block แล้ว reload</td></tr>
+              <tr><td>อัปโหลดรูปไม่ได้</td><td>โฟลเดอร์ wp-content/uploads เขียนไม่ได้ · ไฟล์ใหญ่เกินกำหนด</td><td><code>chown -R www-data:www-data</code> · เพิ่ม upload_max_filesize / client_max_body_size</td></tr>
+              <tr><td>หน้าขาวทั้งหน้า</td><td>ปลั๊กอิน/ธีมมีบั๊ก</td><td>เปลี่ยนชื่อโฟลเดอร์ปลั๊กอินที่เพิ่งติดตั้งเพื่อปิด · ดู error log</td></tr>
+              <tr><td>ภาษาไทยในฐานข้อมูลเป็น ???</td><td>ฐานข้อมูลไม่ได้ใช้ utf8mb4</td><td>สร้างฐานข้อมูลด้วย <code>utf8mb4_unicode_ci</code> ตั้งแต่แรก</td></tr>
+            </tbody></table></div></div>
+        </div>
+      </section>
+
+      <section class="sec" id="cheat-html">
+        <div class="sec-head"><span class="sec-num">03</span><div><h2>สรุป HTML</h2><p>แท็กที่ใช้บ่อย (รายละเอียดในหน่วยที่ 3)</p></div></div>
+        <div class="cheat">
+          <div><code>&lt;!DOCTYPE html&gt;</code><span>ประกาศ HTML5 บรรทัดแรก</span></div>
+          <div><code>&lt;meta charset="UTF-8"&gt;</code><span>รองรับภาษาไทย</span></div>
+          <div><code>&lt;meta name="viewport" …&gt;</code><span>รองรับมือถือ</span></div>
+          <div><code>&lt;title&gt;</code><span>ชื่อบนแท็บ/ผลค้นหา</span></div>
+          <div><code>&lt;h1&gt;…&lt;h6&gt;</code><span>หัวข้อ (h1 หน้าละ 1)</span></div>
+          <div><code>&lt;p&gt; &lt;br&gt; &lt;hr&gt;</code><span>ย่อหน้า · ขึ้นบรรทัด · เส้นคั่น</span></div>
+          <div><code>&lt;strong&gt; &lt;em&gt;</code><span>เน้นความสำคัญ · เน้นน้ำเสียง</span></div>
+          <div><code>&lt;a href="" target="_blank" rel="noopener"&gt;</code><span>ลิงก์ (แท็บใหม่อย่างปลอดภัย)</span></div>
+          <div><code>&lt;img src="" alt="" width="" height="" loading="lazy"&gt;</code><span>รูปภาพแบบมืออาชีพ</span></div>
+          <div><code>&lt;ul&gt; &lt;ol&gt; &lt;li&gt;</code><span>รายการ</span></div>
+          <div><code>&lt;table&gt; &lt;thead&gt; &lt;tbody&gt; &lt;tr&gt; &lt;th&gt; &lt;td&gt;</code><span>ตาราง · colspan/rowspan</span></div>
+          <div><code>&lt;header&gt; &lt;nav&gt; &lt;main&gt; &lt;section&gt; &lt;article&gt; &lt;aside&gt; &lt;footer&gt;</code><span>แท็กเชิงความหมาย</span></div>
+          <div><code>&lt;form action="" method="post"&gt;</code><span>ฟอร์ม</span></div>
+          <div><code>&lt;label for="x"&gt; &lt;input id="x" name="x"&gt;</code><span>ป้ายกำกับ + ช่องกรอก</span></div>
+          <div><code>type="email|tel|number|date|password"</code><span>ชนิดช่องกรอก</span></div>
+          <div><code>&lt;select&gt; &lt;option&gt; &lt;textarea&gt;</code><span>ตัวเลือก · ข้อความยาว</span></div>
+          <div><code>&lt;video controls&gt; &lt;audio controls&gt; &lt;iframe&gt;</code><span>สื่อ · ฝัง YouTube/Maps</span></div>
+          <div><code>&lt;details&gt;&lt;summary&gt;</code><span>กล่องเปิด/ปิด (FAQ)</span></div>
+          <div><code>&lt;link rel="stylesheet" href=""&gt;</code><span>เชื่อมไฟล์ CSS</span></div>
+          <div><code>&lt;script src="" defer&gt;</code><span>เชื่อมไฟล์ JS</span></div>
+        </div>
+      </section>
+
+      <section class="sec" id="cheat-css">
+        <div class="sec-head"><span class="sec-num">04</span><div><h2>สรุป CSS</h2><p>Property ที่ใช้บ่อย (รายละเอียดในหน่วยที่ 4)</p></div></div>
+        <div class="cheat">
+          <div><code>*, *::before, *::after { box-sizing: border-box; }</code><span>บรรทัดแรกของทุกโปรเจกต์</span></div>
+          <div><code>color · background</code><span>สีตัวอักษร · พื้นหลัง (สี/ไล่สี/รูป)</span></div>
+          <div><code>font-family · font-size · font-weight · line-height</code><span>ตัวอักษร (ไทย line-height 1.6–1.8)</span></div>
+          <div><code>margin · padding · border · border-radius</code><span>Box model · มุมโค้ง</span></div>
+          <div><code>width · max-width · height</code><span>ขนาด</span></div>
+          <div><code>display: block | inline | inline-block | flex | grid | none</code><span>รูปแบบการวาง</span></div>
+          <div><code>justify-content · align-items · gap · flex-wrap</code><span>Flexbox</span></div>
+          <div><code>grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))</code><span>การ์ด Responsive</span></div>
+          <div><code>position: relative | absolute | fixed | sticky</code><span>การวางตำแหน่ง · ใช้คู่ top/left/z-index</span></div>
+          <div><code>@media (min-width: 768px) { … }</code><span>Responsive แบบ Mobile-first</span></div>
+          <div><code>:root { --brand: #6d28d9; } · var(--brand)</code><span>ตัวแปร CSS</span></div>
+          <div><code>:hover · :focus-visible · :nth-child(2n)</code><span>Pseudo-class</span></div>
+          <div><code>transition: transform .2s</code><span>เคลื่อนไหวนุ่มนวล</span></div>
+          <div><code>object-fit: cover</code><span>รูปเต็มกรอบโดยไม่บิดสัดส่วน</span></div>
+          <div><code>clamp(1.5rem, 4vw, 3rem)</code><span>ขนาดยืดหยุ่นมีขั้นต่ำ-สูงสุด</span></div>
+          <div><code>margin: 0 auto</code><span>จัดกล่องกึ่งกลางแนวนอน</span></div>
+        </div>
+      </section>
+
+      <section class="sec" id="cheat-linux">
+        <div class="sec-head"><span class="sec-num">05</span><div><h2>สรุป Linux · SSH · Nginx · certbot</h2><p>คำสั่งสำหรับเซิร์ฟเวอร์ (รายละเอียดในหน่วยที่ 5)</p></div></div>
+        <div class="cheat">
+          <div><code>ssh-keygen -t ed25519</code><span>สร้างกุญแจ SSH</span></div>
+          <div><code>ssh user@IP</code><span>เข้าสู่เซิร์ฟเวอร์</span></div>
+          <div><code>pwd · ls -la · cd</code><span>ตำแหน่ง · ดูไฟล์ · ย้ายโฟลเดอร์</span></div>
+          <div><code>mkdir -p · cp -r · mv · rm -r</code><span>สร้าง · คัดลอก · ย้าย · ลบ (ระวัง!)</span></div>
+          <div><code>nano ไฟล์</code><span>แก้ไฟล์ (Ctrl+O บันทึก, Ctrl+X ออก)</span></div>
+          <div><code>chmod 755 โฟลเดอร์ · chmod 644 ไฟล์</code><span>สิทธิ์มาตรฐานของเว็บ</span></div>
+          <div><code>scp -r ./* user@IP:/var/www/site/</code><span>อัปโหลดทั้งโฟลเดอร์</span></div>
+          <div><code>rsync -avz --delete ./ user@IP:/var/www/site/</code><span>อัปโหลดเฉพาะที่เปลี่ยน</span></div>
+          <div><code>sudo nginx -t</code><span>ตรวจไวยากรณ์ config</span></div>
+          <div><code>sudo systemctl reload nginx</code><span>โหลด config ใหม่</span></div>
+          <div><code>sudo tail -f /var/log/nginx/error.log</code><span>ดู error สด</span></div>
+          <div><code>sudo certbot --nginx -d โดเมน</code><span>ขอใบรับรอง HTTPS</span></div>
+          <div><code>sudo certbot renew --dry-run</code><span>ทดสอบการต่ออายุ</span></div>
+          <div><code>sudo ufw allow 'Nginx Full'</code><span>เปิดพอร์ต 80/443 ใน firewall</span></div>
+          <div><code>df -h · free -h · uptime</code><span>ดิสก์ · หน่วยความจำ · เวลาทำงาน</span></div>
+        </div>
+      </section>
+
+      <section class="sec" id="cheat-git">
+        <div class="sec-head"><span class="sec-num">06</span><div><h2>สรุป Git (เสริม)</h2><p>เก็บประวัติโค้ด ย้อนกลับได้ และใช้ Deploy ขึ้นเซิร์ฟเวอร์</p></div></div>
+        <div class="cheat">
+          <div><code>git init</code><span>เริ่มเก็บประวัติในโฟลเดอร์นี้</span></div>
+          <div><code>git status</code><span>ดูไฟล์ที่เปลี่ยน</span></div>
+          <div><code>git add .</code><span>เตรียมไฟล์ที่จะบันทึก</span></div>
+          <div><code>git commit -m "ข้อความ"</code><span>บันทึกเวอร์ชัน</span></div>
+          <div><code>git log --oneline</code><span>ดูประวัติ</span></div>
+          <div><code>git remote add origin URL</code><span>เชื่อมกับ GitHub</span></div>
+          <div><code>git push</code><span>ส่งขึ้น GitHub</span></div>
+          <div><code>git clone URL</code><span>ดาวน์โหลด repo ครั้งแรก</span></div>
+          <div><code>git pull</code><span>ดึงเวอร์ชันล่าสุด (เช่น บนเซิร์ฟเวอร์)</span></div>
+          <div><code>.gitignore</code><span>ไฟล์ที่ไม่ต้องเก็บ เช่น รหัสผ่าน ไฟล์ชั่วคราว</span></div>
+        </div>
+        <div class="nug oops"><p>ห้าม commit ไฟล์ที่มีรหัสผ่าน (เช่น <code>wp-config.php</code> หรือ <code>.env</code>) ขึ้น GitHub แบบ public — ถ้าเผลอ commit ไปแล้ว ให้ถือว่ารหัสนั้นรั่ว และเปลี่ยนรหัสทันที</p></div>
+      </section>
+
+      <section class="sec" id="keys">
+        <div class="sec-head"><span class="sec-num">07</span><div><h2>คีย์ลัดที่ใช้บ่อย</h2><p>Windows (macOS ใช้ <kbd>Cmd</kbd> แทน <kbd>Ctrl</kbd>)</p></div></div>
+        <div class="g2">
+          <div class="tbl-wrap" style="margin:0"><table class="tbl" style="min-width:0">
+            <thead><tr><th>เบราว์เซอร์ / DevTools</th><th>ทำอะไร</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>F12</kbd></td><td>เปิด DevTools</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>U</kbd></td><td>ดูซอร์สโค้ด</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd></td><td>ชี้เลือกองค์ประกอบ</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd></td><td>จำลองมือถือ</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>F5</kbd></td><td>โหลดใหม่ไม่ใช้ cache</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></td><td>คำสั่งใน DevTools (เช่น Disable JavaScript)</td></tr>
+            </tbody>
+          </table></div>
+          <div class="tbl-wrap" style="margin:0"><table class="tbl" style="min-width:0">
+            <thead><tr><th>VS Code</th><th>ทำอะไร</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>!</kbd> + <kbd>Tab</kbd></td><td>โครง HTML5</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>/</kbd></td><td>คอมเมนต์</td></tr>
+              <tr><td><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd></td><td>จัดรูปแบบโค้ด</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>D</kbd></td><td>เลือกคำเดียวกันถัดไป</td></tr>
+              <tr><td><kbd>Alt</kbd>+<kbd>↑</kbd>/<kbd>↓</kbd></td><td>ย้ายบรรทัด</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>P</kbd></td><td>ค้นหาเปิดไฟล์</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </section>
+
+      <section class="sec" id="checklist">
+        <div class="sec-head"><span class="sec-num">08</span><div><h2>เช็กลิสต์ก่อนส่งงาน / ก่อนเปิดเว็บจริง</h2><p>ติ๊กได้ บันทึกไว้ในเบราว์เซอร์เครื่องนี้</p></div></div>
+        <div class="panel worksheet">
+          <div class="ws-head"><h3><i data-i="check"></i>Final checklist</h3><span class="ws-progress"></span></div>
+          <ul class="checklist" data-key="final-check">
+            <li><label><input type="checkbox"><span>ทุกหน้ามี DOCTYPE, <code>lang="th"</code>, meta charset, meta viewport, title และ description ไม่ซ้ำกัน</span></label></li>
+            <li><label><input type="checkbox"><span>ชื่อไฟล์/โฟลเดอร์เป็นอังกฤษตัวพิมพ์เล็ก ไม่มีเว้นวรรค · หน้าแรกชื่อ index.html</span></label></li>
+            <li><label><input type="checkbox"><span>ลิงก์ทุกอันใช้ได้ ไม่มี 404 (ตรวจทั้งบน localhost และบนเซิร์ฟเวอร์)</span></label></li>
+            <li><label><input type="checkbox"><span>รูปภาพย่อขนาดแล้ว มี alt, width, height และเป็นภาพที่มีสิทธิ์ใช้</span></label></li>
+            <li><label><input type="checkbox"><span>แสดงผลดีบนมือถือจริง ไม่มีแถบเลื่อนแนวนอน ปุ่มกดง่าย</span></label></li>
+            <li><label><input type="checkbox"><span>คอนทราสต์ผ่าน WCAG AA · ใช้ Tab ไล่ได้ทุกปุ่ม</span></label></li>
+            <li><label><input type="checkbox"><span>validator.w3.org ไม่มี Error · Console ไม่มี error สีแดง</span></label></li>
+            <li><label><input type="checkbox"><span>HTTPS 🔒 ทำงาน และ http:// redirect ไป https://</span></label></li>
+            <li><label><input type="checkbox"><span>Lighthouse: Performance / Accessibility / Best Practices / SEO บันทึกคะแนนไว้</span></label></li>
+            <li><label><input type="checkbox"><span>ไม่มีไฟล์ทดสอบ (info.php) หรือข้อมูลลับค้างบนเซิร์ฟเวอร์ · มีการสำรองข้อมูล</span></label></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sec" id="links">
+        <div class="sec-head"><span class="sec-num">09</span><div><h2>แหล่งเรียนรู้เพิ่มเติม</h2><p>เอกสารอ้างอิงที่มืออาชีพใช้จริง (ส่วนใหญ่ภาษาอังกฤษ ใช้ตัวแปลภาษาของเบราว์เซอร์ช่วยได้)</p></div></div>
+        <div class="g3">
+          <div class="mini c-blue"><h4>HTML · CSS · JS</h4><ul class="clean"><li><a href="https://developer.mozilla.org/" target="_blank" rel="noopener">MDN Web Docs</a> — อ้างอิงที่ถูกต้องที่สุด</li><li><a href="https://web.dev/learn" target="_blank" rel="noopener">web.dev/learn</a> — คอร์สฟรีจาก Google</li><li><a href="https://caniuse.com/" target="_blank" rel="noopener">Can I use</a> — เบราว์เซอร์ไหนรองรับอะไร</li><li><a href="https://validator.w3.org/" target="_blank" rel="noopener">W3C Validator</a></li></ul></div>
+          <div class="mini c-pink"><h4>ออกแบบ · UX</h4><ul class="clean"><li><a href="https://www.nngroup.com/articles/" target="_blank" rel="noopener">Nielsen Norman Group</a> — บทความ UX</li><li><a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank" rel="noopener">WCAG</a> — มาตรฐานการเข้าถึง</li><li><a href="https://fonts.google.com/?subset=thai" target="_blank" rel="noopener">Google Fonts (ไทย)</a></li><li><a href="https://coolors.co/" target="_blank" rel="noopener">Coolors</a> · <a href="https://www.figma.com/" target="_blank" rel="noopener">Figma</a></li></ul></div>
+          <div class="mini c-purple"><h4>เซิร์ฟเวอร์ · เผยแพร่</h4><ul class="clean"><li><a href="https://nginx.org/en/docs/" target="_blank" rel="noopener">Nginx docs</a></li><li><a href="https://letsencrypt.org/docs/" target="_blank" rel="noopener">Let's Encrypt docs</a> · <a href="https://certbot.eff.org/" target="_blank" rel="noopener">certbot</a></li><li><a href="https://th.wordpress.org/" target="_blank" rel="noopener">WordPress ภาษาไทย</a></li><li><a href="https://www.thnic.co.th/" target="_blank" rel="noopener">THNIC</a> — โดเมน .th</li></ul></div>
+          <div class="mini c-teal"><h4>ทดสอบ · วัดผล</h4><ul class="clean"><li><a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">PageSpeed Insights</a></li><li><a href="https://www.ssllabs.com/ssltest/" target="_blank" rel="noopener">SSL Labs</a></li><li><a href="https://dnschecker.org/" target="_blank" rel="noopener">DNS Checker</a></li><li><a href="https://search.google.com/search-console" target="_blank" rel="noopener">Google Search Console</a></li></ul></div>
+          <div class="mini"><h4>ฝึกเพิ่ม</h4><ul class="clean"><li><a href="https://flexboxfroggy.com/" target="_blank" rel="noopener">Flexbox Froggy</a> — เกมฝึก Flexbox (เลือกภาษาได้)</li><li><a href="https://cssgridgarden.com/" target="_blank" rel="noopener">Grid Garden</a> — เกมฝึก Grid</li><li><a href="https://www.freecodecamp.org/learn" target="_blank" rel="noopener">freeCodeCamp</a> — แบบฝึกหัดฟรี</li></ul></div>
+          <div class="mini c-pink"><h4>กฎหมาย · จริยธรรม</h4><ul class="clean"><li>พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล (PDPA) พ.ศ. 2562</li><li>พ.ร.บ.ว่าด้วยการกระทำความผิดเกี่ยวกับคอมพิวเตอร์</li><li>พ.ร.บ.ลิขสิทธิ์ · สัญญาอนุญาต Creative Commons</li></ul></div>
+        </div>
+      </section>
+    </article>
+  </div>
+</div>
+</main>
+<footer class="site-foot">made with <i data-i="heart" class="heart"></i> &amp; <i data-i="coffee" class="cup"></i> by IT RVC · 2026</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
